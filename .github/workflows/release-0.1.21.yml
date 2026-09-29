@@ -33,7 +33,7 @@ jobs:
       - name: Smoke-test wheel
         run: |
           python -m venv .release-venv
-          .release-venv/bin/python -m pip install --no-deps dist/keys_ng-0.1.21-py3-none-any.whl
+          .release-venv/bin/python -m pip install dist/keys_ng-0.1.21-py3-none-any.whl
           .release-venv/bin/keys-ng --version
           .release-venv/bin/keys-ng-tui version
 
