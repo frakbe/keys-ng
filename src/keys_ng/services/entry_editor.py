@@ -24,6 +24,7 @@ class EntryDraft:
     url: str = ""
     host: str = ""
     port: str = ""
+    rdp_domain: str = ""
     ssh_x11_forwarding: str = "off"
     ssh_options: str = ""
     tags: str = ""
@@ -47,6 +48,7 @@ class EntryDraft:
             url=primary.url or "" if primary and primary.type == "url" else "",
             host=primary.host or "" if primary and primary.type in {"ssh", "rdp"} else "",
             port=str(primary.port) if primary and primary.port else "",
+            rdp_domain=(primary.rdp_domain or "") if primary and primary.type == "rdp" else "",
             ssh_x11_forwarding=primary.ssh_x11_forwarding if primary and primary.type == "ssh" else "off",
             ssh_options=format_ssh_options(primary.ssh_options) if primary and primary.type == "ssh" else "",
             tags=", ".join(entry.tags),
@@ -98,7 +100,16 @@ def build_entry_from_draft(draft: EntryDraft, existing: Entry | None = None) -> 
                 ),
             )
         else:
-            actions.insert(0, Action(type="rdp", host=host, port=port, username=username or None))
+            actions.insert(
+                0,
+                Action(
+                    type="rdp",
+                    host=host,
+                    port=port,
+                    username=username or None,
+                    rdp_domain=draft.rdp_domain.strip() or None,
+                ),
+            )
 
     totp = []
     uri = draft.totp_uri.strip()

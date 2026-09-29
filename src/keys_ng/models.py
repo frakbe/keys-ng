@@ -40,6 +40,7 @@ class Action:
     host: str | None = None
     port: int | None = None
     username: str | None = None
+    rdp_domain: str | None = None
     argv: list[str] = field(default_factory=list)
     shell: bool = False
     ssh_x11_forwarding: str = "off"
@@ -60,6 +61,10 @@ class Action:
             raise ValueError("SSH X11 forwarding must be off, X, or Y")
         if self.type != "ssh" and (self.ssh_x11_forwarding != "off" or self.ssh_options):
             raise ValueError("SSH-specific options are only valid for SSH actions")
+        if self.type != "rdp" and self.rdp_domain is not None:
+            raise ValueError("RDP domain is only valid for RDP actions")
+        if self.rdp_domain is not None and not self.rdp_domain.strip():
+            raise ValueError("RDP domain must be non-empty when specified")
         if not all(isinstance(item, str) and item for item in self.ssh_options):
             raise ValueError("SSH advanced options must be non-empty strings")
         if self.type == "ssh":

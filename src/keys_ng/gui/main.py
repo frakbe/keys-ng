@@ -184,6 +184,16 @@ def main() -> None:
             self.url_label = QLabel(_("URL"))
             self.host_label = QLabel(_("Host"))
             self.port_label = QLabel(_("Port"))
+            self.rdp_domain_label = QLabel(_("Domain"))
+            self.rdp_domain_edit = QLineEdit(
+                (primary_action.rdp_domain or "")
+                if primary_action and primary_action.type == "rdp"
+                else ""
+            )
+            self.rdp_domain_edit.setPlaceholderText(".")
+            self.rdp_domain_edit.setToolTip(
+                _("Optional RDP domain. Leave empty to use the remote computer's local account database (.).")
+            )
             self.ssh_x11_label = QLabel(_("X11 forwarding"))
             self.ssh_x11_combo = QComboBox()
             self.ssh_x11_combo.addItem(_("Disabled"), "off")
@@ -236,6 +246,7 @@ def main() -> None:
             form.addRow(self.url_label, self.url_edit)
             form.addRow(self.host_label, self.host_edit)
             form.addRow(self.port_label, self.port_edit)
+            form.addRow(self.rdp_domain_label, self.rdp_domain_edit)
             form.addRow(self.ssh_x11_label, self.ssh_x11_combo)
             form.addRow(self.ssh_options_label, self.ssh_options_edit)
             form.addRow(_("Tags"), self.tags_edit)
@@ -273,6 +284,9 @@ def main() -> None:
             self.host_edit.setVisible(is_remote)
             self.port_label.setVisible(is_remote)
             self.port_edit.setVisible(is_remote)
+            is_rdp = action_type == "rdp"
+            self.rdp_domain_label.setVisible(is_rdp)
+            self.rdp_domain_edit.setVisible(is_rdp)
             is_ssh = action_type == "ssh"
             self.ssh_x11_label.setVisible(is_ssh)
             self.ssh_x11_combo.setVisible(is_ssh)
@@ -320,6 +334,7 @@ def main() -> None:
                 url=self.url_edit.text(),
                 host=self.host_edit.text(),
                 port=self.port_edit.text(),
+                rdp_domain=self.rdp_domain_edit.text(),
                 ssh_x11_forwarding=str(self.ssh_x11_combo.currentData()),
                 ssh_options=self.ssh_options_edit.text(),
                 tags=self.tags_edit.text(),
@@ -976,7 +991,10 @@ def main() -> None:
             self.activity()
             if self.current_entry and self.current_entry.actions and not self.vault.locked:
                 try:
-                    launch_action(self.vault.resolved_action(self.current_entry, self.current_entry.actions[0]))
+                    launch_action(
+                        self.vault.resolved_action(self.current_entry, self.current_entry.actions[0]),
+                        password=self.vault.resolved_password(self.current_entry),
+                    )
                 except Exception as exc:
                     QMessageBox.critical(self, _("Error"), str(exc))
 

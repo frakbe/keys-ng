@@ -422,6 +422,9 @@ def main() -> None:
                         yield Label(_("Port"), classes="editor-label")
                         yield Input(self.draft.port, id="port", classes="editor-field")
                     with Horizontal(classes="editor-row"):
+                        yield Label(_("Domain"), classes="editor-label")
+                        yield Input(self.draft.rdp_domain, placeholder=".", id="rdp-domain", classes="editor-field")
+                    with Horizontal(classes="editor-row"):
                         yield Label(_("X11 forwarding"), classes="editor-label")
                         yield Select(
                             [(_("Disabled"), "off"), (_("X11 forwarding (-X)"), "X"), (_("Trusted X11 forwarding (-Y)"), "Y")],
@@ -465,6 +468,7 @@ def main() -> None:
                 url=self.query_one("#url", Input).value,
                 host=self.query_one("#host", Input).value,
                 port=self.query_one("#port", Input).value,
+                rdp_domain=self.query_one("#rdp-domain", Input).value,
                 ssh_x11_forwarding=str(self.query_one("#x11", Select).value),
                 ssh_options=self.query_one("#ssh-options", Input).value,
                 tags=self.query_one("#tags", Input).value,
@@ -1254,7 +1258,10 @@ def main() -> None:
             if not self.current_entry or not self.current_entry.actions:
                 return
             try:
-                launch_action(vault.resolved_action(self.current_entry, self.current_entry.actions[0]))
+                launch_action(
+                    vault.resolved_action(self.current_entry, self.current_entry.actions[0]),
+                    password=vault.resolved_password(self.current_entry),
+                )
             except Exception as exc:
                 self._status(f"{_('Error')}: {exc}")
 

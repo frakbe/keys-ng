@@ -76,6 +76,88 @@ def test_linux_rdp_adds_configured_options(monkeypatch):
     ], False)]
 
 
+def test_linux_rdp_uses_domain_and_password_stdin(monkeypatch):
+    commands = []
+
+    class FakeStdin:
+        def __init__(self):
+            self.data = ""
+            self.closed = False
+
+        def write(self, value):
+            self.data += value
+            return len(value)
+
+        def flush(self):
+            pass
+
+        def close(self):
+            self.closed = True
+
+    class FakeProcess:
+        def __init__(self):
+            self.stdin = FakeStdin()
+
+    process = FakeProcess()
+
+    def fake_popen(argv, shell=False, **kwargs):
+        commands.append((argv, shell, kwargs))
+        return process
+
+    monkeypatch.setattr(actions_service.shutil, "which", lambda name: "/usr/bin/xfreerdp3" if name == "xfreerdp3" else None)
+    monkeypatch.setattr(actions_service.subprocess, "Popen", fake_popen)
+    monkeypatch.setattr(actions_service.sys, "platform", "linux")
+
+    actions_service.launch_action(
+        Action(
+            type="rdp",
+            host="rdp.example.org",
+            username="mario",
+            rdp_domain="CONTOSO",
+        ),
+        AppSettings(rdp_linux_options=["/dynamic-resolution", "+clipboard"]),
+        password="correct horse battery staple",
+    )
+
+    argv, shell, kwargs = commands[0]
+    assert shell is False
+    assert "/d:CONTOSO" in argv
+    assert "/from-stdin:force" in argv
+    assert not any(item.startswith("/p:") for item in argv)
+    assert kwargs["stdin"] is actions_service.subprocess.PIPE
+    assert kwargs["text"] is True
+    assert process.stdin.data == "correct horse battery staple\n"
+    assert process.stdin.closed is True
+
+
+def test_linux_rdp_defaults_to_local_domain(monkeypatch):
+    commands = []
+    monkeypatch.setattr(actions_service.shutil, "which", lambda name: "/usr/bin/xfreerdp3" if name == "xfreerdp3" else None)
+    monkeypatch.setattr(actions_service.subprocess, "Popen", lambda argv, shell=False: commands.append((argv, shell)))
+    monkeypatch.setattr(actions_service.sys, "platform", "linux")
+
+    actions_service.launch_action(
+        Action(type="rdp", host="rdp.example.org", username="mario"),
+        AppSettings(),
+    )
+
+    assert "/d:." in commands[0][0]
+
+
+def test_linux_rdp_preserves_embedded_domain_username(monkeypatch):
+    commands = []
+    monkeypatch.setattr(actions_service.shutil, "which", lambda name: "/usr/bin/xfreerdp3" if name == "xfreerdp3" else None)
+    monkeypatch.setattr(actions_service.subprocess, "Popen", lambda argv, shell=False: commands.append((argv, shell)))
+    monkeypatch.setattr(actions_service.sys, "platform", "linux")
+
+    actions_service.launch_action(
+        Action(type="rdp", host="rdp.example.org", username="DOMAIN\\mario"),
+        AppSettings(),
+    )
+
+    assert not any(item.startswith("/d:") for item in commands[0][0])
+
+
 def test_gui_entry_dialog_has_web_ssh_rdp_selector():
     source = (Path(__file__).parents[1] / "src" / "keys_ng" / "gui" / "main.py").read_text(encoding="utf-8")
     assert 'self.action_type_combo.addItem(_("Web / URL"), "url")' in source
@@ -84,4 +166,4 @@ def test_gui_entry_dialog_has_web_ssh_rdp_selector():
     assert 'form.addRow(_("Entry type"), self.action_type_combo)' in source
     service = (Path(__file__).parents[1] / 'src' / 'keys_ng' / 'services' / 'entry_editor.py').read_text(encoding='utf-8')
     assert 'type="ssh"' in service and 'host=host' in service and 'username=username or None' in service
-    assert 'Action(type="rdp", host=host, port=port, username=username or None)' in service
+    assert 'rdp_domain=draft.rdp_domain.strip() or None' in service

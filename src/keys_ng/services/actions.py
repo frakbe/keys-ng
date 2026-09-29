@@ -98,7 +98,7 @@ def _launch_ssh(action: Action, settings: AppSettings) -> None:
     subprocess.Popen(host_argv([terminal, *terminal_options, *ssh_argv]), shell=False)
 
 
-def _linux_rdp(action: Action, settings: AppSettings) -> None:
+def _linux_rdp(action: Action, settings: AppSettings, password: str | None = None) -> None:
     requested = settings.rdp_linux_client.strip()
     if requested.lower() == "auto":
         exe = next((_which(name) for name in ("xfreerdp3", "xfreerdp") if _which(name)), None)
@@ -114,7 +114,36 @@ def _linux_rdp(action: Action, settings: AppSettings) -> None:
     argv = [exe, *settings.rdp_linux_options, f"/v:{target}"]
     if action.username:
         argv.append(f"/u:{action.username}")
-    subprocess.Popen(host_argv(argv), shell=False)
+    domain = (action.rdp_domain or "").strip()
+    if domain:
+        argv.append(f"/d:{domain}")
+    elif action.username and "\\" not in action.username and "@" not in action.username:
+        # A dot is FreeRDP/Windows shorthand for the remote computer's local
+        # account database.  Do not add it when the username already embeds a
+        # domain (DOMAIN\\user or user@domain), preserving existing entries.
+        argv.append("/d:.")
+
+    if password is None:
+        subprocess.Popen(host_argv(argv), shell=False)
+        return
+    if "\n" in password or "\r" in password:
+        raise ActionError("RDP passwords containing newlines cannot be passed safely to FreeRDP")
+    argv.append("/from-stdin:force")
+    process = subprocess.Popen(
+        host_argv(argv),
+        shell=False,
+        stdin=subprocess.PIPE,
+        text=True,
+    )
+    if process.stdin is None:
+        raise ActionError("Unable to provide the RDP password to FreeRDP")
+    try:
+        process.stdin.write(password + "\n")
+        process.stdin.flush()
+    except (BrokenPipeError, OSError) as exc:
+        raise ActionError("FreeRDP closed its credential input unexpectedly") from exc
+    finally:
+        process.stdin.close()
 
 
 def _windows_rdp(action: Action, settings: AppSettings) -> None:
@@ -147,7 +176,12 @@ def _macos_rdp(action: Action, settings: AppSettings) -> None:
     subprocess.Popen(host_argv([exe, *settings.rdp_macos_options, uri]), shell=False)
 
 
-def launch_action(action: Action, settings: AppSettings | None = None) -> None:
+def launch_action(
+    action: Action,
+    settings: AppSettings | None = None,
+    *,
+    password: str | None = None,
+) -> None:
     action.validate()
     settings = settings or AppSettings.load()
     if action.type == "url":
@@ -163,7 +197,7 @@ def launch_action(action: Action, settings: AppSettings | None = None) -> None:
         elif sys.platform == "darwin":
             _macos_rdp(action, settings)
         else:
-            _linux_rdp(action, settings)
+            _linux_rdp(action, settings, password=password)
         return
     if action.type == "command":
         if not action.argv:
