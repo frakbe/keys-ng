@@ -44,7 +44,7 @@ testpaths = ["tests"]
 [tool.briefcase]
 project_name = "Keys NG"
 bundle = "org.keysng"
-version = "0.1.20.dev4"
+version = "0.1.21"
 
 [tool.briefcase.app.keys_ng]
 formal_name = "Keys NG"

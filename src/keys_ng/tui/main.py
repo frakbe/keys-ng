@@ -1090,7 +1090,8 @@ def main() -> None:
             self.title = f"Keys NG — {vault.path.name or vault.path}"
             self.query_one("#tree", Tree).focus()
             if message:
-                self._status(message)
+                self._show_clipboard_banner(message, "success")
+                self.query_one("#status", Static).update("")
             else:
                 state = _("locked") if vault.locked else _("unlocked")
                 self._status(_("Active vault: {path} ({state})").format(path=vault.path, state=state))

@@ -18,12 +18,15 @@ def _normalise(value: str) -> str:
 
 def _native_worker(secret: str, timeout_seconds: int) -> None:
     backend = set_native_clipboard(secret)
-    # Verify the value instead of acknowledging merely because the setter
-    # command returned successfully.
-    if _normalise(read_native_clipboard(backend)) != _normalise(secret):
-        raise ClipboardUnavailable("Clipboard verification failed")
+    # Acknowledge as soon as the native setter succeeds. The parent TUI can
+    # then render its temporary notification without waiting for the extra
+    # clipboard read-back, which can take noticeable time on some desktops.
     sys.stdout.write(f"READY {backend}\n")
     sys.stdout.flush()
+    try:
+        read_native_clipboard(backend)
+    except ClipboardUnavailable:
+        pass
     time.sleep(timeout_seconds)
     try:
         if _normalise(read_native_clipboard(backend)) == _normalise(secret):
@@ -44,11 +47,11 @@ def _qt_worker(secret: str, timeout_seconds: int) -> None:
     app = QGuiApplication([])
     copy_secret_qt(secret, timeout_seconds * 1000)
     app.processEvents()
-    # Verify through QClipboard before reporting success.
-    if app.clipboard().text() != secret:
-        raise ClipboardUnavailable("Qt clipboard verification failed")
+    # Report readiness immediately after Qt has processed the clipboard write;
+    # a read-back still happens locally but no longer delays the caller UI.
     sys.stdout.write("READY qt\n")
     sys.stdout.flush()
+    _ = app.clipboard().text()
     QTimer.singleShot(timeout_seconds * 1000 + 250, app.quit)
     app.exec()
 

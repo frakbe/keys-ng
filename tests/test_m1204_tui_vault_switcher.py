@@ -59,3 +59,11 @@ def test_tui_binds_ctrl_j_to_open_vault_switcher():
     assert "def action_switch_vault(self) -> None:" in text
     assert "VaultSwitcherScreen()" in text
     assert "sessions.add(Vault(candidate, crypto), activate=True)" in text
+
+
+def test_switch_vault_message_is_temporary_banner():
+    root = Path(__file__).resolve().parents[1]
+    text = (root / "src/keys_ng/tui/main.py").read_text(encoding="utf-8")
+    block = text.split("def _display_active_vault", 1)[1].split("def _activate_opened_vault", 1)[0]
+    assert 'self._show_clipboard_banner(message, "success")' in block
+    assert 'self._status(message)' not in block
