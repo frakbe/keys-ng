@@ -1,0 +1,55 @@
+........................................................F............... [ 43%]
+...................................................F.................... [ 87%]
+.....................                                                    [100%]
+=================================== FAILURES ===================================
+________ test_native_distribution_workflow_contains_all_desktop_targets ________
+
+    def test_native_distribution_workflow_contains_all_desktop_targets():
+>       text = Path(".github/workflows/distribution.yml").read_text(encoding="utf-8")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_m116_distribution_and_preferences.py:23: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/pathlib.py:1027: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = PosixPath('.github/workflows/distribution.yml'), mode = 'r'
+buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: '.github/workflows/distribution.yml'
+
+/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/pathlib.py:1013: FileNotFoundError
+______ test_tui_copy_bindings_are_priority_and_clipboard_reports_failures ______
+
+    def test_tui_copy_bindings_are_priority_and_clipboard_reports_failures():
+        tui = Path("src/keys_ng/tui/main.py").read_text(encoding="utf-8")
+        for key in ("ctrl+u", "ctrl+b", "ctrl+c", "ctrl+t"):
+            assert f'Binding("{key}"' in tui
+        assert tui.count("priority=True") >= 4
+        assert "Clipboard error" in tui
+    
+        clipboard = Path("src/keys_ng/services/clipboard.py").read_text(encoding="utf-8")
+        helper = Path("src/keys_ng/services/clipboard_helper.py").read_text(encoding="utf-8")
+        assert 'acknowledgement.startswith("READY")' in clipboard
+        assert 'sys.stdout.write(f"READY {backend}\\n")' in helper
+        assert "read_native_clipboard" in helper
+>       assert "Clipboard verification failed" in helper
+E       assert 'Clipboard verification failed' in 'from __future__ import annotations\n\nimport sys\nimport time\n\nfrom keys_ng.services.clipboard import (\n    Clipbo...e_error}; {qt_error}", file=sys.stderr)\n            raise SystemExit(2)\n\n\nif __name__ == "__main__":\n    main()\n'
+
+tests/test_m16_frontends.py:16: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_m116_distribution_and_preferences.py::test_native_distribution_workflow_contains_all_desktop_targets - FileNotFoundError: [Errno 2] No such file or directory: '.github/workflows/distribution.yml'
+FAILED tests/test_m16_frontends.py::test_tui_copy_bindings_are_priority_and_clipboard_reports_failures - assert 'Clipboard verification failed' in 'from __future__ import annotations\n\nimport sys\nimport time\n\nfrom keys_ng.services.clipboard import (\n    Clipbo...e_error}; {qt_error}", file=sys.stderr)\n            raise SystemExit(2)\n\n\nif __name__ == "__main__":\n    main()\n'
+2 failed, 163 passed in 2.24s
