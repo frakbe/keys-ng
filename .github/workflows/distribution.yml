@@ -1,0 +1,46 @@
+name: Native distribution
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-msi:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install briefcase
+      - run: briefcase create windows -a keys_ng
+      - run: briefcase build windows -a keys_ng
+      - run: briefcase package windows -a keys_ng -p msi
+
+  macos-dmg:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install briefcase
+      - run: briefcase create macOS -a keys_ng
+      - run: briefcase build macOS -a keys_ng
+      - run: briefcase package macOS -a keys_ng -p dmg
+
+  linux-flatpak:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Flatpak tooling
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y flatpak flatpak-builder
+      - name: Build Flatpak
+        run: |
+          flatpak-builder --force-clean build-dir packaging/flatpak/org.keysng.KeysNG.yml
+          flatpak build-export repo build-dir
+          flatpak build-bundle repo keys-ng.flatpak org.keysng.KeysNG

@@ -24,9 +24,13 @@ def _native_worker(secret: str, timeout_seconds: int) -> None:
     sys.stdout.write(f"READY {backend}\n")
     sys.stdout.flush()
     try:
-        read_native_clipboard(backend)
+        verified = _normalise(read_native_clipboard(backend)) == _normalise(secret)
     except ClipboardUnavailable:
-        pass
+        verified = False
+    if not verified:
+        # READY has already been sent so the TUI stays responsive. Keep the
+        # helper alive through the TTL even if this advisory read-back fails.
+        _verification_failure = ClipboardUnavailable("Clipboard verification failed")
     time.sleep(timeout_seconds)
     try:
         if _normalise(read_native_clipboard(backend)) == _normalise(secret):
