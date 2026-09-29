@@ -7,7 +7,7 @@ from keys_ng import __version__
 
 
 def test_m116_version_and_briefcase_match():
-    assert __version__ == "0.1.20.dev4"
+    assert __version__ == "0.1.21"
     data = tomllib.loads(Path("pyproject.toml").read_text(encoding="utf-8"))
     assert data["tool"]["briefcase"]["version"] == __version__
 
