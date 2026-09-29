@@ -10,7 +10,7 @@ from keys_ng.platform.desktop_integration import install_user_desktop_integratio
 
 
 def test_version_source_matches_expected_release():
-    assert __version__ == "0.1.20.dev4"
+    assert __version__ == "0.1.21"
 
 
 def test_cli_version_command():
