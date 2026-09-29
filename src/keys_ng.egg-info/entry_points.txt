@@ -1,0 +1,4 @@
+[console_scripts]
+keys-ng = keys_ng.cli.main:main
+keys-ng-gui = keys_ng.gui.main:main
+keys-ng-tui = keys_ng.tui.main:main

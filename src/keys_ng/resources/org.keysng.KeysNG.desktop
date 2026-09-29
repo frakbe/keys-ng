@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=Application
+Name=Keys NG
+Comment=OpenPGP password manager
+Exec=keys-ng-gui
+Icon=org.keysng.KeysNG
+Terminal=false
+Categories=Utility;Security;
+NoDisplay=false
+StartupNotify=true
+StartupWMClass=org.keysng.KeysNG

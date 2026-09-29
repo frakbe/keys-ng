@@ -1,0 +1,1036 @@
+
+msgid ""
+msgstr ""
+"Project-Id-Version: keys-ng 0.1\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-09-24 12:59+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: it\n"
+"Language-Team: it <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: src/keys_ng/cli/main.py:235
+msgid "Desktop integration installed."
+msgstr "Integrazione desktop installata."
+
+#: src/keys_ng/cli/main.py:247
+msgid "Desktop integration removed."
+msgstr "Integrazione desktop rimossa."
+
+#: src/keys_ng/cli/main.py:260
+msgid "Vault initialized."
+msgstr "Vault inizializzato."
+
+#: src/keys_ng/cli/main.py:285
+msgid "GnuPG agent cache cleared."
+msgstr "Cache di gpg-agent svuotata."
+
+#: src/keys_ng/cli/main.py:287
+msgid "CLI commands are stateless; use --hard to clear gpg-agent."
+msgstr "I comandi CLI non mantengono stato; usa --hard per svuotare gpg-agent."
+
+#: src/keys_ng/cli/main.py:313 src/keys_ng/cli/main.py:416
+msgid "Title: "
+msgstr "Titolo: "
+
+#: src/keys_ng/cli/main.py:314 src/keys_ng/cli/main.py:417
+msgid "Username: "
+msgstr "Nome utente: "
+
+#: src/keys_ng/cli/main.py:315 src/keys_ng/cli/main.py:418
+msgid "Password (leave empty for none): "
+msgstr "Password (lascia vuoto per nessuna): "
+
+#: src/keys_ng/cli/main.py:374 src/keys_ng/tui/main.py:613
+msgid "Password copied to clipboard."
+msgstr "Password copiata negli appunti."
+
+#: src/keys_ng/cli/main.py:386 src/keys_ng/tui/main.py:620
+msgid "TOTP copied to clipboard."
+msgstr "TOTP copiato negli appunti."
+
+#: src/keys_ng/cli/main.py:407
+#, python-brace-format
+msgid "Catalog rebuilt: {count} entries."
+msgstr "Catalogo ricostruito: {count} voci."
+
+#: src/keys_ng/cli/main.py:472 src/keys_ng/cli/main.py:477
+msgid "WARNING: XML exports contain plaintext credentials. Protect and delete them securely after use."
+msgstr ""
+"ATTENZIONE: gli export XML contengono credenziali in chiaro. Proteggili ed eliminali in modo "
+"sicuro dopo l’uso."
+
+#: src/keys_ng/cli/main.py:489
+#, python-brace-format
+msgid "Imported {entries} entries in {folders} folders; TOTP: {totp}; custom fields: {fields}."
+msgstr "Importate {entries} voci in {folders} cartelle; TOTP: {totp}; campi personalizzati: {fields}."
+
+#: src/keys_ng/cli/main.py:492
+#, python-brace-format
+msgid ""
+"UUID preserved: {preserved}; remapped: {remapped}; generated: {generated}; references validated: "
+"{refs}."
+msgstr ""
+"UUID preservati: {preserved}; rimappati: {remapped}; generati: {generated}; riferimenti validati:"
+" {refs}."
+
+#: src/keys_ng/gui/main.py:102 src/keys_ng/gui/main.py:247 src/keys_ng/gui/main.py:260
+#: src/keys_ng/gui/main.py:501 src/keys_ng/gui/main.py:548 src/keys_ng/gui/main.py:594
+#: src/keys_ng/gui/main.py:603 src/keys_ng/gui/main.py:662 src/keys_ng/gui/main.py:683
+#: src/keys_ng/gui/main.py:695 src/keys_ng/gui/main.py:707 src/keys_ng/gui/main.py:720
+#: src/keys_ng/gui/main.py:732 src/keys_ng/gui/main.py:744 src/keys_ng/gui/main.py:756
+#: src/keys_ng/gui/main.py:1138 src/keys_ng/gui/main.py:1205 src/keys_ng/gui/main.py:1249
+#: src/keys_ng/tui/main.py:114 src/keys_ng/tui/main.py:273 src/keys_ng/tui/main.py:628
+#: src/keys_ng/tui/main.py:645 src/keys_ng/tui/main.py:672 src/keys_ng/tui/main.py:687
+#: src/keys_ng/tui/main.py:697 src/keys_ng/tui/main.py:718 src/keys_ng/tui/main.py:740
+#: src/keys_ng/tui/main.py:751 src/keys_ng/tui/main.py:773
+msgid "Error"
+msgstr "Errore"
+
+#: src/keys_ng/gui/main.py:112 src/keys_ng/tui/main.py:654
+msgid "Edit entry"
+msgstr "Modifica voce"
+
+#: src/keys_ng/gui/main.py:112 src/keys_ng/gui/main.py:341 src/keys_ng/gui/main.py:1098
+#: src/keys_ng/tui/main.py:397 src/keys_ng/tui/main.py:635
+msgid "New entry"
+msgstr "Nuova voce"
+
+#: src/keys_ng/gui/main.py:118 src/keys_ng/gui/main.py:213 src/keys_ng/tui/main.py:188
+#: src/keys_ng/tui/main.py:260
+msgid "Show"
+msgstr "Mostra"
+
+#: src/keys_ng/gui/main.py:120
+msgid "Temporarily show or hide the password while editing."
+msgstr "Mostra o nascondi temporaneamente la password durante la modifica."
+
+#: src/keys_ng/gui/main.py:122
+#, python-brace-format
+msgid "Literal username or {REF:U@I:<UUID>} reference."
+msgstr "Nome utente letterale oppure riferimento {REF:U@I:<UUID>}."
+
+#: src/keys_ng/gui/main.py:123
+#, python-brace-format
+msgid "Literal password or {REF:P@I:<UUID>} reference."
+msgstr "Password letterale oppure riferimento {REF:P@I:<UUID>}."
+
+#: src/keys_ng/gui/main.py:126 src/keys_ng/tui/main.py:172
+msgid "Generic credential"
+msgstr "Credenziale generica"
+
+#: src/keys_ng/gui/main.py:127 src/keys_ng/tui/main.py:173
+msgid "Web / URL"
+msgstr "Web / URL"
+
+#: src/keys_ng/gui/main.py:128 src/keys_ng/tui/main.py:174
+msgid "SSH connection"
+msgstr "Connessione SSH"
+
+#: src/keys_ng/gui/main.py:129 src/keys_ng/tui/main.py:175
+msgid "RDP connection"
+msgstr "Connessione RDP"
+
+#: src/keys_ng/gui/main.py:139 src/keys_ng/tui/main.py:190
+msgid "URL"
+msgstr "URL"
+
+#: src/keys_ng/gui/main.py:140 src/keys_ng/tui/main.py:193
+msgid "Host"
+msgstr "Host"
+
+#: src/keys_ng/gui/main.py:141 src/keys_ng/tui/main.py:196
+msgid "Port"
+msgstr "Porta"
+
+#: src/keys_ng/gui/main.py:142 src/keys_ng/tui/main.py:199
+msgid "X11 forwarding"
+msgstr "Forwarding X11"
+
+#: src/keys_ng/gui/main.py:144 src/keys_ng/tui/main.py:201
+msgid "Disabled"
+msgstr "Disabilitato"
+
+#: src/keys_ng/gui/main.py:145 src/keys_ng/tui/main.py:201
+msgid "X11 forwarding (-X)"
+msgstr "Forwarding X11 (-X)"
+
+#: src/keys_ng/gui/main.py:146 src/keys_ng/tui/main.py:201
+msgid "Trusted X11 forwarding (-Y)"
+msgstr "Forwarding X11 fidato (-Y)"
+
+#: src/keys_ng/gui/main.py:147 src/keys_ng/tui/main.py:208
+msgid "Advanced SSH options"
+msgstr "Opzioni SSH avanzate"
+
+#: src/keys_ng/gui/main.py:159 src/keys_ng/tui/main.py:127
+msgid "(Root)"
+msgstr "(Radice)"
+
+#: src/keys_ng/gui/main.py:174
+msgid "Import TOTP QR…"
+msgstr "Importa QR TOTP…"
+
+#: src/keys_ng/gui/main.py:175
+msgid "Import TOTP QR from clipboard"
+msgstr "Importa QR TOTP dagli appunti"
+
+#: src/keys_ng/gui/main.py:180 src/keys_ng/tui/main.py:163
+msgid "Title"
+msgstr "Titolo"
+
+#: src/keys_ng/gui/main.py:181 src/keys_ng/gui/main.py:1112 src/keys_ng/tui/main.py:166
+#: src/keys_ng/tui/main.py:505 src/keys_ng/tui/main.py:522
+msgid "Folder"
+msgstr "Cartella"
+
+#: src/keys_ng/gui/main.py:182 src/keys_ng/tui/main.py:169
+msgid "Entry type"
+msgstr "Tipo di voce"
+
+#: src/keys_ng/gui/main.py:183 src/keys_ng/tui/main.py:183 src/keys_ng/tui/main.py:522
+msgid "Username"
+msgstr "Nome utente"
+
+#: src/keys_ng/gui/main.py:189 src/keys_ng/tui/main.py:186 src/keys_ng/tui/main.py:523
+msgid "Password"
+msgstr "Password"
+
+#: src/keys_ng/gui/main.py:195 src/keys_ng/tui/main.py:211
+msgid "Tags"
+msgstr "Tag"
+
+#: src/keys_ng/gui/main.py:196 src/keys_ng/tui/main.py:214
+msgid "TOTP URI"
+msgstr "URI TOTP"
+
+#: src/keys_ng/gui/main.py:197 src/keys_ng/tui/main.py:217
+msgid "TOTP secret"
+msgstr "Segreto TOTP"
+
+#: src/keys_ng/gui/main.py:200 src/keys_ng/tui/main.py:223
+msgid "Notes"
+msgstr "Note"
+
+#: src/keys_ng/gui/main.py:213 src/keys_ng/tui/main.py:260
+msgid "Hide"
+msgstr "Nascondi"
+
+#: src/keys_ng/gui/main.py:238
+msgid "Import TOTP QR"
+msgstr "Importa QR TOTP"
+
+#: src/keys_ng/gui/main.py:238
+msgid "Images (*.png *.jpg *.jpeg *.bmp *.webp)"
+msgstr "Immagini (*.png *.jpg *.jpeg *.bmp *.webp)"
+
+#: src/keys_ng/gui/main.py:253
+msgid "Clipboard does not contain an image."
+msgstr "Gli appunti non contengono un'immagine."
+
+#: src/keys_ng/gui/main.py:284
+msgid "Keys NG Help"
+msgstr "Guida di Keys NG"
+
+#: src/keys_ng/gui/main.py:289 src/keys_ng/gui/main.py:1122
+msgid "Help"
+msgstr "Guida"
+
+#: src/keys_ng/gui/main.py:290 src/keys_ng/gui/main.py:1123
+msgid "Security"
+msgstr "Sicurezza"
+
+#: src/keys_ng/gui/main.py:291 src/keys_ng/gui/main.py:1124
+msgid "License"
+msgstr "Licenza"
+
+#: src/keys_ng/gui/main.py:303
+#, python-brace-format
+msgid "**Installed version:** {version}"
+msgstr "**Versione installata:** {version}"
+
+#: src/keys_ng/gui/main.py:305
+msgid "Unable to load help document."
+msgstr "Impossibile caricare il documento della guida."
+
+#: src/keys_ng/gui/main.py:324 src/keys_ng/tui/main.py:425
+msgid "Search…"
+msgstr "Cerca…"
+
+#: src/keys_ng/gui/main.py:326
+msgid "Search entries and folders (Ctrl+F)"
+msgstr "Cerca voci e cartelle (Ctrl+F)"
+
+#: src/keys_ng/gui/main.py:335 src/keys_ng/gui/main.py:1102 src/keys_ng/tui/main.py:402
+msgid "Copy URL"
+msgstr "Copia URL"
+
+#: src/keys_ng/gui/main.py:336 src/keys_ng/gui/main.py:1103 src/keys_ng/tui/main.py:403
+msgid "Copy UUID"
+msgstr "Copia UUID"
+
+#: src/keys_ng/gui/main.py:337 src/keys_ng/gui/main.py:1104 src/keys_ng/tui/main.py:404
+msgid "Copy username"
+msgstr "Copia nome utente"
+
+#: src/keys_ng/gui/main.py:338 src/keys_ng/gui/main.py:1105 src/keys_ng/tui/main.py:405
+msgid "Copy password"
+msgstr "Copia password"
+
+#: src/keys_ng/gui/main.py:339 src/keys_ng/gui/main.py:1106 src/keys_ng/tui/main.py:406
+msgid "Copy TOTP"
+msgstr "Copia TOTP"
+
+#: src/keys_ng/gui/main.py:340 src/keys_ng/gui/main.py:1108 src/keys_ng/tui/main.py:407
+msgid "Open"
+msgstr "Apri"
+
+#: src/keys_ng/gui/main.py:342 src/keys_ng/gui/main.py:1099 src/keys_ng/tui/main.py:399
+msgid "Edit"
+msgstr "Modifica"
+
+#: src/keys_ng/gui/main.py:343 src/keys_ng/gui/main.py:1100 src/keys_ng/tui/main.py:370
+#: src/keys_ng/tui/main.py:401
+msgid "Delete"
+msgstr "Elimina"
+
+#: src/keys_ng/gui/main.py:344 src/keys_ng/gui/main.py:726 src/keys_ng/gui/main.py:1113
+#: src/keys_ng/tui/main.py:398 src/keys_ng/tui/main.py:678
+msgid "New folder"
+msgstr "Nuova cartella"
+
+#: src/keys_ng/gui/main.py:345 src/keys_ng/gui/main.py:738 src/keys_ng/gui/main.py:1114
+#: src/keys_ng/tui/main.py:659
+msgid "Rename folder"
+msgstr "Rinomina cartella"
+
+#: src/keys_ng/gui/main.py:346 src/keys_ng/gui/main.py:749 src/keys_ng/gui/main.py:1115
+msgid "Delete folder"
+msgstr "Elimina cartella"
+
+#: src/keys_ng/gui/main.py:347 src/keys_ng/gui/main.py:1094 src/keys_ng/tui/main.py:409
+msgid "Lock"
+msgstr "Blocca"
+
+#: src/keys_ng/gui/main.py:348 src/keys_ng/gui/main.py:1095 src/keys_ng/tui/main.py:410
+msgid "Hard lock"
+msgstr "Blocco completo"
+
+#: src/keys_ng/gui/main.py:349 src/keys_ng/gui/main.py:1096 src/keys_ng/tui/main.py:411
+msgid "Unlock"
+msgstr "Sblocca"
+
+#: src/keys_ng/gui/main.py:407
+msgid "Copy URL (Ctrl+U)"
+msgstr "Copia URL (Ctrl+U)"
+
+#: src/keys_ng/gui/main.py:408
+msgid "Copy UUID (Ctrl+Shift+I)"
+msgstr "Copia UUID (Ctrl+Shift+I)"
+
+#: src/keys_ng/gui/main.py:409
+msgid "Copy username (Ctrl+B)"
+msgstr "Copia nome utente (Ctrl+B)"
+
+#: src/keys_ng/gui/main.py:410
+msgid "Copy password (Ctrl+C)"
+msgstr "Copia password (Ctrl+C)"
+
+#: src/keys_ng/gui/main.py:411
+msgid "Copy TOTP (Ctrl+T)"
+msgstr "Copia TOTP (Ctrl+T)"
+
+#: src/keys_ng/gui/main.py:412
+msgid "Open (Ctrl+O)"
+msgstr "Apri (Ctrl+O)"
+
+#: src/keys_ng/gui/main.py:508 src/keys_ng/gui/main.py:551 src/keys_ng/tui/main.py:448
+#: src/keys_ng/tui/main.py:511
+msgid "Root"
+msgstr "Radice"
+
+#: src/keys_ng/gui/main.py:552 src/keys_ng/tui/main.py:505 src/keys_ng/tui/main.py:522
+msgid "UUID"
+msgstr "UUID"
+
+#: src/keys_ng/gui/main.py:557 src/keys_ng/tui/main.py:516
+msgid "reference"
+msgstr "riferimento"
+
+#: src/keys_ng/gui/main.py:561 src/keys_ng/tui/main.py:518
+msgid "Broken reference"
+msgstr "Riferimento non valido"
+
+#: src/keys_ng/gui/main.py:592 src/keys_ng/tui/main.py:756
+msgid "Vault locked."
+msgstr "Vault bloccato."
+
+#: src/keys_ng/gui/main.py:601 src/keys_ng/tui/main.py:771
+msgid "Vault unlocked."
+msgstr "Vault sbloccato."
+
+#: src/keys_ng/gui/main.py:619
+msgid "URL copied."
+msgstr "URL copiato."
+
+#: src/keys_ng/gui/main.py:625
+msgid "UUID copied."
+msgstr "UUID copiato."
+
+#: src/keys_ng/gui/main.py:635
+msgid "Username copied."
+msgstr "Nome utente copiato."
+
+#: src/keys_ng/gui/main.py:637 src/keys_ng/gui/main.py:648 src/keys_ng/tui/main.py:606
+#: src/keys_ng/tui/main.py:615
+msgid "Reference error"
+msgstr "Errore nel riferimento"
+
+#: src/keys_ng/gui/main.py:671
+msgid "Export entry as KeePassXC XML"
+msgstr "Esporta voce come XML KeePassXC"
+
+#: src/keys_ng/gui/main.py:671
+msgid "XML files (*.xml)"
+msgstr "File XML (*.xml)"
+
+#: src/keys_ng/gui/main.py:678
+msgid "Plaintext export"
+msgstr "Esportazione in chiaro"
+
+#: src/keys_ng/gui/main.py:679
+msgid "The XML export contains plaintext credentials. Protect it and delete it securely after import."
+msgstr ""
+"L’export XML contiene credenziali in chiaro. Proteggilo ed eliminalo in modo sicuro dopo "
+"l’importazione."
+
+#: src/keys_ng/gui/main.py:681
+msgid "Entry exported."
+msgstr "Voce esportata."
+
+#: src/keys_ng/gui/main.py:713
+msgid "Delete entry"
+msgstr "Elimina voce"
+
+#: src/keys_ng/gui/main.py:713 src/keys_ng/tui/main.py:723
+msgid "Delete the selected entry permanently?"
+msgstr "Eliminare definitivamente la voce selezionata?"
+
+#: src/keys_ng/gui/main.py:726 src/keys_ng/gui/main.py:738
+msgid "Folder name:"
+msgstr "Nome cartella:"
+
+#: src/keys_ng/gui/main.py:749 src/keys_ng/tui/main.py:723
+msgid "Delete the selected empty folder?"
+msgstr "Eliminare la cartella vuota selezionata?"
+
+#: src/keys_ng/gui/main.py:765 src/keys_ng/tui/main.py:73
+msgid "Create a new vault"
+msgstr "Crea un nuovo vault"
+
+#: src/keys_ng/gui/main.py:770
+msgid "Vault location"
+msgstr "Posizione del vault"
+
+#: src/keys_ng/gui/main.py:771
+msgid "Choose an empty directory for the encrypted vault."
+msgstr "Scegli una directory vuota per il vault cifrato."
+
+#: src/keys_ng/gui/main.py:775
+msgid "Browse…"
+msgstr "Sfoglia…"
+
+#: src/keys_ng/gui/main.py:783
+msgid "OpenPGP keys"
+msgstr "Chiavi OpenPGP"
+
+#: src/keys_ng/gui/main.py:784
+msgid "Select the recipient and signing keys. Full fingerprints are shown for verification."
+msgstr "Seleziona le chiavi destinataria e di firma. I fingerprint completi sono mostrati per la verifica."
+
+#: src/keys_ng/gui/main.py:792 src/keys_ng/tui/main.py:81
+msgid "Require valid signatures"
+msgstr "Richiedi firme valide"
+
+#: src/keys_ng/gui/main.py:794
+msgid "Encryption recipient"
+msgstr "Destinatario della cifratura"
+
+#: src/keys_ng/gui/main.py:795
+msgid "Signing key"
+msgstr "Chiave di firma"
+
+#: src/keys_ng/gui/main.py:800
+msgid "Vault options"
+msgstr "Opzioni del vault"
+
+#: src/keys_ng/gui/main.py:801
+msgid "Choose how much searchable metadata the encrypted catalog contains."
+msgstr "Scegli quanti metadati ricercabili deve contenere il catalogo cifrato."
+
+#: src/keys_ng/gui/main.py:804 src/keys_ng/tui/main.py:83
+msgid "Minimal"
+msgstr "Minima"
+
+#: src/keys_ng/gui/main.py:805 src/keys_ng/tui/main.py:83
+msgid "Standard"
+msgstr "Standard"
+
+#: src/keys_ng/gui/main.py:806 src/keys_ng/tui/main.py:83
+msgid "Full"
+msgstr "Completa"
+
+#: src/keys_ng/gui/main.py:808 src/keys_ng/gui/main.py:834 src/keys_ng/tui/main.py:82
+msgid "Catalog privacy"
+msgstr "Privacy del catalogo"
+
+#: src/keys_ng/gui/main.py:812
+msgid "Confirm creation"
+msgstr "Conferma creazione"
+
+#: src/keys_ng/gui/main.py:813
+msgid "Keys NG will run an OpenPGP encrypt/decrypt self-test before writing the vault."
+msgstr "Keys NG eseguirà un self-test OpenPGP di cifratura/decifratura prima di scrivere il vault."
+
+#: src/keys_ng/gui/main.py:823
+msgid "Select an empty vault directory"
+msgstr "Seleziona una directory vuota per il vault"
+
+#: src/keys_ng/gui/main.py:828 src/keys_ng/gui/main.py:829
+msgid "None"
+msgstr "Nessuno"
+
+#: src/keys_ng/gui/main.py:831
+msgid "Location"
+msgstr "Posizione"
+
+#: src/keys_ng/gui/main.py:832
+msgid "Recipient fingerprint"
+msgstr "Fingerprint del destinatario"
+
+#: src/keys_ng/gui/main.py:833
+msgid "Signer fingerprint"
+msgstr "Fingerprint del firmatario"
+
+#: src/keys_ng/gui/main.py:841 src/keys_ng/tui/main.py:101
+msgid "No usable OpenPGP encryption key is available."
+msgstr "Non è disponibile alcuna chiave OpenPGP utilizzabile per la cifratura."
+
+#: src/keys_ng/gui/main.py:843 src/keys_ng/tui/main.py:103
+msgid "No usable OpenPGP secret signing key is available."
+msgstr "Non è disponibile alcuna chiave privata OpenPGP utilizzabile per la firma."
+
+#: src/keys_ng/gui/main.py:859
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: src/keys_ng/gui/main.py:875
+msgid "Automatic"
+msgstr "Automatica"
+
+#: src/keys_ng/gui/main.py:879
+msgid "Language"
+msgstr "Lingua"
+
+#: src/keys_ng/gui/main.py:880
+msgid "The interface language. 'Automatic' follows the operating-system locale."
+msgstr "La lingua dell'interfaccia. 'Automatica' segue la lingua del sistema operativo."
+
+#: src/keys_ng/gui/main.py:883
+msgid "Expanded"
+msgstr "Espansa"
+
+#: src/keys_ng/gui/main.py:884
+msgid "Compact"
+msgstr "Compatta"
+
+#: src/keys_ng/gui/main.py:887
+msgid "Initial tree view"
+msgstr "Vista iniziale albero"
+
+#: src/keys_ng/gui/main.py:888
+msgid "Choose whether folders are expanded or collapsed when a vault is opened."
+msgstr "Sceglie se le cartelle vengono aperte o compattate quando si apre un vault."
+
+#: src/keys_ng/gui/main.py:894
+msgid "Automatic lock"
+msgstr "Blocco automatico"
+
+#: src/keys_ng/gui/main.py:895
+msgid "Seconds of inactivity before locking a vault. Use 0 to disable automatic locking."
+msgstr "Secondi di inattività prima di bloccare un vault. Usa 0 per disabilitare il blocco automatico."
+
+#: src/keys_ng/gui/main.py:902
+msgid "Crypto backend"
+msgstr "Backend crittografico"
+
+#: src/keys_ng/gui/main.py:903
+msgid "'auto' prefers GPGME when available and otherwise uses the gpg subprocess backend."
+msgstr "'auto' preferisce GPGME quando disponibile, altrimenti usa il backend gpg tramite sottoprocesso."
+
+#: src/keys_ng/gui/main.py:905 src/keys_ng/gui/main.py:908
+msgid "automatic discovery"
+msgstr "rilevamento automatico"
+
+#: src/keys_ng/gui/main.py:906
+msgid "GnuPG executable"
+msgstr "Eseguibile GnuPG"
+
+#: src/keys_ng/gui/main.py:909
+msgid "gpgconf executable"
+msgstr "Eseguibile gpgconf"
+
+#: src/keys_ng/gui/main.py:910
+msgid "Verify GnuPG"
+msgstr "Verifica GnuPG"
+
+#: src/keys_ng/gui/main.py:913
+msgid "General"
+msgstr "Generale"
+
+#: src/keys_ng/gui/main.py:922
+msgid "Password / username timeout"
+msgstr "Timeout password / nome utente"
+
+#: src/keys_ng/gui/main.py:923
+msgid "How long copied usernames, passwords, URLs and UUIDs remain in the clipboard."
+msgstr "Per quanto tempo nomi utente, password, URL e UUID copiati rimangono negli appunti."
+
+#: src/keys_ng/gui/main.py:928
+msgid "TOTP timeout"
+msgstr "Timeout TOTP"
+
+#: src/keys_ng/gui/main.py:929
+msgid "How long a copied one-time password remains in the clipboard."
+msgstr "Per quanto tempo un codice monouso copiato rimane negli appunti."
+
+#: src/keys_ng/gui/main.py:931 src/keys_ng/gui/main.py:935
+msgid "automatic"
+msgstr "automatico"
+
+#: src/keys_ng/gui/main.py:932
+msgid "TUI notice background"
+msgstr "Sfondo avviso TUI"
+
+#: src/keys_ng/gui/main.py:933
+msgid ""
+"Optional Textual color for the high-visibility clipboard banner. Leave empty for the theme's "
+"automatic success/warning/error colors."
+msgstr ""
+"Colore Textual opzionale per il banner ad alta visibilità degli appunti. Lascia vuoto per usare "
+"automaticamente i colori successo/avviso/errore del tema."
+
+#: src/keys_ng/gui/main.py:936
+msgid "TUI notice foreground"
+msgstr "Testo avviso TUI"
+
+#: src/keys_ng/gui/main.py:942
+msgid "TUI notice duration"
+msgstr "Durata avviso TUI"
+
+#: src/keys_ng/gui/main.py:943
+msgid "Clipboard"
+msgstr "Appunti"
+
+#: src/keys_ng/gui/main.py:949
+msgid "SSH terminal"
+msgstr "Terminale SSH"
+
+#: src/keys_ng/gui/main.py:950
+msgid ""
+"Use 'auto' to prefer xdg-terminal/xdg-terminal-exec, or enter a terminal executable such as "
+"ptyxis."
+msgstr "Usa 'auto' per preferire xdg-terminal/xdg-terminal-exec, oppure indica un terminale come ptyxis."
+
+#: src/keys_ng/gui/main.py:954
+msgid "Terminal options"
+msgstr "Opzioni del terminale"
+
+#: src/keys_ng/gui/main.py:955
+msgid "One argv item per line. Example for Ptyxis: --tab on one line and -- on the next line."
+msgstr "Un argomento argv per riga. Esempio per Ptyxis: --tab su una riga e -- sulla riga successiva."
+
+#: src/keys_ng/gui/main.py:956
+msgid "SSH"
+msgstr "SSH"
+
+#: src/keys_ng/gui/main.py:967
+msgid "Linux client"
+msgstr "Client Linux"
+
+#: src/keys_ng/gui/main.py:968
+msgid "Linux options"
+msgstr "Opzioni Linux"
+
+#: src/keys_ng/gui/main.py:969
+msgid "Windows client"
+msgstr "Client Windows"
+
+#: src/keys_ng/gui/main.py:970
+msgid "Windows options"
+msgstr "Opzioni Windows"
+
+#: src/keys_ng/gui/main.py:971
+msgid "macOS client"
+msgstr "Client macOS"
+
+#: src/keys_ng/gui/main.py:972
+msgid "macOS options"
+msgstr "Opzioni macOS"
+
+#: src/keys_ng/gui/main.py:973
+msgid ""
+"RDP options are platform-specific argv items, one per line. Passwords are never added to the "
+"command line."
+msgstr ""
+"Le opzioni RDP sono argomenti argv specifici della piattaforma, uno per riga. Le password non "
+"vengono mai aggiunte alla riga di comando."
+
+#: src/keys_ng/gui/main.py:974
+msgid "RDP"
+msgstr "RDP"
+
+#: src/keys_ng/gui/main.py:993 src/keys_ng/gui/main.py:995
+msgid "GnuPG verification"
+msgstr "Verifica GnuPG"
+
+#: src/keys_ng/gui/main.py:1034
+msgid "No vault is open."
+msgstr "Nessun vault aperto."
+
+#: src/keys_ng/gui/main.py:1037
+msgid "Create new vault…"
+msgstr "Crea nuovo vault…"
+
+#: src/keys_ng/gui/main.py:1040 src/keys_ng/gui/main.py:1086
+msgid "Open vault…"
+msgstr "Apri vault…"
+
+#: src/keys_ng/gui/main.py:1084 src/keys_ng/tui/main.py:427 src/keys_ng/tui/main.py:444
+msgid "Vault"
+msgstr "Vault"
+
+#: src/keys_ng/gui/main.py:1085
+msgid "New vault…"
+msgstr "Nuovo vault…"
+
+#: src/keys_ng/gui/main.py:1087
+msgid "Recent"
+msgstr "Recenti"
+
+#: src/keys_ng/gui/main.py:1090
+msgid "Close vault"
+msgstr "Chiudi vault"
+
+#: src/keys_ng/gui/main.py:1092 src/keys_ng/tui/main.py:396
+msgid "Search"
+msgstr "Cerca"
+
+#: src/keys_ng/gui/main.py:1097
+msgid "Entry"
+msgstr "Voce"
+
+#: src/keys_ng/gui/main.py:1110
+msgid "Export as KeePassXC XML…"
+msgstr "Esporta come XML KeePassXC…"
+
+#: src/keys_ng/gui/main.py:1117
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: src/keys_ng/gui/main.py:1118
+msgid "Preferences…"
+msgstr "Preferenze…"
+
+#: src/keys_ng/gui/main.py:1132
+msgid "Preferences saved. Some changes apply to newly opened vaults or after restarting Keys NG."
+msgstr ""
+"Preferenze salvate. Alcune modifiche si applicano ai vault aperti successivamente o dopo il "
+"riavvio di Keys NG."
+
+#: src/keys_ng/gui/main.py:1144
+msgid "No recent vaults"
+msgstr "Nessun vault recente"
+
+#: src/keys_ng/gui/main.py:1185
+msgid "Vault created and opened."
+msgstr "Vault creato e aperto."
+
+#: src/keys_ng/gui/main.py:1187
+msgid "Unable to create vault"
+msgstr "Impossibile creare il vault"
+
+#: src/keys_ng/gui/main.py:1190
+msgid "Open vault"
+msgstr "Apri vault"
+
+#: src/keys_ng/gui/main.py:1247
+msgid "All vaults hard locked."
+msgstr "Tutti i vault sono stati bloccati completamente."
+
+#: src/keys_ng/services/entry_editor.py:71
+msgid "Unsupported entry type."
+msgstr "Tipo di voce non supportato."
+
+#: src/keys_ng/services/entry_editor.py:77
+msgid "URL is required for a Web entry."
+msgstr "L'URL è obbligatorio per una voce Web."
+
+#: src/keys_ng/services/entry_editor.py:82
+msgid "Host is required for SSH/RDP entries."
+msgstr "L'host è obbligatorio per le voci SSH/RDP."
+
+#: src/keys_ng/services/entry_editor.py:87
+msgid "Port must be a number."
+msgstr "La porta deve essere un numero."
+
+#: src/keys_ng/tui/main.py:66 src/keys_ng/tui/main.py:87 src/keys_ng/tui/main.py:149
+#: src/keys_ng/tui/main.py:229 src/keys_ng/tui/main.py:293 src/keys_ng/tui/main.py:306
+#: src/keys_ng/tui/main.py:326 src/keys_ng/tui/main.py:340 src/keys_ng/tui/main.py:360
+#: src/keys_ng/tui/main.py:371
+msgid "Cancel"
+msgstr "Annulla"
+
+#: src/keys_ng/tui/main.py:74
+msgid "Keys NG will use your existing OpenPGP keys. It does not generate or manage key pairs."
+msgstr "Keys NG utilizzerà le chiavi OpenPGP esistenti. Non genera né gestisce coppie di chiavi."
+
+#: src/keys_ng/tui/main.py:75
+msgid "Vault directory"
+msgstr "Directory del vault"
+
+#: src/keys_ng/tui/main.py:77
+msgid "Encryption recipient — full fingerprint shown"
+msgstr "Destinatario della cifratura — fingerprint completo visualizzato"
+
+#: src/keys_ng/tui/main.py:78
+msgid "No usable encryption keys"
+msgstr "Nessuna chiave di cifratura utilizzabile"
+
+#: src/keys_ng/tui/main.py:79
+msgid "Signing key — secret key required"
+msgstr "Chiave di firma — è richiesta la chiave privata"
+
+#: src/keys_ng/tui/main.py:80
+msgid "No usable signing keys"
+msgstr "Nessuna chiave di firma utilizzabile"
+
+#: src/keys_ng/tui/main.py:84
+msgid "A GnuPG encrypt/decrypt self-test runs before any vault files are written."
+msgstr ""
+"Viene eseguito un self-test GnuPG di cifratura/decifratura prima di scrivere qualunque file del "
+"vault."
+
+#: src/keys_ng/tui/main.py:88
+msgid "Create vault"
+msgstr "Crea vault"
+
+#: src/keys_ng/tui/main.py:150 src/keys_ng/tui/main.py:228 src/keys_ng/tui/main.py:293
+#: src/keys_ng/tui/main.py:305
+msgid "Save"
+msgstr "Salva"
+
+#: src/keys_ng/tui/main.py:212
+msgid "comma separated"
+msgstr "separati da virgole"
+
+#: src/keys_ng/tui/main.py:220
+msgid "TOTP QR image"
+msgstr "Immagine QR TOTP"
+
+#: src/keys_ng/tui/main.py:221
+msgid "image file path"
+msgstr "percorso del file immagine"
+
+#: src/keys_ng/tui/main.py:222
+msgid "Load QR"
+msgstr "Carica QR"
+
+#: src/keys_ng/tui/main.py:225
+msgid "Fields not used by the selected entry type are ignored when saving."
+msgstr "I campi non usati dal tipo di voce selezionato vengono ignorati al salvataggio."
+
+#: src/keys_ng/tui/main.py:265
+msgid "Enter a QR image file path."
+msgstr "Inserisci il percorso di un file immagine QR."
+
+#: src/keys_ng/tui/main.py:271
+msgid "TOTP QR loaded."
+msgstr "QR TOTP caricato."
+
+#: src/keys_ng/tui/main.py:326 src/keys_ng/tui/main.py:339 src/keys_ng/tui/main.py:400
+msgid "Move"
+msgstr "Sposta"
+
+#: src/keys_ng/tui/main.py:395
+msgid "Quit"
+msgstr "Esci"
+
+#: src/keys_ng/tui/main.py:408
+msgid "Export XML"
+msgstr "Esporta XML"
+
+#: src/keys_ng/tui/main.py:412
+msgid "Reload"
+msgstr "Ricarica"
+
+#: src/keys_ng/tui/main.py:429 src/keys_ng/tui/main.py:476
+msgid "Select an entry or folder."
+msgstr "Seleziona una voce o una cartella."
+
+#: src/keys_ng/tui/main.py:519
+msgid "yes"
+msgstr "sì"
+
+#: src/keys_ng/tui/main.py:519
+msgid "no"
+msgstr "no"
+
+#: src/keys_ng/tui/main.py:524
+msgid "Actions"
+msgstr "Azioni"
+
+#: src/keys_ng/tui/main.py:528
+msgid "Vault root"
+msgstr "Radice del vault"
+
+#: src/keys_ng/tui/main.py:558
+msgid "[N] New entry  [Shift+N] New folder"
+msgstr "[N] Nuova voce  [Shift+N] Nuova cartella"
+
+#: src/keys_ng/tui/main.py:560
+msgid ""
+"[E] Edit  [M] Move  [Del] Delete  [Ctrl+B] Username  [Ctrl+C] Password  [Ctrl+T] TOTP  [Ctrl+O] "
+"Open"
+msgstr ""
+"[E] Modifica  [M] Sposta  [Del] Elimina  [Ctrl+B] Username  [Ctrl+C] Password  [Ctrl+T] TOTP  "
+"[Ctrl+O] Apri"
+
+#: src/keys_ng/tui/main.py:562
+msgid "[E] Rename  [M] Move  [Del] Delete"
+msgstr "[E] Rinomina  [M] Sposta  [Del] Elimina"
+
+#: src/keys_ng/tui/main.py:564
+msgid "[Ctrl+F] Search  [R] Reload"
+msgstr "[Ctrl+F] Cerca  [R] Ricarica"
+
+#: src/keys_ng/tui/main.py:580
+msgid "Clipboard error"
+msgstr "Errore clipboard"
+
+#: src/keys_ng/tui/main.py:583
+msgid "Copied using the terminal clipboard; automatic clearing could not be verified."
+msgstr ""
+"Copiato usando gli appunti del terminale; non è stato possibile verificare la cancellazione "
+"automatica."
+
+#: src/keys_ng/tui/main.py:593
+msgid "URL copied to clipboard."
+msgstr "URL copiato negli appunti."
+
+#: src/keys_ng/tui/main.py:597
+msgid "UUID copied to clipboard."
+msgstr "UUID copiato negli appunti."
+
+#: src/keys_ng/tui/main.py:604
+msgid "Username copied to clipboard."
+msgstr "Nome utente copiato negli appunti."
+
+#: src/keys_ng/tui/main.py:632 src/keys_ng/tui/main.py:649 src/keys_ng/tui/main.py:676
+msgid "Unlock the vault before modifying it."
+msgstr "Sblocca il vault prima di modificarlo."
+
+#: src/keys_ng/tui/main.py:643
+msgid "Entry created."
+msgstr "Voce creata."
+
+#: src/keys_ng/tui/main.py:670
+msgid "Entry updated."
+msgstr "Voce aggiornata."
+
+#: src/keys_ng/tui/main.py:685
+msgid "Folder created."
+msgstr "Cartella creata."
+
+#: src/keys_ng/tui/main.py:695
+msgid "Folder renamed."
+msgstr "Cartella rinominata."
+
+#: src/keys_ng/tui/main.py:704
+msgid "Move to folder"
+msgstr "Sposta nella cartella"
+
+#: src/keys_ng/tui/main.py:712
+msgid "Entry moved."
+msgstr "Voce spostata."
+
+#: src/keys_ng/tui/main.py:715
+msgid "Folder moved."
+msgstr "Cartella spostata."
+
+#: src/keys_ng/tui/main.py:732
+msgid "Entry deleted."
+msgstr "Voce eliminata."
+
+#: src/keys_ng/tui/main.py:735
+msgid "Folder deleted."
+msgstr "Cartella eliminata."
+
+#: src/keys_ng/tui/main.py:749
+#, python-brace-format
+msgid "Exported plaintext XML to {path}. Delete it securely after use."
+msgstr "XML in chiaro esportato in {path}. Eliminalo in modo sicuro dopo l’uso."
+
+#: src/keys_ng/tui/main.py:757
+msgid "Vault locked. Press Ctrl+P to unlock."
+msgstr "Vault bloccato. Premi Ctrl+P per sbloccarlo."
+
+#: src/keys_ng/tui/main.py:763
+msgid "Vault hard locked."
+msgstr "Vault sottoposto a blocco completo."
+
+#: src/keys_ng/tui/main.py:764
+msgid "GnuPG agent cache cleared. Press Ctrl+P to unlock."
+msgstr "Cache di gpg-agent cancellata. Premi Ctrl+P per sbloccare."
+
+#~ msgid "Vault initialized."
+#~ msgstr "Vault inizializzato."
+
+#~ msgid "Catalog rebuilt: {count} entries."
+#~ msgstr "Catalogo ricostruito: {count} elementi."
+
+#~ msgid "Title: "
+#~ msgstr "Titolo: "
+
+#~ msgid "Username: "
+#~ msgstr "Nome utente: "
+
+#~ msgid "Password (leave empty for none): "
+#~ msgstr "Password (lascia vuoto per nessuna): "
+
+#~ msgid "Search…"
+#~ msgstr "Cerca…"
+
+#~ msgid "Copy password"
+#~ msgstr "Copia password"
+
+#~ msgid "Copy TOTP"
+#~ msgstr "Copia TOTP"
+
+#~ msgid "Error"
+#~ msgstr "Errore"
+
+#~ msgid "New"
+#~ msgstr ""
+
+#~ msgid "Restart the TUI to unlock the vault."
+#~ msgstr "Riavvia la TUI per sbloccare il vault."
+
+#~ msgid "Select an entry."
+#~ msgstr "Seleziona una voce."
+

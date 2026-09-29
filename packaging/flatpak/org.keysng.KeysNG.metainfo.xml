@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>org.keysng.KeysNG</id>
+  <name>Keys NG</name>
+  <summary>OpenPGP password manager</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+  <description>
+    <p>Keys NG stores each credential as an individually encrypted OpenPGP record and provides graphical, terminal and command-line interfaces.</p>
+  </description>
+  <launchable type="desktop-id">org.keysng.KeysNG.desktop</launchable>
+  <developer id="org.keysng"><name>Franco Bersani</name></developer>
+  <releases>
+    <release version="0.1.16.dev0" date="2026-08-24"/>
+  </releases>
+</component>

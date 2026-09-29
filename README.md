@@ -1,0 +1,365 @@
+# Keys NG
+
+Keys NG is a next-generation rewrite of the original **Keys** Bash password manager. It keeps the original idea of storing each credential as an independently encrypted OpenPGP object, while removing plaintext temporary files from the normal workflow.
+
+## Current milestone
+
+The repository is now in **M1.18.1 TUI-parity maintenance development**. It is not yet an independently audited production security release.
+
+Implemented so far:
+
+- versioned JSON entry format and one encrypted `.gpg` record per entry;
+- encrypted, rebuildable search catalog with configurable metadata privacy and unlocked-session RAM caching for instant interactive search;
+- encrypted logical folders/subfolders stored separately in `folders.gpg`; entry filenames remain opaque UUIDs;
+- multi-vault PySide6 GUI with vertical vault tabs, native folder picker, drag-and-drop entry/folder moves, native/theme icons, live search (`Ctrl+F`), application menus, and embedded README/security/license help;
+- optional Textual TUI (`keys-ng-tui`) with tree navigation, fast in-memory catalog search, full entry/folder create/edit/move/delete workflows, TOTP/SSH fields, and high-visibility clipboard feedback;
+- GnuPG/gpg-agent integration through pipes, without passphrase handling in Python;
+- full-fingerprint key discovery and selection;
+- OpenPGP signing and trusted signer verification;
+- explicit GUI lock and global GnuPG hard-lock;
+- password generation using Python `secrets`;
+- RFC 6238 TOTP plus `otpauth://`, manual Base32 secret entry, and optional QR import;
+- GUI copy shortcuts: `Ctrl+U` URL, `Ctrl+B` username, `Ctrl+C` password, `Ctrl+T` TOTP, plus `Ctrl+O` to open the selected URL/action;
+- temporary clipboard for GUI/CLI/TUI; terminal frontends prefer verified native Wayland/X11/macOS/Windows clipboard tools, fall back to Qt, then to Textual terminal clipboard support if necessary;
+- structured URL, SSH and RDP actions with no shell invocation; the GUI entry editor exposes explicit Web/SSH/RDP/Generic types and launchers are configurable per platform;
+- safe write-only encrypted inbox workflow;
+- CLI and PySide6 GUI CRUD;
+- GNU gettext `.po/.mo` internationalization;
+- strict, non-executing Keys 1.0.1 migration with verification mode;
+- KeePassXC migration from native `.kdbx` through `keepassxc-cli` (XML streamed in memory), or directly from KeePassXC XML exports; group hierarchy, TOTP and custom string fields are preserved where supported;
+- TOML application settings under platform-native config locations;
+- catalog consistency/recovery checks and unit tests.
+
+
+### M1.18.1 reviewer documentation
+
+Independent reviewers should start with:
+
+- `docs/en/CODE_REVIEW_MANUAL.md` — exhaustive source-derived documentation for every Python class/function;
+- `docs/en/THREAT_MODEL.md`;
+- `docs/en/VAULT_FORMAT_1.0.md`;
+- `docs/en/SECURITY_REVIEW.md`;
+- `docs/en/MEMORY_REVIEW.md`;
+- `docs/en/RELEASE_SECURITY_CHECKLIST.md`.
+
+Equivalent Italian documents live under `docs/it/`. The code-review manuals are generated from the source tree by `tools/generate_code_review_manual.py`, and the test suite fails if a Python class/function is missing from either manual.
+
+## Security status
+
+**Do not yet use this development snapshot as your only password store.** It still needs external review and cross-platform integration/packaging validation.
+
+Keys NG deliberately does not write decrypted entries to temporary files. Ciphertexts are passed to GnuPG over stdin; decrypted JSON exists in process memory only. Python cannot promise deterministic wiping of immutable strings/bytes from RAM, so process lifetime and lock semantics remain part of the threat model.
+
+## Quick start
+
+```bash
+python -m venv .venv
+. .venv/bin/activate              # Windows: .venv\\Scripts\\activate
+pip install -e .
+
+keys-ng keys
+keys-ng keys --secret
+
+# Full fingerprints are required.
+keys-ng init ~/my-vault \
+  --recipient YOUR_ENCRYPTION_FINGERPRINT \
+  --signer YOUR_SIGNING_FINGERPRINT \
+  --catalog-privacy standard
+
+keys-ng add ~/my-vault --url https://example.org
+keys-ng list ~/my-vault
+keys-ng search ~/my-vault example
+keys-ng password ~/my-vault ENTRY_ID --copy
+keys-ng otp ~/my-vault ENTRY_ID --copy
+keys-ng catalog-health ~/my-vault
+keys-ng lock --hard
+```
+
+For GUI and clipboard support:
+
+```bash
+pip install -e '.[gui]'
+
+# Start with no vault, then choose one using the native directory dialog:
+keys-ng-gui
+
+# Or open one or more vaults directly:
+keys-ng-gui ~/personal-vault ~/work-vault
+```
+
+For TOTP QR import:
+
+```bash
+pip install -e '.[gui,qr]'
+```
+
+For the terminal UI:
+
+```bash
+pip install -e '.[tui]'
+keys-ng-tui ~/my-vault
+```
+
+Folder examples:
+
+```bash
+keys-ng folder create ~/my-vault 'Personal/Cloud'
+keys-ng folder list ~/my-vault
+keys-ng add ~/my-vault --folder 'Personal/Cloud' --title Aruba
+keys-ng move ~/my-vault ENTRY_ID 'Personal/Accounts'
+```
+
+
+
+### Interactive search and GUI menus
+
+While a vault is unlocked, Keys NG keeps only the decrypted **catalog and folder metadata** cached in process memory. Passwords, TOTP seeds and full entry JSON are still decrypted only when a specific entry is opened. The cache is discarded on normal or hard lock. This makes repeated CLI/TUI/GUI searches independent of the number of GnuPG invocations.
+
+The GUI search field can be focused with `Ctrl+F`. The application menu exposes vault, entry and folder operations together with the copy shortcuts (`Ctrl+U`, `Ctrl+B`, `Ctrl+C`, `Ctrl+T`) and `Ctrl+O` for Open. The `?` menu opens localized bundled README, security notes and license notes without requiring network access; Italian and English documents are included and the UI language is selected automatically.
+
+### Multi-vault GUI
+
+`keys-ng-gui` may now be started without positional arguments. **Vault → Open vault…** (`Ctrl+Shift+O`) opens the platform-native directory chooser. Each opened vault receives an independent vertical tab whose label is the vault directory name and whose tooltip contains the full path. Multiple vaults can stay open in the same process; `Ctrl+W` closes only the active vault tab. Opening a vault that is already open simply activates its existing tab.
+
+Each tab owns its own decrypted catalog/folder cache and entry state. Normal **Lock/Unlock** applies to the active vault. **Hard lock** is intentionally global: it clears the in-memory state of every open vault before terminating the shared `gpg-agent`, because the agent is process/session-wide rather than vault-specific.
+
+## KeePassXC migration
+
+Preferred path: import the native KDBX database. Keys NG invokes `keepassxc-cli export --format xml` and reads the XML from stdout, so it does not implement KDBX cryptography and does not create an intermediate plaintext export file. KeePassXC itself owns password, key-file and YubiKey prompting.
+
+```bash
+keys-ng import-keepassxc ~/Passwords.kdbx ~/my-vault
+keys-ng import-keepassxc ~/Passwords.kdbx ~/my-vault --key-file ~/db.keyx
+keys-ng import-keepassxc ~/Passwords.kdbx ~/my-vault --yubikey 2:SERIAL
+keys-ng import-keepassxc ~/Passwords.kdbx ~/my-vault --dry-run
+```
+
+An existing KeePassXC XML export can also be imported:
+
+```bash
+keys-ng import-keepassxc ~/Passwords.xml ~/my-vault --format xml
+```
+
+The importer preserves groups as encrypted Keys NG folders, standard username/password/URL/notes/tags, KeePassXC `otp` TOTP URIs, common KeePass TimeOtp fields, and arbitrary string fields in `custom_fields`. Attachments, entry history and custom icons are currently not migrated. Arbitrary URL schemes are preserved as custom data instead of being made executable.
+
+### UUID and cross-reference migration
+
+KeePassXC imports use a two-pass UUID migration. Entry UUIDs from the KeePassXC XML are preserved whenever they do not collide with an existing Keys NG record. If a collision exists, Keys NG generates a new UUID for the imported entry and rewrites UUID-based `{REF:U@I:...}` / `{REF:P@I:...}` references to the new target. Reference chains are validated before records or folders are written, so dangling references, cycles, or empty referenced username/password fields abort the import instead of producing an apparently successful but broken migration. `--dry-run` performs this UUID/reference validation without writing the imported records.
+
+## Application settings
+
+Keys NG reads a platform-native TOML config (`platformdirs`). Example:
+
+```toml
+language = "auto"
+
+[clipboard]
+password_timeout = 20
+totp_timeout = 10
+
+[security]
+auto_lock_timeout = 300
+crypto_backend = "auto"
+
+[ui]
+# "expanded" opens all folders; "compact" starts with folders collapsed.
+tree_startup_view = "expanded"
+
+[launchers.ssh]
+# "auto" prefers xdg-terminal-exec/xdg-terminal on Linux, then common terminals.
+# Set a command name or absolute path to force a terminal.
+terminal = "auto"
+# Arguments placed between the terminal executable and the ssh command.
+terminal_options = []
+
+[launchers.rdp.linux]
+# "auto" selects xfreerdp3, then xfreerdp.
+client = "auto"
+options = ["/dynamic-resolution", "+clipboard"]
+
+[launchers.rdp.windows]
+client = "mstsc"
+options = []
+
+[launchers.rdp.macos]
+# "auto" uses the macOS `open` launcher with an rdp:// URI.
+# To force Microsoft Windows App, for example: options = ["-a", "Windows App"]
+client = "auto"
+options = []
+```
+
+
+The GUI and TUI also accept a one-shot override:
+
+```bash
+keys-ng-gui ~/my-vault --tree-view compact
+keys-ng-tui ~/my-vault --tree-view expanded
+```
+
+
+### SSH and RDP launchers
+
+GUI-created entries can now be explicitly typed as **Web / URL**, **SSH connection**, **RDP connection**, or **Generic credential**. For SSH/RDP entries the dialog shows Host and Port fields instead of URL. Passwords are never placed on a process command line.
+
+On Linux, SSH is launched in a terminal. With `terminal = "auto"`, Keys NG prefers `xdg-terminal` when available, then `xdg-terminal-exec` and then common terminal emulators. `terminal_options` is an argv array, not a shell string. For RDP, each OS has its own client and argv options section. Linux options are passed to FreeRDP before `/v:` and `/u:`; Windows options are passed to `mstsc` before `/v:`; macOS options are passed to `open` before the `rdp://` URI.
+
+
+Each SSH entry also has a dedicated **X11 forwarding** selector (`off`, `-X`, `-Y`) and an **Advanced SSH options** field. It accepts OpenSSH options such as `-J bastion.example.org`, `-L 8080:localhost:80`, `-R`, `-D`, or `-o ServerAliveInterval=30`. The text is converted to an argv list and never interpreted by a shell. Username, port, and `-X`/`-Y` are managed separately and cannot be overridden in the advanced field.
+
+CLI example:
+
+```bash
+keys-ng add ~/my-vault --title "Server via bastion" --username mario \
+  --ssh-host server.internal --ssh-port 22 --ssh-x11 Y \
+  --ssh-options '-J bastion.example.org -o ServerAliveInterval=30'
+```
+
+## Localization
+
+English strings are the source language. Translators edit GNU gettext `.po` files under `locales/<lang>/LC_MESSAGES/keys-ng.po`.
+
+```bash
+pybabel extract -F babel.cfg -o locales/keys-ng.pot src
+pybabel update -i locales/keys-ng.pot -d locales -D keys-ng
+pybabel compile -d locales -D keys-ng
+```
+
+Compiled `.mo` catalogs used at runtime are bundled under `src/keys_ng/i18n/locales/` during development/build preparation.
+
+## Legacy migration
+
+The migrator **never sources or executes** decrypted Bash records. It parses only the strict assignment subset used by Keys 1.0.1.
+
+```bash
+keys-ng migrate-legacy ~/old-keystore/KEYROOT ~/my-vault --dry-run
+keys-ng migrate-legacy ~/old-keystore/KEYROOT ~/my-vault --verify
+```
+
+The source keystore is never modified. Legacy directories are recreated as encrypted logical folders in the destination vault.
+
+See `docs/m1-alpha.md`, `SECURITY.md`, and `ROADMAP.md` for current limitations and design decisions.
+
+## License
+
+GPL-3.0-or-later, matching the original Keys project license family. Author: **Franco 'frakbe' Bersani**, author of the original Keys project.
+
+### Linux desktop integration / GNOME Wayland
+
+On first GUI launch on Linux, Keys NG best-effort installs the following files for the current user:
+
+```text
+~/.local/share/applications/org.keysng.KeysNG.desktop
+~/.local/share/icons/hicolor/64x64/apps/org.keysng.KeysNG.png
+```
+
+This lets GNOME/Wayland associate the window with the application icon. Desktop integration can also be managed explicitly with:
+
+```bash
+keys-ng desktop install
+keys-ng desktop status
+keys-ng desktop uninstall
+```
+
+`XDG_DATA_HOME` is honored when set. Root privileges are not required.
+
+## Reusable credentials and UUID references (M1.12)
+
+Keys NG supports a KeePassXC-compatible UUID reference subset for reusing credentials stored in another entry of the **same vault**:
+
+```text
+username = {REF:U@I:<UUID>}
+password = {REF:P@I:<UUID>}
+```
+
+Both canonical UUIDs with hyphens and KeePass-style 32-hex UUIDs are accepted. References may be chained; cycles, missing entries, and references to empty target fields are rejected when resolved.
+
+The GUI shows the UUID of the selected entry and provides **Copy UUID** (`Ctrl+Shift+I`). The TUI shows the UUID in the detail pane and copies it with `F4`. Username/password copy operations and SSH/RDP launchers resolve references at use time, so rotating the credentials in the source entry immediately affects all referencing entries.
+
+Example:
+
+```text
+Shared credentials UUID: 8b14aa0e-4e79-4e4d-8ef8-8bf95d4594da
+
+Server A username: {REF:U@I:8b14aa0e-4e79-4e4d-8ef8-8bf95d4594da}
+Server A password: {REF:P@I:8b14aa0e-4e79-4e4d-8ef8-8bf95d4594da}
+```
+
+Keys NG currently resolves the `U` (username) and `P` (password) fields by UUID (`@I`). Other KeePassXC cross-reference search modes are intentionally not implemented yet.
+
+### Recent vaults and public-key-only inbox deposits
+
+The GUI keeps the five most recently opened vaults in **Vault > Recent**.
+
+A contributor who only has the vault owner's public key can create a standalone
+encrypted entry without opening or possessing the vault:
+
+```bash
+keys-ng inbox-create --public-key owner-public.asc --output new-entry.gpg \
+  --title "New server" --username alice --ssh-host host.example.org
+```
+
+Copy `new-entry.gpg` into the owner's `inbox/`. Public-key-only deposits are
+unsigned, so the owner must explicitly approve them:
+
+```bash
+keys-ng import-inbox ~/vault --accept-unsigned
+```
+
+## M1.15 documentation, application menu and KeePassXC XML export
+
+The consolidated documentation now lives under:
+
+- `docs/en/USER_GUIDE.md`
+- `docs/en/DEVELOPER_GUIDE.md`
+- `docs/it/USER_GUIDE.md`
+- `docs/it/DEVELOPER_GUIDE.md`
+
+Per-user application-menu integration is available on Linux, Windows and macOS:
+
+```bash
+keys-ng desktop install
+keys-ng desktop status
+keys-ng desktop uninstall
+```
+
+KeePassXC-compatible plaintext XML export is available for a single entry or a whole vault:
+
+```bash
+keys-ng export-entry VAULT ENTRY_UUID entry.xml
+keys-ng export-vault VAULT vault.xml
+```
+
+The GUI exposes single-entry export under `Entry -> Export as KeePassXC XML...`; the TUI uses the `E` key for the selected entry. XML exports are plaintext and must be protected and deleted securely after use.
+
+
+### Installed version
+
+```bash
+keys-ng version
+keys-ng-tui version
+```
+
+The GUI shows the same version under **? → License**.
+
+## M1.16: native packaging and Preferences
+
+M1.16 adds **Settings → Preferences…** to edit the global `config.toml` with
+inline explanations, plus `Ctrl+L` (lock), `Ctrl+Shift+L` (hard lock) and
+`Ctrl+P` (unlock) in both GUI and TUI. `keys-ng doctor` now checks the full
+runtime environment.
+
+Distribution recipes are included for Linux Flatpak, Windows MSI and macOS
+DMG. See `packaging/flatpak/` and `.github/workflows/distribution.yml`.
+
+## M1.20 interactive parity
+
+M1.20 aligns the ordinary user-facing GUI and TUI workflows: KeePassXC KDBX/XML import, full-vault and single-entry XML export, copyable/editable notes, integrated password generation, vault open/close/recent workflows, preferences, and help. Administrative/diagnostic commands remain CLI-oriented by design. See `RELEASE_NOTES_M1.20.md` and the EN/IT user/developer guides for details.
+
+### M1.20.3 TUI terminal-portable shortcuts
+
+The TUI no longer uses `Ctrl+Shift+<letter>` for main commands. Use `F2` Preferences, `F3` Trusted signers, `F5` Open vault, `F6` Recent vault, `F7` KeePassXC import, `F8` complete-vault XML export and `F9` hard lock. `Ctrl+N` copies Notes, `Ctrl+D` creates a folder, and `?` opens the inline command guide. GUI shortcuts are unchanged.
+
+### M1.20.4 TUI multi-vault switching
+
+The TUI now keeps multiple vaults open in one session. `F5`/`F6` add vaults, `Ctrl+J` opens the vault switcher, `Ctrl+W` closes the active vault, `Ctrl+L` locks only the active vault, and `F9` hard-locks all open vaults plus the shared GnuPG agent.
+

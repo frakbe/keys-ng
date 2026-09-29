@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=77", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "keys-ng"
+dynamic = ["version"]
+description = "OpenPGP password manager with encrypted per-entry records, CLI and GUI"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "GPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{name = "Franco Bersani"}]
+dependencies = ["platformdirs>=4.2"]
+
+[project.optional-dependencies]
+gui = ["PySide6>=6.7"]
+tui = ["textual>=0.80"]
+qr = ["zxing-cpp>=2.3", "Pillow>=10.0"]
+i18n = ["Babel>=2.15"]
+dev = ["pytest>=8.0", "Babel>=2.15", "ruff>=0.12", "bandit>=1.8", "pip-audit>=2.9"]
+
+[project.scripts]
+keys-ng = "keys_ng.cli.main:main"
+keys-ng-gui = "keys_ng.gui.main:main"
+keys-ng-tui = "keys_ng.tui.main:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "keys_ng.__version__"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+keys_ng = ["i18n/locales/*/LC_MESSAGES/*.mo", "help/*/*.md", "resources/*.png", "resources/*.ico", "resources/*.icns", "resources/*.desktop"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+# Native desktop packaging (Windows MSI and macOS .app/DMG).
+# Briefcase 0.4+ resolves the normal PEP 621 metadata above; this explicit
+# version is guarded by tests so it cannot silently drift from keys_ng.__version__.
+[tool.briefcase]
+project_name = "Keys NG"
+bundle = "org.keysng"
+version = "0.1.20.dev4"
+
+[tool.briefcase.app.keys_ng]
+formal_name = "Keys NG"
+description = "OpenPGP password manager"
+long_description = "Keys NG stores credentials as individually encrypted OpenPGP records and provides a cross-platform graphical interface."
+sources = ["src/keys_ng"]
+requires = [
+    "platformdirs>=4.2",
+    "PySide6>=6.7",
+    "Pillow>=10.0",
+    "zxing-cpp>=2.3",
+]
+icon = "src/keys_ng/resources/keys-icon"
+license = "GPL-3.0-or-later"
+license_files = ["LICENSE"]
+author = "Franco Bersani"
+
+[tool.briefcase.app.keys_ng.windows]
+create_desktop_shortcut = true
+
+[tool.briefcase.app.keys_ng.macOS]
+# Distribution builds should be signed/notarized with Apple credentials.
+# CI development artifacts use --adhoc-sign until those secrets are supplied.
+
+[tool.briefcase.app.keys_ng_cli]
+formal_name = "Keys NG CLI"
+description = "Keys NG command-line interface"
+sources = ["src/keys_ng_cli", "src/keys_ng"]
+console_app = true
+requires = ["platformdirs>=4.2", "Pillow>=10.0", "zxing-cpp>=2.3"]
+license = "GPL-3.0-or-later"
+license_files = ["LICENSE"]
+author = "Franco Bersani"
+
+[tool.briefcase.app.keys_ng_tui]
+formal_name = "Keys NG TUI"
+description = "Keys NG terminal user interface"
+sources = ["src/keys_ng_tui", "src/keys_ng"]
+console_app = true
+requires = ["platformdirs>=4.2", "textual>=0.80", "Pillow>=10.0", "zxing-cpp>=2.3"]
+license = "GPL-3.0-or-later"
+license_files = ["LICENSE"]
+author = "Franco Bersani"

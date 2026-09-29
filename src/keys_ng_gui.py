@@ -1,0 +1,7 @@
+"""Briefcase GUI launcher for Keys NG."""
+
+from keys_ng.gui.main import main
+
+
+if __name__ == "__main__":
+    main()

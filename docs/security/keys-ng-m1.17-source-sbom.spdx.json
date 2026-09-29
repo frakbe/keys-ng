@@ -1,0 +1,116 @@
+{
+  "spdxVersion": "SPDX-2.3",
+  "dataLicense": "CC0-1.0",
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "name": "Keys-NG-M1.17-source-SBOM",
+  "documentNamespace": "https://keys-ng.invalid/spdx/0.1.17.dev0/source",
+  "creationInfo": {
+    "created": "2026-09-16T07:28:59Z",
+    "creators": [
+      "Tool: Keys-NG-M1.17-source-sbom-generator"
+    ]
+  },
+  "packages": [
+    {
+      "name": "keys-ng",
+      "SPDXID": "SPDXRef-Package-keys-ng",
+      "versionInfo": "0.1.17.dev0",
+      "downloadLocation": "NOASSERTION",
+      "filesAnalyzed": false,
+      "licenseConcluded": "GPL-3.0-or-later",
+      "licenseDeclared": "GPL-3.0-or-later",
+      "supplier": "Person: Franco Bersani"
+    },
+    {
+      "name": "platformdirs",
+      "SPDXID": "SPDXRef-Package-platformdirs",
+      "versionInfo": ">=4.2",
+      "downloadLocation": "https://pypi.org/project/platformdirs/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION"
+    },
+    {
+      "name": "PySide6",
+      "SPDXID": "SPDXRef-Package-PySide6",
+      "versionInfo": ">=6.7 (optional gui)",
+      "downloadLocation": "https://pypi.org/project/PySide6/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION"
+    },
+    {
+      "name": "textual",
+      "SPDXID": "SPDXRef-Package-textual",
+      "versionInfo": ">=0.80 (optional tui)",
+      "downloadLocation": "https://pypi.org/project/textual/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION"
+    },
+    {
+      "name": "zxing-cpp",
+      "SPDXID": "SPDXRef-Package-zxing-cpp",
+      "versionInfo": ">=2.3 (optional qr)",
+      "downloadLocation": "https://pypi.org/project/zxing-cpp/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION"
+    },
+    {
+      "name": "Pillow",
+      "SPDXID": "SPDXRef-Package-Pillow",
+      "versionInfo": ">=10.0 (optional qr)",
+      "downloadLocation": "https://pypi.org/project/Pillow/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION"
+    },
+    {
+      "name": "Babel",
+      "SPDXID": "SPDXRef-Package-Babel",
+      "versionInfo": ">=2.15 (optional i18n/dev)",
+      "downloadLocation": "https://pypi.org/project/Babel/",
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION"
+    }
+  ],
+  "relationships": [
+    {
+      "spdxElementId": "SPDXRef-DOCUMENT",
+      "relationshipType": "DESCRIBES",
+      "relatedSpdxElement": "SPDXRef-Package-keys-ng"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-keys-ng",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-platformdirs"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-keys-ng",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-PySide6"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-keys-ng",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-textual"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-keys-ng",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-zxing-cpp"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-keys-ng",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Pillow"
+    },
+    {
+      "spdxElementId": "SPDXRef-Package-keys-ng",
+      "relationshipType": "DEPENDS_ON",
+      "relatedSpdxElement": "SPDXRef-Package-Babel"
+    }
+  ]
+}

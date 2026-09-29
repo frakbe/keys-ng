@@ -1,0 +1,49 @@
+language = "auto"
+
+[clipboard]
+password_timeout = 20
+totp_timeout = 10
+
+[security]
+auto_lock_timeout = 300
+crypto_backend = "auto"
+
+[gnupg]
+# Leave empty for automatic PATH / Gpg4win discovery.
+gpg = ""
+gpgconf = ""
+
+[ui]
+tree_startup_view = "expanded"
+
+[ui.tui]
+# Leave colors empty to use Textual theme contrast automatically.
+clipboard_notice_background = ""
+clipboard_notice_foreground = ""
+clipboard_notice_seconds = 2.5
+
+[diagnostics]
+# Opt-in rotating diagnostics. Logs intentionally omit credential plaintext,
+# decrypted fields, TOTP values, clipboard contents and GnuPG argument values.
+enabled = false
+level = "DEBUG"
+# Empty = platform default. Windows normally uses the per-user LocalAppData log directory.
+log_file = ""
+max_bytes = 2000000
+backup_count = 3
+
+[launchers.ssh]
+terminal = "auto"
+terminal_options = []
+
+[launchers.rdp.linux]
+client = "auto"
+options = ["/dynamic-resolution", "+clipboard"]
+
+[launchers.rdp.windows]
+client = "mstsc"
+options = []
+
+[launchers.rdp.macos]
+client = "auto"
+options = []
