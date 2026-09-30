@@ -1,5 +1,7 @@
 # Keys NG roadmap
 
+> **Current implementation status (0.1.21):** M1.21 is implemented and released. The project remains in M1 (hardened usable alpha); M2 beta work is limited to packaging/validation and has not yet been completed.
+
 ## M0 - Foundation (complete)
 
 - [x] Python package layout
@@ -49,9 +51,7 @@
 - [ ] signed Windows installer
 - [ ] signed/notarized macOS app
 - [ ] CI integration tests on Linux/Windows/macOS
-- [ ] platform auto-type backends
 - [ ] smartcard/YubiKey test matrix
-- [ ] Qubes split-GPG adapter
 - [ ] cloud conflict detection/reconciliation
 - [ ] rollback detection design
 - [ ] localization QA / pseudo-locale / RTL layout tests
@@ -63,14 +63,14 @@
 - [ ] fuzzing of JSON, catalog, URI and legacy parsers
 - [ ] reproducible release procedure
 - [ ] migration guide from classic Keys
-- [ ] complete user/admin documentation
+- [x] complete user/admin documentation
 
-## M1.8.1 — GNOME/Wayland desktop identity fix
+## M1.8.1 — GNOME/Wayland desktop identity fix (complete)
 
-- Match Qt `desktopFileName` to `org.keysng.KeysNG.desktop`.
-- Install per-user freedesktop desktop entry and hicolor icon.
-- Add `keys-ng desktop install|status|uninstall`.
-- Preserve bundled legacy icon as the single source asset.
+- [x] Match Qt `desktopFileName` to `org.keysng.KeysNG.desktop`.
+- [x] Install per-user freedesktop desktop entry and hicolor icon.
+- [x] Add `keys-ng desktop install|status|uninstall`.
+- [x] Preserve bundled legacy icon as the single source asset.
 
 ## M1.9 - GUI remote entry types and launchers
 
@@ -110,28 +110,28 @@
 - [x] UUID display/copy in GUI and TUI
 - [x] Italian gettext/help updates and reference documentation
 
-## M1.14 - Recent vaults and public-key-only inbox workflow
+## M1.14 - Recent vaults and public-key-only inbox workflow (complete)
 
-- GUI `Vault > Recent` with the five most recently opened vaults.
-- Persistent recent-vault paths in `[ui].recent_vaults`.
-- Standalone `keys-ng inbox-create` command requiring no vault access.
-- `--public-key FILE` isolated temporary GnuPG keyring mode.
-- Explicit `import-inbox --accept-unsigned` approval for public-key-only deposits.
-- Inbox records are re-encrypted/signed under normal vault policy after approval.
+- [x] GUI `Vault > Recent` with the five most recently opened vaults.
+- [x] Persistent recent-vault paths in `[ui].recent_vaults`.
+- [x] Standalone `keys-ng inbox-create` command requiring no vault access.
+- [x] `--public-key FILE` isolated temporary GnuPG keyring mode.
+- [x] Explicit `import-inbox --accept-unsigned` approval for public-key-only deposits.
+- [x] Inbox records are re-encrypted/signed under normal vault policy after approval.
 
-## M1.15 - Application menu, consolidated documentation, KeePassXC XML export
+## M1.15 - Application menu, consolidated documentation, KeePassXC XML export (complete)
 
-- Per-user application-menu launcher on Linux, Windows and macOS.
-- Documentation consolidated into user/developer guides under `docs/en` and `docs/it`.
-- KeePassXC-compatible single-entry XML export in CLI/TUI/GUI.
-- KeePassXC-compatible complete-vault XML export in CLI, preserving folder hierarchy, UUIDs and UUID references.
+- [x] Per-user application-menu launcher on Linux, Windows and macOS.
+- [x] Documentation consolidated into user/developer guides under `docs/en` and `docs/it`.
+- [x] KeePassXC-compatible single-entry XML export in CLI/TUI/GUI.
+- [x] KeePassXC-compatible complete-vault XML export in CLI, preserving folder hierarchy, UUIDs and UUID references.
 
 
-## M1.15.1 — launcher/version maintenance
+## M1.15.1 — launcher/version maintenance (complete)
 
-- Linux `.desktop` launchers no longer contain `TryExec`, improving GNOME/GIO compatibility.
-- `keys-ng version` and `keys-ng-tui version` expose the installed package version.
-- GUI License help shows the installed Keys NG version dynamically.
+- [x] Linux `.desktop` launchers no longer contain `TryExec`, improving GNOME/GIO compatibility.
+- [x] `keys-ng version` and `keys-ng-tui version` expose the installed package version.
+- [x] GUI License help shows the installed Keys NG version dynamically.
 
 ## M1.16 — Distribution and GUI preferences
 
@@ -182,11 +182,41 @@
 - [x] bilingual documentation and regenerated exhaustive code-review manuals
 - [x] regression tests for shared editor behavior, folder reorganization and TUI parity
 
-## M1.20 — Interactive UI Parity & KeePassXC Import
+## M1.20 — Interactive UI Parity & KeePassXC Import (complete)
 
-Implemented in `0.1.20.dev0`: explicit GUI/TUI interactive capability parity, KeePassXC KDBX/XML import from both interactive frontends, full-vault XML export, note copy/paste improvements, integrated password generator, and TUI vault/open/recent/preferences/help workflows.
+- [x] GUI/TUI interactive capability parity.
+- [x] KeePassXC KDBX/XML import from both interactive frontends.
+- [x] Full-vault and single-entry XML export.
+- [x] Note copy/paste improvements and integrated password generator.
+- [x] TUI vault/open/recent/preferences/help workflows.
 
+### M1.20.1 — TUI Preferences binding hotfix (complete)
 
-### M1.20.1 — TUI Preferences binding hotfix
+- [x] Replaced the invalid Textual `ctrl+,` Preferences binding with `Ctrl+Shift+P`.
+- [x] Added regression coverage for literal-comma binding keys.
 
-Implemented in `0.1.20.dev1`: replaced invalid Textual `ctrl+,` Preferences binding with `Ctrl+Shift+P`; added regression coverage for literal-comma binding keys.
+### M1.20.2 — TUI terminal-portable shortcuts (complete)
+
+- [x] Replaced terminal-fragile `Ctrl+Shift+<letter>` main commands with F-key bindings.
+- [x] Added `F2` Preferences, `F3` Trusted signers, `F5` Open vault, `F6` Recent vault, `F7` KeePassXC import, `F8` complete-vault XML export and `F9` hard lock.
+- [x] Added `Ctrl+N` Notes copy, `Ctrl+D` folder creation and `?` inline command guide.
+
+### M1.20.3 — TUI keyboard and lock semantics (complete)
+
+- [x] Completed terminal-portable shortcut and lock behavior regression coverage.
+
+### M1.20.4 — TUI multi-vault switching (complete)
+
+- [x] Multiple vaults remain open in one TUI session.
+- [x] `Ctrl+J` opens the vault switcher; `Ctrl+W` closes only the active vault.
+- [x] `Ctrl+L` locks only the active vault; `F9` hard-locks all vaults and the shared GnuPG agent.
+- [x] Vault switching uses the temporary notification banner.
+
+### M1.21 — RDP credentials and TUI notification fixes (complete, released as 0.1.21)
+
+- [x] Linux RDP passes the password through stdin using `/from-stdin:force`; passwords are not placed in process arguments.
+- [x] RDP entries expose an optional domain field in GUI and TUI.
+- [x] Linux RDP options remain separate argv items and are configurable per item.
+- [x] Vault-switch notifications use the temporary banner instead of permanent status text.
+- [x] TUI clipboard notifications are acknowledged immediately after a successful clipboard write.
+- [x] Release workflow builds and smoke-tests the wheel; release `v0.1.21` is published.
