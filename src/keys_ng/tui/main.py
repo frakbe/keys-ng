@@ -16,6 +16,12 @@ from keys_ng.services.entry_editor import EntryDraft, build_entry_from_draft
 from keys_ng.services.diagnostics import configure_diagnostics, get_logger
 from keys_ng.services.qr import parse_totp_qr_file
 from keys_ng.services.passwords import generate_password
+from keys_ng.services.standalone_export import (
+    export_standalone_entry,
+    import_standalone_public_key,
+    standalone_recipient_keys,
+    standalone_signing_keys,
+)
 from keys_ng.services.totp import build_otpauth_uri
 from keys_ng.services.totp import generate_totp
 from keys_ng.services.vault_init import VaultInitRequest, available_vault_keys, create_vault
@@ -614,6 +620,116 @@ def main() -> None:
         def on_button_pressed(self, event: Button.Pressed) -> None:
             self.dismiss(event.button.id == "yes")
 
+    class StandaloneExportScreen(ModalScreen[str | None]):
+        CSS = """
+        StandaloneExportScreen { align: center middle; }
+        #standalone-panel { width: 92%; height: auto; max-height: 90%; border: round $accent; padding: 1 2; background: $surface; }
+        #standalone-buttons { height: 3; align-horizontal: right; margin-top: 1; }
+        """
+        BINDINGS = [Binding("escape", "cancel", _("Cancel"))]
+
+        def __init__(self, entry: Entry) -> None:
+            super().__init__()
+            self.entry = entry
+            self.recipient_keys = []
+            self.signing_keys = []
+
+        def compose(self) -> ComposeResult:
+            safe_title = "".join(ch if ch.isalnum() or ch in "-_. " else "_" for ch in self.entry.title).strip() or "entry"
+            default_path = Path.cwd() / f"{safe_title}-{self.entry.id[:8]}.gpg"
+            with Vertical(id="standalone-panel"):
+                yield Static(_("Export standalone encrypted entry"))
+                yield Static(
+                    _("The entry is copied with a new UUID, without its vault folder; "
+                      "username/password references are resolved. Imported public keys are "
+                      "added to the current GnuPG keyring.")
+                )
+                yield Label(_("Recipient public key"))
+                yield Select([], id="standalone-recipient", allow_blank=False)
+                yield Label(_("Public-key file to import (optional)"))
+                yield Input("", id="standalone-public-key")
+                yield Button(_("Import public key file"), id="standalone-import")
+                yield Checkbox(_("Sign with my secret key"), value=False, id="standalone-sign")
+                yield Label(_("Signing key"))
+                yield Select([], id="standalone-signer", allow_blank=False)
+                yield Label(_("Standalone .gpg path"))
+                yield Input(str(default_path), id="standalone-output")
+                yield Static("", id="standalone-status")
+                with Horizontal(id="standalone-buttons"):
+                    yield Button(_("Export"), id="standalone-export", variant="primary")
+                    yield Button(_("Cancel"), id="standalone-cancel")
+
+        def on_mount(self) -> None:
+            self._refresh_keys()
+
+        def _refresh_keys(self, preferred: str | None = None) -> None:
+            self.recipient_keys = standalone_recipient_keys(vault.crypto)
+            recipient_select = self.query_one("#standalone-recipient", Select)
+            recipient_select.set_options(
+                [(key.label, key.fingerprint) for key in self.recipient_keys] or [(_("No usable encryption keys"), "")]
+            )
+            if preferred:
+                recipient_select.value = preferred
+            self.signing_keys = standalone_signing_keys(vault.crypto)
+            signer_select = self.query_one("#standalone-signer", Select)
+            signer_select.set_options(
+                [(_("Do not sign"), "")] + [(key.label, key.fingerprint) for key in self.signing_keys]
+            )
+            signer_select.disabled = not self.query_one("#standalone-sign", Checkbox).value
+            if signer_select.disabled:
+                signer_select.value = ""
+
+        def on_checkbox_changed(self, event: Checkbox.Changed) -> None:
+            if event.checkbox.id == "standalone-sign":
+                self.query_one("#standalone-signer", Select).disabled = not event.value
+
+        def _import_public_key(self) -> None:
+            path = self.query_one("#standalone-public-key", Input).value.strip()
+            if not path:
+                self.query_one("#standalone-status", Static).update(_("Enter a public-key file path."))
+                return
+            try:
+                imported = import_standalone_public_key(vault.crypto, path)
+                self._refresh_keys(imported[0].fingerprint)
+                self.query_one("#standalone-status", Static).update(
+                    _("Public key imported into the current GnuPG keyring; verify its full fingerprint.")
+                )
+            except Exception as exc:
+                self.query_one("#standalone-status", Static).update(f"{_('Error')}: {exc}")
+
+        def _perform_export(self) -> None:
+            recipient = self.query_one("#standalone-recipient", Select).value
+            output = self.query_one("#standalone-output", Input).value.strip()
+            sign = self.query_one("#standalone-sign", Checkbox).value
+            signer = self.query_one("#standalone-signer", Select).value if sign else ""
+            if not recipient:
+                self.query_one("#standalone-status", Static).update(_("Select a usable recipient public key."))
+                return
+            if not output:
+                self.query_one("#standalone-status", Static).update(_("Choose a destination path."))
+                return
+            if sign and not signer:
+                self.query_one("#standalone-status", Static).update(_("Select a secret signing key or disable signing."))
+                return
+            try:
+                destination, _exported = export_standalone_entry(
+                    vault, self.entry.id, output, str(recipient), str(signer) if signer else None
+                )
+                self.dismiss(str(destination))
+            except Exception as exc:
+                self.query_one("#standalone-status", Static).update(f"{_('Error')}: {exc}")
+
+        def on_button_pressed(self, event: Button.Pressed) -> None:
+            if event.button.id == "standalone-import":
+                self._import_public_key()
+            elif event.button.id == "standalone-export":
+                self._perform_export()
+            else:
+                self.dismiss(None)
+
+        def action_cancel(self) -> None:
+            self.dismiss(None)
+
     class TrustedSignersScreen(ModalScreen[None]):
         CSS = """
         TrustedSignersScreen { align: center middle; }
@@ -862,6 +978,7 @@ def main() -> None:
             Binding("ctrl+n", "copy_notes", _("Copy notes"), priority=True),
             Binding("ctrl+o", "open_action", _("Open"), priority=True),
             Binding("x", "export_entry", _("Export entry XML"), priority=True),
+            Binding("s", "export_standalone", _("Export standalone"), priority=True),
             Binding("f8", "export_vault", _("Export vault XML"), priority=True),
             Binding("f7", "import_keepassxc", _("Import KeePassXC"), priority=True),
             Binding("f5", "open_vault", _("Open vault"), priority=True),
@@ -1043,7 +1160,7 @@ def main() -> None:
         def _update_command_hints(self) -> None:
             common = _("[N] New entry  [Ctrl+D] New folder  [Ctrl+J] Switch vault  [I] Inbox  [F3] Trusted signers  [?] Commands")
             if self.current_kind == "entry":
-                extra = _("[E] Edit  [M] Move  [Del] Delete  [Ctrl+B] Username  [Ctrl+C] Password  [Ctrl+T] TOTP  [Ctrl+O] Open")
+                extra = _("[E] Edit  [M] Move  [Del] Delete  [S] Share encrypted  [Ctrl+B] Username  [Ctrl+C] Password  [Ctrl+T] TOTP  [Ctrl+O] Open")
             elif self.current_kind == "folder":
                 extra = _("[E] Rename  [M] Move  [Del] Delete")
             else:
@@ -1377,6 +1494,19 @@ def main() -> None:
                 self._refresh_after_mutation(message)
             except Exception as exc:
                 self._status(f"{_('Error')}: {exc}")
+
+        def action_export_standalone(self) -> None:
+            if not self.current_entry or vault.locked:
+                return
+            entry = vault.get_entry(self.current_entry.id)
+            self.push_screen(
+                StandaloneExportScreen(entry),
+                self._finish_export_standalone,
+            )
+
+        def _finish_export_standalone(self, destination: str | None) -> None:
+            if destination:
+                self._status(_("Standalone encrypted entry exported to {path}.").format(path=destination))
 
         def action_export_entry(self) -> None:
             if not self.current_entry or vault.locked:

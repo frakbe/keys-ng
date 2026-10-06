@@ -19,6 +19,12 @@ from keys_ng.services.diagnostics import configure_diagnostics, elapsed_ms, get_
 from keys_ng.services.qr import parse_totp_qr_file
 from keys_ng.services.passwords import generate_password
 from keys_ng.services.ssh_options import format_ssh_options
+from keys_ng.services.standalone_export import (
+    export_standalone_entry,
+    import_standalone_public_key,
+    standalone_recipient_keys,
+    standalone_signing_keys,
+)
 from keys_ng.services.totp import generate_totp
 from keys_ng.services.entry_editor import EntryDraft, build_entry_from_draft
 from keys_ng.services.vault_init import VaultInitRequest, available_vault_keys, create_vault
@@ -628,6 +634,128 @@ def main() -> None:
                 delete_inbox_item(self.vault, item.path); self.refresh()
             except Exception as exc: QMessageBox.critical(self, _("Error"), str(exc))
 
+    class StandaloneExportDialog(QDialog):
+        def __init__(self, vault: Vault, entry: Entry, parent=None) -> None:
+            super().__init__(parent)
+            self.vault = vault
+            self.entry = entry
+            self.setWindowTitle(_("Export standalone encrypted entry"))
+            self.resize(760, 420)
+            self.recipient_combo = QComboBox()
+            self.import_button = QPushButton(_("Import public key file…"))
+            self.import_button.clicked.connect(self.import_public_key)
+            recipient_row = QWidget()
+            recipient_layout = QHBoxLayout(recipient_row)
+            recipient_layout.setContentsMargins(0, 0, 0, 0)
+            recipient_layout.addWidget(self.recipient_combo, 1)
+            recipient_layout.addWidget(self.import_button)
+            self.sign_checkbox = QCheckBox(_("Sign with my secret key"))
+            self.signer_combo = QComboBox()
+            self.sign_checkbox.toggled.connect(self.signer_combo.setEnabled)
+            self.output_edit = QLineEdit()
+            safe_title = "".join(ch if ch.isalnum() or ch in "-_. " else "_" for ch in entry.title).strip() or "entry"
+            self.output_edit.setText(str(Path.cwd() / f"{safe_title}-{entry.id[:8]}.gpg"))
+            output_button = QPushButton(_("Browse…"))
+            output_button.clicked.connect(self.browse_output)
+            output_row = QWidget()
+            output_layout = QHBoxLayout(output_row)
+            output_layout.setContentsMargins(0, 0, 0, 0)
+            output_layout.addWidget(self.output_edit, 1)
+            output_layout.addWidget(output_button)
+            self.info = QLabel(
+                _("The entry will be copied with a new UUID, without its vault folder. "
+                  "Username/password references are resolved. Imported public keys are added "
+                  "to the current GnuPG keyring.")
+            )
+            self.info.setWordWrap(True)
+            form = QFormLayout()
+            form.addRow(_("Recipient public key"), recipient_row)
+            form.addRow("", self.sign_checkbox)
+            form.addRow(_("Signing key"), self.signer_combo)
+            form.addRow(_("Standalone .gpg path"), output_row)
+            buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Save | QDialogButtonBox.StandardButton.Cancel)
+            buttons.accepted.connect(self.perform_export)
+            buttons.rejected.connect(self.reject)
+            layout = QVBoxLayout(self)
+            layout.addWidget(self.info)
+            layout.addLayout(form)
+            layout.addWidget(buttons)
+            self._refresh_keys()
+            self.signer_combo.setEnabled(False)
+
+        def _refresh_keys(self, preferred: str | None = None) -> None:
+            self.recipient_combo.clear()
+            recipients = standalone_recipient_keys(self.vault.crypto)
+            for key in recipients:
+                self.recipient_combo.addItem(key.label, key.fingerprint)
+            if not recipients:
+                self.recipient_combo.addItem(_("No usable encryption keys"), "")
+            if preferred:
+                index = self.recipient_combo.findData(preferred)
+                if index >= 0:
+                    self.recipient_combo.setCurrentIndex(index)
+            self.signer_combo.clear()
+            self.signer_combo.addItem(_("Do not sign"), "")
+            for key in standalone_signing_keys(self.vault.crypto):
+                self.signer_combo.addItem(key.label, key.fingerprint)
+
+        def import_public_key(self) -> None:
+            path, _selected_filter = QFileDialog.getOpenFileName(
+                self, _("Import public key"), str(Path.home()), _("OpenPGP public keys (*.asc *.gpg *.pgp);;All files (*)")
+            )
+            if not path:
+                return
+            if QMessageBox.question(
+                self,
+                _("Import public key"),
+                _("Import this public key into the current GnuPG keyring?"),
+            ) != QMessageBox.StandardButton.Yes:
+                return
+            try:
+                imported = import_standalone_public_key(self.vault.crypto, path)
+                self._refresh_keys(imported[0].fingerprint)
+                self.info.setText(
+                    _("Public key imported into the current GnuPG keyring. "
+                      "Verify the full fingerprint before exporting.")
+                )
+            except Exception as exc:
+                QMessageBox.critical(self, _("Public-key import failed"), str(exc))
+
+        def browse_output(self) -> None:
+            path, _selected_filter = QFileDialog.getSaveFileName(
+                self, _("Save standalone encrypted entry"), self.output_edit.text(), _("Encrypted entries (*.gpg);;All files (*)")
+            )
+            if path:
+                self.output_edit.setText(path)
+
+        def perform_export(self) -> None:
+            recipient = str(self.recipient_combo.currentData() or "").strip()
+            output = self.output_edit.text().strip()
+            signer = str(self.signer_combo.currentData() or "").strip() if self.sign_checkbox.isChecked() else None
+            if not recipient:
+                QMessageBox.warning(self, _("Export"), _("Select a usable recipient public key."))
+                return
+            if not output:
+                QMessageBox.warning(self, _("Export"), _("Choose a destination path."))
+                return
+            if self.sign_checkbox.isChecked() and not signer:
+                QMessageBox.warning(self, _("Export"), _("Select a secret signing key or disable signing."))
+                return
+            if QMessageBox.question(
+                self,
+                _("Confirm standalone export"),
+                _("Create a standalone encrypted copy of the selected entry for the chosen recipient?"),
+            ) != QMessageBox.StandardButton.Yes:
+                return
+            try:
+                destination, _exported = export_standalone_entry(
+                    self.vault, self.entry.id, output, recipient, signer
+                )
+                self.output_edit.setText(str(destination))
+                self.accept()
+            except Exception as exc:
+                QMessageBox.critical(self, _("Standalone export failed"), str(exc))
+
     class VaultPane(QWidget):
         def __init__(self, vault_path: str, parent=None) -> None:
             super().__init__(parent)
@@ -657,6 +785,7 @@ def main() -> None:
             self.copy_notes = QPushButton(_("Copy notes"))
             self.copy_otp = QPushButton(_("Copy TOTP"))
             self.open_action = QPushButton(_("Open"))
+            self.export_standalone = QPushButton(_("Export standalone…"))
             self.new_button = QPushButton(_("New entry"))
             self.edit_button = QPushButton(_("Edit"))
             self.delete_button = QPushButton(_("Delete"))
@@ -692,6 +821,7 @@ def main() -> None:
             right.addWidget(self.copy_notes)
             right.addWidget(self.copy_otp)
             right.addWidget(self.open_action)
+            right.addWidget(self.export_standalone)
             right.addStretch(1)
             root_layout = QHBoxLayout()
             root_layout.addLayout(left, 2)
@@ -715,6 +845,7 @@ def main() -> None:
             self.copy_notes.clicked.connect(self.copy_notes_clicked)
             self.copy_otp.clicked.connect(self.copy_otp_clicked)
             self.open_action.clicked.connect(self.open_action_clicked)
+            self.export_standalone.clicked.connect(self.export_standalone_clicked)
             self.new_button.clicked.connect(self.new_entry)
             self.edit_button.clicked.connect(self.edit_entry)
             self.delete_button.clicked.connect(self.delete_entry)
@@ -731,6 +862,7 @@ def main() -> None:
             self.copy_password.setToolTip(_("Copy password (Ctrl+C)"))
             self.copy_otp.setToolTip(_("Copy TOTP (Ctrl+T)"))
             self.open_action.setToolTip(_("Open (Ctrl+O)"))
+            self.export_standalone.setToolTip(_("Create a shareable encrypted copy for another OpenPGP recipient."))
 
             self.timer = QTimer(self)
             self.timer.timeout.connect(self.refresh_otp)
@@ -1018,6 +1150,14 @@ def main() -> None:
                 self.status_message(_("Entry exported."), 3000)
             except Exception as exc:
                 QMessageBox.critical(self, _("Error"), str(exc))
+
+        def export_standalone_clicked(self) -> None:
+            self.activity()
+            if not self.current_entry or self.vault.locked:
+                return
+            dialog = StandaloneExportDialog(self.vault, self.current_entry, self)
+            if dialog.exec() == QDialog.DialogCode.Accepted:
+                self.status_message(_("Standalone encrypted entry exported."), 4000)
 
         def new_entry(self) -> None:
             self.activity()
@@ -1452,6 +1592,7 @@ def main() -> None:
             self._menu_action(entry_menu, _("Open"), lambda: self.call_active("open_action_clicked"), "Ctrl+O")
             entry_menu.addSeparator()
             self._menu_action(entry_menu, _("Export as KeePassXC XML…"), lambda: self.call_active("export_entry_keepassxc"))
+            self._menu_action(entry_menu, _("Export standalone encrypted…"), lambda: self.call_active("export_standalone_clicked"))
 
             folder_menu = self.menuBar().addMenu(_("Folder"))
             self._menu_action(folder_menu, _("New folder"), lambda: self.call_active("new_folder"))
