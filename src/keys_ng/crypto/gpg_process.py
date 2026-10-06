@@ -148,24 +148,8 @@ class GPGProcessBackend(CryptoBackend):
         return keys
 
     def import_public_key(self, key_data: bytes) -> list[str]:
-        proc = self._run(["--batch", "--yes", "--status-fd", "2", "--import"], key_data)
-        imported: list[str] = []
-        for raw_line in proc.stderr.decode("utf-8", "replace").splitlines():
-            if not raw_line.startswith(_STATUS_PREFIX):
-                continue
-            status = raw_line[len(_STATUS_PREFIX):]
-            if status.startswith("IMPORT_OK "):
-                parts = status.split()
-                if len(parts) >= 3 and len(parts[2]) in {40, 64}:
-                    imported.append(parts[2].upper())
-        usable = {
-            key.fingerprint: key
-            for key in self.list_keys(secret=False)
-            if key.can_encrypt and not key.revoked and not key.expired
-        }
-        if imported:
-            return [usable[fingerprint].fingerprint for fingerprint in imported if fingerprint in usable]
-        return [key.fingerprint for key in usable.values()]
+        self._run(["--batch", "--yes", "--import"], key_data)
+        return [key.fingerprint for key in self.list_keys(secret=False) if key.can_encrypt and not key.revoked and not key.expired]
 
     def resolve_fingerprint(self, selector: str, secret: bool = False) -> str:
         needle = selector.strip().upper()
