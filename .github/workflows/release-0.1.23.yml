@@ -1,0 +1,46 @@
+name: Release 0.1.23
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: github.event.head_commit.message == 'Release 0.1.23'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install build and test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install build pytest textual platformdirs
+      - name: Run regression suite
+        run: python -m pytest -q
+      - name: Build wheel
+        run: python -m build --wheel
+      - name: Smoke-test wheel
+        run: |
+          python -m venv .release-venv
+          .release-venv/bin/python -m pip install dist/keys_ng-0.1.23-py3-none-any.whl
+          .release-venv/bin/keys-ng --version
+          .release-venv/bin/keys-ng-tui version
+      - name: Checksums
+        run: sha256sum dist/keys_ng-0.1.23-py3-none-any.whl > SHA256SUMS-0.1.23
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create v0.1.23 \
+            dist/keys_ng-0.1.23-py3-none-any.whl \
+            SHA256SUMS-0.1.23 \
+            --repo "$GITHUB_REPOSITORY" \
+            --target "$GITHUB_SHA" \
+            --title "Keys NG 0.1.23" \
+            --notes-file RELEASE_NOTES_M1.23.md
