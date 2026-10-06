@@ -8109,3 +8109,6 @@ Generated fields such as direct calls and control-flow counts are descriptive st
 <!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.action_cancel -->
 <!-- symbol:keys_ng.tui.main:main.KeysApp.action_export_standalone -->
 <!-- symbol:keys_ng.tui.main:main.KeysApp._finish_export_standalone -->
+
+<!-- symbol:keys_ng.services.clipboard:copy_secret_cli.read_acknowledgement -->
+<!-- symbol:keys_ng.tui.main:main._select_value_is_blank -->
