@@ -54,5 +54,7 @@ def test_gui_and_tui_expose_guided_standalone_export():
     tui = Path("src/keys_ng/tui/main.py").read_text(encoding="utf-8")
     assert "class StandaloneExportDialog" in gui
     assert "Import public key file" in gui
+    assert 'yield Select([], id="standalone-recipient", allow_blank=True)' in tui
+    assert 'yield Select([], id="standalone-signer", allow_blank=True)' in tui
     assert "class StandaloneExportScreen" in tui
     assert 'Binding("s", "export_standalone"' in tui
