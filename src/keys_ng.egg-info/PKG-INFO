@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: keys-ng
-Version: 0.1.20.dev4
+Version: 0.1.22
 Summary: OpenPGP password manager with encrypted per-entry records, CLI and GUI
 Author: Franco Bersani
 License-Expression: GPL-3.0-or-later
@@ -389,4 +389,3 @@ The TUI no longer uses `Ctrl+Shift+<letter>` for main commands. Use `F2` Prefere
 ### M1.20.4 TUI multi-vault switching
 
 The TUI now keeps multiple vaults open in one session. `F5`/`F6` add vaults, `Ctrl+J` opens the vault switcher, `Ctrl+W` closes the active vault, `Ctrl+L` locks only the active vault, and `F9` hard-locks all open vaults plus the shared GnuPG agent.
-
