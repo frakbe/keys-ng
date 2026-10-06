@@ -1,6 +1,6 @@
 # Keys NG roadmap
 
-> **Current implementation status (0.1.21):** M1.21 is implemented and released. The project remains in M1 (hardened usable alpha); M2 beta work is limited to packaging/validation and has not yet been completed.
+> **Current implementation status (post-0.1.21):** M1.21 is released. M1.22 development adds guided standalone encrypted-entry export in GUI/TUI; the project remains in M1 (hardened usable alpha).
 
 ## M0 - Foundation (complete)
 
@@ -220,3 +220,16 @@
 - [x] Vault-switch notifications use the temporary banner instead of permanent status text.
 - [x] TUI clipboard notifications are acknowledged immediately after a successful clipboard write.
 - [x] Release workflow builds and smoke-tests the wheel; release `v0.1.21` is published.
+
+
+## M1.22 — Guided standalone encrypted-entry export (implemented in main; pending release)
+
+- [x] Export a selected vault entry as a new standalone encrypted `.gpg` record.
+- [x] Select the recipient from usable encryption-capable public keys in the GnuPG keyring.
+- [x] Import a public-key file explicitly into the active GnuPG keyring and refresh the recipient list.
+- [x] Optionally sign the standalone record with a usable local secret signing key.
+- [x] Choose the destination path in both GUI and TUI.
+- [x] Resolve local username/password UUID references and remove the source vault folder association.
+- [x] Generate a new entry UUID so the exported record can be imported without colliding with the source entry.
+- [x] Reuse the existing encrypted standalone-record writer and atomic ciphertext write path.
+- [ ] Add release notes and publish the next package release.
