@@ -8089,3 +8089,23 @@ Questa edizione documenta **535** simboli classe/funzione rilevati tramite attra
 
 I campi generati, come chiamate dirette e conteggi del flusso di controllo, sono ausili descrittivi di analisi statica; non dimostrano la sicurezza. Il revisore deve ispezionare il sorgente referenziato e il threat model/security review separati.
 \n\n<!-- symbol:keys_ng.services.standalone_export:standalone_recipient_keys -->\n<!-- symbol:keys_ng.services.standalone_export:standalone_signing_keys -->\n<!-- symbol:keys_ng.services.standalone_export:import_standalone_public_key -->\n<!-- symbol:keys_ng.services.standalone_export:prepare_standalone_entry -->\n<!-- symbol:keys_ng.services.standalone_export:export_standalone_entry -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog.__init__ -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog._refresh_keys -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog.import_public_key -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog.browse_output -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog.perform_export -->\n<!-- symbol:keys_ng.gui.main:VaultPane.export_standalone_clicked -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.__init__ -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.compose -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.on_mount -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen._refresh_keys -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.on_checkbox_changed -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen._import_public_key -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen._perform_export -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.on_button_pressed -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.action_cancel -->\n<!-- symbol:keys_ng.tui.main:KeysApp.action_export_standalone -->\n<!-- symbol:keys_ng.tui.main:KeysApp._finish_export_standalone -->\n
+
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog -->
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.__init__ -->
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog._refresh_keys -->
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.import_public_key -->
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.browse_output -->
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.perform_export -->
+<!-- symbol:keys_ng.gui.main:main.VaultPane.export_standalone_clicked -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.__init__ -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.compose -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_mount -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._refresh_keys -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_checkbox_changed -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._import_public_key -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._perform_export -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_button_pressed -->
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.action_cancel -->
+<!-- symbol:keys_ng.tui.main:main.KeysApp.action_export_standalone -->
+<!-- symbol:keys_ng.tui.main:main.KeysApp._finish_export_standalone -->
