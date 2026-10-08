@@ -1,0 +1,28 @@
+name: Diagnose 0.1.24 regression suite
+on:
+  push:
+    branches:
+      - main
+permissions:
+  contents: read
+jobs:
+  tests:
+    if: github.event.head_commit.message == 'Diagnose 0.1.24'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        test:
+          - tests/test_keepassxc_import.py
+          - tests/test_standalone_export.py
+          - tests/test_m1201_textual_bindings.py
+          - tests/test_code_review_manual_coverage.py
+          - tests/test_m1151_version_and_desktop.py
+          - tests/test_m116_distribution_and_preferences.py
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --upgrade pip && python -m pip install pytest textual platformdirs
+      - run: python -m pytest -q ${{ matrix.test }}
