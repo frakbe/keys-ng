@@ -236,3 +236,37 @@ def test_keepassxc_dry_run_validates_references_without_writing(tmp_path):
     assert report.uuid_preserved == 2
     assert report.references_validated >= 1
     assert vault.list_items() == []
+
+
+def test_keepassxc_import_preserves_unmapped_commands_in_notes_and_report(tmp_path):
+    xml = b"""<KeePassFile>
+      <Meta />
+      <Root><Group><Name>Servers</Name>
+        <Entry>
+          <String><Key>Title</Key><Value>Veeam server</Value></String>
+          <String><Key>UserName</Key><Value>admin</Value></String>
+          <String><Key>Password</Key><Value>secret</Value></String>
+          <String><Key>URL</Key><Value>cmd://xfreerdp /u:{USERNAME} /p:{PASSWORD} /v:server.example.org</Value></String>
+          <String><Key>Command</Key><Value>xfreerdp /cert-ignore</Value></String>
+          <String><Key>Notes</Key><Value>Keep the existing note.</Value></String>
+        </Entry>
+      </Group></Root>
+    </KeePassFile>"""
+    vault = Vault.init(tmp_path / "vault", FakeCrypto(), ["RECIPIENT"], "SIGNER")
+
+    report = import_keepassxc_xml(xml, vault)
+
+    assert len(report.partial_entries) == 1
+    title, folder, reasons = report.partial_entries[0]
+    assert title == "Veeam server"
+    assert folder == "Servers"
+    assert any("command or URL" in reason for reason in reasons)
+    assert any("Command" in reason for reason in reasons)
+
+    item = next(item for item in vault.list_items() if item.title == "Veeam server")
+    entry = vault.get_entry(item.id)
+    assert "Keep the existing note." in entry.notes
+    assert "[Imported KeePassXC command/URL not converted]" in entry.notes
+    assert "cmd://xfreerdp /u:{USERNAME} /p:{PASSWORD} /v:server.example.org" in entry.notes
+    assert "[Imported KeePassXC field: Command]" in entry.notes
+    assert "xfreerdp /cert-ignore" in entry.notes
