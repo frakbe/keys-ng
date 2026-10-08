@@ -1,10 +1,10 @@
 # Building the Keys NG Flatpak on Linux
 
-This guide documents the supported local build workflow for the Keys NG GUI Flatpak. The manifest and helper script are in packaging/flatpak/.
+This guide documents the supported workflow for building the Keys NG Flatpak. The manifest and helper script are in packaging/flatpak/.
 
 ## 1. Package design
 
-The Flatpak uses KDE Platform 6.11 and io.qt.PySide.BaseApp. It packages the GUI; the CLI and TUI remain available through the Python wheel or other native packages.
+The Flatpak uses KDE Platform 6.11 and io.qt.PySide.BaseApp. The package contains the GUI, TUI and CLI. The GUI is the default command; the TUI and CLI are started explicitly with the `--command` option.
 
 Keys NG deliberately delegates GnuPG, SSH and RDP operations to the host through flatpak-spawn --host. The host must provide GnuPG/gpg-agent, pinentry, the configured SSH terminal/client and the configured RDP client.
 
@@ -29,6 +29,20 @@ Verify that flatpak, flatpak-builder, Python 3 and git are available. Package na
 
 The manifest expects packaging/flatpak/python3-flatpak-requirements.json. Generate it from requirements.txt before the first build.
 
+The `flatpak-pip-generator` tool requires the Python package `requirements-parser`. Two alternative modes are supported.
+
+### Mode A: install into the user Python environment
+
+Use this mode if the distribution allows packages to be installed into the user site:
+
+    git clone https://github.com/flatpak/flatpak-builder-tools .flatpak-builder-tools
+    python3 -m pip install --user --upgrade pip requirements-parser
+    FLATPAK_PYTHON=python3 sh packaging/flatpak/generate-python-sources.sh
+
+If the distribution-managed Python blocks this installation, use the virtual environment mode below. Do not run `deactivate` in this mode.
+
+### Mode B: isolated virtual environment (recommended)
+
     git clone https://github.com/flatpak/flatpak-builder-tools .flatpak-builder-tools
     python3 -m venv .flatpak-tools-venv
     . .flatpak-tools-venv/bin/activate
@@ -36,30 +50,52 @@ The manifest expects packaging/flatpak/python3-flatpak-requirements.json. Genera
     FLATPAK_PYTHON=.flatpak-tools-venv/bin/python sh packaging/flatpak/generate-python-sources.sh
     deactivate
 
-requirements-parser is a build-tool dependency and should not be installed into a distribution-managed system Python. The generated JSON contains offline source definitions and is not part of the runtime sandbox.
+`requirements-parser` is only needed by the build tool and is not included in the runtime sandbox. The generated JSON contains the offline dependency sources.
 
-The explicit `pybind11` entry in packaging/flatpak/requirements.txt is intentional: Pillow is built from source in the Flatpak sandbox and needs `pybind11` available before its metadata is generated.
+The explicit `pybind11`, `scikit-build-core` and `nanobind` entries in packaging/flatpak/requirements.txt are intentional: Pillow and zxing-cpp are built from source in the Flatpak sandbox and require these build dependencies.
 
 ## 4. Build and install locally
 
 Run from the repository root:
 
     flatpak-builder --user --install --force-clean build-flatpak packaging/flatpak/org.keysng.KeysNG.yml
+
+Launch the GUI, which is the default command:
+
     flatpak run org.keysng.KeysNG
 
-## 5. Create a repository or bundle
+Launch the three interfaces explicitly:
 
-To create a local OSTree repository:
+    flatpak run --command=keys-ng-gui org.keysng.KeysNG
+    flatpak run --command=keys-ng-tui org.keysng.KeysNG
+    flatpak run --command=keys-ng org.keysng.KeysNG --help
 
+The TUI and CLI must be started from a terminal. CLI arguments are added after the application ID, for example:
+
+    flatpak run --command=keys-ng org.keysng.KeysNG vault-list
+
+## 5. Create a redistributable bundle
+
+First generate a local OSTree repository:
+
+    rm -rf repo-flatpak build-flatpak
     flatpak-builder --repo=repo-flatpak --force-clean build-flatpak packaging/flatpak/org.keysng.KeysNG.yml
-    flatpak --user remote-add --if-not-exists keys-ng-local repo-flatpak
-    flatpak --user install keys-ng-local org.keysng.KeysNG
 
-To create a single-file bundle:
+Then create the single `.flatpak` file:
 
-    flatpak build-bundle repo-flatpak Keys-NG.flatpak org.keysng.KeysNG
+    flatpak build-bundle repo-flatpak Keys-NG-0.1.24.flatpak org.keysng.KeysNG --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
 
-For Flathub or another public repository, publish the manifest and source metadata rather than relying only on a local bundle.
+The file can be installed on another system with:
+
+    flatpak install --user Keys-NG-0.1.24.flatpak
+
+The `--runtime-repo` option tells Flatpak where to obtain the KDE runtime and BaseApp, which are not fully embedded in the bundle.
+
+To publish a checksum as well:
+
+    sha256sum Keys-NG-0.1.24.flatpak > SHA256SUMS
+
+For Flathub or another public repository, publishing an updateable OSTree repository is preferable to distributing only a local bundle.
 
 ## 6. Validation checklist
 
@@ -70,6 +106,7 @@ At minimum, test:
 - SSH and RDP launchers, when configured;
 - KeePassXC KDBX and XML import;
 - clipboard and TOTP behavior;
+- launching GUI, TUI and CLI;
 - the application menu entry and the GUI version shown under Help.
 
 Useful commands:
