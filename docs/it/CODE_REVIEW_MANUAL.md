@@ -8112,3 +8112,7 @@ I campi generati, come chiamate dirette e conteggi del flusso di controllo, sono
 
 <!-- symbol:keys_ng.services.clipboard:copy_secret_cli.read_acknowledgement -->
 <!-- symbol:keys_ng.tui.main:main._select_value_is_blank -->
+
+
+<!-- symbol:keys_ng.tui.main:main.PreferencesScreen._lines -->
+<!-- symbol:keys_ng.tui.main:main.PreferencesScreen._verify_gnupg -->
