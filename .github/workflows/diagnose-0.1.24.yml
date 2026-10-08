@@ -12,17 +12,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        test:
-          - tests/test_keepassxc_import.py
-          - tests/test_standalone_export.py
-          - tests/test_m1201_textual_bindings.py
-          - tests/test_code_review_manual_coverage.py
-          - tests/test_m1151_version_and_desktop.py
-          - tests/test_m116_distribution_and_preferences.py
+        filter:
+          - test_keepassxc_xml_import_preserves_hierarchy_totp_and_custom_fields
+          - test_keepassxc_xml_import_rejects_doctype
+          - test_kdbx_bridge_uses_keepassxc_cli_stdout
+          - test_keepassxc_import_preserves_entry_uuid_and_uuid_references
+          - test_keepassxc_uuid_collision_remaps_imported_entry_and_references
+          - test_keepassxc_dangling_reference_fails_before_writing_entries
+          - test_keepassxc_dry_run_validates_references_without_writing
+          - test_keepassxc_import_preserves_unmapped_commands_in_notes_and_report
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - run: python -m pip install --upgrade pip && python -m pip install pytest textual platformdirs
-      - run: python -m pytest -q ${{ matrix.test }}
+      - run: python -m pytest -q tests/test_keepassxc_import.py -k ${{ matrix.filter }}
