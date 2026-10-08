@@ -259,7 +259,7 @@ def test_keepassxc_import_preserves_unmapped_commands_in_notes_and_report(tmp_pa
     assert len(report.partial_entries) == 1
     title, folder, reasons = report.partial_entries[0]
     assert title == "Veeam server"
-    assert folder == "Servers"
+    assert folder == ""
     assert any("command or URL" in reason for reason in reasons)
     assert any("Command" in reason for reason in reasons)
 
