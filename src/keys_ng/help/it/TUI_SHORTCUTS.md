@@ -29,6 +29,7 @@ Questa schermata elenca le scorciatoie stabili dell'interfaccia terminale.
 - `Ctrl+N` — copia l'intero campo Note con cancellazione temporizzata della clipboard.
 - `Ctrl+O` — esegue/apre l'azione della voce selezionata.
 - `X` — esporta la voce selezionata in XML KeePassXC plaintext dopo conferma.
+- `s` — esporta la voce selezionata come record standalone cifrato tramite la procedura guidata per destinatario, firma e percorso.
 - `Ctrl+W` — chiude il vault corrente; se altri vault sono aperti, diventa attivo il più recente tra quelli rimasti.
 - `Ctrl+L` — blocca il vault.
 - `Ctrl+P` — sblocca il vault.

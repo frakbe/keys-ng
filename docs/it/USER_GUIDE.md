@@ -89,6 +89,7 @@ Con M1.18 la TUI raggiunge la parità operativa quotidiana con la GUI. Nella vis
 - `M` sposta una voce o una cartella;
 - `Delete` elimina la voce selezionata o una cartella vuota dopo conferma;
 - `X` esporta la voce selezionata come XML KeePass compatibile in chiaro.
+- `s` esporta la voce selezionata come record standalone cifrato; la procedura guidata permette di scegliere chiave pubblica destinataria, firma opzionale e percorso di output.
 
 L'editor supporta credenziali generiche, Web/URL, SSH e RDP, riferimenti UUID in username/password, tag, note, URI/secret TOTP, import TOTP da file immagine QR, forwarding X11 SSH e opzioni SSH avanzate in forma argv. I campi non pertinenti al tipo di voce selezionato vengono ignorati al salvataggio.
 

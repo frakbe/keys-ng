@@ -84,6 +84,7 @@ M1.18 gives the TUI full day-to-day editing parity with the GUI. In the tree vie
 - `M` moves an entry or folder;
 - `Delete` deletes the selected entry or an empty folder after confirmation;
 - `X` exports the selected entry as plaintext KeePass-compatible XML.
+- `s` exports the selected entry as a standalone encrypted record; the guided screen selects the recipient public key, optional signing key and output path.
 
 The entry editor supports generic, Web/URL, SSH and RDP records, UUID references in username/password, tags, notes, TOTP URI/secret, TOTP QR image files, SSH X11 forwarding and advanced SSH argv options. Fields that are not applicable to the selected entry type are ignored on save.
 
@@ -293,6 +294,7 @@ keys-ng import-keepassxc Passwords.xml ~/vaults/personal --format xml
 ```
 
 The importer preserves groups as folders, entries, usernames, passwords, URL actions, TOTP, tags, notes and custom string fields. KeePassXC UUID references are preserved or remapped safely if an UUID collision exists in the destination vault.
+If a command or unsupported action cannot be represented as a Keys NG action, it is preserved in the Notes field without replacing existing notes. The import report marks the entry as partially imported and lists it for manual review. This behavior is shared by KDBX and XML imports.
 
 ## 17. Exporting to KeePassXC XML
 

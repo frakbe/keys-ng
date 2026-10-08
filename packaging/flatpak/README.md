@@ -1,5 +1,7 @@
 # Keys NG Flatpak
 
+Guida operativa completa: docs/en/FLATPAK.md e docs/it/FLATPAK.md.
+
 Keys NG uses the Flathub `io.qt.PySide.BaseApp` on KDE/Qt 6.11. External GnuPG,
 SSH and RDP programs are intentionally started on the host through
 `flatpak-spawn --host`; this preserves the user's existing `gpg-agent`, keyring,

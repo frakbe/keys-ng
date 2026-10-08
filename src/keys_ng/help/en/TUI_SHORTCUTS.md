@@ -29,6 +29,7 @@ This screen lists the stable keyboard shortcuts for the terminal interface.
 - `Ctrl+N` — copy the complete Notes field with timed clipboard clearing.
 - `Ctrl+O` — execute/open the selected entry action.
 - `X` — export the selected entry as plaintext KeePassXC XML after confirmation.
+- `s` — export the selected entry as a standalone encrypted record through the guided recipient/signing-key workflow.
 - `Ctrl+W` — close the current vault; if other vaults are open, the most recently opened remaining vault becomes active.
 - `Ctrl+L` — lock the vault.
 - `Ctrl+P` — unlock the vault.
