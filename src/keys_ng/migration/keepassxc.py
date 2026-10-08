@@ -53,6 +53,8 @@ class KeePassXCImportReport:
     references_found: int = 0
     references_remapped: int = 0
     references_validated: int = 0
+    # (title, folder path, reasons) for entries that could not be represented fully.
+    partial_entries: list[tuple[str, str, list[str]]] = field(default_factory=list)
     warnings: list[str] = field(default_factory=list)
 
 
@@ -179,7 +181,7 @@ def _parse_tags(entry_node: ET.Element) -> list[str]:
     return [part.strip() for part in raw.split(separator) if part.strip()]
 
 
-def _entry_from_xml(entry_node: ET.Element, report: KeePassXCImportReport) -> Entry:
+def _entry_from_xml(entry_node: ET.Element, report: KeePassXCImportReport) -> tuple[Entry, list[str]]:
     fields = _strings(entry_node)
     title = fields.get("Title", "").strip()
     username = fields.get("UserName", "").strip()
@@ -198,6 +200,27 @@ def _entry_from_xml(entry_node: ET.Element, report: KeePassXCImportReport) -> En
     }
     if preserved_url:
         custom.setdefault("Imported URL", preserved_url)
+
+    partial_reasons: list[str] = []
+    note_blocks = [notes.rstrip()] if notes.rstrip() else []
+    if preserved_url:
+        note_blocks.append("[Imported KeePassXC command/URL not converted]\n" + preserved_url)
+        partial_reasons.append("command or URL stored in Notes instead of an action")
+
+    # KeePassXC permits arbitrary custom fields. Preserve command-like fields in
+    # Notes as well, because the normal Keys NG editor does not expose all of
+    # KeePassXC's command/action extensions.
+    for key, value in custom.items():
+        normalized_key = re.sub(r"[^a-z0-9]+", "", key.casefold())
+        is_command_field = (
+            "command" in normalized_key
+            or normalized_key in {"exec", "executable", "execcommand", "commandline"}
+        )
+        if is_command_field and value.strip():
+            note_blocks.append(f"[Imported KeePassXC field: {key}]\n{value}")
+            partial_reasons.append(f"custom command field '{key}' preserved in Notes")
+
+    notes = "\n\n".join(note_blocks)
     report.custom_fields += len(custom)
     report.totp_tokens += len(totp)
 
@@ -211,7 +234,7 @@ def _entry_from_xml(entry_node: ET.Element, report: KeePassXCImportReport) -> En
         custom_fields=custom,
         totp=totp,
         folder_id=None,
-    )
+    ), partial_reasons
 
 
 def _new_unique_uuid(reserved: set[str]) -> str:
@@ -329,7 +352,7 @@ def import_keepassxc_xml(raw: bytes, vault: Vault, *, dry_run: bool = False) -> 
             report.folders += 1
 
         for entry_node in group_node.findall("Entry"):
-            entry = _entry_from_xml(entry_node, report)
+            entry, partial_reasons = _entry_from_xml(entry_node, report)
             source_raw = _text(entry_node, "UUID").strip()
             source_uuid = _decode_keepass_uuid(source_raw) if source_raw else None
             if source_uuid:
@@ -337,6 +360,8 @@ def import_keepassxc_xml(raw: bytes, vault: Vault, *, dry_run: bool = False) -> 
                     raise ValueError(f"KeePassXC XML contains duplicate entry UUID {source_uuid}")
                 source_seen.add(source_uuid)
             pending.append(_PendingEntry(entry=entry, folder_path=path, source_uuid=source_uuid))
+            if partial_reasons:
+                report.partial_entries.append((entry.title, path, partial_reasons))
             report.entries += 1
 
         for child in group_node.findall("Group"):
@@ -490,6 +515,11 @@ def format_import_report(report: KeePassXCImportReport) -> str:
     ]
     if report.skipped_recycle_bin:
         lines.append("Recycle bin: skipped")
+    if report.partial_entries:
+        lines.append(f"Partially imported entries: {len(report.partial_entries)}")
+        for title, folder, reasons in report.partial_entries:
+            location = f"{title} [{folder}]" if folder else title
+            lines.append(f"- {location}: {'; '.join(reasons)}")
     if report.warnings:
         lines.append("Warnings:")
         lines.extend(f"- {warning}" for warning in report.warnings)
