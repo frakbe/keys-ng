@@ -312,7 +312,7 @@ def main() -> None:
             self.dismiss(self.query_one("#export-path", Input).value.strip() if event.button.id == "export-ok" else None)
 
     class PreferencesScreen(ModalScreen[bool]):
-        CSS = """PreferencesScreen { align: center middle; } #prefs { width: 88%; height: 92%; border: round $accent; padding: 1 2; background: $surface; } #prefs-buttons { height: 3; align-horizontal: right; } #prefs-title { text-style: bold; margin-bottom: 1; } .prefs-section { text-style: bold; color: $accent; margin-top: 1; } #prefs-status { min-height: 2; color: $text-muted; }"""
+        CSS = """PreferencesScreen { align: center middle; } #prefs { width: 88%; height: 92%; border: round $accent; padding: 1 2; background: $surface; } #prefs-buttons { height: 3; align-horizontal: right; } #prefs-title { text-style: bold; margin-bottom: 1; } .prefs-section { text-style: bold; color: $accent; margin-top: 1; } .prefs-options { height: 5; min-height: 3; width: 1fr; } #prefs-status { min-height: 2; color: $text-muted; }"""
         BINDINGS = [Binding("escape", "cancel", _("Cancel"))]
 
         @staticmethod
@@ -356,24 +356,22 @@ def main() -> None:
                     yield Label(_("SSH terminal"))
                     yield Input(settings.ssh_terminal, id="pref-ssh-terminal")
                     yield Label(_("Terminal options (one argv item per line)"))
-                    yield TextArea("\n".join(settings.ssh_terminal_options), id="pref-ssh-options")
+                    yield TextArea("\n".join(settings.ssh_terminal_options), id="pref-ssh-options", classes="prefs-options")
 
                     yield Static(_("RDP"), classes="prefs-section")
                     yield Label(_("Linux client"))
                     yield Input(settings.rdp_linux_client, id="pref-rdp-linux-client")
                     yield Label(_("Linux options (one argv item per line)"))
-                    yield TextArea("\n".join(settings.rdp_linux_options), id="pref-rdp-linux-options")
+                    yield TextArea("\n".join(settings.rdp_linux_options), id="pref-rdp-linux-options", classes="prefs-options")
                     yield Label(_("Windows client"))
                     yield Input(settings.rdp_windows_client, id="pref-rdp-windows-client")
                     yield Label(_("Windows options (one argv item per line)"))
-                    yield TextArea("\n".join(settings.rdp_windows_options), id="pref-rdp-windows-options")
+                    yield TextArea("\n".join(settings.rdp_windows_options), id="pref-rdp-windows-options", classes="prefs-options")
                     yield Label(_("macOS client"))
                     yield Input(settings.rdp_macos_client, id="pref-rdp-macos-client")
                     yield Label(_("macOS options (one argv item per line)"))
-                    yield TextArea("\n".join(settings.rdp_macos_options), id="pref-rdp-macos-options")
+                    yield TextArea("\n".join(settings.rdp_macos_options), id="pref-rdp-macos-options", classes="prefs-options")
 
-                    yield Static(_("Diagnostics"), classes="prefs-section")
-                    yield Checkbox(_("Enable diagnostic logging"), value=settings.diagnostics_enabled, id="pref-diagnostics")
                     yield Static("", id="prefs-status")
                 with Horizontal(id="prefs-buttons"):
                     yield Button(_("Save"), id="prefs-save", variant="primary")
@@ -421,7 +419,6 @@ def main() -> None:
                 settings.rdp_windows_options = self._lines(self.query_one("#pref-rdp-windows-options", TextArea))
                 settings.rdp_macos_client = self.query_one("#pref-rdp-macos-client", Input).value.strip() or "auto"
                 settings.rdp_macos_options = self._lines(self.query_one("#pref-rdp-macos-options", TextArea))
-                settings.diagnostics_enabled = self.query_one("#pref-diagnostics", Checkbox).value
                 settings.save()
                 self.dismiss(True)
             except Exception as exc:
@@ -1465,6 +1462,7 @@ def main() -> None:
             try:
                 launch_action(
                     vault.resolved_action(self.current_entry, self.current_entry.actions[0]),
+                    settings=settings,
                     password=vault.resolved_password(self.current_entry),
                 )
             except Exception as exc:

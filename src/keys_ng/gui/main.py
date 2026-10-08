@@ -1125,6 +1125,7 @@ def main() -> None:
                 try:
                     launch_action(
                         self.vault.resolved_action(self.current_entry, self.current_entry.actions[0]),
+                        settings=settings,
                         password=self.vault.resolved_password(self.current_entry),
                     )
                 except Exception as exc:

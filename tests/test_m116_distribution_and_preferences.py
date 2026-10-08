@@ -82,3 +82,12 @@ def test_tui_preferences_exposes_gui_settings():
         "pref-rdp-macos-options",
     ):
         assert label in text
+
+
+def test_launcher_settings_are_used_by_tui_and_gui():
+    tui = Path("src/keys_ng/tui/main.py").read_text(encoding="utf-8")
+    gui = Path("src/keys_ng/gui/main.py").read_text(encoding="utf-8")
+    assert "settings=settings" in tui
+    assert "settings=settings" in gui
+    assert "pref-diagnostics" not in tui
+    assert 'classes="prefs-options"' in tui
