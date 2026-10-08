@@ -62,3 +62,23 @@ def test_flatpak_disables_self_desktop_registration():
     text = Path("src/keys_ng/platform/desktop_integration.py").read_text(encoding="utf-8")
     assert "if in_flatpak():" in text
     assert "return None" in text
+
+
+def test_tui_preferences_exposes_gui_settings():
+    text = Path("src/keys_ng/tui/main.py").read_text(encoding="utf-8")
+    for label in (
+        "pref-crypto",
+        "pref-verify-gpg",
+        "pref-notice-bg",
+        "pref-notice-fg",
+        "pref-notice-seconds",
+        "pref-ssh-terminal",
+        "pref-ssh-options",
+        "pref-rdp-linux-client",
+        "pref-rdp-linux-options",
+        "pref-rdp-windows-client",
+        "pref-rdp-windows-options",
+        "pref-rdp-macos-client",
+        "pref-rdp-macos-options",
+    ):
+        assert label in text

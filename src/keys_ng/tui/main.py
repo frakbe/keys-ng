@@ -312,34 +312,121 @@ def main() -> None:
             self.dismiss(self.query_one("#export-path", Input).value.strip() if event.button.id == "export-ok" else None)
 
     class PreferencesScreen(ModalScreen[bool]):
-        CSS = """PreferencesScreen { align: center middle; } #prefs { width: 82%; height: 88%; border: round $accent; padding: 1 2; background: $surface; } #prefs-buttons { height: 3; align-horizontal: right; }"""
+        CSS = """PreferencesScreen { align: center middle; } #prefs { width: 88%; height: 92%; border: round $accent; padding: 1 2; background: $surface; } #prefs-buttons { height: 3; align-horizontal: right; } #prefs-title { text-style: bold; margin-bottom: 1; } .prefs-section { text-style: bold; color: $accent; margin-top: 1; } #prefs-status { min-height: 2; color: $text-muted; }"""
+        BINDINGS = [Binding("escape", "cancel", _("Cancel"))]
+
+        @staticmethod
+        def _lines(widget: TextArea) -> list[str]:
+            return [line.strip() for line in widget.text.splitlines() if line.strip()]
+
         def compose(self) -> ComposeResult:
+            language = settings.language if settings.language in {"auto", "en", "it"} else "auto"
+            crypto_backend = settings.crypto_backend if settings.crypto_backend in {"auto", "gpg", "gpgme"} else "auto"
             with Vertical(id="prefs"):
-                yield Static(_("Preferences"))
+                yield Static(_("Preferences"), id="prefs-title")
                 with VerticalScroll():
-                    yield Label(_("Language")); yield Input(settings.language, id="pref-language")
-                    yield Label(_("Tree startup view")); yield Select([(_("Expanded"), "expanded"), (_("Compact"), "compact")], value=settings.tree_startup_view, id="pref-tree", allow_blank=False)
-                    yield Label(_("Clipboard timeout (password/notes)")); yield Input(str(settings.clipboard_password_timeout), id="pref-clip", type="integer")
-                    yield Label(_("Clipboard timeout (TOTP)")); yield Input(str(settings.clipboard_totp_timeout), id="pref-totp", type="integer")
-                    yield Label(_("Auto-lock seconds")); yield Input(str(settings.auto_lock_timeout), id="pref-lock", type="integer")
-                    yield Label("gpg"); yield Input(settings.gpg_executable, id="pref-gpg")
-                    yield Label("gpgconf"); yield Input(settings.gpgconf_executable, id="pref-gpgconf")
+                    yield Static(_("General"), classes="prefs-section")
+                    yield Label(_("Language"))
+                    yield Select([(_("Automatic"), "auto"), ("English", "en"), ("Italiano", "it")], value=language, id="pref-language", allow_blank=False)
+                    yield Label(_("Tree startup view"))
+                    yield Select([(_("Expanded"), "expanded"), (_("Compact"), "compact")], value=settings.tree_startup_view, id="pref-tree", allow_blank=False)
+                    yield Label(_("Auto-lock seconds"))
+                    yield Input(str(settings.auto_lock_timeout), id="pref-lock", type="integer")
+                    yield Label(_("Crypto backend"))
+                    yield Select([("auto", "auto"), ("gpg", "gpg"), ("gpgme", "gpgme")], value=crypto_backend, id="pref-crypto", allow_blank=False)
+                    yield Label(_("GnuPG executable"))
+                    yield Input(settings.gpg_executable, id="pref-gpg")
+                    yield Label(_("gpgconf executable"))
+                    yield Input(settings.gpgconf_executable, id="pref-gpgconf")
+                    yield Button(_("Verify GnuPG"), id="pref-verify-gpg")
+
+                    yield Static(_("Clipboard"), classes="prefs-section")
+                    yield Label(_("Password / username timeout"))
+                    yield Input(str(settings.clipboard_password_timeout), id="pref-clip", type="integer")
+                    yield Label(_("TOTP timeout"))
+                    yield Input(str(settings.clipboard_totp_timeout), id="pref-totp", type="integer")
+                    yield Label(_("TUI notice background"))
+                    yield Input(settings.tui_clipboard_notice_background, id="pref-notice-bg", placeholder=_("automatic"))
+                    yield Label(_("TUI notice foreground"))
+                    yield Input(settings.tui_clipboard_notice_foreground, id="pref-notice-fg", placeholder=_("automatic"))
+                    yield Label(_("TUI notice duration (seconds)"))
+                    yield Input(str(settings.tui_clipboard_notice_seconds), id="pref-notice-seconds", type="number")
+
+                    yield Static(_("SSH"), classes="prefs-section")
+                    yield Label(_("SSH terminal"))
+                    yield Input(settings.ssh_terminal, id="pref-ssh-terminal")
+                    yield Label(_("Terminal options (one argv item per line)"))
+                    yield TextArea("\n".join(settings.ssh_terminal_options), id="pref-ssh-options")
+
+                    yield Static(_("RDP"), classes="prefs-section")
+                    yield Label(_("Linux client"))
+                    yield Input(settings.rdp_linux_client, id="pref-rdp-linux-client")
+                    yield Label(_("Linux options (one argv item per line)"))
+                    yield TextArea("\n".join(settings.rdp_linux_options), id="pref-rdp-linux-options")
+                    yield Label(_("Windows client"))
+                    yield Input(settings.rdp_windows_client, id="pref-rdp-windows-client")
+                    yield Label(_("Windows options (one argv item per line)"))
+                    yield TextArea("\n".join(settings.rdp_windows_options), id="pref-rdp-windows-options")
+                    yield Label(_("macOS client"))
+                    yield Input(settings.rdp_macos_client, id="pref-rdp-macos-client")
+                    yield Label(_("macOS options (one argv item per line)"))
+                    yield TextArea("\n".join(settings.rdp_macos_options), id="pref-rdp-macos-options")
+
+                    yield Static(_("Diagnostics"), classes="prefs-section")
                     yield Checkbox(_("Enable diagnostic logging"), value=settings.diagnostics_enabled, id="pref-diagnostics")
+                    yield Static("", id="prefs-status")
                 with Horizontal(id="prefs-buttons"):
-                    yield Button(_("Save"), id="prefs-save", variant="primary"); yield Button(_("Cancel"), id="prefs-cancel")
-        def on_button_pressed(self, event: Button.Pressed) -> None:
-            if event.button.id != "prefs-save": self.dismiss(False); return
+                    yield Button(_("Save"), id="prefs-save", variant="primary")
+                    yield Button(_("Cancel"), id="prefs-cancel")
+
+        def _verify_gnupg(self) -> None:
             try:
-                settings.language = self.query_one("#pref-language", Input).value.strip() or "auto"
+                backend = create_crypto_backend(
+                    "gpg",
+                    self.query_one("#pref-gpg", Input).value.strip(),
+                    self.query_one("#pref-gpgconf", Input).value.strip(),
+                )
+                details = "\n".join(
+                    f"{name}: {'OK' if ok else 'FAIL'} — {detail}"
+                    for name, ok, detail in backend.diagnose()
+                )
+                self.query_one("#prefs-status", Static).update(details or _("GnuPG verification completed."))
+            except Exception as exc:
+                self.query_one("#prefs-status", Static).update(f"{_('Error')}: {exc}")
+
+        def on_button_pressed(self, event: Button.Pressed) -> None:
+            if event.button.id == "pref-verify-gpg":
+                self._verify_gnupg()
+                return
+            if event.button.id != "prefs-save":
+                self.dismiss(False)
+                return
+            try:
+                settings.language = str(self.query_one("#pref-language", Select).value)
                 settings.tree_startup_view = str(self.query_one("#pref-tree", Select).value)
                 settings.clipboard_password_timeout = int(self.query_one("#pref-clip", Input).value)
                 settings.clipboard_totp_timeout = int(self.query_one("#pref-totp", Input).value)
                 settings.auto_lock_timeout = int(self.query_one("#pref-lock", Input).value)
+                settings.crypto_backend = str(self.query_one("#pref-crypto", Select).value)
                 settings.gpg_executable = self.query_one("#pref-gpg", Input).value.strip()
                 settings.gpgconf_executable = self.query_one("#pref-gpgconf", Input).value.strip()
+                settings.tui_clipboard_notice_background = self.query_one("#pref-notice-bg", Input).value.strip()
+                settings.tui_clipboard_notice_foreground = self.query_one("#pref-notice-fg", Input).value.strip()
+                settings.tui_clipboard_notice_seconds = float(self.query_one("#pref-notice-seconds", Input).value)
+                settings.ssh_terminal = self.query_one("#pref-ssh-terminal", Input).value.strip() or "auto"
+                settings.ssh_terminal_options = self._lines(self.query_one("#pref-ssh-options", TextArea))
+                settings.rdp_linux_client = self.query_one("#pref-rdp-linux-client", Input).value.strip() or "auto"
+                settings.rdp_linux_options = self._lines(self.query_one("#pref-rdp-linux-options", TextArea))
+                settings.rdp_windows_client = self.query_one("#pref-rdp-windows-client", Input).value.strip() or "mstsc"
+                settings.rdp_windows_options = self._lines(self.query_one("#pref-rdp-windows-options", TextArea))
+                settings.rdp_macos_client = self.query_one("#pref-rdp-macos-client", Input).value.strip() or "auto"
+                settings.rdp_macos_options = self._lines(self.query_one("#pref-rdp-macos-options", TextArea))
                 settings.diagnostics_enabled = self.query_one("#pref-diagnostics", Checkbox).value
-                settings.save(); self.dismiss(True)
-            except Exception: self.dismiss(False)
+                settings.save()
+                self.dismiss(True)
+            except Exception as exc:
+                self.query_one("#prefs-status", Static).update(f"{_('Error')}: {exc}")
+
 
     class HelpScreen(ModalScreen[None]):
         CSS = """HelpScreen { align: center middle; } #help-panel { width: 92%; height: 92%; border: round $accent; padding: 1 2; background: $surface; } #help-text { height: 1fr; }"""
