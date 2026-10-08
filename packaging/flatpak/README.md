@@ -12,7 +12,7 @@ Generate offline Python dependency sources, then build:
 
 ```sh
 git clone https://github.com/flatpak/flatpak-builder-tools .flatpak-builder-tools
-packaging/flatpak/generate-python-sources.sh
+sh packaging/flatpak/generate-python-sources.sh
 flatpak-builder --user --install --force-clean build-flatpak packaging/flatpak/org.keysng.KeysNG.yml
 flatpak run org.keysng.KeysNG
 ```
@@ -30,9 +30,11 @@ flatpak build-bundle ~/.local/share/flatpak/repo Keys-NG.flatpak org.keysng.Keys
 ```bash
 python3 -m venv .flatpak-tools-venv
 . .flatpak-tools-venv/bin/activate
-python -m pip install requirements-parser
-FLATPAK_PYTHON=.flatpak-tools-venv/bin/python packaging/flatpak/generate-python-sources.sh
+python -m pip install --upgrade pip requirements-parser
+FLATPAK_PYTHON=.flatpak-tools-venv/bin/python sh packaging/flatpak/generate-python-sources.sh
 deactivate
 ```
 
 The virtual environment is only a build tool and is not included in the resulting Flatpak. Release source archives should ideally include the generated `python3-flatpak-requirements.json`; if it is absent, the command above is the supported regeneration path.
+
+The explicit `pybind11` entry in `packaging/flatpak/requirements.txt` is intentional: Pillow is built from source in the Flatpak sandbox and needs `pybind11` available before its metadata is generated.

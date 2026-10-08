@@ -33,10 +33,12 @@ The manifest expects packaging/flatpak/python3-flatpak-requirements.json. Genera
     python3 -m venv .flatpak-tools-venv
     . .flatpak-tools-venv/bin/activate
     python -m pip install --upgrade pip requirements-parser
-    FLATPAK_PYTHON=.flatpak-tools-venv/bin/python packaging/flatpak/generate-python-sources.sh
+    FLATPAK_PYTHON=.flatpak-tools-venv/bin/python sh packaging/flatpak/generate-python-sources.sh
     deactivate
 
 requirements-parser is a build-tool dependency and should not be installed into a distribution-managed system Python. The generated JSON contains offline source definitions and is not part of the runtime sandbox.
+
+The explicit `pybind11` entry in packaging/flatpak/requirements.txt is intentional: Pillow is built from source in the Flatpak sandbox and needs `pybind11` available before its metadata is generated.
 
 ## 4. Build and install locally
 

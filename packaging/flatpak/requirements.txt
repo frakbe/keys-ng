@@ -1,4 +1,5 @@
 platformdirs>=4.2
 textual>=0.80
+pybind11
 Pillow>=10.0
 zxing-cpp>=2.3
