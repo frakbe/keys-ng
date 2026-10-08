@@ -40,6 +40,7 @@ def test_terminal_ambiguous_ctrl_i_is_not_used_for_trusted_signers():
 def test_question_mark_opens_inline_command_guide():
     assert 'Binding("question_mark", "shortcut_help"' in TUI
     assert 'HelpScreen("TUI_SHORTCUTS.md")' in TUI
+    assert 'Binding("s", "export_standalone"' in TUI
 
 
 def test_no_binding_key_ends_with_literal_comma():
