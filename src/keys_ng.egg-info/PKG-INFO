@@ -1,6 +1,6 @@
 Metadata-Version: 2.4
 Name: keys-ng
-Version: 0.1.23
+Version: 0.1.24
 Summary: OpenPGP password manager with encrypted per-entry records, CLI and GUI
 Author: Franco Bersani
 License-Expression: GPL-3.0-or-later
