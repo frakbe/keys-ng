@@ -4,7 +4,7 @@ Keys NG è una riscrittura di nuova generazione del password manager Bash origin
 
 ## Stato attuale
 
-Il repository è attualmente nello sviluppo **M1.18.1 alpha di manutenzione con parità funzionale TUI**. Non è ancora una release di sicurezza pronta per uso di produzione.
+Il repository è attualmente nello sviluppo **M1.25 di manutenzione e consolidamento multipiattaforma**. Non è ancora una release di sicurezza pronta per uso di produzione.
 
 Funzionalità principali già implementate:
 

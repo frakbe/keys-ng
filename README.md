@@ -4,7 +4,7 @@ Keys NG is a next-generation rewrite of the original **Keys** Bash password mana
 
 ## Current milestone
 
-The repository is now in **M1.18.1 TUI-parity maintenance development**. It is not yet an independently audited production security release.
+The repository is now in **M1.25 maintenance development**. It is not yet an independently audited production security release.
 
 Implemented so far:
 
