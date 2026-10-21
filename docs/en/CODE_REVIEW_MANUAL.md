@@ -8116,3 +8116,15 @@ Generated fields such as direct calls and control-flow counts are descriptive st
 
 <!-- symbol:keys_ng.tui.main:main.PreferencesScreen._lines -->
 <!-- symbol:keys_ng.tui.main:main.PreferencesScreen._verify_gnupg -->
+
+
+<!-- symbol:keys_ng.gui.main:main.SearchLineEdit -->
+<!-- symbol:keys_ng.gui.main:main.SearchLineEdit.keyPressEvent -->
+<!-- symbol:keys_ng.gui.main:main.VaultPane.focus_results -->
+<!-- symbol:keys_ng.gui.main:main.VaultPane._capture_expanded_folders -->
+<!-- symbol:keys_ng.gui.main:main.VaultPane._capture_expanded_folders.visit -->
+<!-- symbol:keys_ng.gui.main:main.VaultPane._apply_expanded_folders -->
+<!-- symbol:keys_ng.gui.main:main.VaultPane._apply_expanded_folders.visit -->
+<!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders -->
+<!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders.visit -->
+<!-- symbol:keys_ng.tui.main:main.KeysApp.on_key -->
