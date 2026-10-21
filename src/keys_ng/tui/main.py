@@ -1131,6 +1131,7 @@ def main() -> None:
                     path = paths.get(item.folder_id, _("Root")) if item.folder_id else _("Root")
                     tree.root.add_leaf(f"{item.title}  —  {path}", data=("entry", item.id))
                 tree.root.expand()
+                self._last_tree_query = query
                 return
             folder_nodes = {}
             remaining = list(vault.list_folders())
