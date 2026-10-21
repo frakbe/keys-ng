@@ -1088,6 +1088,8 @@ def main() -> None:
             self.current_folder_id: str | None = None
             self._banner_timer = None
             self._inbox_notice_shown = False
+            self._expanded_folder_ids: set[str] | None = None
+            self._last_tree_query: str | None = None
 
         def compose(self) -> ComposeResult:
             yield Header()
@@ -1113,6 +1115,10 @@ def main() -> None:
 
         def rebuild_tree(self, query: str = "") -> None:
             tree = self.query_one("#tree", Tree)
+            if self._last_tree_query == "" and query:
+                self._capture_expanded_folders()
+            if not query and self._last_tree_query == "":
+                self._capture_expanded_folders()
             tree.clear()
             if vault.locked:
                 tree.root.set_label(f"{vault.path.name or vault.path} [{_('locked')}]")
@@ -1133,8 +1139,9 @@ def main() -> None:
                 for folder in list(remaining):
                     if folder.parent_id is None or folder.parent_id in folder_nodes:
                         parent = folder_nodes.get(folder.parent_id, tree.root)
+                        expanded = tree_startup_view == "expanded" if self._expanded_folder_ids is None else folder.id in self._expanded_folder_ids
                         folder_nodes[folder.id] = parent.add(
-                            folder.name, data=("folder", folder.id), expand=(tree_startup_view == "expanded")
+                            folder.name, data=("folder", folder.id), expand=expanded
                         )
                         remaining.remove(folder)
                         progress = True
@@ -1144,6 +1151,25 @@ def main() -> None:
                 parent = folder_nodes.get(item.folder_id, tree.root)
                 parent.add_leaf(item.title, data=("entry", item.id))
             tree.root.expand()
+            self._last_tree_query = query
+
+        def _capture_expanded_folders(self) -> None:
+            tree = self.query_one("#tree", Tree)
+            expanded: set[str] = set()
+            def visit(node) -> None:
+                for child in node.children:
+                    if child.data and child.data[0] == "folder" and child.is_expanded:
+                        expanded.add(str(child.data[1]))
+                    visit(child)
+            visit(tree.root)
+            self._expanded_folder_ids = expanded
+
+        def on_key(self, event) -> None:
+            if event.key == "down" and self.query_one("#search", Input).has_focus:
+                event.prevent_default()
+                event.stop()
+                self.query_one("#tree", Tree).focus()
+
 
         def _reset_selection(self) -> None:
             self.current_entry = None
@@ -1618,12 +1644,16 @@ def main() -> None:
                 self._status(f"{_('Error')}: {exc}")
 
         def action_lock_vault(self) -> None:
+            if not self.query_one("#search", Input).value.strip():
+                self._capture_expanded_folders()
             vault.lock(False)
             self._reset_selection()
             self.query_one("#entry-detail", Static).update(_("Vault locked."))
             self._status(_("Vault locked. Press Ctrl+P to unlock."))
 
         def action_hard_lock_vault(self) -> None:
+            if not self.query_one("#search", Input).value.strip():
+                self._capture_expanded_folders()
             sessions.lock_all()
             vault.crypto.hard_lock()
             self._reset_selection()
