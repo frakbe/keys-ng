@@ -281,7 +281,7 @@ def _rewrite_entry_references(entry: Entry, uuid_map: dict[str, str], report: Ke
 
 
 def _validate_import_references(pending: list[_PendingEntry], vault: Vault, report: KeePassXCImportReport) -> None:
-    """Resolve every whole-field imported U/P reference before any record is saved."""
+    """Resolve imported references, warning instead of aborting on missing targets."""
     planned = {item.entry.id: item.entry for item in pending}
     existing_ids = {item.id for item in vault.list_items()}
     checked: set[tuple[str, str]] = set()
@@ -309,14 +309,26 @@ def _validate_import_references(pending: list[_PendingEntry], vault: Vault, repo
         return resolve(raw, (*stack, key))
 
     for item in pending:
+        dangling: list[str] = []
+        def check(value: str | None) -> None:
+            try:
+                resolve(value)
+            except ValueError as exc:
+                message = str(exc)
+                if not message.startswith("KeePassXC import contains a dangling reference"):
+                    raise
+                dangling.append(message)
         entry = item.entry
         if entry.usernames:
-            resolve(entry.usernames[0])
-        resolve(entry.password)
+            check(entry.usernames[0])
+        check(entry.password)
         for action in entry.actions:
-            resolve(action.username)
+            check(action.username)
+        if dangling:
+            reasons = list(dict.fromkeys(dangling))
+            report.partial_entries.append((item.entry.title, item.folder_path, reasons))
+            report.warnings.extend(f"{item.entry.title}: {reason}" for reason in reasons)
     report.references_validated = len(checked)
-
 
 def import_keepassxc_xml(raw: bytes, vault: Vault, *, dry_run: bool = False) -> KeePassXCImportReport:
     """Import KeePassXC XML using UUID-preserving, reference-safe two-pass migration.
@@ -416,13 +428,17 @@ def import_keepassxc_xml(raw: bytes, vault: Vault, *, dry_run: bool = False) -> 
         # serialization bug escaped the preflight pass.
         for item in pending:
             entry = vault.get_entry(item.entry.id)
-            if entry.usernames and parse_entry_reference(entry.usernames[0]):
-                vault.resolved_username(entry)
-            if parse_entry_reference(entry.password):
-                vault.resolved_password(entry)
-            for action in entry.actions:
-                if parse_entry_reference(action.username):
-                    vault.resolved_action(entry, action)
+            try:
+                if entry.usernames and parse_entry_reference(entry.usernames[0]):
+                    vault.resolved_username(entry)
+                if parse_entry_reference(entry.password):
+                    vault.resolved_password(entry)
+                for action in entry.actions:
+                    if parse_entry_reference(action.username):
+                        vault.resolved_action(entry, action)
+            except ReferenceError as exc:
+                if "Referenced entry not found" not in str(exc):
+                    raise
 
     if root.find(".//Binary") is not None:
         report.warnings.append("Attachments/custom binaries are not imported by Keys NG yet.")

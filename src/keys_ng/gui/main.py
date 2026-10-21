@@ -36,7 +36,7 @@ from keys_ng.storage.vault import Vault
 
 def main() -> None:
     try:
-        from PySide6.QtCore import Qt, QTimer
+        from PySide6.QtCore import Qt, QTimer, Signal
         from PySide6.QtGui import QAction, QIcon, QKeySequence, QShortcut
         from PySide6.QtWidgets import (
             QApplication,
@@ -118,6 +118,15 @@ def main() -> None:
                 QMessageBox.critical(self, _("Error"), str(exc))
             self.on_reload()
             event.accept()
+
+    class SearchLineEdit(QLineEdit):
+        move_to_results = Signal()
+        def keyPressEvent(self, event) -> None:
+            if event.key() == Qt.Key.Key_Down:
+                self.move_to_results.emit()
+                event.accept()
+                return
+            super().keyPressEvent(event)
 
     class PasswordGeneratorDialog(QDialog):
         def __init__(self, parent=None) -> None:
@@ -764,11 +773,14 @@ def main() -> None:
             self.current_id: str | None = None
             self.current_entry: Entry | None = None
             self.current_folder_id: str | None = None
-            self.search = QLineEdit()
+            self._expanded_folder_ids: set[str] | None = None
+            self._last_tree_query: str | None = None
+            self.search = SearchLineEdit()
             self.search.setPlaceholderText(_("Search…"))
             self.search.setClearButtonEnabled(True)
             self.search.setToolTip(_("Search entries and folders (Ctrl+F)"))
             self.entries = VaultTree(self.tree_move, self.reload, self)
+            self.search.move_to_results.connect(self.focus_results)
             self.title = QLabel("")
             self.uuid_label = QLabel("")
             self.username = QLabel("")
@@ -892,6 +904,34 @@ def main() -> None:
             self.activity()
             self.search_timer.start()
 
+        def focus_results(self) -> None:
+            self.entries.setFocus()
+            if self.entries.currentItem() is None and self.entries.topLevelItemCount():
+                self.entries.setCurrentItem(self.entries.topLevelItem(0))
+        def _capture_expanded_folders(self) -> None:
+            expanded: set[str] = set()
+            def visit(item) -> None:
+                if item.data(0, TYPE_ROLE) == "folder" and item.isExpanded():
+                    expanded.add(str(item.data(0, ID_ROLE)))
+                for index in range(item.childCount()):
+                    visit(item.child(index))
+            for index in range(self.entries.topLevelItemCount()):
+                visit(self.entries.topLevelItem(index))
+            self._expanded_folder_ids = expanded
+        def _apply_expanded_folders(self) -> None:
+            if self._expanded_folder_ids is None:
+                if (args.tree_view or settings.tree_startup_view) == "expanded":
+                    self.entries.expandAll()
+                else:
+                    self.entries.collapseAll()
+                return
+            def visit(item) -> None:
+                if item.data(0, TYPE_ROLE) == "folder":
+                    item.setExpanded(str(item.data(0, ID_ROLE)) in self._expanded_folder_ids)
+                for index in range(item.childCount()):
+                    visit(item.child(index))
+            for index in range(self.entries.topLevelItemCount()):
+                visit(self.entries.topLevelItem(index))
         def activity(self) -> None:
             if settings.auto_lock_timeout > 0 and not self.vault.locked:
                 self.auto_lock_timer.start(settings.auto_lock_timeout * 1000)
@@ -953,6 +993,10 @@ def main() -> None:
             except Exception as exc:
                 QMessageBox.critical(self, _("Error"), str(exc))
                 return
+            if self._last_tree_query == "" and query:
+                self._capture_expanded_folders()
+            if not query and self._last_tree_query == "":
+                self._capture_expanded_folders()
             self.entries.clear()
             self.entries.setDragEnabled(not bool(query))
             if query:
@@ -960,6 +1004,7 @@ def main() -> None:
                 for catalog_item in items:
                     path = paths.get(catalog_item.folder_id, _("Root")) if catalog_item.folder_id else _("Root")
                     self._entry_item(catalog_item, suffix=f"  —  {path}")
+                self._last_tree_query = query
                 return
             folder_widgets = {}
             remaining = list(folders)
@@ -974,6 +1019,8 @@ def main() -> None:
                     break
             for catalog_item in items:
                 self._entry_item(catalog_item, folder_widgets.get(catalog_item.folder_id))
+            self._apply_expanded_folders()
+            self._last_tree_query = query
             if (args.tree_view or settings.tree_startup_view) == "expanded":
                 self.entries.expandAll()
             else:
@@ -1046,6 +1093,8 @@ def main() -> None:
 
         def lock(self, hard: bool) -> None:
             try:
+                if not self.search.text().strip():
+                    self._capture_expanded_folders()
                 self.vault.lock(hard=hard)
                 QApplication.clipboard().clear()
                 self.clear_details()
