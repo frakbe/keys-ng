@@ -501,3 +501,8 @@ In the M1.20.3 TUI, Preferences opens with `F2`. Main bindings no longer use `Ct
 
 The TUI can keep more than one vault open in the same process. `F5` opens a vault and `F6` opens a recent vault without closing the previously active one. `Ctrl+J` opens **Open vaults**, where an already-open vault can be activated or closed. Each vault keeps its own `Vault` instance, decrypted metadata cache and locked/unlocked state. `Ctrl+L` locks only the active vault; `F9` hard-locks every open vault before clearing the shared GnuPG agent cache. `Ctrl+W` closes only the active vault and activates another remaining open vault when possible.
 
+
+
+## Release 0.1.26
+
+KeePassXC imports continue when an entry contains a dangling UUID reference. The reference is preserved, the affected entry is reported as partial for manual review, and remaining entries are imported. In the GUI and TUI, press Down from the search field to focus the results. Normal vault lock/unlock preserves expanded and collapsed folder state.

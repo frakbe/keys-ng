@@ -363,3 +363,10 @@ The TUI no longer uses `Ctrl+Shift+<letter>` for main commands. Use `F2` Prefere
 
 The TUI now keeps multiple vaults open in one session. `F5`/`F6` add vaults, `Ctrl+J` opens the vault switcher, `Ctrl+W` closes the active vault, `Ctrl+L` locks only the active vault, and `F9` hard-locks all open vaults plus the shared GnuPG agent.
 
+
+
+## Release 0.1.26
+
+- L'importazione KeePassXC non si interrompe per riferimenti UUID mancanti: conserva il riferimento e segnala le voci parziali.
+- Freccia giù sposta il focus dalla ricerca ai risultati in GUI e TUI.
+- Il blocco/sblocco mantiene lo stato delle cartelle.

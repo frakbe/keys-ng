@@ -504,3 +504,8 @@ Nella TUI M1.20.3 le Preferenze si aprono con `F2`. Le combinazioni `Ctrl+Shift+
 
 La TUI può mantenere aperti più vault nello stesso processo. `F5` apre un vault e `F6` apre un vault recente senza chiudere quello precedentemente attivo. `Ctrl+J` apre **Vault aperti**, da cui è possibile attivare o chiudere un vault già aperto. Ogni vault conserva il proprio oggetto `Vault`, la cache dei metadati decifrati e lo stato locked/unlocked. `Ctrl+L` blocca soltanto il vault attivo; `F9` esegue l'hard lock di tutti i vault aperti prima di svuotare la cache condivisa di gpg-agent. `Ctrl+W` chiude solo il vault attivo e, quando possibile, attiva un altro vault rimasto aperto.
 
+
+
+## Release 0.1.26
+
+L'importazione KeePassXC prosegue quando una voce contiene un riferimento UUID mancante. Il riferimento viene conservato, la voce viene segnalata come parziale per la revisione manuale e le altre voci vengono importate. Nella GUI e nella TUI, premere Freccia giù dal campo di ricerca per portare il focus sui risultati. Il blocco/sblocco normale mantiene lo stato di apertura e chiusura delle cartelle.
