@@ -192,7 +192,7 @@ def test_keepassxc_uuid_collision_remaps_imported_entry_and_references(tmp_path)
     assert vault.get_entry(source_credentials).password == "existing-secret"
 
 
-def test_keepassxc_dangling_reference_fails_before_writing_entries(tmp_path):
+def test_keepassxc_dangling_reference_is_reported_without_blocking_import(tmp_path):
     missing = "aaaaaaaa-bbbb-4ccc-8ddd-eeeeeeeeeeee"
     missing_ref = missing.replace("-", "").upper()
     source = "1c2d12ca-9668-4828-8687-f676dbd6cf10"
@@ -207,14 +207,14 @@ def test_keepassxc_dangling_reference_fails_before_writing_entries(tmp_path):
     </Group></Root></KeePassFile>'''.encode()
 
     vault = Vault.init(tmp_path / "vault", FakeCrypto(), ["RECIPIENT"], "SIGNER")
-    try:
-        import_keepassxc_xml(xml, vault)
-    except ValueError as exc:
-        assert "dangling reference" in str(exc)
-    else:
-        raise AssertionError("dangling KeePassXC reference should abort import")
-    assert vault.list_items() == []
-    assert vault.load_folders().folders == []
+    report = import_keepassxc_xml(xml, vault)
+    assert report.entries == 1
+    assert len(report.partial_entries) == 1
+    assert any("dangling reference" in warning for warning in report.warnings)
+    item = next(item for item in vault.list_items() if item.title == "Broken server")
+    entry = vault.get_entry(item.id)
+    assert entry.password == "{REF:P@I:" + missing + "}"
+    assert vault.load_folders().folders
 
 
 def test_keepassxc_dry_run_validates_references_without_writing(tmp_path):
