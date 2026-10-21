@@ -34,6 +34,13 @@ jobs:
       - name: Checksums
         run: sha256sum dist/keys_ng-0.1.26-py3-none-any.whl > SHA256SUMS-0.1.26
       - name: Publish GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v0.1.26
+          name: Keys NG 0.1.26
+          body_path: RELEASE_NOTES_M1.26.md
+          files: |
+            dist/keys_ng-0.1.26-py3-none-any.whl
+            SHA256SUMS-0.1.26
         env:
-          GH_TOKEN: \${{ github.token }}
-        run: gh release create v0.1.26 dist/keys_ng-0.1.26-py3-none-any.whl SHA256SUMS-0.1.26 --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "Keys NG 0.1.26" --notes-file RELEASE_NOTES_M1.26.md
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
