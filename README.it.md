@@ -344,6 +344,7 @@ controlla ora l'intero ambiente di esecuzione.
 
 Sono incluse le ricette di distribuzione per Flatpak Linux, MSI Windows e DMG
 macOS. Vedere `packaging/flatpak/` e `.github/workflows/distribution.yml`.
+Guide di build: `docs/it/WINDOWS_MSI_BUILD.md` e `docs/it/MACOS_BUILD.md`.
 
 ## M1.20: parità interattiva
 

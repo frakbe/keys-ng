@@ -350,6 +350,7 @@ runtime environment.
 
 Distribution recipes are included for Linux Flatpak, Windows MSI and macOS
 DMG. See `packaging/flatpak/` and `.github/workflows/distribution.yml`.
+Build guides: `docs/en/WINDOWS_MSI_BUILD.md` and `docs/en/MACOS_BUILD.md`.
 
 ## M1.20 interactive parity
 
