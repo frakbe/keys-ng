@@ -8128,3 +8128,6 @@ Generated fields such as direct calls and control-flow counts are descriptive st
 <!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders -->
 <!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders.visit -->
 <!-- symbol:keys_ng.tui.main:main.KeysApp.on_key -->
+
+<!-- symbol:keys_ng.gui.main:main.MainWindow.refresh_recent_start_page -->
+<!-- symbol:keys_ng.gui.main:main.MainWindow.open_recent_vault -->

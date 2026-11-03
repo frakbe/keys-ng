@@ -8128,3 +8128,6 @@ I campi generati, come chiamate dirette e conteggi del flusso di controllo, sono
 <!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders -->
 <!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders.visit -->
 <!-- symbol:keys_ng.tui.main:main.KeysApp.on_key -->
+
+<!-- symbol:keys_ng.gui.main:main.MainWindow.refresh_recent_start_page -->
+<!-- symbol:keys_ng.gui.main:main.MainWindow.open_recent_vault -->

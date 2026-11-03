@@ -1,6 +1,6 @@
 # Keys NG roadmap
 
-> **Current implementation status (main, post-0.1.26):** Releases through 0.1.26 are implemented and published. The project remains in M1 (hardened usable alpha). The main branch also contains the recent-vault start screen enhancement; cross-platform validation, external security review and production signing/notarization remain outstanding.
+> **Current implementation status (main, post-0.1.27):** Releases through 0.1.26 are implemented and published. The project remains in M1 (hardened usable alpha). The main branch also contains the recent-vault start screen enhancement; cross-platform validation, external security review and production signing/notarization remain outstanding.
 
 ## M0 - Foundation (complete)
 
@@ -256,9 +256,12 @@
 - [x] Folder expansion/collapse preservation across the supported lock/unlock paths.
 - [x] Release workflow builds, smoke-tests and publishes the wheel and checksum.
 
-## M1.27 — Recent-vault start screen (implemented on main; release pending)
+## M1.27 — GUI recent-vault start screen and lock-state fix (complete, released as 0.1.27)
 
 - [x] GUI start screen lists the three most recently used vaults with name and full path.
-- [x] Recent-vault entries open with a single click and reuse persistent `[ui].recent_vaults` data.
-- [ ] Add release notes, end-to-end GUI test and publish the next bugfix release.
-- [ ] Complete the hard-lock GUI tree-state fix so every lock path preserves folder expansion state.
+- [x] Recent-vault entries open with a single click and reuse persistent [ui].recent_vaults data.
+- [x] Global GUI hard-lock captures folder expansion state before locking every open vault.
+- [x] External security-review checklist, evidence package and procedure prepared in English and Italian.
+- [x] Release workflow builds, smoke-tests and publishes the 0.1.27 wheel and checksum.
+- [ ] Execute the independent external review.
+- [ ] Complete macOS packaging and clean-machine validation.

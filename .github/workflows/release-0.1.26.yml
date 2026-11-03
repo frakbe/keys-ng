@@ -1,4 +1,4 @@
-name: Release 0.1.26
+name: Release 0.1.27
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   release:
-    if: github.event.head_commit.message == 'Release 0.1.26'
+    if: github.event.head_commit.message == 'Release 0.1.27'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -28,19 +28,19 @@ jobs:
       - name: Smoke-test wheel
         run: |
           python -m venv .release-venv
-          .release-venv/bin/python -m pip install dist/keys_ng-0.1.26-py3-none-any.whl
+          .release-venv/bin/python -m pip install dist/keys_ng-0.1.27-py3-none-any.whl
           .release-venv/bin/keys-ng --version
           .release-venv/bin/keys-ng-tui version
       - name: Checksums
-        run: sha256sum dist/keys_ng-0.1.26-py3-none-any.whl > SHA256SUMS-0.1.26
+        run: sha256sum dist/keys_ng-0.1.27-py3-none-any.whl > SHA256SUMS-0.1.27
       - name: Publish GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v0.1.26
-          name: Keys NG 0.1.26
-          body_path: RELEASE_NOTES_M1.26.md
+          tag_name: v0.1.27
+          name: Keys NG 0.1.27
+          body_path: RELEASE_NOTES_M1.27.md
           files: |
-            dist/keys_ng-0.1.26-py3-none-any.whl
-            SHA256SUMS-0.1.26
+            dist/keys_ng-0.1.27-py3-none-any.whl
+            SHA256SUMS-0.1.27
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

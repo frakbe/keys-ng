@@ -4,7 +4,7 @@ Keys NG è una riscrittura di nuova generazione del password manager Bash origin
 
 ## Stato attuale
 
-Il repository è attualmente nello sviluppo **M1.25 di manutenzione e consolidamento multipiattaforma**. Non è ancora una release di sicurezza pronta per uso di produzione.
+Il repository è attualmente nello sviluppo **M1.27 di manutenzione e consolidamento multipiattaforma**. Non è ancora una release di sicurezza pronta per uso di produzione.
 
 Funzionalità principali già implementate:
 
@@ -364,3 +364,8 @@ La TUI mantiene ora più vault aperti nella stessa sessione. `F5`/`F6` aggiungon
 - KeePassXC import continues with warnings for dangling UUID references.
 - Down moves focus from search to results in GUI and TUI.
 - Folder expansion state is preserved across lock/unlock.
+
+
+## Release 0.1.27
+
+Questa release aggiunge l'accesso rapido ai tre vault recenti nella schermata iniziale e mantiene lo stato delle cartelle durante l'hard-lock globale della GUI.

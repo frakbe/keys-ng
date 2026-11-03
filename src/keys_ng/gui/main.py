@@ -1852,6 +1852,8 @@ def main() -> None:
                 return
             try:
                 for pane in panes:
+                    if not pane.search.text().strip():
+                        pane._capture_expanded_folders()
                     pane.vault.lock(hard=False)
                     pane.clear_details()
                 panes[0].vault.crypto.hard_lock()

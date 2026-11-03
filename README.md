@@ -4,7 +4,7 @@ Keys NG is a next-generation rewrite of the original **Keys** Bash password mana
 
 ## Current milestone
 
-The repository is now in **M1.25 maintenance development**. It is not yet an independently audited production security release.
+The repository is now in **M1.27 maintenance development**. It is not yet an independently audited production security release.
 
 Implemented so far:
 
@@ -370,3 +370,8 @@ The TUI now keeps multiple vaults open in one session. `F5`/`F6` add vaults, `Ct
 - L'importazione KeePassXC non si interrompe per riferimenti UUID mancanti: conserva il riferimento e segnala le voci parziali.
 - Freccia giù sposta il focus dalla ricerca ai risultati in GUI e TUI.
 - Il blocco/sblocco mantiene lo stato delle cartelle.
+
+
+## Release 0.1.27
+
+This maintenance release adds quick access to the three most recently used vaults on the GUI start screen and preserves folder expansion state during global GUI hard-lock.
