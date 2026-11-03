@@ -1,6 +1,6 @@
 # Keys NG roadmap
 
-> **Current implementation status (0.1.21):** M1.21 is implemented and released. The project remains in M1 (hardened usable alpha); M2 beta work is limited to packaging/validation and has not yet been completed.
+> **Current implementation status (main, post-0.1.26):** Releases through 0.1.26 are implemented and published. The project remains in M1 (hardened usable alpha). The main branch also contains the recent-vault start screen enhancement; cross-platform validation, external security review and production signing/notarization remain outstanding.
 
 ## M0 - Foundation (complete)
 
@@ -47,7 +47,8 @@
 
 ## M2 - Cross-platform beta
 
-- [ ] native packaging for Linux
+- [x] Linux Flatpak manifest, build guide and redistributable bundle workflow
+- [ ] final clean-machine validation of the Linux package
 - [ ] signed Windows installer
 - [ ] signed/notarized macOS app
 - [ ] CI integration tests on Linux/Windows/macOS
@@ -220,3 +221,44 @@
 - [x] Vault-switch notifications use the temporary banner instead of permanent status text.
 - [x] TUI clipboard notifications are acknowledged immediately after a successful clipboard write.
 - [x] Release workflow builds and smoke-tests the wheel; release `v0.1.21` is published.
+
+
+## M1.22 — Guided standalone encrypted-entry export (complete, released as 0.1.22)
+
+- [x] GUI and TUI export of a selected vault entry as a standalone encrypted record.
+- [x] Recipient selection from GnuPG public keys or an imported public-key file.
+- [x] Optional signing with the local secret key and user-selected destination path.
+- [x] Reference resolution and safe atomic encrypted-record writing without plaintext temporary files.
+
+## M1.23 — Standalone export TUI bugfix (complete, released as 0.1.23)
+
+- [x] Empty recipient/signing-key selector states handled without crashing.
+- [x] Validation feedback and regression coverage for missing usable recipient keys.
+
+## M1.24 — KeePassXC import resilience and Flatpak documentation (complete, released as 0.1.24)
+
+- [x] TUI help includes the standalone-export `s` shortcut.
+- [x] Unsupported KeePassXC command-like URLs and custom command fields are preserved in Notes.
+- [x] Partial imports are reported for manual review.
+- [x] English and Italian Flatpak build documentation.
+
+## M1.25 — TUI preferences and launcher configuration (complete, released as 0.1.25)
+
+- [x] TUI Preferences aligned with GUI Preferences.
+- [x] SSH terminal options and per-OS RDP client/options configuration.
+- [x] Launcher execution uses configured argv options safely.
+- [x] Flatpak dependency and redistributable-bundle guidance.
+
+## M1.26 — Import and interactive usability fixes (complete, released as 0.1.26)
+
+- [x] KeePassXC imports continue when dangling UUID references are found, preserving the reference and reporting partial entries.
+- [x] GUI and TUI Down-arrow navigation from search to results.
+- [x] Folder expansion/collapse preservation across the supported lock/unlock paths.
+- [x] Release workflow builds, smoke-tests and publishes the wheel and checksum.
+
+## M1.27 — Recent-vault start screen (implemented on main; release pending)
+
+- [x] GUI start screen lists the three most recently used vaults with name and full path.
+- [x] Recent-vault entries open with a single click and reuse persistent `[ui].recent_vaults` data.
+- [ ] Add release notes, end-to-end GUI test and publish the next bugfix release.
+- [ ] Complete the hard-lock GUI tree-state fix so every lock path preserves folder expansion state.
