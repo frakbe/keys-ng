@@ -52,6 +52,7 @@ def main() -> None:
             QLabel,
             QLineEdit,
             QListWidget,
+            QListWidgetItem,
             QMainWindow,
             QStackedWidget,
             QSpinBox,
@@ -1567,6 +1568,15 @@ def main() -> None:
             open_button = QPushButton(_("Open vault…"))
             open_button.clicked.connect(self.open_vault_dialog)
             empty_layout.addWidget(open_button, alignment=Qt.AlignmentFlag.AlignCenter)
+            self.recent_label = QLabel(_("Recent vaults"))
+            self.recent_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
+            empty_layout.addWidget(self.recent_label)
+            self.recent_list = QListWidget()
+            self.recent_list.setSelectionMode(QListWidget.SelectionMode.SingleSelection)
+            self.recent_list.setMaximumHeight(150)
+            self.recent_list.setMinimumWidth(520)
+            self.recent_list.itemClicked.connect(self.open_recent_vault)
+            empty_layout.addWidget(self.recent_list, alignment=Qt.AlignmentFlag.AlignCenter)
             empty_layout.addStretch(1)
 
             self.stack = QStackedWidget(self)
@@ -1739,7 +1749,25 @@ def main() -> None:
                 return
             getattr(pane, method)(*args)
 
+        def refresh_recent_start_page(self) -> None:
+            self.recent_list.clear()
+            recent = list(settings.recent_vaults[:3])
+            self.recent_label.setVisible(bool(recent))
+            self.recent_list.setVisible(bool(recent))
+            for path_text in recent:
+                path = Path(path_text)
+                item = QListWidgetItem(f"{path.name or str(path)}\n{path}")
+                item.setToolTip(str(path))
+                item.setData(Qt.ItemDataRole.UserRole, str(path))
+                self.recent_list.addItem(item)
+
+        def open_recent_vault(self, item: QListWidgetItem) -> None:
+            path = item.data(Qt.ItemDataRole.UserRole)
+            if path:
+                self.open_vault(str(path))
+
         def _sync_empty_state(self) -> None:
+            self.refresh_recent_start_page()
             self.stack.setCurrentWidget(self.tabs if self.tabs.count() else self.empty_page)
             self.update_window_title()
 
