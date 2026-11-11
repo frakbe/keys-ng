@@ -202,8 +202,8 @@ def collect_symbols(path: Path):
 
 def render(lang: str) -> str:
     en=lang=="en"
-    title = "Keys NG M1.20.4 — Complete Code Review Manual" if en else "Keys NG M1.20.4 — Manuale completo per la revisione del codice"
-    lines=[f"# {title}", "", ("Version: `0.1.20.dev4`. This document is generated from the exact Python source tree shipped with M1.20.4." if en else "Versione: `0.1.20.dev4`. Questo documento è generato dall'esatto albero sorgente Python distribuito con M1.20.4."), ""]
+    title = "Keys NG 0.2.01 — Complete Code Review Manual" if en else "Keys NG 0.2.01 — Manuale completo per la revisione del codice"
+    lines=[f"# {title}", "", ("Version: `0.2.01`. This document is generated from the exact Python source tree shipped with 0.2.01." if en else "Versione: `0.2.01`. Questo documento è generato dall'esatto albero sorgente Python distribuito con 0.2.01."), ""]
     lines += ["## " + ("Purpose and reading method" if en else "Scopo e metodo di lettura"), "",
         ("This manual is a reviewer-oriented map, not a substitute for reading the source. It documents every Python class and function (including nested helpers) with its signature, source range, direct calls, explicit exceptions, state writes, control-flow shape and security-relevant effects. Stable `symbol:` markers are machine-checked by the test suite so undocumented executable symbols cannot silently enter the release." if en else "Questo manuale è una mappa orientata al revisore, non sostituisce la lettura del sorgente. Documenta ogni classe e funzione Python (inclusi gli helper annidati) con firma, intervallo di righe, chiamate dirette, eccezioni esplicite, scritture di stato, forma del flusso di controllo ed effetti rilevanti per la sicurezza. I marker stabili `symbol:` sono verificati automaticamente dai test, così nessun simbolo eseguibile non documentato può entrare silenziosamente nella release."), ""]
     lines += ["## " + ("Architecture and trust boundaries" if en else "Architettura e confini di fiducia"), ""]

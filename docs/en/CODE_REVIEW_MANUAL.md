@@ -1,6 +1,6 @@
-# Keys NG M1.20.4 — Complete Code Review Manual
+# Keys NG 0.2.01 — Complete Code Review Manual
 
-Version: `0.1.20.dev4`. This document is generated from the exact Python source tree shipped with M1.20.4.
+Version: `0.2.01`. This document is generated from the exact Python source tree shipped with 0.2.01.
 
 ## Purpose and reading method
 
@@ -660,25 +660,25 @@ Project exception hierarchy.
 PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault orchestration.
 
 **Source:** `src/keys_ng/gui/main.py`  
-**Executable symbols:** 106
+**Executable symbols:** 135
 
-**Direct module dependencies:** `__future__`, `argparse`, `keys_ng`, `keys_ng.crypto.factory`, `keys_ng.i18n`, `keys_ng.migration.keepassxc`, `keys_ng.migration.keepassxc_export`, `keys_ng.models`, `keys_ng.platform.app_identity`, `keys_ng.platform.desktop_integration`, `keys_ng.services.actions`, `keys_ng.services.clipboard`, `keys_ng.services.diagnostics`, `keys_ng.services.entry_editor`, `keys_ng.services.passwords`, `keys_ng.services.qr`, `keys_ng.services.ssh_options`, `keys_ng.services.totp`, `keys_ng.services.trusted_signers`, `keys_ng.services.vault_init`, `keys_ng.storage.inbox`, `keys_ng.storage.settings`, `keys_ng.storage.vault`, `pathlib`, `sys`, `time`
+**Direct module dependencies:** `__future__`, `argparse`, `dataclasses`, `keys_ng`, `keys_ng.crypto.factory`, `keys_ng.i18n`, `keys_ng.migration.keepassxc`, `keys_ng.migration.keepassxc_export`, `keys_ng.models`, `keys_ng.platform.app_identity`, `keys_ng.platform.desktop_integration`, `keys_ng.services.actions`, `keys_ng.services.clipboard`, `keys_ng.services.diagnostics`, `keys_ng.services.entry_editor`, `keys_ng.services.passwords`, `keys_ng.services.qr`, `keys_ng.services.ssh_options`, `keys_ng.services.standalone_export`, `keys_ng.services.totp`, `keys_ng.services.trusted_signers`, `keys_ng.services.vault_init`, `keys_ng.storage.inbox`, `keys_ng.storage.settings`, `keys_ng.storage.vault`, `pathlib`, `sys`, `time`
 
 <!-- symbol:keys_ng.gui.main:main -->
 #### `main`
 
 **Kind:** function/method  
-**Lines:** 31-1635  
+**Lines:** 38-2189  
 **Signature:** `def main() -> None`  
 **Purpose:** Implements the `main` operation in this module.
 
-**Direct calls observed in the function body:** `AppSettings.load`, `EntryDialog`, `EntryDraft`, `HelpDialog`, `InboxDialog`, `KeePassXCImportDialog`, `MainWindow`, `NewVaultWizard`, `PasswordGeneratorDialog`, `Path`, `Path.home`, `QApplication`, `QApplication.clipboard`, `QApplication.focusWidget`, `QCheckBox`, `QComboBox`, `QDialogButtonBox`, `QDoubleSpinBox`, `QFileDialog.getExistingDirectory`, `QFileDialog.getOpenFileName`, `QFileDialog.getSaveFileName`, `QFormLayout`, `QHBoxLayout`, `QIcon.fromTheme`, `QInputDialog.getItem`, `QInputDialog.getText`, `QKeySequence`, `QLabel`, `QLineEdit`, `QListWidget`, `QMessageBox.critical`, `QMessageBox.information`, `QMessageBox.question`, `QMessageBox.warning`, `QPushButton`, `QShortcut`, `QSpinBox`, `QStackedWidget`, `QTabWidget`, `QTextBrowser`, `QTextEdit`, `QTimer`, `QTreeWidgetItem`, `QVBoxLayout`, `QWidget`, `QWizardPage`, `SettingsDialog`, `SystemExit`, `TrustedSignersDialog`, `ValueError`, `Vault`, `VaultInitRequest`, `VaultPane`, `VaultTree`, `_`, `__init__`, `action.setEnabled`, `action.setToolTip`, `action.triggered.connect`, `addMenu`, `add_button.clicked.connect`, `add_trusted_signer`, `app.exec`, `apply_qt_identity`, `argparse.ArgumentParser`, `authorize_button.clicked.connect`, `available_vault_keys`, `backend.diagnose`, `bool`, `box.toggled.connect`, `browse.clicked.connect`, `browser.setMarkdown`, `browser.setOpenExternalLinks`, `build_entry_from_draft`, `build_otpauth_uri`, `buttons.accepted.connect`, `buttons.addStretch`, `buttons.addWidget`, `buttons.rejected.connect`, `ch.isalnum`, `clear`, `clipboard_form.addRow`, `close_button.clicked.connect`, `close_buttons.rejected.connect`, `configure_diagnostics`, `configure_language`, `configure_process_identity`, `copy_secret_qt`, `create_button.clicked.connect`, `create_crypto_backend`, `create_vault`, `current.data`, `current.text`, `current_language`, `data`, `delete_button.clicked.connect`, `delete_inbox_item`, `dialog.apply`, `dialog.build_entry`, `dialog.exec`, `dialog.value`, `elapsed_ms`, `eligible_signing_keys`, `empty_label.setAlignment`, `empty_layout.addStretch`, `empty_layout.addWidget`, `ensure_user_desktop_integration`, `entry_menu.addSeparator`, `event.accept`, `event.position`, `exec`, `expanduser`, `export_entry_xml`, `export_vault_xml`, `failures.append`, `files`, `float`, `focus.copy`, `focus.hasSelectedText`, `focus.textCursor`, `folder_widgets.get`, `form.addRow`, `format`, `format_import_report`, `format_ssh_options`, `general_form.addRow`, `generate_password`, `generate_totp`, `get_logger`, `getattr`, `hasSelection`, `hasattr`, `help_label`, `help_root.joinpath`, `icon.isNull`, `image`, `image.isNull`, `import_button.clicked.connect`, `import_inbox_item`, `import_keepassxc`, `import_trusted_button.clicked.connect`, `inspect_inbox`, `int`, `isinstance`, `item.data`, `item.flags`, `item.setData`, `item.setFlags`, `item.setIcon`, `join`, `joinpath`, `key_button.clicked.connect`, `key_layout.addWidget`, `key_layout.setContentsMargins`, `keys_form.addRow`, `keys_page.setSubTitle`, `keys_page.setTitle`, `label.setStyleSheet`, `label.setWordWrap`, `labels.index`, `launch_action`, `layout.addLayout`, `layout.addWidget`, `left.addLayout`, `left.addWidget`, `len`, `line.strip`, `list`, `list_trusted_signers`, `location.setSubTitle`, `location.setTitle`, `location_layout.addLayout`, `log.debug`, `log.error`, `log.info`, `mapping.get`, `max`, `menu.addAction`, `min`, `name.strip`, `next`, `open_button.clicked.connect`, `options.setSubTitle`, `options.setTitle`, `options_form.addRow`, `pane.clear_details`, `pane.deleteLater`, `pane.reload`, `pane.reset_auto_lock_timer`, `pane.vault.lock`, `parent.addChild`, `parse_totp_qimage`, `parse_totp_qr_file`, `parser.add_argument`, `parser.parse_args`, `password_layout.addWidget`, `password_layout.setContentsMargins`, `paths.get`, `pending_inbox_paths`, `preferences_action.setMenuRole`, `preview_button.clicked.connect`, `print`, `range`, `rdp_form.addRow`, `refresh.clicked.connect`, `refresh_button.clicked.connect`, `remaining.remove`, `remove_button.clicked.connect`, `remove_trusted_signer`, `resolve`, `resource.is_file`, `resource.read_text`, `right.addStretch`, `right.addWidget`, `root_layout.addLayout`, `row.addStretch`, `row.addWidget`, `s.save`, `self._entry_icon`, `self._entry_item`, `self._folder_icon`, `self._folder_item`, `self._lines`, `self._menu_action`, `self._run`, `self._status_text`, `self._sync_empty_state`, `self._theme_icon`, `self.accept`, `self.action_type_combo.addItem`, `self.action_type_combo.currentData`, `self.action_type_combo.currentIndexChanged.connect`, `self.action_type_combo.findData`, `self.action_type_combo.setCurrentIndex`, `self.active_pane`, `self.activity`, `self.addPage`, `self.ambiguous.isChecked`, `self.ambiguous.setChecked`, `self.auto_lock_spin.setRange`, `self.auto_lock_spin.setSuffix`, `self.auto_lock_spin.setValue`, `self.auto_lock_spin.value`, `self.auto_lock_timer.setSingleShot`, `self.auto_lock_timer.start`, `self.auto_lock_timer.timeout.connect`, `self.build_menus`, `self.call_active`, `self.clear_details`, `self.close_vault`, `self.copy_notes.clicked.connect`, `self.copy_otp.clicked.connect`, `self.copy_otp.setToolTip`, `self.copy_password.clicked.connect`, `self.copy_password.setToolTip`, `self.copy_url.clicked.connect`, `self.copy_url.setToolTip`, `self.copy_username.clicked.connect`, `self.copy_username.setToolTip`, `self.copy_uuid.clicked.connect`, `self.copy_uuid.setToolTip`, `self.crypto_combo.addItem`, `self.crypto_combo.currentData`, `self.crypto_combo.findData`, `self.crypto_combo.setCurrentIndex`, `self.currentIdChanged.connect`, `self.currentItem`, `self.delete_button.clicked.connect`, `self.delete_folder_button.clicked.connect`, `self.details.clear`, `self.details.setText`, `self.details.setWordWrap`, `self.digits.isChecked`, `self.digits.setChecked`, `self.edit_button.clicked.connect`, `self.entries.addTopLevelItem`, `self.entries.clear`, `self.entries.collapseAll`, `self.entries.currentItemChanged.connect`, `self.entries.expandAll`, `self.entries.itemDoubleClicked.connect`, `self.entries.setDragEnabled`, `self.folder_combo.addItem`, `self.folder_combo.currentData`, `self.folder_combo.findData`, `self.folder_combo.setCurrentIndex`, `self.gpg_path_edit.setPlaceholderText`, `self.gpg_path_edit.text`, `self.gpgconf_path_edit.setPlaceholderText`, `self.gpgconf_path_edit.text`, `self.hard_lock_button.clicked.connect`, `self.host_edit.setVisible`, `self.host_edit.text`, `self.host_label.setVisible`, `self.itemAt`, `self.key_file_edit.setText`, `self.key_file_edit.text`, `self.language_combo.addItem`, `self.language_combo.currentData`, `self.language_combo.findData`, `self.language_combo.setCurrentIndex`, `self.length.setRange`, `self.length.setValue`, `self.length.value`, `self.length.valueChanged.connect`, `self.list.addItem`, `self.list.clear`, `self.list.count`, `self.list.currentItem`, `self.list.currentRow`, `self.list.currentRowChanged.connect`, `self.list.item`, `self.list.setCurrentRow`, `self.lock`, `self.lock_button.clicked.connect`, `self.lower.isChecked`, `self.lower.setChecked`, `self.menuBar`, `self.new_button.clicked.connect`, `self.new_folder_button.clicked.connect`, `self.no_password.isChecked`, `self.notes.clear`, `self.notes.setMinimumHeight`, `self.notes.setReadOnly`, `self.notes.setText`, `self.notes.setToolTip`, `self.notes_edit.toPlainText`, `self.on_move`, `self.on_reload`, `self.open_action.clicked.connect`, `self.open_action.setToolTip`, `self.open_action_clicked`, `self.open_vault`, `self.otp.clear`, `self.otp.setText`, `self.password_edit.setEchoMode`, `self.password_edit.setText`, `self.password_edit.setToolTip`, `self.password_edit.text`, `self.password_generate.clicked.connect`, `self.password_generate.setToolTip`, `self.password_timeout_spin.setRange`, `self.password_timeout_spin.setSuffix`, `self.password_timeout_spin.setValue`, `self.password_timeout_spin.value`, `self.password_toggle.setCheckable`, `self.password_toggle.setText`, `self.password_toggle.setToolTip`, `self.password_toggle.toggled.connect`, `self.path_edit.setText`, `self.path_edit.text`, `self.path_label.clear`, `self.path_label.setText`, `self.port_edit.setPlaceholderText`, `self.port_edit.setVisible`, `self.port_edit.text`, `self.port_label.setVisible`, `self.preview.setReadOnly`, `self.preview.setText`, `self.preview.text`, `self.privacy_combo.addItem`, `self.privacy_combo.currentData`, `self.privacy_combo.setCurrentIndex`, `self.qr_button.clicked.connect`, `self.qr_clipboard_button.clicked.connect`, `self.rdp_linux_client_edit.text`, `self.rdp_linux_options_edit.setMaximumHeight`, `self.rdp_linux_options_edit.setPlainText`, `self.rdp_macos_client_edit.text`, `self.rdp_macos_options_edit.setMaximumHeight`, `self.rdp_macos_options_edit.setPlainText`, `self.rdp_windows_client_edit.text`, `self.rdp_windows_options_edit.setMaximumHeight`, `self.rdp_windows_options_edit.setPlainText`, `self.recent_menu.aboutToShow.connect`, `self.recent_menu.addAction`, `self.recent_menu.clear`, `self.recipient_combo.addItem`, `self.recipient_combo.currentData`, `self.refresh`, `self.refresh_otp`, `self.refresh_recent_menu`, `self.regenerate`, `self.reload`, `self.rename_folder_button.clicked.connect`, `self.report.setPlaceholderText`, `self.report.setPlainText`, `self.report.setReadOnly`, `self.require_signature.isChecked`, `self.require_signature.setChecked`, `self.resize`, `self.search.selectAll`, `self.search.setClearButtonEnabled`, `self.search.setFocus`, `self.search.setPlaceholderText`, `self.search.setToolTip`, `self.search.text`, `self.search.textChanged.connect`, `self.search_timer.setInterval`, `self.search_timer.setSingleShot`, `self.search_timer.start`, `self.search_timer.timeout.connect`, `self.setAcceptDrops`, `self.setCentralWidget`, `self.setDefaultDropAction`, `self.setDragDropMode`, `self.setDragEnabled`, `self.setDropIndicatorShown`, `self.setHeaderHidden`, `self.setLayout`, `self.setWindowTitle`, `self.shortcuts.append`, `self.show_help`, `self.show_inbox`, `self.signer_combo.addItem`, `self.signer_combo.currentData`, `self.source_edit.setText`, `self.source_edit.text`, `self.ssh_options_edit.setMaximumHeight`, `self.ssh_options_edit.setPlaceholderText`, `self.ssh_options_edit.setPlainText`, `self.ssh_options_edit.setText`, `self.ssh_options_edit.setVisible`, `self.ssh_options_edit.text`, `self.ssh_options_label.setVisible`, `self.ssh_terminal_edit.text`, `self.ssh_x11_combo.addItem`, `self.ssh_x11_combo.currentData`, `self.ssh_x11_combo.findData`, `self.ssh_x11_combo.setCurrentIndex`, `self.ssh_x11_combo.setVisible`, `self.ssh_x11_label.setVisible`, `self.stack.addWidget`, `self.stack.setCurrentWidget`, `self.statusBar`, `self.status_message`, `self.style`, `self.summary_label.setText`, `self.summary_label.setWordWrap`, `self.symbols.isChecked`, `self.symbols.setChecked`, `self.tabs.addTab`, `self.tabs.count`, `self.tabs.currentChanged.connect`, `self.tabs.currentIndex`, `self.tabs.currentWidget`, `self.tabs.removeTab`, `self.tabs.setCurrentIndex`, `self.tabs.setMovable`, `self.tabs.setTabPosition`, `self.tabs.setTabToolTip`, `self.tabs.setTabsClosable`, `self.tabs.tabCloseRequested.connect`, `self.tabs.widget`, `self.tags_edit.text`, `self.timer.start`, `self.timer.timeout.connect`, `self.title.clear`, `self.title.setText`, `self.title_edit.text`, `self.totp_edit.setText`, `self.totp_edit.text`, `self.totp_secret_edit.setEchoMode`, `self.totp_secret_edit.setText`, `self.totp_secret_edit.text`, `self.totp_timeout_spin.setRange`, `self.totp_timeout_spin.setSuffix`, `self.totp_timeout_spin.setValue`, `self.totp_timeout_spin.value`, `self.tree_combo.addItem`, `self.tree_combo.currentData`, `self.tree_combo.findData`, `self.tree_combo.setCurrentIndex`, `self.tui_notice_background_edit.setPlaceholderText`, `self.tui_notice_background_edit.text`, `self.tui_notice_foreground_edit.setPlaceholderText`, `self.tui_notice_foreground_edit.text`, `self.tui_notice_seconds_spin.setRange`, `self.tui_notice_seconds_spin.setSingleStep`, `self.tui_notice_seconds_spin.setSuffix`, `self.tui_notice_seconds_spin.setValue`, `self.tui_notice_seconds_spin.value`, `self.unlock_button.clicked.connect`, `self.update_action_fields`, `self.update_window_title`, `self.upper.isChecked`, `self.upper.setChecked`, `self.url_edit.setVisible`, `self.url_edit.text`, `self.url_label.setVisible`, `self.username.clear`, `self.username.setText`, `self.username_edit.setToolTip`, `self.username_edit.text`, `self.uuid_label.clear`, `self.uuid_label.setText`, `self.vault.create_folder`, `self.vault.delete_entry`, `self.vault.delete_folder`, `self.vault.folder_path`, `self.vault.folder_paths`, `self.vault.get_entry`, `self.vault.get_folder`, `self.vault.list_folders`, `self.vault.list_items`, `self.vault.lock`, `self.vault.move_entry`, `self.vault.move_folder`, `self.vault.rename_folder`, `self.vault.resolved_action`, `self.vault.resolved_password`, `self.vault.resolved_username`, `self.vault.save_entry`, `self.vault.search`, `self.vault.unlock`, `self.window`, `self.yubikey_edit.setPlaceholderText`, `self.yubikey_edit.text`, `set`, `setData`, `settings.remember_vault`, `settings.save`, `shortcut.activated.connect`, `shortcut.setContext`, `showMessage`, `source_button.clicked.connect`, `source_layout.addWidget`, `source_layout.setContentsMargins`, `splitlines`, `ssh_form.addRow`, `standardIcon`, `str`, `strip`, `summary.setSubTitle`, `summary.setTitle`, `summary_layout.addWidget`, `super`, `tabs.addTab`, `tabs.count`, `tabs.setCurrentIndex`, `target.data`, `target.parent`, `time.perf_counter`, `toPoint`, `toolbar1.addWidget`, `toolbar2.addWidget`, `type`, `vault.crypto.hard_lock`, `vault_menu.addMenu`, `vault_menu.addSeparator`, `verify_gpg.clicked.connect`, `widget.toPlainText`, `window.hard_lock_all`, `window.resize`, `window.setWindowIcon`, `window.show`, `window.statusBar`, `wizard.exec`, `wizard.request`, `write_export`.
+**Direct calls observed in the function body:** `AppSettings.load`, `EntryDialog`, `EntryDraft`, `HelpDialog`, `InboxDialog`, `KeePassXCImportDialog`, `MainWindow`, `NewVaultWizard`, `PasswordGeneratorDialog`, `Path`, `Path.cwd`, `Path.home`, `QApplication`, `QApplication.clipboard`, `QApplication.focusWidget`, `QCheckBox`, `QComboBox`, `QDialog`, `QDialogButtonBox`, `QDoubleSpinBox`, `QFileDialog.getExistingDirectory`, `QFileDialog.getOpenFileName`, `QFileDialog.getSaveFileName`, `QFormLayout`, `QHBoxLayout`, `QIcon.fromTheme`, `QInputDialog.getItem`, `QInputDialog.getText`, `QKeySequence`, `QLabel`, `QLineEdit`, `QListWidget`, `QListWidgetItem`, `QMenu`, `QMessageBox.critical`, `QMessageBox.information`, `QMessageBox.question`, `QMessageBox.warning`, `QPushButton`, `QScrollArea`, `QSettings`, `QShortcut`, `QSpinBox`, `QSplitter`, `QStackedWidget`, `QTabWidget`, `QTextBrowser`, `QTextEdit`, `QTimer`, `QTreeWidgetItem`, `QVBoxLayout`, `QWidget`, `QWizardPage`, `ReferenceWidget`, `SearchLineEdit`, `SettingsDialog`, `Signal`, `StandaloneExportDialog`, `SystemExit`, `TrustedSignersDialog`, `ValueError`, `Vault`, `VaultInitRequest`, `VaultPane`, `VaultTree`, `_`, `__init__`, `action.setEnabled`, `action.setToolTip`, `action.triggered.connect`, `actions.addStretch`, `actions.addWidget`, `addMenu`, `add_button.clicked.connect`, `add_trusted_signer`, `advanced_form.addRow`, `any`, `app.exec`, `apply_qt_identity`, `argparse.ArgumentParser`, `authorize_button.clicked.connect`, `available_vault_keys`, `backend.diagnose`, `bool`, `box.toggled.connect`, `browse.clicked.connect`, `browser.setMarkdown`, `browser.setOpenExternalLinks`, `build_entry_from_draft`, `build_otpauth_uri`, `button.hide`, `button.isEnabled`, `button.setEnabled`, `button.setParent`, `button.text`, `buttons.accepted.connect`, `buttons.addStretch`, `buttons.addWidget`, `buttons.rejected.connect`, `ch.isalnum`, `clear`, `clipboard_form.addRow`, `close.rejected.connect`, `close_button.clicked.connect`, `close_buttons.rejected.connect`, `configure_diagnostics`, `configure_language`, `configure_process_identity`, `copy_secret_qt`, `create_button.clicked.connect`, `create_crypto_backend`, `create_vault`, `current.data`, `current.text`, `current_language`, `data`, `delete_button.clicked.connect`, `delete_inbox_item`, `detail_scroll.setWidget`, `detail_scroll.setWidgetResizable`, `dialog.apply`, `dialog.build_entry`, `dialog.check_lock`, `dialog.deleteLater`, `dialog.exec`, `dialog.setWindowTitle`, `dialog.value`, `elapsed_ms`, `eligible_signing_keys`, `empty_label.setAlignment`, `empty_layout.addStretch`, `empty_layout.addWidget`, `ensure_user_desktop_integration`, `entry_menu.addSeparator`, `event.accept`, `event.key`, `event.position`, `event.source`, `exec`, `expanded.add`, `expanduser`, `export_entry_xml`, `export_standalone_entry`, `export_vault_xml`, `extra.addStretch`, `extra.addWidget`, `failures.append`, `field.clear`, `fields.addRow`, `files`, `float`, `focus.copy`, `focus.hasSelectedText`, `focus.textCursor`, `folder_widgets.get`, `footer.addStretch`, `footer.addWidget`, `form.addRow`, `form_widget.setLayout`, `format`, `format_import_report`, `format_ssh_options`, `general_form.addRow`, `generate_password`, `generate_totp`, `get`, `get_logger`, `getattr`, `hasSelection`, `hasattr`, `help_label`, `help_root.joinpath`, `icon.isNull`, `image`, `image.isNull`, `import_button.clicked.connect`, `import_inbox_item`, `import_keepassxc`, `import_standalone_public_key`, `import_trusted_button.clicked.connect`, `inspect_inbox`, `int`, `isinstance`, `item.child`, `item.childCount`, `item.data`, `item.flags`, `item.isExpanded`, `item.setData`, `item.setExpanded`, `item.setFlags`, `item.setIcon`, `item.setToolTip`, `join`, `joinpath`, `keyPressEvent`, `key_button.clicked.connect`, `key_layout.addWidget`, `key_layout.setContentsMargins`, `keys_form.addRow`, `keys_page.setSubTitle`, `keys_page.setTitle`, `label.clear`, `label.setStyleSheet`, `label.setText`, `label.setTextFormat`, `label.setTextInteractionFlags`, `label.setWordWrap`, `labels.index`, `launch_action`, `layout.addLayout`, `layout.addWidget`, `left.addWidget`, `left.setContentsMargins`, `len`, `line.strip`, `list`, `list_trusted_signers`, `location.setSubTitle`, `location.setTitle`, `location_layout.addLayout`, `log.debug`, `log.error`, `log.info`, `mapToGlobal`, `mapping.get`, `max`, `menu.addAction`, `menu.exec`, `min`, `move.setEnabled`, `move.triggered.connect`, `name.strip`, `next`, `open_button.clicked.connect`, `options.setSubTitle`, `options.setTitle`, `options_form.addRow`, `output_button.clicked.connect`, `output_layout.addWidget`, `output_layout.setContentsMargins`, `pane._capture_expanded_folders`, `pane.clear_details`, `pane.deleteLater`, `pane.reload`, `pane.reset_auto_lock_timer`, `pane.vault.lock`, `parent.addChild`, `parse_totp_qimage`, `parse_totp_qr_file`, `parser.add_argument`, `parser.parse_args`, `password_layout.addWidget`, `password_layout.setContentsMargins`, `pending_inbox_paths`, `preferences_action.setMenuRole`, `preview_button.clicked.connect`, `print`, `range`, `rdp_form.addRow`, `recipient_layout.addWidget`, `recipient_layout.setContentsMargins`, `refresh.clicked.connect`, `refresh_button.clicked.connect`, `remaining.remove`, `remove_button.clicked.connect`, `remove_trusted_signer`, `replace`, `resolve`, `resource.is_file`, `resource.read_text`, `right.addLayout`, `right.addWidget`, `root.flags`, `root.setData`, `root.setFlags`, `root_layout.addLayout`, `root_layout.addWidget`, `row.addStretch`, `row.addWidget`, `s.save`, `scroll.setWidget`, `scroll.setWidgetResizable`, `sectionMoved.connect`, `sectionResized.connect`, `self._apply_expanded_folders`, `self._capture_expanded_folders`, `self._entry_icon`, `self._entry_item`, `self._folder_icon`, `self._folder_item`, `self._folder_paths.get`, `self._lines`, `self._menu_action`, `self._refresh_keys`, `self._run`, `self._status_text`, `self._sync_empty_state`, `self._theme_icon`, `self.accept`, `self.action_type_combo.addItem`, `self.action_type_combo.currentData`, `self.action_type_combo.currentIndexChanged.connect`, `self.action_type_combo.findData`, `self.action_type_combo.setCurrentIndex`, `self.active_pane`, `self.activity`, `self.addPage`, `self.advanced_button.setCheckable`, `self.advanced_button.toggled.connect`, `self.advanced_fields.hide`, `self.ambiguous.isChecked`, `self.ambiguous.setChecked`, `self.apply_density`, `self.auto_lock_spin.setRange`, `self.auto_lock_spin.setSuffix`, `self.auto_lock_spin.setValue`, `self.auto_lock_spin.value`, `self.auto_lock_timer.setSingleShot`, `self.auto_lock_timer.start`, `self.auto_lock_timer.timeout.connect`, `self.build_menus`, `self.call_active`, `self.clear_details`, `self.clear_selection`, `self.close_vault`, `self.compact.isChecked`, `self.compact.setChecked`, `self.compact.toggled.connect`, `self.copy_notes.clicked.connect`, `self.copy_notes.setEnabled`, `self.copy_otp.clicked.connect`, `self.copy_otp.setEnabled`, `self.copy_otp.setToolTip`, `self.copy_password.clicked.connect`, `self.copy_password.setToolTip`, `self.copy_url.clicked.connect`, `self.copy_url.setEnabled`, `self.copy_url.setToolTip`, `self.copy_username.clicked.connect`, `self.copy_username.setToolTip`, `self.copy_uuid.clicked.connect`, `self.copy_uuid.setToolTip`, `self.crypto_combo.addItem`, `self.crypto_combo.currentData`, `self.crypto_combo.findData`, `self.crypto_combo.setCurrentIndex`, `self.currentIdChanged.connect`, `self.delete_button.clicked.connect`, `self.delete_folder_button.clicked.connect`, `self.destination.setText`, `self.details.clear`, `self.details.setText`, `self.details.setWordWrap`, `self.digits.isChecked`, `self.digits.setChecked`, `self.edit_button.clicked.connect`, `self.edit_entry`, `self.entries.addTopLevelItem`, `self.entries.blockSignals`, `self.entries.clear`, `self.entries.collapseAll`, `self.entries.currentItemChanged.connect`, `self.entries.customContextMenuRequested.connect`, `self.entries.expandAll`, `self.entries.itemAt`, `self.entries.setContextMenuPolicy`, `self.entries.setCurrentItem`, `self.entries.topLevelItem`, `self.entries.topLevelItemCount`, `self.entries.viewport`, `self.export_standalone.clicked.connect`, `self.export_standalone.setToolTip`, `self.findChildren`, `self.finished.connect`, `self.folder_combo.addItem`, `self.folder_combo.currentData`, `self.folder_combo.findData`, `self.folder_combo.setCurrentIndex`, `self.gpg_path_edit.setPlaceholderText`, `self.gpg_path_edit.text`, `self.gpgconf_path_edit.setPlaceholderText`, `self.gpgconf_path_edit.text`, `self.hard_lock_button.clicked.connect`, `self.hard_lock_button.setText`, `self.horizontal_splitter.addWidget`, `self.horizontal_splitter.setChildrenCollapsible`, `self.horizontal_splitter.setSizes`, `self.horizontal_splitter.splitterMoved.connect`, `self.host_edit.setVisible`, `self.host_edit.text`, `self.host_label.setVisible`, `self.import_button.clicked.connect`, `self.info.setText`, `self.info.setWordWrap`, `self.itemAt`, `self.key_file_edit.setText`, `self.key_file_edit.text`, `self.language_combo.addItem`, `self.language_combo.currentData`, `self.language_combo.findData`, `self.language_combo.setCurrentIndex`, `self.length.setRange`, `self.length.setValue`, `self.length.value`, `self.length.valueChanged.connect`, `self.list.addItem`, `self.list.clear`, `self.list.count`, `self.list.currentItem`, `self.list.currentRow`, `self.list.currentRowChanged.connect`, `self.list.item`, `self.list.setCurrentRow`, `self.lock`, `self.lock_button.clicked.connect`, `self.lock_button.setText`, `self.lock_button.setVisible`, `self.lock_watch.start`, `self.lock_watch.timeout.connect`, `self.lower.isChecked`, `self.lower.setChecked`, `self.menuBar`, `self.move_to_results.emit`, `self.new_button.clicked.connect`, `self.new_button.setEnabled`, `self.new_folder_button.clicked.connect`, `self.new_folder_button.setEnabled`, `self.no_password.isChecked`, `self.notes.clear`, `self.notes.setMinimumHeight`, `self.notes.setPlainText`, `self.notes.setReadOnly`, `self.notes.setToolTip`, `self.notes_edit.clear`, `self.notes_edit.setMaximumHeight`, `self.notes_edit.toPlainText`, `self.on_move`, `self.on_reload`, `self.open_action.clicked.connect`, `self.open_action.setEnabled`, `self.open_action.setText`, `self.open_action.setToolTip`, `self.open_vault`, `self.otp.clear`, `self.otp.setText`, `self.output_edit.setText`, `self.output_edit.text`, `self.password_edit.editingFinished.connect`, `self.password_edit.setEchoMode`, `self.password_edit.setText`, `self.password_edit.setToolTip`, `self.password_edit.text`, `self.password_edit.textChanged.connect`, `self.password_generate.clicked.connect`, `self.password_generate.setToolTip`, `self.password_label.setText`, `self.password_reference.clear`, `self.password_reference.open_origin.connect`, `self.password_reference.update_reference`, `self.password_timeout_spin.setRange`, `self.password_timeout_spin.setSuffix`, `self.password_timeout_spin.setValue`, `self.password_timeout_spin.value`, `self.password_toggle.setCheckable`, `self.password_toggle.setText`, `self.password_toggle.setToolTip`, `self.password_toggle.toggled.connect`, `self.path_edit.setText`, `self.path_edit.text`, `self.path_label.setText`, `self.port_edit.setPlaceholderText`, `self.port_edit.setVisible`, `self.port_edit.text`, `self.port_label.setVisible`, `self.preview.setReadOnly`, `self.preview.setText`, `self.preview.text`, `self.privacy_combo.addItem`, `self.privacy_combo.currentData`, `self.privacy_combo.setCurrentIndex`, `self.qr_button.clicked.connect`, `self.qr_clipboard_button.clicked.connect`, `self.rdp_domain_edit.setPlaceholderText`, `self.rdp_domain_edit.setToolTip`, `self.rdp_domain_edit.setVisible`, `self.rdp_domain_edit.text`, `self.rdp_domain_label.setVisible`, `self.rdp_linux_client_edit.text`, `self.rdp_linux_options_edit.setMaximumHeight`, `self.rdp_linux_options_edit.setPlainText`, `self.rdp_macos_client_edit.text`, `self.rdp_macos_options_edit.setMaximumHeight`, `self.rdp_macos_options_edit.setPlainText`, `self.rdp_windows_client_edit.text`, `self.rdp_windows_options_edit.setMaximumHeight`, `self.rdp_windows_options_edit.setPlainText`, `self.recent_label.setAlignment`, `self.recent_label.setVisible`, `self.recent_list.addItem`, `self.recent_list.clear`, `self.recent_list.itemClicked.connect`, `self.recent_list.setMaximumHeight`, `self.recent_list.setMinimumWidth`, `self.recent_list.setSelectionMode`, `self.recent_list.setVisible`, `self.recent_menu.aboutToShow.connect`, `self.recent_menu.addAction`, `self.recent_menu.clear`, `self.recipient_combo.addItem`, `self.recipient_combo.clear`, `self.recipient_combo.currentData`, `self.recipient_combo.findData`, `self.recipient_combo.setCurrentIndex`, `self.refresh`, `self.refresh_otp`, `self.refresh_recent_menu`, `self.refresh_recent_start_page`, `self.refresh_references`, `self.refresh_results`, `self.regenerate`, `self.reject`, `self.reload`, `self.rename_folder_button.clicked.connect`, `self.report.setPlaceholderText`, `self.report.setPlainText`, `self.report.setReadOnly`, `self.require_signature.isChecked`, `self.require_signature.setChecked`, `self.resize`, `self.result_count.clear`, `self.result_count.setText`, `self.results.addTopLevelItem`, `self.results.blockSignals`, `self.results.clear`, `self.results.currentItem`, `self.results.currentItemChanged.connect`, `self.results.customContextMenuRequested.connect`, `self.results.header`, `self.results.itemAt`, `self.results.itemDoubleClicked.connect`, `self.results.scrollToItem`, `self.results.setAcceptDrops`, `self.results.setAlternatingRowColors`, `self.results.setColumnCount`, `self.results.setColumnWidth`, `self.results.setContextMenuPolicy`, `self.results.setCurrentItem`, `self.results.setFocus`, `self.results.setHeaderHidden`, `self.results.setHeaderLabels`, `self.results.setRootIsDecorated`, `self.results.setSortingEnabled`, `self.results.setStyleSheet`, `self.results.sortItems`, `self.results.topLevelItem`, `self.results.topLevelItemCount`, `self.results.viewport`, `self.search.clear`, `self.search.move_to_results.connect`, `self.search.selectAll`, `self.search.setClearButtonEnabled`, `self.search.setEnabled`, `self.search.setFocus`, `self.search.setPlaceholderText`, `self.search.setToolTip`, `self.search.text`, `self.search.textChanged.connect`, `self.search_scope.addItems`, `self.search_scope.currentIndex`, `self.search_scope.currentIndexChanged.connect`, `self.search_timer.setInterval`, `self.search_timer.setSingleShot`, `self.search_timer.start`, `self.search_timer.stop`, `self.search_timer.timeout.connect`, `self.setAcceptDrops`, `self.setCentralWidget`, `self.setDefaultDropAction`, `self.setDragDropMode`, `self.setDragEnabled`, `self.setDropIndicatorShown`, `self.setHeaderHidden`, `self.setMinimumWidth`, `self.setWindowTitle`, `self.shortcuts.append`, `self.show_help`, `self.show_inbox`, `self.sign_checkbox.isChecked`, `self.sign_checkbox.toggled.connect`, `self.signer_combo.addItem`, `self.signer_combo.clear`, `self.signer_combo.currentData`, `self.signer_combo.setEnabled`, `self.source_edit.setText`, `self.source_edit.text`, `self.ssh_options_edit.setMaximumHeight`, `self.ssh_options_edit.setPlaceholderText`, `self.ssh_options_edit.setPlainText`, `self.ssh_options_edit.setText`, `self.ssh_options_edit.setVisible`, `self.ssh_options_edit.text`, `self.ssh_options_label.setVisible`, `self.ssh_terminal_edit.text`, `self.ssh_x11_combo.addItem`, `self.ssh_x11_combo.currentData`, `self.ssh_x11_combo.findData`, `self.ssh_x11_combo.setCurrentIndex`, `self.ssh_x11_combo.setVisible`, `self.ssh_x11_label.setVisible`, `self.stack.addWidget`, `self.stack.setCurrentWidget`, `self.statusBar`, `self.status_message`, `self.style`, `self.summary_label.setText`, `self.summary_label.setWordWrap`, `self.symbols.isChecked`, `self.symbols.setChecked`, `self.tabs.addTab`, `self.tabs.count`, `self.tabs.currentChanged.connect`, `self.tabs.currentIndex`, `self.tabs.currentWidget`, `self.tabs.removeTab`, `self.tabs.setCurrentIndex`, `self.tabs.setMovable`, `self.tabs.setTabPosition`, `self.tabs.setTabToolTip`, `self.tabs.setTabsClosable`, `self.tabs.tabCloseRequested.connect`, `self.tabs.widget`, `self.tags_edit.text`, `self.technical.hide`, `self.technical_button.setCheckable`, `self.technical_button.toggled.connect`, `self.timer.start`, `self.timer.timeout.connect`, `self.title.font`, `self.title.setFont`, `self.title.setText`, `self.title_edit.text`, `self.totp_edit.setText`, `self.totp_edit.text`, `self.totp_secret_edit.setEchoMode`, `self.totp_secret_edit.setText`, `self.totp_secret_edit.text`, `self.totp_timeout_spin.setRange`, `self.totp_timeout_spin.setSuffix`, `self.totp_timeout_spin.setValue`, `self.totp_timeout_spin.value`, `self.tree_combo.addItem`, `self.tree_combo.currentData`, `self.tree_combo.findData`, `self.tree_combo.setCurrentIndex`, `self.tui_notice_background_edit.setPlaceholderText`, `self.tui_notice_background_edit.text`, `self.tui_notice_foreground_edit.setPlaceholderText`, `self.tui_notice_foreground_edit.text`, `self.tui_notice_seconds_spin.setRange`, `self.tui_notice_seconds_spin.setSingleStep`, `self.tui_notice_seconds_spin.setSuffix`, `self.tui_notice_seconds_spin.setValue`, `self.tui_notice_seconds_spin.value`, `self.ui_state.setValue`, `self.ui_state.value`, `self.unlock_button.clicked.connect`, `self.unlock_button.setVisible`, `self.update_action_fields`, `self.update_controls`, `self.update_window_title`, `self.upper.isChecked`, `self.upper.setChecked`, `self.url_edit.setVisible`, `self.url_edit.text`, `self.url_label.setVisible`, `self.username.clear`, `self.username.setText`, `self.username_edit.editingFinished.connect`, `self.username_edit.setToolTip`, `self.username_edit.text`, `self.username_edit.textChanged.connect`, `self.username_reference.clear`, `self.username_reference.open_origin.connect`, `self.username_reference.update_reference`, `self.uuid_label.clear`, `self.uuid_label.setText`, `self.vault.create_folder`, `self.vault.delete_entry`, `self.vault.delete_folder`, `self.vault.folder_path`, `self.vault.folder_paths`, `self.vault.get_entry`, `self.vault.get_folder`, `self.vault.list_folders`, `self.vault.list_items`, `self.vault.lock`, `self.vault.move_entry`, `self.vault.move_folder`, `self.vault.rename_folder`, `self.vault.resolved_action`, `self.vault.resolved_password`, `self.vault.resolved_username`, `self.vault.save_entry`, `self.vault.search`, `self.vault.unlock`, `self.vault_state.setText`, `self.vertical_splitter.addWidget`, `self.vertical_splitter.setChildrenCollapsible`, `self.vertical_splitter.setSizes`, `self.vertical_splitter.splitterMoved.connect`, `self.window`, `self.yubikey_edit.setPlaceholderText`, `self.yubikey_edit.text`, `set`, `setData`, `setSectionsMovable`, `settings.remember_vault`, `settings.save`, `shortcut.activated.connect`, `shortcut.setContext`, `showMessage`, `sortIndicatorChanged.connect`, `source.currentItem`, `source_button.clicked.connect`, `source_layout.addWidget`, `source_layout.setContentsMargins`, `splitlines`, `ssh_form.addRow`, `standalone_recipient_keys`, `standalone_signing_keys`, `standardIcon`, `str`, `strip`, `summary.setSubTitle`, `summary.setTitle`, `summary_layout.addWidget`, `super`, `t.upper`, `tabs.addTab`, `tabs.count`, `tabs.setCurrentIndex`, `target.data`, `target.parent`, `technical_layout.addWidget`, `time.perf_counter`, `title_font.pointSize`, `title_font.setBold`, `title_font.setPointSize`, `toPoint`, `toolbar.addWidget`, `type`, `username.startswith`, `vault.crypto.hard_lock`, `vault_menu.addMenu`, `vault_menu.addSeparator`, `verify_gpg.clicked.connect`, `visit`, `widget.restoreState`, `widget.saveState`, `widget.toPlainText`, `window.hard_lock_all`, `window.resize`, `window.setWindowIcon`, `window.show`, `window.statusBar`, `wizard.exec`, `wizard.request`, `write_export`.
 
 **Explicitly raised exceptions:** `SystemExit`, `ValueError`.
 
-**Object attributes written:** `s.auto_lock_timeout`, `s.clipboard_password_timeout`, `s.clipboard_totp_timeout`, `s.crypto_backend`, `s.gpg_executable`, `s.gpgconf_executable`, `s.language`, `s.rdp_linux_client`, `s.rdp_linux_options`, `s.rdp_macos_client`, `s.rdp_macos_options`, `s.rdp_windows_client`, `s.rdp_windows_options`, `s.ssh_terminal`, `s.ssh_terminal_options`, `s.tree_startup_view`, `s.tui_clipboard_notice_background`, `s.tui_clipboard_notice_foreground`, `s.tui_clipboard_notice_seconds`, `self._choices`, `self.action_type_combo`, `self.ambiguous`, `self.app_settings`, `self.auto_lock_spin`, `self.auto_lock_timer`, `self.copy_notes`, `self.copy_otp`, `self.copy_password`, `self.copy_url`, `self.copy_username`, `self.copy_uuid`, `self.crypto`, `self.crypto_combo`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.delete_button`, `self.delete_folder_button`, `self.details`, `self.digits`, `self.edit_button`, `self.empty_page`, `self.entries`, `self.entry`, `self.folder_combo`, `self.gpg_path_edit`, `self.gpgconf_path_edit`, `self.hard_lock_button`, `self.host_edit`, `self.host_label`, `self.items`, `self.key_file_edit`, `self.language_combo`, `self.length`, `self.list`, `self.lock_button`, `self.lower`, `self.new_button`, `self.new_folder_button`, `self.no_password`, `self.notes`, `self.notes_edit`, `self.on_move`, `self.on_reload`, `self.open_action`, `self.otp`, `self.password_edit`, `self.password_generate`, `self.password_timeout_spin`, `self.password_toggle`, `self.path_edit`, `self.path_label`, `self.port_edit`, `self.port_label`, `self.preview`, `self.privacy_combo`, `self.qr_button`, `self.qr_clipboard_button`, `self.rdp_linux_client_edit`, `self.rdp_linux_options_edit`, `self.rdp_macos_client_edit`, `self.rdp_macos_options_edit`, `self.rdp_windows_client_edit`, `self.rdp_windows_options_edit`, `self.recent_menu`, `self.recipient_combo`, `self.rename_folder_button`, `self.report`, `self.require_signature`, `self.search`, `self.search_timer`, `self.shortcuts`, `self.signer_combo`, `self.source_edit`, `self.ssh_options_edit`, `self.ssh_options_label`, `self.ssh_terminal_edit`, `self.ssh_x11_combo`, `self.ssh_x11_label`, `self.stack`, `self.summary_label`, `self.symbols`, `self.tabs`, `self.tags_edit`, `self.timer`, `self.title`, `self.title_edit`, `self.totp_edit`, `self.totp_secret_edit`, `self.totp_timeout_spin`, `self.tree_combo`, `self.tui_notice_background_edit`, `self.tui_notice_foreground_edit`, `self.tui_notice_seconds_spin`, `self.unlock_button`, `self.upper`, `self.url_edit`, `self.url_label`, `self.username`, `self.username_edit`, `self.uuid_label`, `self.vault`, `self.vault_path`, `self.yubikey_edit`.
+**Object attributes written:** `s.auto_lock_timeout`, `s.clipboard_password_timeout`, `s.clipboard_totp_timeout`, `s.crypto_backend`, `s.gpg_executable`, `s.gpgconf_executable`, `s.language`, `s.rdp_linux_client`, `s.rdp_linux_options`, `s.rdp_macos_client`, `s.rdp_macos_options`, `s.rdp_windows_client`, `s.rdp_windows_options`, `s.ssh_terminal`, `s.ssh_terminal_options`, `s.tree_startup_view`, `s.tui_clipboard_notice_background`, `s.tui_clipboard_notice_foreground`, `s.tui_clipboard_notice_seconds`, `self._choices`, `self._expanded_folder_ids`, `self._folder_paths`, `self._last_tree_query`, `self.action_type_combo`, `self.advanced_button`, `self.advanced_fields`, `self.ambiguous`, `self.app_settings`, `self.auto_lock_spin`, `self.auto_lock_timer`, `self.compact`, `self.copy_notes`, `self.copy_otp`, `self.copy_password`, `self.copy_url`, `self.copy_username`, `self.copy_uuid`, `self.crypto`, `self.crypto_combo`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.delete_button`, `self.delete_folder_button`, `self.destination`, `self.details`, `self.digits`, `self.edit_button`, `self.empty_page`, `self.entries`, `self.entry`, `self.export_standalone`, `self.folder_combo`, `self.gpg_path_edit`, `self.gpgconf_path_edit`, `self.hard_lock_button`, `self.horizontal_splitter`, `self.host_edit`, `self.host_label`, `self.import_button`, `self.info`, `self.items`, `self.key_file_edit`, `self.language_combo`, `self.length`, `self.list`, `self.lock_button`, `self.lock_watch`, `self.lower`, `self.new_button`, `self.new_folder_button`, `self.no_password`, `self.notes`, `self.notes_edit`, `self.on_move`, `self.on_reload`, `self.open_action`, `self.otp`, `self.output_edit`, `self.password_edit`, `self.password_generate`, `self.password_label`, `self.password_reference`, `self.password_timeout_spin`, `self.password_toggle`, `self.path_edit`, `self.path_label`, `self.port_edit`, `self.port_label`, `self.preview`, `self.privacy_combo`, `self.qr_button`, `self.qr_clipboard_button`, `self.rdp_domain_edit`, `self.rdp_domain_label`, `self.rdp_linux_client_edit`, `self.rdp_linux_options_edit`, `self.rdp_macos_client_edit`, `self.rdp_macos_options_edit`, `self.rdp_windows_client_edit`, `self.rdp_windows_options_edit`, `self.recent_label`, `self.recent_list`, `self.recent_menu`, `self.recipient_combo`, `self.rename_folder_button`, `self.report`, `self.require_signature`, `self.result_count`, `self.results`, `self.search`, `self.search_scope`, `self.search_timer`, `self.shortcuts`, `self.sign_checkbox`, `self.signer_combo`, `self.source_edit`, `self.ssh_options_edit`, `self.ssh_options_label`, `self.ssh_terminal_edit`, `self.ssh_x11_combo`, `self.ssh_x11_label`, `self.stack`, `self.summary_label`, `self.symbols`, `self.tabs`, `self.tags_edit`, `self.technical`, `self.technical_button`, `self.timer`, `self.title`, `self.title_edit`, `self.totp_edit`, `self.totp_secret_edit`, `self.totp_timeout_spin`, `self.tree_combo`, `self.tui_notice_background_edit`, `self.tui_notice_foreground_edit`, `self.tui_notice_seconds_spin`, `self.ui_state`, `self.unlock_button`, `self.upper`, `self.url_edit`, `self.url_label`, `self.username`, `self.username_edit`, `self.username_reference`, `self.uuid_label`, `self.vault`, `self.vault_path`, `self.vault_state`, `self.vertical_splitter`, `self.yubikey_edit`.
 
-**Control-flow shape:** 109 conditional blocks, 24 loops, 36 try blocks, 0 context managers, 66 explicit returns.
+**Control-flow shape:** 141 conditional blocks, 42 loops, 41 try blocks, 0 context managers, 79 explicit returns.
 
 **Security-relevant effect categories:** process, filesystem, cryptography/key-agent, clipboard, parser/serialization.
 
@@ -688,7 +688,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultTree`
 
 **Kind:** class  
-**Lines:** 83-114  
+**Lines:** 96-128  
 **Bases:** `QTreeWidget`  
 **Methods:** `__init__`, `dropEvent`  
 **Responsibility:** Implements the `VaultTree` operation in this module.
@@ -697,7 +697,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultTree.__init__`
 
 **Kind:** function/method  
-**Lines:** 84-93  
+**Lines:** 97-106  
 **Signature:** `def __init__(self, on_move, on_reload, parent=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -713,11 +713,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultTree.dropEvent`
 
 **Kind:** function/method  
-**Lines:** 95-114  
+**Lines:** 108-128  
 **Signature:** `def dropEvent(self, event) -> None`  
 **Purpose:** Implements the `dropEvent` operation in this module.
 
-**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `data`, `event.accept`, `event.position`, `item.data`, `self.currentItem`, `self.itemAt`, `self.on_move`, `self.on_reload`, `str`, `target.data`, `target.parent`, `toPoint`.
+**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `data`, `event.accept`, `event.position`, `event.source`, `isinstance`, `item.data`, `self.itemAt`, `self.on_move`, `self.on_reload`, `source.currentItem`, `str`, `target.data`, `target.parent`, `toPoint`.
 
 **Control-flow shape:** 4 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
 
@@ -725,11 +725,34 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
+<!-- symbol:keys_ng.gui.main:main.SearchLineEdit -->
+#### `main.SearchLineEdit`
+
+**Kind:** class  
+**Lines:** 130-137  
+**Bases:** `QLineEdit`  
+**Methods:** `keyPressEvent`  
+**Responsibility:** Implements the `SearchLineEdit` operation in this module.
+
+<!-- symbol:keys_ng.gui.main:main.SearchLineEdit.keyPressEvent -->
+#### `main.SearchLineEdit.keyPressEvent`
+
+**Kind:** function/method  
+**Lines:** 132-137  
+**Signature:** `def keyPressEvent(self, event) -> None`  
+**Purpose:** Implements the `keyPressEvent` operation in this module.
+
+**Direct calls observed in the function body:** `event.accept`, `event.key`, `keyPressEvent`, `self.move_to_results.emit`, `super`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
 <!-- symbol:keys_ng.gui.main:main.PasswordGeneratorDialog -->
 #### `main.PasswordGeneratorDialog`
 
 **Kind:** class  
-**Lines:** 116-146  
+**Lines:** 139-169  
 **Bases:** `QDialog`  
 **Methods:** `__init__`, `regenerate`, `value`  
 **Responsibility:** Implements the `PasswordGeneratorDialog` operation in this module.
@@ -738,7 +761,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.PasswordGeneratorDialog.__init__`
 
 **Kind:** function/method  
-**Lines:** 117-136  
+**Lines:** 140-159  
 **Signature:** `def __init__(self, parent=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -754,7 +777,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.PasswordGeneratorDialog.regenerate`
 
 **Kind:** function/method  
-**Lines:** 137-144  
+**Lines:** 160-167  
 **Signature:** `def regenerate(self) -> None`  
 **Purpose:** Implements the `regenerate` operation in this module.
 
@@ -768,7 +791,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.PasswordGeneratorDialog.value`
 
 **Kind:** function/method  
-**Lines:** 145-146  
+**Lines:** 168-169  
 **Signature:** `def value(self) -> str`  
 **Purpose:** Implements the `value` operation in this module.
 
@@ -782,26 +805,72 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.EntryDialog`
 
 **Kind:** class  
-**Lines:** 148-330  
+**Lines:** 171-438  
 **Bases:** `QDialog`  
-**Methods:** `__init__`, `toggle_password_visibility`, `generate_password_value`, `update_action_fields`, `import_qr`, `import_qr_clipboard`, `build_entry`  
+**Methods:** `__init__`, `check_lock`, `refresh_references`, `preview_origin`, `toggle_password_visibility`, `generate_password_value`, `update_action_fields`, `import_qr`, `import_qr_clipboard`, `build_entry`  
 **Responsibility:** Implements the `EntryDialog` operation in this module.
 
 <!-- symbol:keys_ng.gui.main:main.EntryDialog.__init__ -->
 #### `main.EntryDialog.__init__`
 
 **Kind:** function/method  
-**Lines:** 151-255  
+**Lines:** 174-319  
 **Signature:** `def __init__(self, vault_obj: Vault, parent=None, entry: Entry | None=None, default_folder_id: str | None=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
-**Direct calls observed in the function body:** `QComboBox`, `QDialogButtonBox`, `QFormLayout`, `QHBoxLayout`, `QLabel`, `QLineEdit`, `QPushButton`, `QTextEdit`, `QVBoxLayout`, `QWidget`, `_`, `__init__`, `build_otpauth_uri`, `buttons.accepted.connect`, `buttons.rejected.connect`, `form.addRow`, `format_ssh_options`, `join`, `layout.addLayout`, `layout.addWidget`, `next`, `password_layout.addWidget`, `password_layout.setContentsMargins`, `self.action_type_combo.addItem`, `self.action_type_combo.currentIndexChanged.connect`, `self.action_type_combo.findData`, `self.action_type_combo.setCurrentIndex`, `self.folder_combo.addItem`, `self.folder_combo.findData`, `self.folder_combo.setCurrentIndex`, `self.password_edit.setEchoMode`, `self.password_edit.setToolTip`, `self.password_generate.clicked.connect`, `self.password_generate.setToolTip`, `self.password_toggle.setCheckable`, `self.password_toggle.setToolTip`, `self.password_toggle.toggled.connect`, `self.qr_button.clicked.connect`, `self.qr_clipboard_button.clicked.connect`, `self.setWindowTitle`, `self.ssh_options_edit.setPlaceholderText`, `self.ssh_options_edit.setText`, `self.ssh_x11_combo.addItem`, `self.ssh_x11_combo.findData`, `self.ssh_x11_combo.setCurrentIndex`, `self.totp_edit.setText`, `self.totp_secret_edit.setEchoMode`, `self.totp_secret_edit.setText`, `self.update_action_fields`, `self.username_edit.setToolTip`, `self.vault.folder_path`, `self.vault.list_folders`, `str`, `super`.
+**Direct calls observed in the function body:** `QComboBox`, `QDialogButtonBox`, `QFormLayout`, `QHBoxLayout`, `QLabel`, `QLineEdit`, `QPushButton`, `QScrollArea`, `QTextEdit`, `QTimer`, `QVBoxLayout`, `QWidget`, `ReferenceWidget`, `_`, `__init__`, `advanced_form.addRow`, `build_otpauth_uri`, `buttons.accepted.connect`, `buttons.rejected.connect`, `form.addRow`, `form_widget.setLayout`, `format_ssh_options`, `join`, `layout.addWidget`, `next`, `password_layout.addWidget`, `password_layout.setContentsMargins`, `scroll.setWidget`, `scroll.setWidgetResizable`, `self.action_type_combo.addItem`, `self.action_type_combo.currentIndexChanged.connect`, `self.action_type_combo.findData`, `self.action_type_combo.setCurrentIndex`, `self.advanced_button.setCheckable`, `self.advanced_button.toggled.connect`, `self.advanced_fields.hide`, `self.folder_combo.addItem`, `self.folder_combo.findData`, `self.folder_combo.setCurrentIndex`, `self.lock_watch.start`, `self.lock_watch.timeout.connect`, `self.notes_edit.setMaximumHeight`, `self.password_edit.editingFinished.connect`, `self.password_edit.setEchoMode`, `self.password_edit.setToolTip`, `self.password_edit.textChanged.connect`, `self.password_generate.clicked.connect`, `self.password_generate.setToolTip`, `self.password_reference.open_origin.connect`, `self.password_toggle.setCheckable`, `self.password_toggle.setToolTip`, `self.password_toggle.toggled.connect`, `self.qr_button.clicked.connect`, `self.qr_clipboard_button.clicked.connect`, `self.rdp_domain_edit.setPlaceholderText`, `self.rdp_domain_edit.setToolTip`, `self.refresh_references`, `self.resize`, `self.setMinimumWidth`, `self.setWindowTitle`, `self.ssh_options_edit.setPlaceholderText`, `self.ssh_options_edit.setText`, `self.ssh_x11_combo.addItem`, `self.ssh_x11_combo.findData`, `self.ssh_x11_combo.setCurrentIndex`, `self.totp_edit.setText`, `self.totp_secret_edit.setEchoMode`, `self.totp_secret_edit.setText`, `self.update_action_fields`, `self.username_edit.editingFinished.connect`, `self.username_edit.setToolTip`, `self.username_edit.textChanged.connect`, `self.username_reference.open_origin.connect`, `self.vault.folder_path`, `self.vault.list_folders`, `str`, `super`.
 
-**Object attributes written:** `self.action_type_combo`, `self.entry`, `self.folder_combo`, `self.host_edit`, `self.host_label`, `self.notes_edit`, `self.password_edit`, `self.password_generate`, `self.password_toggle`, `self.port_edit`, `self.port_label`, `self.qr_button`, `self.qr_clipboard_button`, `self.ssh_options_edit`, `self.ssh_options_label`, `self.ssh_x11_combo`, `self.ssh_x11_label`, `self.tags_edit`, `self.title_edit`, `self.totp_edit`, `self.totp_secret_edit`, `self.url_edit`, `self.url_label`, `self.username_edit`, `self.vault`.
+**Object attributes written:** `self.action_type_combo`, `self.advanced_button`, `self.advanced_fields`, `self.entry`, `self.folder_combo`, `self.host_edit`, `self.host_label`, `self.lock_watch`, `self.notes_edit`, `self.password_edit`, `self.password_generate`, `self.password_reference`, `self.password_toggle`, `self.port_edit`, `self.port_label`, `self.qr_button`, `self.qr_clipboard_button`, `self.rdp_domain_edit`, `self.rdp_domain_label`, `self.ssh_options_edit`, `self.ssh_options_label`, `self.ssh_x11_combo`, `self.ssh_x11_label`, `self.tags_edit`, `self.title_edit`, `self.totp_edit`, `self.totp_secret_edit`, `self.url_edit`, `self.url_label`, `self.username_edit`, `self.username_reference`, `self.vault`.
 
 **Control-flow shape:** 5 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
-**Security-relevant effect categories:** clipboard.
+**Security-relevant effect categories:** filesystem, clipboard, parser/serialization.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.EntryDialog.check_lock -->
+#### `main.EntryDialog.check_lock`
+
+**Kind:** function/method  
+**Lines:** 321-329  
+**Signature:** `def check_lock(self) -> None`  
+**Purpose:** Implements the `check_lock` operation in this module.
+
+**Direct calls observed in the function body:** `field.clear`, `self.findChildren`, `self.notes_edit.clear`, `self.password_reference.clear`, `self.reject`, `self.username_reference.clear`.
+
+**Object attributes written:** `self.entry`.
+
+**Control-flow shape:** 1 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.EntryDialog.refresh_references -->
+#### `main.EntryDialog.refresh_references`
+
+**Kind:** function/method  
+**Lines:** 331-334  
+**Signature:** `def refresh_references(self) -> None`  
+**Purpose:** Implements the `refresh_references` operation in this module.
+
+**Direct calls observed in the function body:** `replace`, `self.password_edit.text`, `self.password_reference.update_reference`, `self.username_edit.text`, `self.username_reference.update_reference`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Security-relevant effect categories:** filesystem.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.EntryDialog.preview_origin -->
+#### `main.EntryDialog.preview_origin`
+
+**Kind:** function/method  
+**Lines:** 336-359  
+**Signature:** `def preview_origin(self, entry_id: str) -> None`  
+**Purpose:** Implements the `preview_origin` operation in this module.
+
+**Direct calls observed in the function body:** `QDialog`, `QDialogButtonBox`, `QLabel`, `QMessageBox.warning`, `QVBoxLayout`, `_`, `close.rejected.connect`, `dialog.deleteLater`, `dialog.exec`, `dialog.setWindowTitle`, `format`, `label.clear`, `label.setText`, `label.setTextFormat`, `label.setWordWrap`, `layout.addWidget`, `self.finished.connect`, `self.vault.folder_path`, `self.vault.get_entry`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -809,7 +878,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.EntryDialog.toggle_password_visibility`
 
 **Kind:** function/method  
-**Lines:** 257-259  
+**Lines:** 361-363  
 **Signature:** `def toggle_password_visibility(self, visible: bool) -> None`  
 **Purpose:** Implements the `toggle_password_visibility` operation in this module.
 
@@ -823,7 +892,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.EntryDialog.generate_password_value`
 
 **Kind:** function/method  
-**Lines:** 261-264  
+**Lines:** 365-368  
 **Signature:** `def generate_password_value(self) -> None`  
 **Purpose:** Implements the `generate_password_value` operation in this module.
 
@@ -837,11 +906,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.EntryDialog.update_action_fields`
 
 **Kind:** function/method  
-**Lines:** 266-286  
+**Lines:** 370-393  
 **Signature:** `def update_action_fields(self) -> None`  
 **Purpose:** Implements the `update_action_fields` operation in this module.
 
-**Direct calls observed in the function body:** `self.action_type_combo.currentData`, `self.host_edit.setVisible`, `self.host_label.setVisible`, `self.port_edit.setPlaceholderText`, `self.port_edit.setVisible`, `self.port_label.setVisible`, `self.ssh_options_edit.setVisible`, `self.ssh_options_label.setVisible`, `self.ssh_x11_combo.setVisible`, `self.ssh_x11_label.setVisible`, `self.url_edit.setVisible`, `self.url_label.setVisible`.
+**Direct calls observed in the function body:** `self.action_type_combo.currentData`, `self.host_edit.setVisible`, `self.host_label.setVisible`, `self.port_edit.setPlaceholderText`, `self.port_edit.setVisible`, `self.port_label.setVisible`, `self.rdp_domain_edit.setVisible`, `self.rdp_domain_label.setVisible`, `self.ssh_options_edit.setVisible`, `self.ssh_options_label.setVisible`, `self.ssh_x11_combo.setVisible`, `self.ssh_x11_label.setVisible`, `self.url_edit.setVisible`, `self.url_label.setVisible`.
 
 **Control-flow shape:** 2 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
@@ -851,7 +920,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.EntryDialog.import_qr`
 
 **Kind:** function/method  
-**Lines:** 288-298  
+**Lines:** 395-405  
 **Signature:** `def import_qr(self) -> None`  
 **Purpose:** Imports `import_qr`.
 
@@ -867,7 +936,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.EntryDialog.import_qr_clipboard`
 
 **Kind:** function/method  
-**Lines:** 300-311  
+**Lines:** 407-418  
 **Signature:** `def import_qr_clipboard(self) -> None`  
 **Purpose:** Imports `import_qr_clipboard`.
 
@@ -885,11 +954,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.EntryDialog.build_entry`
 
 **Kind:** function/method  
-**Lines:** 313-330  
+**Lines:** 420-438  
 **Signature:** `def build_entry(self) -> Entry`  
 **Purpose:** Builds `build_entry`.
 
-**Direct calls observed in the function body:** `EntryDraft`, `build_entry_from_draft`, `self.action_type_combo.currentData`, `self.folder_combo.currentData`, `self.host_edit.text`, `self.notes_edit.toPlainText`, `self.password_edit.text`, `self.port_edit.text`, `self.ssh_options_edit.text`, `self.ssh_x11_combo.currentData`, `self.tags_edit.text`, `self.title_edit.text`, `self.totp_edit.text`, `self.totp_secret_edit.text`, `self.url_edit.text`, `self.username_edit.text`, `str`.
+**Direct calls observed in the function body:** `EntryDraft`, `build_entry_from_draft`, `self.action_type_combo.currentData`, `self.folder_combo.currentData`, `self.host_edit.text`, `self.notes_edit.toPlainText`, `self.password_edit.text`, `self.port_edit.text`, `self.rdp_domain_edit.text`, `self.ssh_options_edit.text`, `self.ssh_x11_combo.currentData`, `self.tags_edit.text`, `self.title_edit.text`, `self.totp_edit.text`, `self.totp_secret_edit.text`, `self.url_edit.text`, `self.username_edit.text`, `str`.
 
 **Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
 
@@ -899,7 +968,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.HelpDialog`
 
 **Kind:** class  
-**Lines:** 332-364  
+**Lines:** 440-472  
 **Bases:** `QDialog`  
 **Methods:** `__init__`  
 **Responsibility:** Implements the `HelpDialog` operation in this module.
@@ -908,7 +977,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.HelpDialog.__init__`
 
 **Kind:** function/method  
-**Lines:** 333-364  
+**Lines:** 441-472  
 **Signature:** `def __init__(self, parent=None, initial_tab: int=0) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -924,7 +993,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.KeePassXCImportDialog`
 
 **Kind:** class  
-**Lines:** 366-443  
+**Lines:** 474-551  
 **Bases:** `QDialog`  
 **Methods:** `__init__`, `browse_source`, `browse_key_file`, `_run`, `preview_import`, `perform_import`  
 **Responsibility:** Preview and import a KeePassXC KDBX/XML source into an open vault.
@@ -933,7 +1002,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.KeePassXCImportDialog.__init__`
 
 **Kind:** function/method  
-**Lines:** 369-405  
+**Lines:** 477-513  
 **Signature:** `def __init__(self, vault_obj: Vault, parent=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -949,7 +1018,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.KeePassXCImportDialog.browse_source`
 
 **Kind:** function/method  
-**Lines:** 407-409  
+**Lines:** 515-517  
 **Signature:** `def browse_source(self) -> None`  
 **Purpose:** Implements the `browse_source` operation in this module.
 
@@ -965,7 +1034,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.KeePassXCImportDialog.browse_key_file`
 
 **Kind:** function/method  
-**Lines:** 411-413  
+**Lines:** 519-521  
 **Signature:** `def browse_key_file(self) -> None`  
 **Purpose:** Implements the `browse_key_file` operation in this module.
 
@@ -981,7 +1050,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.KeePassXCImportDialog._run`
 
 **Kind:** function/method  
-**Lines:** 415-425  
+**Lines:** 523-533  
 **Signature:** `def _run(self, dry_run: bool)`  
 **Purpose:** Internal helper implementing `_run`.
 
@@ -997,7 +1066,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.KeePassXCImportDialog.preview_import`
 
 **Kind:** function/method  
-**Lines:** 427-432  
+**Lines:** 535-540  
 **Signature:** `def preview_import(self) -> None`  
 **Purpose:** Implements the `preview_import` operation in this module.
 
@@ -1013,7 +1082,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.KeePassXCImportDialog.perform_import`
 
 **Kind:** function/method  
-**Lines:** 434-443  
+**Lines:** 542-551  
 **Signature:** `def perform_import(self) -> None`  
 **Purpose:** Implements the `perform_import` operation in this module.
 
@@ -1029,7 +1098,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.TrustedSignersDialog`
 
 **Kind:** class  
-**Lines:** 445-500  
+**Lines:** 553-608  
 **Bases:** `QDialog`  
 **Methods:** `__init__`, `refresh`, `add_signer`, `remove_signer`  
 **Responsibility:** Implements the `TrustedSignersDialog` operation in this module.
@@ -1038,7 +1107,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.TrustedSignersDialog.__init__`
 
 **Kind:** function/method  
-**Lines:** 446-464  
+**Lines:** 554-572  
 **Signature:** `def __init__(self, vault: Vault, parent=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -1054,7 +1123,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.TrustedSignersDialog.refresh`
 
 **Kind:** function/method  
-**Lines:** 466-471  
+**Lines:** 574-579  
 **Signature:** `def refresh(self) -> None`  
 **Purpose:** Implements the `refresh` operation in this module.
 
@@ -1068,7 +1137,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.TrustedSignersDialog.add_signer`
 
 **Kind:** function/method  
-**Lines:** 473-487  
+**Lines:** 581-595  
 **Signature:** `def add_signer(self) -> None`  
 **Purpose:** Implements the `add_signer` operation in this module.
 
@@ -1082,7 +1151,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.TrustedSignersDialog.remove_signer`
 
 **Kind:** function/method  
-**Lines:** 489-500  
+**Lines:** 597-608  
 **Signature:** `def remove_signer(self) -> None`  
 **Purpose:** Implements the `remove_signer` operation in this module.
 
@@ -1096,7 +1165,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog`
 
 **Kind:** class  
-**Lines:** 503-614  
+**Lines:** 611-722  
 **Bases:** `QDialog`  
 **Methods:** `__init__`, `_status_text`, `refresh`, `show_details`, `import_selected`, `import_all_trusted`, `authorize_selected`, `delete_selected`  
 **Responsibility:** Implements the `InboxDialog` operation in this module.
@@ -1105,7 +1174,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog.__init__`
 
 **Kind:** function/method  
-**Lines:** 504-534  
+**Lines:** 612-642  
 **Signature:** `def __init__(self, vault: Vault, parent=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -1121,7 +1190,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog._status_text`
 
 **Kind:** function/method  
-**Lines:** 536-545  
+**Lines:** 644-653  
 **Signature:** `def _status_text(self, item) -> str`  
 **Purpose:** Internal helper implementing `_status_text`.
 
@@ -1135,7 +1204,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog.refresh`
 
 **Kind:** function/method  
-**Lines:** 547-556  
+**Lines:** 655-664  
 **Signature:** `def refresh(self) -> None`  
 **Purpose:** Implements the `refresh` operation in this module.
 
@@ -1151,7 +1220,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog.show_details`
 
 **Kind:** function/method  
-**Lines:** 558-566  
+**Lines:** 666-674  
 **Signature:** `def show_details(self, row: int) -> None`  
 **Purpose:** Implements the `show_details` operation in this module.
 
@@ -1165,7 +1234,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog.import_selected`
 
 **Kind:** function/method  
-**Lines:** 568-581  
+**Lines:** 676-689  
 **Signature:** `def import_selected(self) -> None`  
 **Purpose:** Imports `import_selected`.
 
@@ -1179,7 +1248,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog.import_all_trusted`
 
 **Kind:** function/method  
-**Lines:** 583-590  
+**Lines:** 691-698  
 **Signature:** `def import_all_trusted(self) -> None`  
 **Purpose:** Imports `import_all_trusted`.
 
@@ -1193,7 +1262,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog.authorize_selected`
 
 **Kind:** function/method  
-**Lines:** 592-604  
+**Lines:** 700-712  
 **Signature:** `def authorize_selected(self) -> None`  
 **Purpose:** Implements the `authorize_selected` operation in this module.
 
@@ -1207,7 +1276,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.InboxDialog.delete_selected`
 
 **Kind:** function/method  
-**Lines:** 606-614  
+**Lines:** 714-722  
 **Signature:** `def delete_selected(self) -> None`  
 **Purpose:** Deletes `delete_selected`.
 
@@ -1217,30 +1286,113 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog -->
+#### `main.StandaloneExportDialog`
+
+**Kind:** class  
+**Lines:** 724-844  
+**Bases:** `QDialog`  
+**Methods:** `__init__`, `_refresh_keys`, `import_public_key`, `browse_output`, `perform_export`  
+**Responsibility:** Implements the `StandaloneExportDialog` operation in this module.
+
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.__init__ -->
+#### `main.StandaloneExportDialog.__init__`
+
+**Kind:** function/method  
+**Lines:** 725-771  
+**Signature:** `def __init__(self, vault: Vault, entry: Entry, parent=None) -> None`  
+**Purpose:** Internal helper implementing `__init__`.
+
+**Direct calls observed in the function body:** `Path.cwd`, `QCheckBox`, `QComboBox`, `QDialogButtonBox`, `QFormLayout`, `QHBoxLayout`, `QLabel`, `QLineEdit`, `QPushButton`, `QVBoxLayout`, `QWidget`, `_`, `__init__`, `buttons.accepted.connect`, `buttons.rejected.connect`, `ch.isalnum`, `form.addRow`, `join`, `layout.addLayout`, `layout.addWidget`, `output_button.clicked.connect`, `output_layout.addWidget`, `output_layout.setContentsMargins`, `recipient_layout.addWidget`, `recipient_layout.setContentsMargins`, `self._refresh_keys`, `self.import_button.clicked.connect`, `self.info.setWordWrap`, `self.output_edit.setText`, `self.resize`, `self.setWindowTitle`, `self.sign_checkbox.toggled.connect`, `self.signer_combo.setEnabled`, `str`, `strip`, `super`.
+
+**Object attributes written:** `self.entry`, `self.import_button`, `self.info`, `self.output_edit`, `self.recipient_combo`, `self.sign_checkbox`, `self.signer_combo`, `self.vault`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog._refresh_keys -->
+#### `main.StandaloneExportDialog._refresh_keys`
+
+**Kind:** function/method  
+**Lines:** 773-787  
+**Signature:** `def _refresh_keys(self, preferred: str | None=None) -> None`  
+**Purpose:** Internal helper implementing `_refresh_keys`.
+
+**Direct calls observed in the function body:** `_`, `self.recipient_combo.addItem`, `self.recipient_combo.clear`, `self.recipient_combo.findData`, `self.recipient_combo.setCurrentIndex`, `self.signer_combo.addItem`, `self.signer_combo.clear`, `standalone_recipient_keys`, `standalone_signing_keys`.
+
+**Control-flow shape:** 3 conditional blocks, 2 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.import_public_key -->
+#### `main.StandaloneExportDialog.import_public_key`
+
+**Kind:** function/method  
+**Lines:** 789-809  
+**Signature:** `def import_public_key(self) -> None`  
+**Purpose:** Imports `import_public_key`.
+
+**Direct calls observed in the function body:** `Path.home`, `QFileDialog.getOpenFileName`, `QMessageBox.critical`, `QMessageBox.question`, `_`, `import_standalone_public_key`, `self._refresh_keys`, `self.info.setText`, `str`.
+
+**Control-flow shape:** 2 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 2 explicit returns.
+
+**Security-relevant effect categories:** filesystem.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.browse_output -->
+#### `main.StandaloneExportDialog.browse_output`
+
+**Kind:** function/method  
+**Lines:** 811-816  
+**Signature:** `def browse_output(self) -> None`  
+**Purpose:** Implements the `browse_output` operation in this module.
+
+**Direct calls observed in the function body:** `QFileDialog.getSaveFileName`, `_`, `self.output_edit.setText`, `self.output_edit.text`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.perform_export -->
+#### `main.StandaloneExportDialog.perform_export`
+
+**Kind:** function/method  
+**Lines:** 818-844  
+**Signature:** `def perform_export(self) -> None`  
+**Purpose:** Implements the `perform_export` operation in this module.
+
+**Direct calls observed in the function body:** `QMessageBox.critical`, `QMessageBox.question`, `QMessageBox.warning`, `_`, `export_standalone_entry`, `self.accept`, `self.output_edit.setText`, `self.output_edit.text`, `self.recipient_combo.currentData`, `self.sign_checkbox.isChecked`, `self.signer_combo.currentData`, `str`, `strip`.
+
+**Control-flow shape:** 4 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 4 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
 <!-- symbol:keys_ng.gui.main:main.VaultPane -->
 #### `main.VaultPane`
 
 **Kind:** class  
-**Lines:** 616-1075  
+**Lines:** 846-1598  
 **Bases:** `QWidget`  
-**Methods:** `__init__`, `display_name`, `status_message`, `focus_search`, `schedule_search`, `activity`, `_theme_icon`, `_folder_icon`, `_entry_icon`, `_folder_item`, `_entry_item`, `reload`, `select_item`, `clear_details`, `tree_move`, `request_hard_lock`, `lock`, `unlock`, `refresh_otp`, `copy_url_clicked`, `copy_uuid_clicked`, `copy_username_clicked`, `copy_password_clicked`, `copy_notes_clicked`, `copy_otp_clicked`, `open_action_clicked`, `export_entry_keepassxc`, `new_entry`, `edit_entry`, `delete_entry`, `new_folder`, `rename_folder`, `delete_folder`  
+**Methods:** `__init__`, `display_name`, `status_message`, `focus_search`, `schedule_search`, `focus_results`, `apply_density`, `save_layout`, `folder_menu`, `entry_menu`, `move_selected`, `select_folder`, `open_origin`, `update_controls`, `_capture_expanded_folders`, `_apply_expanded_folders`, `activity`, `_theme_icon`, `_folder_icon`, `_entry_icon`, `_folder_item`, `_entry_item`, `reload`, `refresh_results`, `clear_selection`, `select_item`, `clear_details`, `tree_move`, `request_hard_lock`, `lock`, `unlock`, `refresh_otp`, `copy_url_clicked`, `copy_uuid_clicked`, `copy_username_clicked`, `copy_password_clicked`, `copy_notes_clicked`, `copy_otp_clicked`, `open_action_clicked`, `export_entry_keepassxc`, `export_standalone_clicked`, `new_entry`, `edit_entry`, `delete_entry`, `new_folder`, `rename_folder`, `delete_folder`  
 **Responsibility:** GUI state and widgets for exactly one independently locked vault tab.
 
 <!-- symbol:keys_ng.gui.main:main.VaultPane.__init__ -->
 #### `main.VaultPane.__init__`
 
 **Kind:** function/method  
-**Lines:** 617-728  
+**Lines:** 847-1062  
 **Signature:** `def __init__(self, vault_path: str, parent=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
-**Direct calls observed in the function body:** `Path`, `QHBoxLayout`, `QLabel`, `QLineEdit`, `QPushButton`, `QTextEdit`, `QTimer`, `QVBoxLayout`, `Vault`, `VaultTree`, `_`, `__init__`, `create_crypto_backend`, `expanduser`, `left.addLayout`, `left.addWidget`, `resolve`, `right.addStretch`, `right.addWidget`, `root_layout.addLayout`, `self.auto_lock_timer.setSingleShot`, `self.auto_lock_timer.start`, `self.auto_lock_timer.timeout.connect`, `self.copy_notes.clicked.connect`, `self.copy_otp.clicked.connect`, `self.copy_otp.setToolTip`, `self.copy_password.clicked.connect`, `self.copy_password.setToolTip`, `self.copy_url.clicked.connect`, `self.copy_url.setToolTip`, `self.copy_username.clicked.connect`, `self.copy_username.setToolTip`, `self.copy_uuid.clicked.connect`, `self.copy_uuid.setToolTip`, `self.delete_button.clicked.connect`, `self.delete_folder_button.clicked.connect`, `self.edit_button.clicked.connect`, `self.entries.currentItemChanged.connect`, `self.entries.itemDoubleClicked.connect`, `self.hard_lock_button.clicked.connect`, `self.lock`, `self.lock_button.clicked.connect`, `self.new_button.clicked.connect`, `self.new_folder_button.clicked.connect`, `self.notes.setMinimumHeight`, `self.notes.setReadOnly`, `self.notes.setToolTip`, `self.open_action.clicked.connect`, `self.open_action.setToolTip`, `self.open_action_clicked`, `self.reload`, `self.rename_folder_button.clicked.connect`, `self.search.setClearButtonEnabled`, `self.search.setPlaceholderText`, `self.search.setToolTip`, `self.search.textChanged.connect`, `self.search_timer.setInterval`, `self.search_timer.setSingleShot`, `self.search_timer.timeout.connect`, `self.setLayout`, `self.timer.start`, `self.timer.timeout.connect`, `self.unlock_button.clicked.connect`, `super`, `toolbar1.addWidget`, `toolbar2.addWidget`.
+**Direct calls observed in the function body:** `Path`, `QCheckBox`, `QComboBox`, `QFormLayout`, `QHBoxLayout`, `QLabel`, `QPushButton`, `QScrollArea`, `QSettings`, `QSplitter`, `QTextEdit`, `QTimer`, `QVBoxLayout`, `QWidget`, `ReferenceWidget`, `SearchLineEdit`, `Vault`, `VaultTree`, `_`, `__init__`, `actions.addStretch`, `actions.addWidget`, `button.hide`, `button.setParent`, `create_crypto_backend`, `detail_scroll.setWidget`, `detail_scroll.setWidgetResizable`, `expanduser`, `extra.addStretch`, `extra.addWidget`, `fields.addRow`, `footer.addStretch`, `footer.addWidget`, `label.setTextFormat`, `label.setTextInteractionFlags`, `label.setWordWrap`, `left.addWidget`, `left.setContentsMargins`, `resolve`, `right.addLayout`, `right.addWidget`, `root_layout.addLayout`, `root_layout.addWidget`, `row.addWidget`, `sectionMoved.connect`, `sectionResized.connect`, `self.apply_density`, `self.auto_lock_timer.setSingleShot`, `self.auto_lock_timer.start`, `self.auto_lock_timer.timeout.connect`, `self.compact.setChecked`, `self.compact.toggled.connect`, `self.copy_notes.clicked.connect`, `self.copy_otp.clicked.connect`, `self.copy_otp.setToolTip`, `self.copy_password.clicked.connect`, `self.copy_password.setToolTip`, `self.copy_url.clicked.connect`, `self.copy_url.setToolTip`, `self.copy_username.clicked.connect`, `self.copy_username.setToolTip`, `self.copy_uuid.clicked.connect`, `self.copy_uuid.setToolTip`, `self.delete_button.clicked.connect`, `self.delete_folder_button.clicked.connect`, `self.edit_button.clicked.connect`, `self.edit_entry`, `self.entries.currentItemChanged.connect`, `self.entries.customContextMenuRequested.connect`, `self.entries.setContextMenuPolicy`, `self.export_standalone.clicked.connect`, `self.export_standalone.setToolTip`, `self.hard_lock_button.clicked.connect`, `self.hard_lock_button.setText`, `self.horizontal_splitter.addWidget`, `self.horizontal_splitter.setChildrenCollapsible`, `self.horizontal_splitter.setSizes`, `self.horizontal_splitter.splitterMoved.connect`, `self.lock`, `self.lock_button.clicked.connect`, `self.lock_button.setText`, `self.new_button.clicked.connect`, `self.new_folder_button.clicked.connect`, `self.notes.setMinimumHeight`, `self.notes.setReadOnly`, `self.notes.setToolTip`, `self.open_action.clicked.connect`, `self.open_action.setToolTip`, `self.password_reference.open_origin.connect`, `self.reload`, `self.rename_folder_button.clicked.connect`, `self.results.currentItemChanged.connect`, `self.results.customContextMenuRequested.connect`, `self.results.header`, `self.results.itemDoubleClicked.connect`, `self.results.setAcceptDrops`, `self.results.setAlternatingRowColors`, `self.results.setColumnCount`, `self.results.setColumnWidth`, `self.results.setContextMenuPolicy`, `self.results.setHeaderHidden`, `self.results.setHeaderLabels`, `self.results.setRootIsDecorated`, `self.results.setSortingEnabled`, `self.results.sortItems`, `self.search.move_to_results.connect`, `self.search.setClearButtonEnabled`, `self.search.setPlaceholderText`, `self.search.setToolTip`, `self.search.textChanged.connect`, `self.search_scope.addItems`, `self.search_scope.currentIndexChanged.connect`, `self.search_timer.setInterval`, `self.search_timer.setSingleShot`, `self.search_timer.timeout.connect`, `self.technical.hide`, `self.technical_button.setCheckable`, `self.technical_button.toggled.connect`, `self.timer.start`, `self.timer.timeout.connect`, `self.title.font`, `self.title.setFont`, `self.ui_state.value`, `self.unlock_button.clicked.connect`, `self.username_reference.open_origin.connect`, `self.vertical_splitter.addWidget`, `self.vertical_splitter.setChildrenCollapsible`, `self.vertical_splitter.setSizes`, `self.vertical_splitter.splitterMoved.connect`, `setSectionsMovable`, `sortIndicatorChanged.connect`, `super`, `technical_layout.addWidget`, `title_font.pointSize`, `title_font.setBold`, `title_font.setPointSize`, `toolbar.addWidget`, `widget.restoreState`.
 
-**Object attributes written:** `self.auto_lock_timer`, `self.copy_notes`, `self.copy_otp`, `self.copy_password`, `self.copy_url`, `self.copy_username`, `self.copy_uuid`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.delete_button`, `self.delete_folder_button`, `self.edit_button`, `self.entries`, `self.hard_lock_button`, `self.lock_button`, `self.new_button`, `self.new_folder_button`, `self.notes`, `self.open_action`, `self.otp`, `self.path_label`, `self.rename_folder_button`, `self.search`, `self.search_timer`, `self.timer`, `self.title`, `self.unlock_button`, `self.username`, `self.uuid_label`, `self.vault`, `self.vault_path`.
+**Object attributes written:** `self._expanded_folder_ids`, `self._last_tree_query`, `self.auto_lock_timer`, `self.compact`, `self.copy_notes`, `self.copy_otp`, `self.copy_password`, `self.copy_url`, `self.copy_username`, `self.copy_uuid`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.delete_button`, `self.delete_folder_button`, `self.destination`, `self.edit_button`, `self.entries`, `self.export_standalone`, `self.hard_lock_button`, `self.horizontal_splitter`, `self.lock_button`, `self.new_button`, `self.new_folder_button`, `self.notes`, `self.open_action`, `self.otp`, `self.password_label`, `self.password_reference`, `self.path_label`, `self.rename_folder_button`, `self.result_count`, `self.results`, `self.search`, `self.search_scope`, `self.search_timer`, `self.technical`, `self.technical_button`, `self.timer`, `self.title`, `self.ui_state`, `self.unlock_button`, `self.username`, `self.username_reference`, `self.uuid_label`, `self.vault`, `self.vault_path`, `self.vault_state`, `self.vertical_splitter`.
 
-**Control-flow shape:** 1 conditional blocks, 2 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+**Control-flow shape:** 4 conditional blocks, 6 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
-**Security-relevant effect categories:** filesystem, cryptography/key-agent.
+**Security-relevant effect categories:** filesystem, cryptography/key-agent, parser/serialization.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -1248,7 +1400,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.display_name`
 
 **Kind:** function/method  
-**Lines:** 731-732  
+**Lines:** 1065-1066  
 **Signature:** `def display_name(self) -> str`  
 **Purpose:** Implements the `display_name` operation in this module.
 
@@ -1262,7 +1414,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.status_message`
 
 **Kind:** function/method  
-**Lines:** 734-737  
+**Lines:** 1068-1071  
 **Signature:** `def status_message(self, message: str, timeout: int=0) -> None`  
 **Purpose:** Implements the `status_message` operation in this module.
 
@@ -1276,7 +1428,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.focus_search`
 
 **Kind:** function/method  
-**Lines:** 739-742  
+**Lines:** 1073-1076  
 **Signature:** `def focus_search(self) -> None`  
 **Purpose:** Implements the `focus_search` operation in this module.
 
@@ -1290,7 +1442,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.schedule_search`
 
 **Kind:** function/method  
-**Lines:** 744-746  
+**Lines:** 1078-1080  
 **Signature:** `def schedule_search(self) -> None`  
 **Purpose:** Implements the `schedule_search` operation in this module.
 
@@ -1300,11 +1452,203 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
+<!-- symbol:keys_ng.gui.main:main.VaultPane.focus_results -->
+#### `main.VaultPane.focus_results`
+
+**Kind:** function/method  
+**Lines:** 1082-1085  
+**Signature:** `def focus_results(self) -> None`  
+**Purpose:** Implements the `focus_results` operation in this module.
+
+**Direct calls observed in the function body:** `self.results.currentItem`, `self.results.setCurrentItem`, `self.results.setFocus`, `self.results.topLevelItem`, `self.results.topLevelItemCount`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.apply_density -->
+#### `main.VaultPane.apply_density`
+
+**Kind:** function/method  
+**Lines:** 1087-1090  
+**Signature:** `def apply_density(self) -> None`  
+**Purpose:** Implements the `apply_density` operation in this module.
+
+**Direct calls observed in the function body:** `self.compact.isChecked`, `self.results.setStyleSheet`, `self.ui_state.setValue`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.save_layout -->
+#### `main.VaultPane.save_layout`
+
+**Kind:** function/method  
+**Lines:** 1092-1094  
+**Signature:** `def save_layout(self, *unused) -> None`  
+**Purpose:** Validates and persists state for `save_layout`.
+
+**Direct calls observed in the function body:** `self.results.header`, `self.ui_state.setValue`, `widget.saveState`.
+
+**Control-flow shape:** 0 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Security-relevant effect categories:** parser/serialization.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.folder_menu -->
+#### `main.VaultPane.folder_menu`
+
+**Kind:** function/method  
+**Lines:** 1096-1105  
+**Signature:** `def folder_menu(self, position) -> None`  
+**Purpose:** Implements the `folder_menu` operation in this module.
+
+**Direct calls observed in the function body:** `QMenu`, `action.setEnabled`, `action.triggered.connect`, `button.text`, `mapToGlobal`, `menu.addAction`, `menu.exec`, `self.entries.itemAt`, `self.entries.setCurrentItem`, `self.entries.viewport`.
+
+**Control-flow shape:** 1 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.entry_menu -->
+#### `main.VaultPane.entry_menu`
+
+**Kind:** function/method  
+**Lines:** 1107-1121  
+**Signature:** `def entry_menu(self, position) -> None`  
+**Purpose:** Implements the `entry_menu` operation in this module.
+
+**Direct calls observed in the function body:** `QMenu`, `_`, `action.setEnabled`, `action.triggered.connect`, `button.isEnabled`, `button.text`, `mapToGlobal`, `menu.addAction`, `menu.exec`, `move.setEnabled`, `move.triggered.connect`, `self.results.itemAt`, `self.results.setCurrentItem`, `self.results.viewport`.
+
+**Control-flow shape:** 0 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.move_selected -->
+#### `main.VaultPane.move_selected`
+
+**Kind:** function/method  
+**Lines:** 1123-1133  
+**Signature:** `def move_selected(self) -> None`  
+**Purpose:** Implements the `move_selected` operation in this module.
+
+**Direct calls observed in the function body:** `QInputDialog.getItem`, `QMessageBox.critical`, `_`, `next`, `self.reload`, `self.vault.folder_path`, `self.vault.list_folders`, `self.vault.move_entry`, `str`.
+
+**Control-flow shape:** 2 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.select_folder -->
+#### `main.VaultPane.select_folder`
+
+**Kind:** function/method  
+**Lines:** 1135-1138  
+**Signature:** `def select_folder(self, current, previous) -> None`  
+**Purpose:** Implements the `select_folder` operation in this module.
+
+**Direct calls observed in the function body:** `current.data`, `self.activity`, `self.refresh_results`.
+
+**Object attributes written:** `self.current_folder_id`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.open_origin -->
+#### `main.VaultPane.open_origin`
+
+**Kind:** function/method  
+**Lines:** 1140-1155  
+**Signature:** `def open_origin(self, entry_id: str) -> None`  
+**Purpose:** Implements the `open_origin` operation in this module.
+
+**Direct calls observed in the function body:** `item.data`, `range`, `self.entries.blockSignals`, `self.entries.setCurrentItem`, `self.entries.topLevelItem`, `self.refresh_results`, `self.results.scrollToItem`, `self.results.setCurrentItem`, `self.results.topLevelItem`, `self.results.topLevelItemCount`, `self.search.clear`, `self.search_timer.stop`.
+
+**Object attributes written:** `self.current_folder_id`.
+
+**Control-flow shape:** 2 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 2 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.update_controls -->
+#### `main.VaultPane.update_controls`
+
+**Kind:** function/method  
+**Lines:** 1157-1175  
+**Signature:** `def update_controls(self) -> None`  
+**Purpose:** Implements the `update_controls` operation in this module.
+
+**Direct calls observed in the function body:** `_`, `any`, `bool`, `button.setEnabled`, `get`, `self.copy_notes.setEnabled`, `self.copy_otp.setEnabled`, `self.copy_url.setEnabled`, `self.destination.setText`, `self.lock_button.setVisible`, `self.new_button.setEnabled`, `self.new_folder_button.setEnabled`, `self.open_action.setEnabled`, `self.open_action.setText`, `self.password_label.setText`, `self.search.setEnabled`, `self.unlock_button.setVisible`, `self.vault_state.setText`.
+
+**Control-flow shape:** 0 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Security-relevant effect categories:** filesystem.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane._capture_expanded_folders -->
+#### `main.VaultPane._capture_expanded_folders`
+
+**Kind:** function/method  
+**Lines:** 1177-1186  
+**Signature:** `def _capture_expanded_folders(self) -> None`  
+**Purpose:** Internal helper implementing `_capture_expanded_folders`.
+
+**Direct calls observed in the function body:** `expanded.add`, `item.child`, `item.childCount`, `item.data`, `item.isExpanded`, `range`, `self.entries.topLevelItem`, `self.entries.topLevelItemCount`, `set`, `str`, `visit`.
+
+**Object attributes written:** `self._expanded_folder_ids`.
+
+**Control-flow shape:** 1 conditional blocks, 2 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane._capture_expanded_folders.visit -->
+#### `main.VaultPane._capture_expanded_folders.visit`
+
+**Kind:** function/method  
+**Lines:** 1179-1183  
+**Signature:** `def visit(item) -> None`  
+**Purpose:** Implements the `visit` operation in this module.
+
+**Direct calls observed in the function body:** `expanded.add`, `item.child`, `item.childCount`, `item.data`, `item.isExpanded`, `range`, `str`, `visit`.
+
+**Control-flow shape:** 1 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane._apply_expanded_folders -->
+#### `main.VaultPane._apply_expanded_folders`
+
+**Kind:** function/method  
+**Lines:** 1187-1200  
+**Signature:** `def _apply_expanded_folders(self) -> None`  
+**Purpose:** Internal helper implementing `_apply_expanded_folders`.
+
+**Direct calls observed in the function body:** `item.child`, `item.childCount`, `item.data`, `item.setExpanded`, `range`, `self.entries.collapseAll`, `self.entries.expandAll`, `self.entries.topLevelItem`, `self.entries.topLevelItemCount`, `str`, `visit`.
+
+**Control-flow shape:** 3 conditional blocks, 2 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane._apply_expanded_folders.visit -->
+#### `main.VaultPane._apply_expanded_folders.visit`
+
+**Kind:** function/method  
+**Lines:** 1194-1198  
+**Signature:** `def visit(item) -> None`  
+**Purpose:** Implements the `visit` operation in this module.
+
+**Direct calls observed in the function body:** `item.child`, `item.childCount`, `item.data`, `item.setExpanded`, `range`, `str`, `visit`.
+
+**Control-flow shape:** 1 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
 <!-- symbol:keys_ng.gui.main:main.VaultPane.activity -->
 #### `main.VaultPane.activity`
 
 **Kind:** function/method  
-**Lines:** 748-750  
+**Lines:** 1201-1203  
 **Signature:** `def activity(self) -> None`  
 **Purpose:** Implements the `activity` operation in this module.
 
@@ -1318,7 +1662,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane._theme_icon`
 
 **Kind:** function/method  
-**Lines:** 752-757  
+**Lines:** 1205-1210  
 **Signature:** `def _theme_icon(self, names: tuple[str, ...], fallback) -> QIcon`  
 **Purpose:** Internal helper implementing `_theme_icon`.
 
@@ -1332,7 +1676,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane._folder_icon`
 
 **Kind:** function/method  
-**Lines:** 759-760  
+**Lines:** 1212-1213  
 **Signature:** `def _folder_icon(self) -> QIcon`  
 **Purpose:** Internal helper implementing `_folder_icon`.
 
@@ -1346,7 +1690,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane._entry_icon`
 
 **Kind:** function/method  
-**Lines:** 762-772  
+**Lines:** 1215-1225  
 **Signature:** `def _entry_icon(self, catalog_item) -> QIcon`  
 **Purpose:** Internal helper implementing `_entry_icon`.
 
@@ -1360,7 +1704,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane._folder_item`
 
 **Kind:** function/method  
-**Lines:** 774-784  
+**Lines:** 1227-1237  
 **Signature:** `def _folder_item(self, folder, parent=None)`  
 **Purpose:** Internal helper implementing `_folder_item`.
 
@@ -1374,11 +1718,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane._entry_item`
 
 **Kind:** function/method  
-**Lines:** 786-797  
+**Lines:** 1239-1251  
 **Signature:** `def _entry_item(self, catalog_item, parent=None, suffix='')`  
 **Purpose:** Internal helper implementing `_entry_item`.
 
-**Direct calls observed in the function body:** `QTreeWidgetItem`, `item.flags`, `item.setData`, `item.setFlags`, `item.setIcon`, `parent.addChild`, `self._entry_icon`, `self.entries.addTopLevelItem`.
+**Direct calls observed in the function body:** `QTreeWidgetItem`, `_`, `item.flags`, `item.setData`, `item.setFlags`, `item.setIcon`, `next`, `self._entry_icon`, `self._folder_paths.get`, `self.results.addTopLevelItem`, `t.upper`, `username.startswith`.
 
 **Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
 
@@ -1388,13 +1732,45 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.reload`
 
 **Kind:** function/method  
-**Lines:** 799-833  
+**Lines:** 1253-1288  
 **Signature:** `def reload(self) -> None`  
 **Purpose:** Implements the `reload` operation in this module.
 
-**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `bool`, `folder_widgets.get`, `list`, `paths.get`, `remaining.remove`, `self._entry_item`, `self._folder_item`, `self.entries.clear`, `self.entries.collapseAll`, `self.entries.expandAll`, `self.entries.setDragEnabled`, `self.search.text`, `self.vault.folder_paths`, `self.vault.list_folders`, `self.vault.list_items`, `self.vault.search`, `str`, `strip`.
+**Direct calls observed in the function body:** `QMessageBox.critical`, `QTreeWidgetItem`, `_`, `folder_widgets.get`, `list`, `remaining.remove`, `root.flags`, `root.setData`, `root.setFlags`, `self._apply_expanded_folders`, `self._capture_expanded_folders`, `self._folder_item`, `self.entries.addTopLevelItem`, `self.entries.blockSignals`, `self.entries.clear`, `self.entries.setCurrentItem`, `self.refresh_results`, `self.search.text`, `self.vault.folder_paths`, `self.vault.list_folders`, `str`, `strip`.
 
-**Control-flow shape:** 5 conditional blocks, 4 loops, 1 try blocks, 0 context managers, 3 explicit returns.
+**Object attributes written:** `self._folder_paths`, `self._last_tree_query`, `self.current_folder_id`.
+
+**Control-flow shape:** 4 conditional blocks, 2 loops, 1 try blocks, 0 context managers, 2 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.refresh_results -->
+#### `main.VaultPane.refresh_results`
+
+**Kind:** function/method  
+**Lines:** 1290-1316  
+**Signature:** `def refresh_results(self) -> None`  
+**Purpose:** Implements the `refresh_results` operation in this module.
+
+**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `format`, `len`, `self._entry_item`, `self.clear_selection`, `self.result_count.setText`, `self.results.blockSignals`, `self.results.clear`, `self.results.setCurrentItem`, `self.results.setSortingEnabled`, `self.search.text`, `self.search_scope.currentIndex`, `self.update_controls`, `self.vault.list_items`, `self.vault.search`, `str`, `strip`.
+
+**Control-flow shape:** 4 conditional blocks, 1 loops, 1 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.clear_selection -->
+#### `main.VaultPane.clear_selection`
+
+**Kind:** function/method  
+**Lines:** 1318-1326  
+**Signature:** `def clear_selection(self) -> None`  
+**Purpose:** Implements the `clear_selection` operation in this module.
+
+**Direct calls observed in the function body:** `label.clear`, `self.notes.clear`, `self.password_reference.clear`, `self.update_controls`, `self.username_reference.clear`.
+
+**Object attributes written:** `self.current_entry`, `self.current_id`.
+
+**Control-flow shape:** 0 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -1402,11 +1778,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.select_item`
 
 **Kind:** function/method  
-**Lines:** 835-876  
+**Lines:** 1328-1375  
 **Signature:** `def select_item(self, current, _previous) -> None`  
 **Purpose:** Implements the `select_item` operation in this module.
 
-**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `current.data`, `current.text`, `elapsed_ms`, `log.debug`, `log.error`, `log.info`, `self.activity`, `self.notes.clear`, `self.notes.setText`, `self.otp.clear`, `self.path_label.setText`, `self.refresh_otp`, `self.title.setText`, `self.username.clear`, `self.username.setText`, `self.uuid_label.clear`, `self.uuid_label.setText`, `self.vault.folder_path`, `self.vault.get_entry`, `self.vault.resolved_username`, `str`, `time.perf_counter`, `type`.
+**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `any`, `current.data`, `current.text`, `elapsed_ms`, `log.debug`, `log.error`, `log.info`, `self.activity`, `self.clear_selection`, `self.notes.clear`, `self.notes.setPlainText`, `self.otp.clear`, `self.password_reference.update_reference`, `self.path_label.setText`, `self.refresh_otp`, `self.title.setText`, `self.update_controls`, `self.username.clear`, `self.username.setText`, `self.username_reference.update_reference`, `self.uuid_label.clear`, `self.uuid_label.setText`, `self.vault.folder_path`, `self.vault.get_entry`, `self.vault.resolved_username`, `str`, `time.perf_counter`, `type`.
 
 **Object attributes written:** `self.current_entry`, `self.current_folder_id`, `self.current_id`.
 
@@ -1418,15 +1794,15 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.clear_details`
 
 **Kind:** function/method  
-**Lines:** 878-883  
+**Lines:** 1377-1387  
 **Signature:** `def clear_details(self) -> None`  
 **Purpose:** Implements the `clear_details` operation in this module.
 
-**Direct calls observed in the function body:** `self.entries.clear`, `self.notes.clear`, `self.otp.clear`, `self.path_label.clear`, `self.title.clear`, `self.username.clear`, `self.uuid_label.clear`.
+**Direct calls observed in the function body:** `dialog.check_lock`, `self.clear_selection`, `self.entries.blockSignals`, `self.entries.clear`, `self.findChildren`, `self.result_count.clear`, `self.results.clear`, `self.update_controls`.
 
-**Object attributes written:** `self.current_entry`, `self.current_folder_id`, `self.current_id`.
+**Object attributes written:** `self._folder_paths`.
 
-**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+**Control-flow shape:** 0 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -1434,11 +1810,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.tree_move`
 
 **Kind:** function/method  
-**Lines:** 885-891  
+**Lines:** 1389-1395  
 **Signature:** `def tree_move(self, item_type: str, item_id: str, parent_id: str | None) -> None`  
 **Purpose:** Implements the `tree_move` operation in this module.
 
-**Direct calls observed in the function body:** `self.search.text`, `self.vault.move_entry`, `self.vault.move_folder`, `strip`.
+**Direct calls observed in the function body:** `self.vault.move_entry`, `self.vault.move_folder`.
 
 **Control-flow shape:** 3 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
 
@@ -1448,7 +1824,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.request_hard_lock`
 
 **Kind:** function/method  
-**Lines:** 893-898  
+**Lines:** 1397-1402  
 **Signature:** `def request_hard_lock(self) -> None`  
 **Purpose:** Implements the `request_hard_lock` operation in this module.
 
@@ -1464,11 +1840,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.lock`
 
 **Kind:** function/method  
-**Lines:** 900-907  
+**Lines:** 1404-1412  
 **Signature:** `def lock(self, hard: bool) -> None`  
 **Purpose:** Implements the `lock` operation in this module.
 
-**Direct calls observed in the function body:** `QApplication.clipboard`, `QMessageBox.critical`, `_`, `clear`, `self.clear_details`, `self.status_message`, `self.vault.lock`, `str`.
+**Direct calls observed in the function body:** `QApplication.clipboard`, `QMessageBox.critical`, `_`, `clear`, `self._capture_expanded_folders`, `self.clear_details`, `self.status_message`, `self.vault.lock`, `str`.
 
 **Control-flow shape:** 0 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 0 explicit returns.
 
@@ -1480,7 +1856,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.unlock`
 
 **Kind:** function/method  
-**Lines:** 909-916  
+**Lines:** 1414-1421  
 **Signature:** `def unlock(self) -> None`  
 **Purpose:** Implements the `unlock` operation in this module.
 
@@ -1494,7 +1870,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.refresh_otp`
 
 **Kind:** function/method  
-**Lines:** 918-923  
+**Lines:** 1423-1428  
 **Signature:** `def refresh_otp(self) -> None`  
 **Purpose:** Implements the `refresh_otp` operation in this module.
 
@@ -1508,7 +1884,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.copy_url_clicked`
 
 **Kind:** function/method  
-**Lines:** 925-932  
+**Lines:** 1430-1437  
 **Signature:** `def copy_url_clicked(self) -> None`  
 **Purpose:** Copies a value using `copy_url_clicked`.
 
@@ -1522,7 +1898,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.copy_uuid_clicked`
 
 **Kind:** function/method  
-**Lines:** 934-938  
+**Lines:** 1439-1443  
 **Signature:** `def copy_uuid_clicked(self) -> None`  
 **Purpose:** Copies a value using `copy_uuid_clicked`.
 
@@ -1536,7 +1912,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.copy_username_clicked`
 
 **Kind:** function/method  
-**Lines:** 940-950  
+**Lines:** 1445-1455  
 **Signature:** `def copy_username_clicked(self) -> None`  
 **Purpose:** Copies a value using `copy_username_clicked`.
 
@@ -1550,11 +1926,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.copy_password_clicked`
 
 **Kind:** function/method  
-**Lines:** 952-961  
+**Lines:** 1457-1467  
 **Signature:** `def copy_password_clicked(self) -> None`  
 **Purpose:** Copies a value using `copy_password_clicked`.
 
-**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `copy_secret_qt`, `self.activity`, `self.vault.resolved_password`, `str`.
+**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `copy_secret_qt`, `format`, `self.activity`, `self.status_message`, `self.vault.resolved_password`, `str`.
 
 **Control-flow shape:** 2 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
 
@@ -1564,7 +1940,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.copy_notes_clicked`
 
 **Kind:** function/method  
-**Lines:** 963-967  
+**Lines:** 1469-1473  
 **Signature:** `def copy_notes_clicked(self) -> None`  
 **Purpose:** Copies a value using `copy_notes_clicked`.
 
@@ -1578,11 +1954,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.copy_otp_clicked`
 
 **Kind:** function/method  
-**Lines:** 969-973  
+**Lines:** 1475-1480  
 **Signature:** `def copy_otp_clicked(self) -> None`  
 **Purpose:** Copies a value using `copy_otp_clicked`.
 
-**Direct calls observed in the function body:** `copy_secret_qt`, `generate_totp`, `self.activity`.
+**Direct calls observed in the function body:** `_`, `copy_secret_qt`, `format`, `generate_totp`, `self.activity`, `self.status_message`.
 
 **Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
@@ -1592,11 +1968,11 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.open_action_clicked`
 
 **Kind:** function/method  
-**Lines:** 975-981  
+**Lines:** 1482-1492  
 **Signature:** `def open_action_clicked(self) -> None`  
 **Purpose:** Implements the `open_action_clicked` operation in this module.
 
-**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `launch_action`, `self.activity`, `self.vault.resolved_action`, `str`.
+**Direct calls observed in the function body:** `QMessageBox.critical`, `_`, `launch_action`, `self.activity`, `self.vault.resolved_action`, `self.vault.resolved_password`, `str`.
 
 **Control-flow shape:** 1 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 0 explicit returns.
 
@@ -1606,7 +1982,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.export_entry_keepassxc`
 
 **Kind:** function/method  
-**Lines:** 983-1002  
+**Lines:** 1494-1513  
 **Signature:** `def export_entry_keepassxc(self) -> None`  
 **Purpose:** Exports `export_entry_keepassxc`.
 
@@ -1616,15 +1992,31 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
+<!-- symbol:keys_ng.gui.main:main.VaultPane.export_standalone_clicked -->
+#### `main.VaultPane.export_standalone_clicked`
+
+**Kind:** function/method  
+**Lines:** 1515-1521  
+**Signature:** `def export_standalone_clicked(self) -> None`  
+**Purpose:** Exports `export_standalone_clicked`.
+
+**Direct calls observed in the function body:** `StandaloneExportDialog`, `_`, `dialog.exec`, `self.activity`, `self.status_message`.
+
+**Control-flow shape:** 2 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
 <!-- symbol:keys_ng.gui.main:main.VaultPane.new_entry -->
 #### `main.VaultPane.new_entry`
 
 **Kind:** function/method  
-**Lines:** 1004-1014  
+**Lines:** 1523-1535  
 **Signature:** `def new_entry(self) -> None`  
 **Purpose:** Implements the `new_entry` operation in this module.
 
 **Direct calls observed in the function body:** `EntryDialog`, `QMessageBox.critical`, `_`, `dialog.build_entry`, `dialog.exec`, `self.activity`, `self.reload`, `self.vault.save_entry`, `str`.
+
+**Object attributes written:** `self.current_id`.
 
 **Control-flow shape:** 2 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
 
@@ -1634,11 +2026,13 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.edit_entry`
 
 **Kind:** function/method  
-**Lines:** 1016-1026  
+**Lines:** 1537-1549  
 **Signature:** `def edit_entry(self) -> None`  
 **Purpose:** Implements the `edit_entry` operation in this module.
 
 **Direct calls observed in the function body:** `EntryDialog`, `QMessageBox.critical`, `_`, `dialog.build_entry`, `dialog.exec`, `self.activity`, `self.reload`, `self.vault.save_entry`, `str`.
+
+**Object attributes written:** `self.current_id`.
 
 **Control-flow shape:** 2 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
 
@@ -1648,7 +2042,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.delete_entry`
 
 **Kind:** function/method  
-**Lines:** 1028-1039  
+**Lines:** 1551-1562  
 **Signature:** `def delete_entry(self) -> None`  
 **Purpose:** Deletes `delete_entry`.
 
@@ -1662,7 +2056,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.new_folder`
 
 **Kind:** function/method  
-**Lines:** 1041-1051  
+**Lines:** 1564-1574  
 **Signature:** `def new_folder(self) -> None`  
 **Purpose:** Implements the `new_folder` operation in this module.
 
@@ -1676,7 +2070,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.rename_folder`
 
 **Kind:** function/method  
-**Lines:** 1053-1063  
+**Lines:** 1576-1586  
 **Signature:** `def rename_folder(self) -> None`  
 **Purpose:** Implements the `rename_folder` operation in this module.
 
@@ -1690,7 +2084,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.VaultPane.delete_folder`
 
 **Kind:** function/method  
-**Lines:** 1065-1075  
+**Lines:** 1588-1598  
 **Signature:** `def delete_folder(self) -> None`  
 **Purpose:** Deletes `delete_folder`.
 
@@ -1704,7 +2098,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.NewVaultWizard`
 
 **Kind:** class  
-**Lines:** 1078-1169  
+**Lines:** 1601-1692  
 **Bases:** `QWizard`  
 **Methods:** `__init__`, `_browse`, `_update_summary`, `request`  
 **Responsibility:** Guided vault creation using the same initialization service as the CLI.
@@ -1713,7 +2107,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.NewVaultWizard.__init__`
 
 **Kind:** function/method  
-**Lines:** 1081-1138  
+**Lines:** 1604-1661  
 **Signature:** `def __init__(self, crypto, parent=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -1729,7 +2123,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.NewVaultWizard._browse`
 
 **Kind:** function/method  
-**Lines:** 1140-1144  
+**Lines:** 1663-1667  
 **Signature:** `def _browse(self) -> None`  
 **Purpose:** Internal helper implementing `_browse`.
 
@@ -1743,7 +2137,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.NewVaultWizard._update_summary`
 
 **Kind:** function/method  
-**Lines:** 1146-1154  
+**Lines:** 1669-1677  
 **Signature:** `def _update_summary(self, _page_id: int) -> None`  
 **Purpose:** Internal helper implementing `_update_summary`.
 
@@ -1757,7 +2151,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.NewVaultWizard.request`
 
 **Kind:** function/method  
-**Lines:** 1156-1169  
+**Lines:** 1679-1692  
 **Signature:** `def request(self) -> VaultInitRequest`  
 **Purpose:** Implements the `request` operation in this module.
 
@@ -1773,7 +2167,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.SettingsDialog`
 
 **Kind:** class  
-**Lines:** 1172-1337  
+**Lines:** 1695-1860  
 **Bases:** `QDialog`  
 **Methods:** `__init__`, `_lines`, `_verify_gnupg`, `apply`  
 **Responsibility:** Edit the global Keys NG config.toml without exposing TOML syntax.
@@ -1782,7 +2176,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.SettingsDialog.__init__`
 
 **Kind:** function/method  
-**Lines:** 1175-1298  
+**Lines:** 1698-1821  
 **Signature:** `def __init__(self, app_settings: AppSettings, parent=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -1800,7 +2194,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.SettingsDialog.__init__.help_label`
 
 **Kind:** function/method  
-**Lines:** 1184-1188  
+**Lines:** 1707-1711  
 **Signature:** `def help_label(text: str) -> QLabel`  
 **Purpose:** Implements the `help_label` operation in this module.
 
@@ -1814,7 +2208,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.SettingsDialog._lines`
 
 **Kind:** function/method  
-**Lines:** 1301-1302  
+**Lines:** 1824-1825  
 **Signature:** `def _lines(widget: QTextEdit) -> list[str]`  
 **Purpose:** Internal helper implementing `_lines`.
 
@@ -1830,7 +2224,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.SettingsDialog._verify_gnupg`
 
 **Kind:** function/method  
-**Lines:** 1304-1314  
+**Lines:** 1827-1837  
 **Signature:** `def _verify_gnupg(self) -> None`  
 **Purpose:** Internal helper implementing `_verify_gnupg`.
 
@@ -1844,7 +2238,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.SettingsDialog.apply`
 
 **Kind:** function/method  
-**Lines:** 1316-1337  
+**Lines:** 1839-1860  
 **Signature:** `def apply(self) -> None`  
 **Purpose:** Implements the `apply` operation in this module.
 
@@ -1860,22 +2254,22 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow`
 
 **Kind:** class  
-**Lines:** 1339-1624  
+**Lines:** 1862-2178  
 **Bases:** `QMainWindow`  
-**Methods:** `__init__`, `_menu_action`, `build_menus`, `copy_context_or_password`, `show_keepassxc_import`, `export_vault_keepassxc`, `show_inbox`, `show_trusted_signers`, `show_preferences`, `refresh_recent_menu`, `show_help`, `active_pane`, `call_active`, `_sync_empty_state`, `update_window_title`, `create_vault_wizard`, `open_vault_dialog`, `open_vault`, `close_current_vault`, `close_vault`, `hard_lock_all`  
+**Methods:** `__init__`, `_menu_action`, `build_menus`, `copy_context_or_password`, `show_keepassxc_import`, `export_vault_keepassxc`, `show_inbox`, `show_trusted_signers`, `show_preferences`, `refresh_recent_menu`, `show_help`, `active_pane`, `call_active`, `refresh_recent_start_page`, `open_recent_vault`, `_sync_empty_state`, `update_window_title`, `create_vault_wizard`, `open_vault_dialog`, `open_vault`, `close_current_vault`, `close_vault`, `hard_lock_all`  
 **Responsibility:** Top-level GUI window coordinating multiple VaultPane instances.
 
 <!-- symbol:keys_ng.gui.main:main.MainWindow.__init__ -->
 #### `main.MainWindow.__init__`
 
 **Kind:** function/method  
-**Lines:** 1340-1395  
+**Lines:** 1863-1929  
 **Signature:** `def __init__(self, initial_vaults: list[str]) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
-**Direct calls observed in the function body:** `QKeySequence`, `QLabel`, `QPushButton`, `QShortcut`, `QStackedWidget`, `QTabWidget`, `QVBoxLayout`, `QWidget`, `_`, `__init__`, `create_button.clicked.connect`, `empty_label.setAlignment`, `empty_layout.addStretch`, `empty_layout.addWidget`, `open_button.clicked.connect`, `self._sync_empty_state`, `self.build_menus`, `self.call_active`, `self.open_vault`, `self.setCentralWidget`, `self.setWindowTitle`, `self.shortcuts.append`, `self.stack.addWidget`, `self.tabs.currentChanged.connect`, `self.tabs.setMovable`, `self.tabs.setTabPosition`, `self.tabs.setTabsClosable`, `self.tabs.tabCloseRequested.connect`, `shortcut.activated.connect`, `shortcut.setContext`, `super`.
+**Direct calls observed in the function body:** `QKeySequence`, `QLabel`, `QListWidget`, `QPushButton`, `QShortcut`, `QStackedWidget`, `QTabWidget`, `QVBoxLayout`, `QWidget`, `_`, `__init__`, `create_button.clicked.connect`, `empty_label.setAlignment`, `empty_layout.addStretch`, `empty_layout.addWidget`, `open_button.clicked.connect`, `self._sync_empty_state`, `self.build_menus`, `self.call_active`, `self.open_vault`, `self.recent_label.setAlignment`, `self.recent_list.itemClicked.connect`, `self.recent_list.setMaximumHeight`, `self.recent_list.setMinimumWidth`, `self.recent_list.setSelectionMode`, `self.setCentralWidget`, `self.setWindowTitle`, `self.shortcuts.append`, `self.stack.addWidget`, `self.tabs.currentChanged.connect`, `self.tabs.setMovable`, `self.tabs.setTabPosition`, `self.tabs.setTabsClosable`, `self.tabs.tabCloseRequested.connect`, `shortcut.activated.connect`, `shortcut.setContext`, `super`.
 
-**Object attributes written:** `self.empty_page`, `self.shortcuts`, `self.stack`, `self.tabs`.
+**Object attributes written:** `self.empty_page`, `self.recent_label`, `self.recent_list`, `self.shortcuts`, `self.stack`, `self.tabs`.
 
 **Control-flow shape:** 0 conditional blocks, 2 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
@@ -1887,7 +2281,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow._menu_action`
 
 **Kind:** function/method  
-**Lines:** 1397-1401  
+**Lines:** 1931-1935  
 **Signature:** `def _menu_action(self, menu, label: str, callback, shortcut_text: str | None=None)`  
 **Purpose:** Internal helper implementing `_menu_action`.
 
@@ -1901,7 +2295,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.build_menus`
 
 **Kind:** function/method  
-**Lines:** 1403-1450  
+**Lines:** 1937-1985  
 **Signature:** `def build_menus(self) -> None`  
 **Purpose:** Builds `build_menus`.
 
@@ -1917,7 +2311,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.copy_context_or_password`
 
 **Kind:** function/method  
-**Lines:** 1452-1458  
+**Lines:** 1987-1993  
 **Signature:** `def copy_context_or_password(self) -> None`  
 **Purpose:** Copies a value using `copy_context_or_password`.
 
@@ -1931,7 +2325,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.show_keepassxc_import`
 
 **Kind:** function/method  
-**Lines:** 1460-1466  
+**Lines:** 1995-2001  
 **Signature:** `def show_keepassxc_import(self) -> None`  
 **Purpose:** Implements the `show_keepassxc_import` operation in this module.
 
@@ -1945,7 +2339,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.export_vault_keepassxc`
 
 **Kind:** function/method  
-**Lines:** 1468-1479  
+**Lines:** 2003-2014  
 **Signature:** `def export_vault_keepassxc(self) -> None`  
 **Purpose:** Exports `export_vault_keepassxc`.
 
@@ -1959,7 +2353,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.show_inbox`
 
 **Kind:** function/method  
-**Lines:** 1481-1485  
+**Lines:** 2016-2020  
 **Signature:** `def show_inbox(self) -> None`  
 **Purpose:** Implements the `show_inbox` operation in this module.
 
@@ -1973,7 +2367,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.show_trusted_signers`
 
 **Kind:** function/method  
-**Lines:** 1487-1490  
+**Lines:** 2022-2025  
 **Signature:** `def show_trusted_signers(self) -> None`  
 **Purpose:** Implements the `show_trusted_signers` operation in this module.
 
@@ -1987,7 +2381,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.show_preferences`
 
 **Kind:** function/method  
-**Lines:** 1492-1504  
+**Lines:** 2027-2039  
 **Signature:** `def show_preferences(self) -> None`  
 **Purpose:** Implements the `show_preferences` operation in this module.
 
@@ -2001,7 +2395,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.refresh_recent_menu`
 
 **Kind:** function/method  
-**Lines:** 1506-1518  
+**Lines:** 2041-2053  
 **Signature:** `def refresh_recent_menu(self) -> None`  
 **Purpose:** Implements the `refresh_recent_menu` operation in this module.
 
@@ -2017,7 +2411,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.show_help`
 
 **Kind:** function/method  
-**Lines:** 1520-1521  
+**Lines:** 2055-2056  
 **Signature:** `def show_help(self, tab: int=0) -> None`  
 **Purpose:** Implements the `show_help` operation in this module.
 
@@ -2031,7 +2425,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.active_pane`
 
 **Kind:** function/method  
-**Lines:** 1523-1525  
+**Lines:** 2058-2060  
 **Signature:** `def active_pane(self) -> VaultPane | None`  
 **Purpose:** Implements the `active_pane` operation in this module.
 
@@ -2045,7 +2439,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.call_active`
 
 **Kind:** function/method  
-**Lines:** 1527-1531  
+**Lines:** 2062-2066  
 **Signature:** `def call_active(self, method: str, *args) -> None`  
 **Purpose:** Implements the `call_active` operation in this module.
 
@@ -2055,15 +2449,45 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
+<!-- symbol:keys_ng.gui.main:main.MainWindow.refresh_recent_start_page -->
+#### `main.MainWindow.refresh_recent_start_page`
+
+**Kind:** function/method  
+**Lines:** 2068-2078  
+**Signature:** `def refresh_recent_start_page(self) -> None`  
+**Purpose:** Implements the `refresh_recent_start_page` operation in this module.
+
+**Direct calls observed in the function body:** `Path`, `QListWidgetItem`, `bool`, `item.setData`, `item.setToolTip`, `list`, `self.recent_label.setVisible`, `self.recent_list.addItem`, `self.recent_list.clear`, `self.recent_list.setVisible`, `str`.
+
+**Control-flow shape:** 0 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.main:main.MainWindow.open_recent_vault -->
+#### `main.MainWindow.open_recent_vault`
+
+**Kind:** function/method  
+**Lines:** 2080-2083  
+**Signature:** `def open_recent_vault(self, item: QListWidgetItem) -> None`  
+**Purpose:** Implements the `open_recent_vault` operation in this module.
+
+**Direct calls observed in the function body:** `item.data`, `self.open_vault`, `str`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Security-relevant effect categories:** filesystem.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
 <!-- symbol:keys_ng.gui.main:main.MainWindow._sync_empty_state -->
 #### `main.MainWindow._sync_empty_state`
 
 **Kind:** function/method  
-**Lines:** 1533-1535  
+**Lines:** 2085-2088  
 **Signature:** `def _sync_empty_state(self) -> None`  
 **Purpose:** Internal helper implementing `_sync_empty_state`.
 
-**Direct calls observed in the function body:** `self.stack.setCurrentWidget`, `self.tabs.count`, `self.update_window_title`.
+**Direct calls observed in the function body:** `self.refresh_recent_start_page`, `self.stack.setCurrentWidget`, `self.tabs.count`, `self.update_window_title`.
 
 **Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
@@ -2073,7 +2497,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.update_window_title`
 
 **Kind:** function/method  
-**Lines:** 1537-1539  
+**Lines:** 2090-2092  
 **Signature:** `def update_window_title(self, _index: int | None=None) -> None`  
 **Purpose:** Implements the `update_window_title` operation in this module.
 
@@ -2087,7 +2511,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.create_vault_wizard`
 
 **Kind:** function/method  
-**Lines:** 1541-1553  
+**Lines:** 2094-2106  
 **Signature:** `def create_vault_wizard(self) -> None`  
 **Purpose:** Creates `create_vault_wizard`.
 
@@ -2103,7 +2527,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.open_vault_dialog`
 
 **Kind:** function/method  
-**Lines:** 1555-1558  
+**Lines:** 2108-2111  
 **Signature:** `def open_vault_dialog(self) -> None`  
 **Purpose:** Implements the `open_vault_dialog` operation in this module.
 
@@ -2119,7 +2543,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.open_vault`
 
 **Kind:** function/method  
-**Lines:** 1560-1591  
+**Lines:** 2113-2144  
 **Signature:** `def open_vault(self, path: str) -> None`  
 **Purpose:** Implements the `open_vault` operation in this module.
 
@@ -2133,7 +2557,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.close_current_vault`
 
 **Kind:** function/method  
-**Lines:** 1593-1596  
+**Lines:** 2146-2149  
 **Signature:** `def close_current_vault(self) -> None`  
 **Purpose:** Implements the `close_current_vault` operation in this module.
 
@@ -2147,7 +2571,7 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.close_vault`
 
 **Kind:** function/method  
-**Lines:** 1598-1609  
+**Lines:** 2151-2162  
 **Signature:** `def close_vault(self, index: int) -> None`  
 **Purpose:** Implements the `close_vault` operation in this module.
 
@@ -2161,15 +2585,101 @@ PySide6 desktop GUI, including dialogs, per-vault panes, menus and multi-vault o
 #### `main.MainWindow.hard_lock_all`
 
 **Kind:** function/method  
-**Lines:** 1611-1624  
+**Lines:** 2164-2178  
 **Signature:** `def hard_lock_all(self) -> None`  
 **Purpose:** Implements the `hard_lock_all` operation in this module.
 
-**Direct calls observed in the function body:** `QApplication.clipboard`, `QMessageBox.critical`, `_`, `clear`, `isinstance`, `pane.clear_details`, `pane.vault.lock`, `range`, `self.statusBar`, `self.tabs.count`, `self.tabs.widget`, `showMessage`, `str`, `vault.crypto.hard_lock`.
+**Direct calls observed in the function body:** `QApplication.clipboard`, `QMessageBox.critical`, `_`, `clear`, `isinstance`, `pane._capture_expanded_folders`, `pane.clear_details`, `pane.vault.lock`, `range`, `self.statusBar`, `self.tabs.count`, `self.tabs.widget`, `showMessage`, `str`, `vault.crypto.hard_lock`.
 
 **Control-flow shape:** 1 conditional blocks, 1 loops, 1 try blocks, 0 context managers, 1 explicit returns.
 
 **Security-relevant effect categories:** cryptography/key-agent, clipboard.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+### `keys_ng.gui.reference_widget`
+
+Source module.
+
+**Source:** `src/keys_ng/gui/reference_widget.py`  
+**Executable symbols:** 5
+
+**Direct module dependencies:** `PySide6.QtCore`, `PySide6.QtWidgets`, `keys_ng.i18n`, `keys_ng.services.reference_info`
+
+<!-- symbol:keys_ng.gui.reference_widget:ReferenceWidget -->
+#### `ReferenceWidget`
+
+**Kind:** class  
+**Lines:** 9-64  
+**Bases:** `QWidget`  
+**Methods:** `__init__`, `clear`, `update_reference`, `open_source`  
+**Responsibility:** Implements the `ReferenceWidget` operation in this module.
+
+<!-- symbol:keys_ng.gui.reference_widget:ReferenceWidget.__init__ -->
+#### `ReferenceWidget.__init__`
+
+**Kind:** function/method  
+**Lines:** 12-27  
+**Signature:** `def __init__(self, parent=None)`  
+**Purpose:** Internal helper implementing `__init__`.
+
+**Direct calls observed in the function body:** `QHBoxLayout`, `QLabel`, `QPushButton`, `QVBoxLayout`, `_`, `__init__`, `layout.addLayout`, `layout.setContentsMargins`, `row.addWidget`, `self.clear`, `self.label.setTextFormat`, `self.label.setTextInteractionFlags`, `self.label.setWordWrap`, `self.open_button.clicked.connect`, `super`.
+
+**Object attributes written:** `self.info`, `self.label`, `self.open_button`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Security-relevant effect categories:** filesystem.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.reference_widget:ReferenceWidget.clear -->
+#### `ReferenceWidget.clear`
+
+**Kind:** function/method  
+**Lines:** 29-33  
+**Signature:** `def clear(self)`  
+**Purpose:** Implements the `clear` operation in this module.
+
+**Direct calls observed in the function body:** `self.hide`, `self.label.clear`, `self.setToolTip`.
+
+**Object attributes written:** `self.info`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.reference_widget:ReferenceWidget.update_reference -->
+#### `ReferenceWidget.update_reference`
+
+**Kind:** function/method  
+**Lines:** 35-60  
+**Signature:** `def update_reference(self, vault, value, *, source=None)`  
+**Purpose:** Implements the `update_reference` operation in this module.
+
+**Direct calls observed in the function body:** `_`, `bool`, `format`, `inspect_reference`, `join`, `lines.append`, `self.clear`, `self.label.setText`, `self.open_button.setEnabled`, `self.setToolTip`, `self.show`, `startswith`, `value.strip`.
+
+**Object attributes written:** `self.info`.
+
+**Control-flow shape:** 2 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Security-relevant effect categories:** filesystem.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.gui.reference_widget:ReferenceWidget.open_source -->
+#### `ReferenceWidget.open_source`
+
+**Kind:** function/method  
+**Lines:** 62-64  
+**Signature:** `def open_source(self)`  
+**Purpose:** Implements the `open_source` operation in this module.
+
+**Direct calls observed in the function body:** `self.open_origin.emit`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Security-relevant effect categories:** filesystem.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -2293,15 +2803,15 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `KeePassXCImportReport`
 
 **Kind:** class  
-**Lines:** 44-56  
-**Declared fields:** `entries`, `folders`, `totp_tokens`, `custom_fields`, `skipped_recycle_bin`, `uuid_preserved`, `uuid_remapped`, `uuid_generated`, `references_found`, `references_remapped`, `references_validated`, `warnings`  
+**Lines:** 44-58  
+**Declared fields:** `entries`, `folders`, `totp_tokens`, `custom_fields`, `skipped_recycle_bin`, `uuid_preserved`, `uuid_remapped`, `uuid_generated`, `references_found`, `references_remapped`, `references_validated`, `partial_entries`, `warnings`  
 **Responsibility:** Implements the `KeePassXCImportReport` operation in this module.
 
 <!-- symbol:keys_ng.migration.keepassxc:_PendingEntry -->
 #### `_PendingEntry`
 
 **Kind:** class  
-**Lines:** 60-63  
+**Lines:** 62-65  
 **Declared fields:** `entry`, `folder_path`, `source_uuid`  
 **Responsibility:** Internal helper implementing `_PendingEntry`.
 
@@ -2309,7 +2819,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_safe_xml_root`
 
 **Kind:** function/method  
-**Lines:** 66-75  
+**Lines:** 68-77  
 **Signature:** `def _safe_xml_root(raw: bytes) -> ET.Element`  
 **Purpose:** Internal helper implementing `_safe_xml_root`.
 
@@ -2327,7 +2837,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_text`
 
 **Kind:** function/method  
-**Lines:** 78-80  
+**Lines:** 80-82  
 **Signature:** `def _text(parent: ET.Element, path: str, default: str='') -> str`  
 **Purpose:** Internal helper implementing `_text`.
 
@@ -2341,7 +2851,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_strings`
 
 **Kind:** function/method  
-**Lines:** 83-90  
+**Lines:** 85-92  
 **Signature:** `def _strings(entry_node: ET.Element) -> dict[str, str]`  
 **Purpose:** Internal helper implementing `_strings`.
 
@@ -2355,7 +2865,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_decode_keepass_uuid`
 
 **Kind:** function/method  
-**Lines:** 93-113  
+**Lines:** 95-115  
 **Signature:** `def _decode_keepass_uuid(value: str) -> str | None`  
 **Purpose:** Convert a KeePass XML UUID to Keys NG's canonical RFC-4122 form. KDBX XML serializes UUID elements as base64Binary containing 16 UUID bytes. For robustness, canonical/32-hex UUID strings are accepted too; this is useful with hand-written exports and tests, but real KeePassXC XML normally uses Base64.
 
@@ -2371,7 +2881,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_uuid_compare_key`
 
 **Kind:** function/method  
-**Lines:** 116-124  
+**Lines:** 118-126  
 **Signature:** `def _uuid_compare_key(value: str) -> str`  
 **Purpose:** Normalize UUIDs when possible, otherwise preserve opaque legacy test IDs.
 
@@ -2385,7 +2895,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_normalize_totp_algorithm`
 
 **Kind:** function/method  
-**Lines:** 127-131  
+**Lines:** 129-133  
 **Signature:** `def _normalize_totp_algorithm(value: str) -> str`  
 **Purpose:** Internal helper implementing `_normalize_totp_algorithm`.
 
@@ -2401,7 +2911,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_parse_totp`
 
 **Kind:** function/method  
-**Lines:** 134-156  
+**Lines:** 136-158  
 **Signature:** `def _parse_totp(fields: dict[str, str], title: str, username: str) -> list[TotpConfig]`  
 **Purpose:** Internal helper implementing `_parse_totp`.
 
@@ -2415,7 +2925,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_action_from_url`
 
 **Kind:** function/method  
-**Lines:** 159-171  
+**Lines:** 161-173  
 **Signature:** `def _action_from_url(value: str, username: str) -> tuple[list[Action], str | None]`  
 **Purpose:** Internal helper implementing `_action_from_url`.
 
@@ -2429,7 +2939,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_parse_tags`
 
 **Kind:** function/method  
-**Lines:** 174-179  
+**Lines:** 176-181  
 **Signature:** `def _parse_tags(entry_node: ET.Element) -> list[str]`  
 **Purpose:** Internal helper implementing `_parse_tags`.
 
@@ -2443,15 +2953,15 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_entry_from_xml`
 
 **Kind:** function/method  
-**Lines:** 182-214  
-**Signature:** `def _entry_from_xml(entry_node: ET.Element, report: KeePassXCImportReport) -> Entry`  
+**Lines:** 184-237  
+**Signature:** `def _entry_from_xml(entry_node: ET.Element, report: KeePassXCImportReport) -> tuple[Entry, list[str]]`  
 **Purpose:** Internal helper implementing `_entry_from_xml`.
 
-**Direct calls observed in the function body:** `Entry.create`, `_action_from_url`, `_parse_tags`, `_parse_totp`, `_strings`, `custom.setdefault`, `fields.get`, `fields.items`, `len`, `strip`.
+**Direct calls observed in the function body:** `Entry.create`, `_action_from_url`, `_parse_tags`, `_parse_totp`, `_strings`, `custom.items`, `custom.setdefault`, `fields.get`, `fields.items`, `join`, `key.casefold`, `len`, `note_blocks.append`, `notes.rstrip`, `partial_reasons.append`, `re.sub`, `strip`, `value.strip`.
 
 **Object attributes written:** `report.custom_fields`, `report.totp_tokens`.
 
-**Control-flow shape:** 2 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+**Control-flow shape:** 4 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 1 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -2459,7 +2969,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_new_unique_uuid`
 
 **Kind:** function/method  
-**Lines:** 217-222  
+**Lines:** 240-245  
 **Signature:** `def _new_unique_uuid(reserved: set[str]) -> str`  
 **Purpose:** Internal helper implementing `_new_unique_uuid`.
 
@@ -2473,7 +2983,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_rewrite_reference_text`
 
 **Kind:** function/method  
-**Lines:** 225-241  
+**Lines:** 248-264  
 **Signature:** `def _rewrite_reference_text(value: str | None, uuid_map: dict[str, str], report: KeePassXCImportReport) -> str | None`  
 **Purpose:** Internal helper implementing `_rewrite_reference_text`.
 
@@ -2489,7 +2999,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_rewrite_reference_text.replace`
 
 **Kind:** function/method  
-**Lines:** 229-239  
+**Lines:** 252-262  
 **Signature:** `def replace(match: re.Match[str]) -> str`  
 **Purpose:** Implements the `replace` operation in this module.
 
@@ -2505,7 +3015,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_rewrite_entry_references`
 
 **Kind:** function/method  
-**Lines:** 244-257  
+**Lines:** 267-280  
 **Signature:** `def _rewrite_entry_references(entry: Entry, uuid_map: dict[str, str], report: KeePassXCImportReport) -> None`  
 **Purpose:** Internal helper implementing `_rewrite_entry_references`.
 
@@ -2521,17 +3031,17 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_validate_import_references`
 
 **Kind:** function/method  
-**Lines:** 260-295  
+**Lines:** 283-331  
 **Signature:** `def _validate_import_references(pending: list[_PendingEntry], vault: Vault, report: KeePassXCImportReport) -> None`  
-**Purpose:** Resolve every whole-field imported U/P reference before any record is saved.
+**Purpose:** Resolve imported references, warning instead of aborting on missing targets.
 
-**Direct calls observed in the function body:** `ValueError`, `checked.add`, `join`, `len`, `load_entry`, `parse_entry_reference`, `resolve`, `set`, `vault.get_entry`, `vault.list_items`.
+**Direct calls observed in the function body:** `ValueError`, `check`, `checked.add`, `dangling.append`, `dict.fromkeys`, `join`, `len`, `list`, `load_entry`, `message.startswith`, `parse_entry_reference`, `report.partial_entries.append`, `report.warnings.extend`, `resolve`, `set`, `str`, `vault.get_entry`, `vault.list_items`.
 
 **Explicitly raised exceptions:** `ValueError`.
 
 **Object attributes written:** `report.references_validated`.
 
-**Control-flow shape:** 6 conditional blocks, 2 loops, 0 try blocks, 0 context managers, 4 explicit returns.
+**Control-flow shape:** 8 conditional blocks, 2 loops, 1 try blocks, 0 context managers, 4 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -2539,7 +3049,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_validate_import_references.load_entry`
 
 **Kind:** function/method  
-**Lines:** 266-271  
+**Lines:** 289-294  
 **Signature:** `def load_entry(entry_id: str) -> Entry`  
 **Purpose:** Loads and validates `load_entry`.
 
@@ -2555,7 +3065,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `_validate_import_references.resolve`
 
 **Kind:** function/method  
-**Lines:** 273-286  
+**Lines:** 296-309  
 **Signature:** `def resolve(value: str | None, stack: tuple[tuple[str, str], ...]=()) -> str | None`  
 **Purpose:** Implements the `resolve` operation in this module.
 
@@ -2571,17 +3081,17 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `import_keepassxc_xml`
 
 **Kind:** function/method  
-**Lines:** 298-406  
+**Lines:** 333-447  
 **Signature:** `def import_keepassxc_xml(raw: bytes, vault: Vault, *, dry_run: bool=False) -> KeePassXCImportReport`  
 **Purpose:** Import KeePassXC XML using UUID-preserving, reference-safe two-pass migration. Pass 1 collects the entire source tree and source UUIDs. Pass 2 assigns target UUIDs, rewrites all UUID references, validates whole-field U/P reference chains, and only then writes folders/entries to the destination vault.
 
-**Direct calls observed in the function body:** `KeePassXCImportReport`, `ValueError`, `_PendingEntry`, `_decode_keepass_uuid`, `_entry_from_xml`, `_new_unique_uuid`, `_rewrite_entry_references`, `_safe_xml_root`, `_text`, `_uuid_compare_key`, `_validate_import_references`, `collect_group`, `group_node.findall`, `parse_entry_reference`, `pending.append`, `report.warnings.append`, `reserved.add`, `root.find`, `set`, `source_seen.add`, `strip`, `vault.create_folder_path`, `vault.get_entry`, `vault.list_items`, `vault.resolved_action`, `vault.resolved_password`, `vault.resolved_username`, `vault.save_entry`.
+**Direct calls observed in the function body:** `KeePassXCImportReport`, `ValueError`, `_PendingEntry`, `_decode_keepass_uuid`, `_entry_from_xml`, `_new_unique_uuid`, `_rewrite_entry_references`, `_safe_xml_root`, `_text`, `_uuid_compare_key`, `_validate_import_references`, `collect_group`, `group_node.findall`, `parse_entry_reference`, `pending.append`, `report.partial_entries.append`, `report.warnings.append`, `reserved.add`, `root.find`, `set`, `source_seen.add`, `str`, `strip`, `vault.create_folder_path`, `vault.get_entry`, `vault.list_items`, `vault.resolved_action`, `vault.resolved_password`, `vault.resolved_username`, `vault.save_entry`.
 
 **Explicitly raised exceptions:** `ValueError`.
 
 **Object attributes written:** `item.entry.folder_id`, `item.entry.id`, `report.entries`, `report.folders`, `report.skipped_recycle_bin`, `report.uuid_generated`, `report.uuid_preserved`, `report.uuid_remapped`.
 
-**Control-flow shape:** 15 conditional blocks, 7 loops, 0 try blocks, 0 context managers, 2 explicit returns.
+**Control-flow shape:** 17 conditional blocks, 7 loops, 1 try blocks, 0 context managers, 2 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -2589,17 +3099,17 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `import_keepassxc_xml.collect_group`
 
 **Kind:** function/method  
-**Lines:** 318-343  
+**Lines:** 353-380  
 **Signature:** `def collect_group(group_node: ET.Element, parent_path: str, create_folder: bool) -> None`  
 **Purpose:** Implements the `collect_group` operation in this module.
 
-**Direct calls observed in the function body:** `ValueError`, `_PendingEntry`, `_decode_keepass_uuid`, `_entry_from_xml`, `_text`, `_uuid_compare_key`, `collect_group`, `group_node.findall`, `pending.append`, `source_seen.add`, `strip`.
+**Direct calls observed in the function body:** `ValueError`, `_PendingEntry`, `_decode_keepass_uuid`, `_entry_from_xml`, `_text`, `_uuid_compare_key`, `collect_group`, `group_node.findall`, `pending.append`, `report.partial_entries.append`, `source_seen.add`, `strip`.
 
 **Explicitly raised exceptions:** `ValueError`.
 
 **Object attributes written:** `report.entries`, `report.folders`, `report.skipped_recycle_bin`.
 
-**Control-flow shape:** 4 conditional blocks, 2 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+**Control-flow shape:** 5 conditional blocks, 2 loops, 0 try blocks, 0 context managers, 1 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -2607,7 +3117,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `export_kdbx_to_xml`
 
 **Kind:** function/method  
-**Lines:** 409-454  
+**Lines:** 450-495  
 **Signature:** `def export_kdbx_to_xml(database: str | Path, *, key_file: str | Path | None=None, no_password: bool=False, yubikey: str | None=None, keepassxc_cli: str | None=None, password: str | None=None) -> bytes`  
 **Purpose:** Exports `export_kdbx_to_xml`.
 
@@ -2625,7 +3135,7 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `import_keepassxc`
 
 **Kind:** function/method  
-**Lines:** 457-478  
+**Lines:** 498-519  
 **Signature:** `def import_keepassxc(source: str | Path, vault: Vault, *, source_format: str='auto', key_file: str | Path | None=None, no_password: bool=False, yubikey: str | None=None, dry_run: bool=False, password: str | None=None) -> KeePassXCImportReport`  
 **Purpose:** Imports `import_keepassxc`.
 
@@ -2643,13 +3153,13 @@ KeePassXC XML/KDBX import, UUID mapping and reference-safe validation.
 #### `format_import_report`
 
 **Kind:** function/method  
-**Lines:** 481-496  
+**Lines:** 522-542  
 **Signature:** `def format_import_report(report: KeePassXCImportReport) -> str`  
 **Purpose:** Render a concise, frontend-neutral KeePassXC import summary.
 
-**Direct calls observed in the function body:** `join`, `lines.append`, `lines.extend`.
+**Direct calls observed in the function body:** `join`, `len`, `lines.append`, `lines.extend`.
 
-**Control-flow shape:** 2 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+**Control-flow shape:** 3 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 1 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -2972,8 +3482,8 @@ Validated in-memory and JSON-serializable domain model.
 #### `Action`
 
 **Kind:** class  
-**Lines:** 37-69  
-**Declared fields:** `type`, `url`, `host`, `port`, `username`, `argv`, `shell`, `ssh_x11_forwarding`, `ssh_options`  
+**Lines:** 37-74  
+**Declared fields:** `type`, `url`, `host`, `port`, `username`, `rdp_domain`, `argv`, `shell`, `ssh_x11_forwarding`, `ssh_options`  
 **Methods:** `validate`  
 **Responsibility:** Validated external action attached to an entry.
 
@@ -2981,15 +3491,15 @@ Validated in-memory and JSON-serializable domain model.
 #### `Action.validate`
 
 **Kind:** function/method  
-**Lines:** 48-69  
+**Lines:** 49-74  
 **Signature:** `def validate(self) -> None`  
 **Purpose:** Validates the invariants of `validate`.
 
-**Direct calls observed in the function body:** `ValueError`, `all`, `isinstance`, `self.type.upper`, `validate_ssh_options`.
+**Direct calls observed in the function body:** `ValueError`, `all`, `isinstance`, `self.rdp_domain.strip`, `self.type.upper`, `validate_ssh_options`.
 
 **Explicitly raised exceptions:** `ValueError`.
 
-**Control-flow shape:** 10 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+**Control-flow shape:** 12 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -2997,7 +3507,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Folder`
 
 **Kind:** class  
-**Lines:** 73-93  
+**Lines:** 78-98  
 **Declared fields:** `id`, `name`, `parent_id`, `created_at`, `updated_at`  
 **Methods:** `create`, `validate`  
 **Responsibility:** Logical folder node identified by UUID.
@@ -3006,7 +3516,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Folder.create`
 
 **Kind:** function/method  
-**Lines:** 81-82  
+**Lines:** 86-87  
 **Signature:** `def create(cls, name: str, parent_id: str | None=None) -> 'Folder'`  
 **Purpose:** Implements the `create` operation in this module.
 
@@ -3020,7 +3530,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Folder.validate`
 
 **Kind:** function/method  
-**Lines:** 84-93  
+**Lines:** 89-98  
 **Signature:** `def validate(self) -> None`  
 **Purpose:** Validates the invariants of `validate`.
 
@@ -3036,7 +3546,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `FolderStore`
 
 **Kind:** class  
-**Lines:** 97-129  
+**Lines:** 102-134  
 **Declared fields:** `folders`, `schema`  
 **Methods:** `validate`, `to_bytes`, `from_bytes`  
 **Responsibility:** Encrypted logical folder tree.
@@ -3045,7 +3555,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `FolderStore.validate`
 
 **Kind:** function/method  
-**Lines:** 101-118  
+**Lines:** 106-123  
 **Signature:** `def validate(self) -> None`  
 **Purpose:** Validates the invariants of `validate`.
 
@@ -3061,7 +3571,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `FolderStore.to_bytes`
 
 **Kind:** function/method  
-**Lines:** 120-122  
+**Lines:** 125-127  
 **Signature:** `def to_bytes(self) -> bytes`  
 **Purpose:** Serializes/converts `to_bytes`.
 
@@ -3077,7 +3587,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `FolderStore.from_bytes`
 
 **Kind:** function/method  
-**Lines:** 125-129  
+**Lines:** 130-134  
 **Signature:** `def from_bytes(cls, raw: bytes) -> 'FolderStore'`  
 **Purpose:** Deserializes/constructs `from_bytes`.
 
@@ -3093,7 +3603,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Entry`
 
 **Kind:** class  
-**Lines:** 133-182  
+**Lines:** 138-187  
 **Declared fields:** `id`, `title`, `kind`, `usernames`, `password`, `totp`, `actions`, `tags`, `notes`, `custom_fields`, `folder_id`, `revision`, `created_at`, `updated_at`, `schema`  
 **Methods:** `create`, `validate`, `to_bytes`, `from_bytes`  
 **Responsibility:** Credential record persisted inside one encrypted record file.
@@ -3102,7 +3612,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Entry.create`
 
 **Kind:** function/method  
-**Lines:** 151-152  
+**Lines:** 156-157  
 **Signature:** `def create(cls, title: str, **kwargs: Any) -> 'Entry'`  
 **Purpose:** Implements the `create` operation in this module.
 
@@ -3116,7 +3626,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Entry.validate`
 
 **Kind:** function/method  
-**Lines:** 154-167  
+**Lines:** 159-172  
 **Signature:** `def validate(self) -> None`  
 **Purpose:** Validates the invariants of `validate`.
 
@@ -3132,7 +3642,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Entry.to_bytes`
 
 **Kind:** function/method  
-**Lines:** 169-171  
+**Lines:** 174-176  
 **Signature:** `def to_bytes(self) -> bytes`  
 **Purpose:** Serializes/converts `to_bytes`.
 
@@ -3148,7 +3658,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Entry.from_bytes`
 
 **Kind:** function/method  
-**Lines:** 174-182  
+**Lines:** 179-187  
 **Signature:** `def from_bytes(cls, raw: bytes) -> 'Entry'`  
 **Purpose:** Deserializes/constructs `from_bytes`.
 
@@ -3164,7 +3674,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `CatalogItem`
 
 **Kind:** class  
-**Lines:** 186-196  
+**Lines:** 191-201  
 **Declared fields:** `id`, `title`, `kind`, `usernames`, `tags`, `url_hosts`, `capabilities`, `revision`, `ciphertext_sha256`, `folder_id`  
 **Responsibility:** One catalog row derived from an Entry and its ciphertext hash.
 
@@ -3172,7 +3682,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Catalog`
 
 **Kind:** class  
-**Lines:** 200-218  
+**Lines:** 205-223  
 **Declared fields:** `items`, `folders`, `schema`  
 **Methods:** `to_bytes`, `from_bytes`  
 **Responsibility:** Encrypted searchable metadata snapshot; rebuildable from records.
@@ -3181,7 +3691,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Catalog.to_bytes`
 
 **Kind:** function/method  
-**Lines:** 205-206  
+**Lines:** 210-211  
 **Signature:** `def to_bytes(self) -> bytes`  
 **Purpose:** Serializes/converts `to_bytes`.
 
@@ -3197,7 +3707,7 @@ Validated in-memory and JSON-serializable domain model.
 #### `Catalog.from_bytes`
 
 **Kind:** function/method  
-**Lines:** 209-218  
+**Lines:** 214-223  
 **Signature:** `def from_bytes(cls, raw: bytes) -> 'Catalog'`  
 **Purpose:** Deserializes/constructs `from_bytes`.
 
@@ -3670,15 +4180,15 @@ Launches URL, SSH, RDP and argv-based command actions without a shell.
 #### `_linux_rdp`
 
 **Kind:** function/method  
-**Lines:** 101-117  
-**Signature:** `def _linux_rdp(action: Action, settings: AppSettings) -> None`  
+**Lines:** 101-146  
+**Signature:** `def _linux_rdp(action: Action, settings: AppSettings, password: str | None=None) -> None`  
 **Purpose:** Internal helper implementing `_linux_rdp`.
 
-**Direct calls observed in the function body:** `ActionError`, `_resolve_executable`, `_which`, `argv.append`, `host_argv`, `next`, `requested.lower`, `settings.rdp_linux_client.strip`, `str`, `subprocess.Popen`.
+**Direct calls observed in the function body:** `ActionError`, `_resolve_executable`, `_which`, `argv.append`, `host_argv`, `next`, `process.stdin.close`, `process.stdin.flush`, `process.stdin.write`, `requested.lower`, `settings.rdp_linux_client.strip`, `str`, `strip`, `subprocess.Popen`.
 
 **Explicitly raised exceptions:** `ActionError`.
 
-**Control-flow shape:** 5 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+**Control-flow shape:** 10 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
 
 **Security-relevant effect categories:** process, filesystem.
 
@@ -3688,7 +4198,7 @@ Launches URL, SSH, RDP and argv-based command actions without a shell.
 #### `_windows_rdp`
 
 **Kind:** function/method  
-**Lines:** 120-128  
+**Lines:** 149-157  
 **Signature:** `def _windows_rdp(action: Action, settings: AppSettings) -> None`  
 **Purpose:** Internal helper implementing `_windows_rdp`.
 
@@ -3706,7 +4216,7 @@ Launches URL, SSH, RDP and argv-based command actions without a shell.
 #### `_macos_rdp`
 
 **Kind:** function/method  
-**Lines:** 131-147  
+**Lines:** 160-176  
 **Signature:** `def _macos_rdp(action: Action, settings: AppSettings) -> None`  
 **Purpose:** Internal helper implementing `_macos_rdp`.
 
@@ -3724,8 +4234,8 @@ Launches URL, SSH, RDP and argv-based command actions without a shell.
 #### `launch_action`
 
 **Kind:** function/method  
-**Lines:** 150-173  
-**Signature:** `def launch_action(action: Action, settings: AppSettings | None=None) -> None`  
+**Lines:** 179-207  
+**Signature:** `def launch_action(action: Action, settings: AppSettings | None=None, *, password: str | None=None) -> None`  
 **Purpose:** Validates and launches `launch_action`.
 
 **Direct calls observed in the function body:** `ActionError`, `AppSettings.load`, `_launch_ssh`, `_linux_rdp`, `_macos_rdp`, `_windows_rdp`, `action.validate`, `host_argv`, `subprocess.Popen`, `webbrowser.open`.
@@ -3922,15 +4432,13 @@ Detached helper process used by terminal clipboard operations.
 #### `_native_worker`
 
 **Kind:** function/method  
-**Lines:** 19-33  
+**Lines:** 19-40  
 **Signature:** `def _native_worker(secret: str, timeout_seconds: int) -> None`  
 **Purpose:** Internal helper implementing `_native_worker`.
 
 **Direct calls observed in the function body:** `ClipboardUnavailable`, `_normalise`, `clear_native_clipboard`, `read_native_clipboard`, `set_native_clipboard`, `sys.stdout.flush`, `sys.stdout.write`, `time.sleep`.
 
-**Explicitly raised exceptions:** `ClipboardUnavailable`.
-
-**Control-flow shape:** 2 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 0 explicit returns.
+**Control-flow shape:** 2 conditional blocks, 0 loops, 2 try blocks, 0 context managers, 0 explicit returns.
 
 **Security-relevant effect categories:** clipboard.
 
@@ -3940,7 +4448,7 @@ Detached helper process used by terminal clipboard operations.
 #### `_qt_worker`
 
 **Kind:** function/method  
-**Lines:** 36-53  
+**Lines:** 43-60  
 **Signature:** `def _qt_worker(secret: str, timeout_seconds: int) -> None`  
 **Purpose:** Internal helper implementing `_qt_worker`.
 
@@ -3948,7 +4456,7 @@ Detached helper process used by terminal clipboard operations.
 
 **Explicitly raised exceptions:** `ClipboardUnavailable`.
 
-**Control-flow shape:** 1 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 0 explicit returns.
+**Control-flow shape:** 0 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 0 explicit returns.
 
 **Security-relevant effect categories:** clipboard.
 
@@ -3958,7 +4466,7 @@ Detached helper process used by terminal clipboard operations.
 #### `main`
 
 **Kind:** function/method  
-**Lines:** 56-68  
+**Lines:** 63-75  
 **Signature:** `def main() -> None`  
 **Purpose:** Implements the `main` operation in this module.
 
@@ -4125,8 +4633,8 @@ Frontend-neutral credential editor draft and validation shared by GUI and TUI.
 #### `EntryDraft`
 
 **Kind:** class  
-**Lines:** 12-56  
-**Declared fields:** `title`, `folder_id`, `action_type`, `username`, `password`, `url`, `host`, `port`, `ssh_x11_forwarding`, `ssh_options`, `tags`, `totp_uri`, `totp_secret`, `notes`  
+**Lines:** 12-58  
+**Declared fields:** `title`, `folder_id`, `action_type`, `username`, `password`, `url`, `host`, `port`, `rdp_domain`, `ssh_x11_forwarding`, `ssh_options`, `tags`, `totp_uri`, `totp_secret`, `notes`  
 **Methods:** `from_entry`  
 **Responsibility:** Frontend-neutral editable representation of one credential. GUI and TUI deliberately use the same conversion routine so validation and preservation rules cannot silently diverge between front ends.
 
@@ -4134,7 +4642,7 @@ Frontend-neutral credential editor draft and validation shared by GUI and TUI.
 #### `EntryDraft.from_entry`
 
 **Kind:** function/method  
-**Lines:** 35-56  
+**Lines:** 36-58  
 **Signature:** `def from_entry(cls, entry: Entry) -> 'EntryDraft'`  
 **Purpose:** Deserializes/constructs `from_entry`.
 
@@ -4148,11 +4656,11 @@ Frontend-neutral credential editor draft and validation shared by GUI and TUI.
 #### `build_entry_from_draft`
 
 **Kind:** function/method  
-**Lines:** 59-158  
+**Lines:** 61-169  
 **Signature:** `def build_entry_from_draft(draft: EntryDraft, existing: Entry | None=None) -> Entry`  
 **Purpose:** Validate a frontend draft and create/update the domain Entry. Imported/legacy command actions and custom fields are preserved during an edit because the desktop editor does not expose them directly.
 
-**Direct calls observed in the function body:** `Action`, `Entry.create`, `ValueError`, `_`, `actions.insert`, `draft.action_type.strip`, `draft.host.strip`, `draft.port.strip`, `draft.tags.split`, `draft.title.strip`, `draft.totp_secret.strip`, `draft.totp_uri.strip`, `draft.url.strip`, `draft.username.strip`, `entry.validate`, `existing.validate`, `int`, `lower`, `parse_otpauth_uri`, `parse_ssh_options`, `secret.replace`, `tag.strip`, `token.secret.replace`, `totp_from_secret`, `upper`.
+**Direct calls observed in the function body:** `Action`, `Entry.create`, `ValueError`, `_`, `actions.insert`, `draft.action_type.strip`, `draft.host.strip`, `draft.port.strip`, `draft.rdp_domain.strip`, `draft.tags.split`, `draft.title.strip`, `draft.totp_secret.strip`, `draft.totp_uri.strip`, `draft.url.strip`, `draft.username.strip`, `entry.validate`, `existing.validate`, `int`, `lower`, `parse_otpauth_uri`, `parse_ssh_options`, `secret.replace`, `tag.strip`, `token.secret.replace`, `totp_from_secret`, `upper`.
 
 **Explicitly raised exceptions:** `ValueError`.
 
@@ -4251,6 +4759,45 @@ QR decoding and conversion to TOTP configuration.
 **Direct calls observed in the function body:** `_decode_image`.
 
 **Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+### `keys_ng.services.reference_info`
+
+Source module.
+
+**Source:** `src/keys_ng/services/reference_info.py`  
+**Executable symbols:** 3
+
+**Direct module dependencies:** `__future__`, `dataclasses`, `keys_ng.errors`, `keys_ng.services.references`
+
+<!-- symbol:keys_ng.services.reference_info:ReferenceHop -->
+#### `ReferenceHop`
+
+**Kind:** class  
+**Lines:** 11-15  
+**Declared fields:** `entry_id`, `field`, `title`, `path`  
+**Responsibility:** Implements the `ReferenceHop` operation in this module.
+
+<!-- symbol:keys_ng.services.reference_info:ReferenceInfo -->
+#### `ReferenceInfo`
+
+**Kind:** class  
+**Lines:** 19-21  
+**Declared fields:** `hops`, `error`  
+**Responsibility:** Implements the `ReferenceInfo` operation in this module.
+
+<!-- symbol:keys_ng.services.reference_info:inspect_reference -->
+#### `inspect_reference`
+
+**Kind:** function/method  
+**Lines:** 24-63  
+**Signature:** `def inspect_reference(vault, value: str | None, *, source=None) -> ReferenceInfo`  
+**Purpose:** Follow at most 32 field references, retaining only identity metadata. An optional unsaved source entry overrides its stored counterpart, so editor previews detect cycles involving the current draft. Backend exception text is deliberately not included in the UI description.
+
+**Direct calls observed in the function body:** `ReferenceHop`, `ReferenceInfo`, `any`, `hops.append`, `len`, `parse_entry_reference`, `paths.get`, `seen.add`, `set`, `startswith`, `tuple`, `value.strip`, `vault.folder_paths`, `vault.get_entry`, `vault.list_items`.
+
+**Control-flow shape:** 6 conditional blocks, 1 loops, 3 try blocks, 0 context managers, 7 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -4390,6 +4937,93 @@ Parses and validates advanced OpenSSH argv options.
 **Direct calls observed in the function body:** `shlex.join`.
 
 **Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+### `keys_ng.services.standalone_export`
+
+Source module.
+
+**Source:** `src/keys_ng/services/standalone_export.py`  
+**Executable symbols:** 5
+
+**Direct module dependencies:** `__future__`, `copy`, `dataclasses`, `keys_ng.crypto.backend`, `keys_ng.models`, `keys_ng.storage.inbox`, `keys_ng.storage.vault`, `pathlib`, `uuid`
+
+<!-- symbol:keys_ng.services.standalone_export:standalone_recipient_keys -->
+#### `standalone_recipient_keys`
+
+**Kind:** function/method  
+**Lines:** 14-19  
+**Signature:** `def standalone_recipient_keys(crypto: CryptoBackend) -> list[KeyInfo]`  
+**Purpose:** Return usable public encryption keys from the current GnuPG keyring.
+
+**Direct calls observed in the function body:** `crypto.list_keys`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.services.standalone_export:standalone_signing_keys -->
+#### `standalone_signing_keys`
+
+**Kind:** function/method  
+**Lines:** 22-27  
+**Signature:** `def standalone_signing_keys(crypto: CryptoBackend) -> list[KeyInfo]`  
+**Purpose:** Return usable secret signing keys from the current GnuPG keyring.
+
+**Direct calls observed in the function body:** `crypto.list_keys`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.services.standalone_export:import_standalone_public_key -->
+#### `import_standalone_public_key`
+
+**Kind:** function/method  
+**Lines:** 30-40  
+**Signature:** `def import_standalone_public_key(crypto: CryptoBackend, path: str | Path) -> list[KeyInfo]`  
+**Purpose:** Import a public-key file into the active GnuPG keyring and list usable keys.
+
+**Direct calls observed in the function body:** `Path`, `ValueError`, `crypto.import_public_key`, `expanduser`, `fingerprint.upper`, `key.fingerprint.upper`, `source.is_file`, `source.read_bytes`, `standalone_recipient_keys`.
+
+**Explicitly raised exceptions:** `ValueError`.
+
+**Control-flow shape:** 2 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Security-relevant effect categories:** filesystem.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.services.standalone_export:prepare_standalone_entry -->
+#### `prepare_standalone_entry`
+
+**Kind:** function/method  
+**Lines:** 43-62  
+**Signature:** `def prepare_standalone_entry(vault: Vault, entry: Entry) -> Entry`  
+**Purpose:** Create an independent export copy, resolving local UUID references.
+
+**Direct calls observed in the function body:** `deepcopy`, `exported.validate`, `str`, `utc_now`, `uuid.uuid4`, `vault.resolved_action`, `vault.resolved_password`, `vault.resolved_username`.
+
+**Object attributes written:** `exported.actions`, `exported.created_at`, `exported.folder_id`, `exported.id`, `exported.password`, `exported.revision`, `exported.updated_at`, `exported.usernames`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.services.standalone_export:export_standalone_entry -->
+#### `export_standalone_entry`
+
+**Kind:** function/method  
+**Lines:** 65-76  
+**Signature:** `def export_standalone_entry(vault: Vault, entry_id: str, output_path: str | Path, recipient: str, signer: str | None=None) -> tuple[Path, Entry]`  
+**Purpose:** Encrypt and optionally sign one vault entry as a standalone record.
+
+**Direct calls observed in the function body:** `prepare_standalone_entry`, `vault.get_entry`, `write_encrypted_entry`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Security-relevant effect categories:** cryptography/key-agent.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -6019,27 +6653,27 @@ Central vault service: encryption, signatures, catalog, records, folders, refere
 Textual terminal UI and its actions/bindings.
 
 **Source:** `src/keys_ng/tui/main.py`  
-**Executable symbols:** 148
+**Executable symbols:** 165
 
-**Direct module dependencies:** `__future__`, `argparse`, `keys_ng`, `keys_ng.crypto.factory`, `keys_ng.i18n`, `keys_ng.migration.keepassxc`, `keys_ng.migration.keepassxc_export`, `keys_ng.platform.app_identity`, `keys_ng.services.actions`, `keys_ng.services.clipboard`, `keys_ng.services.diagnostics`, `keys_ng.services.entry_editor`, `keys_ng.services.passwords`, `keys_ng.services.qr`, `keys_ng.services.totp`, `keys_ng.services.trusted_signers`, `keys_ng.services.vault_init`, `keys_ng.services.vault_sessions`, `keys_ng.storage.inbox`, `keys_ng.storage.settings`, `keys_ng.storage.vault`, `pathlib`, `sys`
+**Direct module dependencies:** `__future__`, `argparse`, `keys_ng`, `keys_ng.crypto.factory`, `keys_ng.i18n`, `keys_ng.migration.keepassxc`, `keys_ng.migration.keepassxc_export`, `keys_ng.platform.app_identity`, `keys_ng.services.actions`, `keys_ng.services.clipboard`, `keys_ng.services.diagnostics`, `keys_ng.services.entry_editor`, `keys_ng.services.passwords`, `keys_ng.services.qr`, `keys_ng.services.standalone_export`, `keys_ng.services.totp`, `keys_ng.services.trusted_signers`, `keys_ng.services.vault_init`, `keys_ng.services.vault_sessions`, `keys_ng.storage.inbox`, `keys_ng.storage.settings`, `keys_ng.storage.vault`, `pathlib`, `sys`
 
 <!-- symbol:keys_ng.tui.main:main -->
 #### `main`
 
 **Kind:** function/method  
-**Lines:** 32-1437  
+**Lines:** 38-1691  
 **Signature:** `def main() -> None`  
 **Purpose:** Implements the `main` operation in this module.
 
-**Direct calls observed in the function body:** `AppSettings.load`, `Binding`, `Button`, `Checkbox`, `ChoiceScreen`, `ConfirmScreen`, `EntryDraft`, `EntryDraft.from_entry`, `EntryEditorScreen`, `ExportVaultScreen`, `Footer`, `Header`, `HelpScreen`, `Horizontal`, `InboxScreen`, `Input`, `KeePassXCImportScreen`, `KeysApp`, `Label`, `MoveScreen`, `NameScreen`, `PasswordGeneratorScreen`, `Path`, `Path.cwd`, `Path.home`, `PreferencesScreen`, `Select`, `Static`, `SystemExit`, `TextArea`, `Tree`, `TrustedSignersScreen`, `ValueError`, `Vault`, `VaultCreationApp`, `VaultInitRequest`, `VaultSessionManager`, `VaultStartApp`, `VaultSwitcherScreen`, `Vertical`, `VerticalScroll`, `_`, `__init__`, `_select_value_is_blank`, `add_trusted_signer`, `argparse.ArgumentParser`, `available_vault_keys`, `banner.add_class`, `banner.remove_class`, `banner.update`, `bool`, `build_entry_from_draft`, `build_otpauth_uri`, `ch.isalnum`, `choose_vault`, `configure_diagnostics`, `configure_language`, `copy_secret_cli`, `create_crypto_backend`, `create_vault`, `current_language`, `delete_inbox_item`, `eligible_signing_keys`, `enumerate`, `event.value.strip`, `exists`, `expanduser`, `export_entry_xml`, `export_vault_xml`, `files`, `focus`, `folder_nodes.get`, `folder_options`, `format`, `format_import_report`, `generate_password`, `generate_totp`, `get`, `get_logger`, `getattr`, `import_inbox_item`, `import_keepassxc`, `info`, `inspect_inbox`, `int`, `isinstance`, `join`, `joinpath`, `launch_action`, `len`, `list`, `list_trusted_signers`, `load_text`, `next`, `options.append`, `parent.add`, `parent.add_leaf`, `parse_totp_qr_file`, `parser.add_argument`, `parser.parse_args`, `paths.get`, `pending_inbox_paths`, `print`, `remaining.remove`, `remove_trusted_signer`, `resolve`, `resource.is_file`, `resource.read_text`, `root.joinpath`, `run`, `select.set_options`, `self._activate_opened_vault`, `self._banner_timer.stop`, `self._collect`, `self._copy`, `self._copy_generated`, `self._display_active_vault`, `self._finish_edit_entry`, `self._finish_export_entry`, `self._finish_open_vault`, `self._generate`, `self._load_qr`, `self._refresh_after_mutation`, `self._reset_selection`, `self._run`, `self._show_clipboard_banner`, `self._status`, `self._text`, `self._toggle_password_visibility`, `self._update_command_hints`, `self.action_cancel`, `self.action_close`, `self.action_reload_tree`, `self.action_save`, `self.app.copy_to_clipboard`, `self.app.push_screen`, `self.copy_to_clipboard`, `self.dismiss`, `self.exit`, `self.push_screen`, `self.query_one`, `self.rebuild_tree`, `self.refresh_inbox`, `self.refresh_signers`, `self.selected`, `self.set_timer`, `self.show_item`, `sessions.activate`, `sessions.add`, `sessions.close`, `sessions.contains`, `sessions.lock_all`, `sessions.opened`, `set_textual_terminal_title`, `settings.remember_vault`, `settings.save`, `status.update`, `str`, `strip`, `super`, `tree.clear`, `tree.root.add_leaf`, `tree.root.expand`, `tree.root.set_label`, `type`, `update`, `value.startswith`, `value.strip`, `vault.create_folder`, `vault.crypto.hard_lock`, `vault.delete_entry`, `vault.delete_folder`, `vault.folder_path`, `vault.folder_paths`, `vault.get_entry`, `vault.get_folder`, `vault.list_folders`, `vault.list_items`, `vault.lock`, `vault.move_entry`, `vault.move_folder`, `vault.rename_folder`, `vault.resolved_action`, `vault.resolved_password`, `vault.resolved_username`, `vault.save_entry`, `vault.search`, `vault.unlock`, `write_export`.
+**Direct calls observed in the function body:** `AppSettings.load`, `Binding`, `Button`, `Checkbox`, `ChoiceScreen`, `ConfirmScreen`, `EntryDraft`, `EntryDraft.from_entry`, `EntryEditorScreen`, `ExportVaultScreen`, `Footer`, `Header`, `HelpScreen`, `Horizontal`, `InboxScreen`, `Input`, `KeePassXCImportScreen`, `KeysApp`, `Label`, `MoveScreen`, `NameScreen`, `PasswordGeneratorScreen`, `Path`, `Path.cwd`, `Path.home`, `PreferencesScreen`, `Select`, `StandaloneExportScreen`, `Static`, `SystemExit`, `TextArea`, `Tree`, `TrustedSignersScreen`, `ValueError`, `Vault`, `VaultCreationApp`, `VaultInitRequest`, `VaultSessionManager`, `VaultStartApp`, `VaultSwitcherScreen`, `Vertical`, `VerticalScroll`, `_`, `__init__`, `_select_value_is_blank`, `add_trusted_signer`, `argparse.ArgumentParser`, `available_vault_keys`, `backend.diagnose`, `banner.add_class`, `banner.remove_class`, `banner.update`, `bool`, `build_entry_from_draft`, `build_otpauth_uri`, `ch.isalnum`, `choose_vault`, `configure_diagnostics`, `configure_language`, `copy_secret_cli`, `create_crypto_backend`, `create_vault`, `current_language`, `delete_inbox_item`, `eligible_signing_keys`, `enumerate`, `event.prevent_default`, `event.stop`, `event.value.strip`, `exists`, `expanded.add`, `expanduser`, `export_entry_xml`, `export_standalone_entry`, `export_vault_xml`, `files`, `float`, `focus`, `folder_nodes.get`, `folder_options`, `format`, `format_import_report`, `generate_password`, `generate_totp`, `get`, `get_logger`, `getattr`, `import_inbox_item`, `import_keepassxc`, `import_standalone_public_key`, `info`, `inspect_inbox`, `int`, `isinstance`, `join`, `joinpath`, `launch_action`, `len`, `line.strip`, `list`, `list_trusted_signers`, `load_text`, `next`, `options.append`, `parent.add`, `parent.add_leaf`, `parse_totp_qr_file`, `parser.add_argument`, `parser.parse_args`, `paths.get`, `pending_inbox_paths`, `print`, `recipient_select.set_options`, `remaining.remove`, `remove_trusted_signer`, `resolve`, `resource.is_file`, `resource.read_text`, `root.joinpath`, `run`, `select.set_options`, `self._activate_opened_vault`, `self._banner_timer.stop`, `self._capture_expanded_folders`, `self._collect`, `self._copy`, `self._copy_generated`, `self._display_active_vault`, `self._finish_edit_entry`, `self._finish_export_entry`, `self._finish_open_vault`, `self._generate`, `self._import_public_key`, `self._lines`, `self._load_qr`, `self._perform_export`, `self._refresh_after_mutation`, `self._refresh_keys`, `self._reset_selection`, `self._run`, `self._show_clipboard_banner`, `self._status`, `self._text`, `self._toggle_password_visibility`, `self._update_command_hints`, `self._verify_gnupg`, `self.action_cancel`, `self.action_close`, `self.action_reload_tree`, `self.action_save`, `self.app.copy_to_clipboard`, `self.app.push_screen`, `self.copy_to_clipboard`, `self.dismiss`, `self.exit`, `self.push_screen`, `self.query_one`, `self.rebuild_tree`, `self.refresh_inbox`, `self.refresh_signers`, `self.selected`, `self.set_timer`, `self.show_item`, `sessions.activate`, `sessions.add`, `sessions.close`, `sessions.contains`, `sessions.lock_all`, `sessions.opened`, `set`, `set_textual_terminal_title`, `settings.remember_vault`, `settings.save`, `signer_select.set_options`, `standalone_recipient_keys`, `standalone_signing_keys`, `status.update`, `str`, `strip`, `super`, `tree.clear`, `tree.root.add_leaf`, `tree.root.expand`, `tree.root.set_label`, `type`, `update`, `value.startswith`, `value.strip`, `vault.create_folder`, `vault.crypto.hard_lock`, `vault.delete_entry`, `vault.delete_folder`, `vault.folder_path`, `vault.folder_paths`, `vault.get_entry`, `vault.get_folder`, `vault.list_folders`, `vault.list_items`, `vault.lock`, `vault.move_entry`, `vault.move_folder`, `vault.rename_folder`, `vault.resolved_action`, `vault.resolved_password`, `vault.resolved_username`, `vault.save_entry`, `vault.search`, `vault.unlock`, `visit`, `widget.text.splitlines`, `write_export`.
 
 **Explicitly raised exceptions:** `SystemExit`, `ValueError`.
 
-**Object attributes written:** `banner.styles.background`, `banner.styles.color`, `password_input.password`, `select.value`, `self._banner_timer`, `self._inbox_notice_shown`, `self.confirm_label`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.current_kind`, `self.destructive`, `self.dialog_title`, `self.draft`, `self.exclude_id`, `self.items`, `self.message`, `self.options`, `self.resource_name`, `self.selected`, `self.title`, `self.title_text`, `self.value`, `settings.auto_lock_timeout`, `settings.clipboard_password_timeout`, `settings.clipboard_totp_timeout`, `settings.diagnostics_enabled`, `settings.gpg_executable`, `settings.gpgconf_executable`, `settings.language`, `settings.tree_startup_view`, `toggle.label`, `value`.
+**Object attributes written:** `banner.styles.background`, `banner.styles.color`, `disabled`, `password_input.password`, `recipient_select.value`, `select.value`, `self._banner_timer`, `self._expanded_folder_ids`, `self._inbox_notice_shown`, `self._last_tree_query`, `self.confirm_label`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.current_kind`, `self.destructive`, `self.dialog_title`, `self.draft`, `self.entry`, `self.exclude_id`, `self.items`, `self.message`, `self.options`, `self.recipient_keys`, `self.resource_name`, `self.selected`, `self.signing_keys`, `self.title`, `self.title_text`, `self.value`, `settings.auto_lock_timeout`, `settings.clipboard_password_timeout`, `settings.clipboard_totp_timeout`, `settings.crypto_backend`, `settings.gpg_executable`, `settings.gpgconf_executable`, `settings.language`, `settings.rdp_linux_client`, `settings.rdp_linux_options`, `settings.rdp_macos_client`, `settings.rdp_macos_options`, `settings.rdp_windows_client`, `settings.rdp_windows_options`, `settings.ssh_terminal`, `settings.ssh_terminal_options`, `settings.tree_startup_view`, `settings.tui_clipboard_notice_background`, `settings.tui_clipboard_notice_foreground`, `settings.tui_clipboard_notice_seconds`, `signer_select.disabled`, `signer_select.value`, `toggle.label`, `value`.
 
-**Control-flow shape:** 134 conditional blocks, 10 loops, 40 try blocks, 47 context managers, 69 explicit returns.
+**Control-flow shape:** 152 conditional blocks, 11 loops, 43 try blocks, 50 context managers, 76 explicit returns.
 
-**Security-relevant effect categories:** process, filesystem, cryptography/key-agent, clipboard.
+**Security-relevant effect categories:** process, filesystem, cryptography/key-agent, clipboard, parser/serialization.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -6047,7 +6681,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultCreationApp`
 
 **Kind:** class  
-**Lines:** 70-133  
+**Lines:** 76-139  
 **Bases:** `App[str | None]`  
 **Methods:** `compose`, `on_button_pressed`, `action_cancel`  
 **Responsibility:** Standalone keyboard-first onboarding wizard used when no vault is supplied.
@@ -6056,7 +6690,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultCreationApp.compose`
 
 **Kind:** function/method  
-**Lines:** 84-104  
+**Lines:** 90-110  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6070,7 +6704,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultCreationApp.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 106-130  
+**Lines:** 112-136  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6086,7 +6720,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultCreationApp.action_cancel`
 
 **Kind:** function/method  
-**Lines:** 132-133  
+**Lines:** 138-139  
 **Signature:** `def action_cancel(self) -> None`  
 **Purpose:** Implements the `action_cancel` operation in this module.
 
@@ -6100,7 +6734,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultStartApp`
 
 **Kind:** class  
-**Lines:** 135-160  
+**Lines:** 141-166  
 **Bases:** `App[str | None]`  
 **Methods:** `compose`, `on_select_changed`, `on_button_pressed`  
 **Responsibility:** Start screen for opening, creating, or selecting a recent vault.
@@ -6109,7 +6743,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultStartApp.compose`
 
 **Kind:** function/method  
-**Lines:** 142-153  
+**Lines:** 148-159  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6123,7 +6757,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultStartApp.on_select_changed`
 
 **Kind:** function/method  
-**Lines:** 154-156  
+**Lines:** 160-162  
 **Signature:** `def on_select_changed(self, event: Select.Changed) -> None`  
 **Purpose:** Implements the `on_select_changed` operation in this module.
 
@@ -6139,7 +6773,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultStartApp.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 157-160  
+**Lines:** 163-166  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6153,7 +6787,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.choose_vault`
 
 **Kind:** function/method  
-**Lines:** 162-179  
+**Lines:** 168-185  
 **Signature:** `def choose_vault(path: str | None=None) -> str | None`  
 **Purpose:** Implements the `choose_vault` operation in this module.
 
@@ -6167,7 +6801,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.folder_options`
 
 **Kind:** function/method  
-**Lines:** 187-192  
+**Lines:** 193-198  
 **Signature:** `def folder_options(exclude_id: str | None=None) -> list[tuple[str, str]]`  
 **Purpose:** Implements the `folder_options` operation in this module.
 
@@ -6181,7 +6815,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.PasswordGeneratorScreen`
 
 **Kind:** class  
-**Lines:** 194-251  
+**Lines:** 200-257  
 **Bases:** `ModalScreen[str | None]`  
 **Methods:** `compose`, `on_mount`, `_generate`, `_copy_generated`, `on_button_pressed`, `action_cancel`  
 **Responsibility:** Implements the `PasswordGeneratorScreen` operation in this module.
@@ -6190,7 +6824,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.PasswordGeneratorScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 201-216  
+**Lines:** 207-222  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6204,7 +6838,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.PasswordGeneratorScreen.on_mount`
 
 **Kind:** function/method  
-**Lines:** 217-217  
+**Lines:** 223-223  
 **Signature:** `def on_mount(self) -> None`  
 **Purpose:** Implements the `on_mount` operation in this module.
 
@@ -6218,7 +6852,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.PasswordGeneratorScreen._generate`
 
 **Kind:** function/method  
-**Lines:** 218-230  
+**Lines:** 224-236  
 **Signature:** `def _generate(self) -> None`  
 **Purpose:** Internal helper implementing `_generate`.
 
@@ -6234,7 +6868,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.PasswordGeneratorScreen._copy_generated`
 
 **Kind:** function/method  
-**Lines:** 231-244  
+**Lines:** 237-250  
 **Signature:** `def _copy_generated(self) -> None`  
 **Purpose:** Internal helper implementing `_copy_generated`.
 
@@ -6250,7 +6884,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.PasswordGeneratorScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 246-250  
+**Lines:** 252-256  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6264,7 +6898,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.PasswordGeneratorScreen.action_cancel`
 
 **Kind:** function/method  
-**Lines:** 251-251  
+**Lines:** 257-257  
 **Signature:** `def action_cancel(self) -> None`  
 **Purpose:** Implements the `action_cancel` operation in this module.
 
@@ -6278,7 +6912,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeePassXCImportScreen`
 
 **Kind:** class  
-**Lines:** 253-292  
+**Lines:** 259-298  
 **Bases:** `ModalScreen[bool]`  
 **Methods:** `compose`, `_run`, `on_button_pressed`, `action_close`  
 **Responsibility:** Implements the `KeePassXCImportScreen` operation in this module.
@@ -6287,7 +6921,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeePassXCImportScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 261-273  
+**Lines:** 267-279  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6301,7 +6935,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeePassXCImportScreen._run`
 
 **Kind:** function/method  
-**Lines:** 274-283  
+**Lines:** 280-289  
 **Signature:** `def _run(self, dry_run: bool)`  
 **Purpose:** Internal helper implementing `_run`.
 
@@ -6317,7 +6951,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeePassXCImportScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 284-291  
+**Lines:** 290-297  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6333,7 +6967,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeePassXCImportScreen.action_close`
 
 **Kind:** function/method  
-**Lines:** 292-292  
+**Lines:** 298-298  
 **Signature:** `def action_close(self) -> None`  
 **Purpose:** Implements the `action_close` operation in this module.
 
@@ -6347,7 +6981,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ExportVaultScreen`
 
 **Kind:** class  
-**Lines:** 294-306  
+**Lines:** 300-312  
 **Bases:** `ModalScreen[str | None]`  
 **Methods:** `compose`, `on_button_pressed`  
 **Responsibility:** Implements the `ExportVaultScreen` operation in this module.
@@ -6356,7 +6990,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ExportVaultScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 296-304  
+**Lines:** 302-310  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6370,7 +7004,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ExportVaultScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 305-306  
+**Lines:** 311-312  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6384,22 +7018,52 @@ Textual terminal UI and its actions/bindings.
 #### `main.PreferencesScreen`
 
 **Kind:** class  
-**Lines:** 308-336  
+**Lines:** 314-425  
 **Bases:** `ModalScreen[bool]`  
-**Methods:** `compose`, `on_button_pressed`  
+**Methods:** `_lines`, `compose`, `_verify_gnupg`, `on_button_pressed`  
 **Responsibility:** Implements the `PreferencesScreen` operation in this module.
+
+<!-- symbol:keys_ng.tui.main:main.PreferencesScreen._lines -->
+#### `main.PreferencesScreen._lines`
+
+**Kind:** function/method  
+**Lines:** 319-320  
+**Signature:** `def _lines(widget: TextArea) -> list[str]`  
+**Purpose:** Internal helper implementing `_lines`.
+
+**Direct calls observed in the function body:** `line.strip`, `widget.text.splitlines`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Security-relevant effect categories:** parser/serialization.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
 <!-- symbol:keys_ng.tui.main:main.PreferencesScreen.compose -->
 #### `main.PreferencesScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 310-323  
+**Lines:** 322-378  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
-**Direct calls observed in the function body:** `Button`, `Checkbox`, `Horizontal`, `Input`, `Label`, `Select`, `Static`, `Vertical`, `VerticalScroll`, `_`, `str`.
+**Direct calls observed in the function body:** `Button`, `Horizontal`, `Input`, `Label`, `Select`, `Static`, `TextArea`, `Vertical`, `VerticalScroll`, `_`, `join`, `str`.
 
 **Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 3 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.PreferencesScreen._verify_gnupg -->
+#### `main.PreferencesScreen._verify_gnupg`
+
+**Kind:** function/method  
+**Lines:** 380-393  
+**Signature:** `def _verify_gnupg(self) -> None`  
+**Purpose:** Internal helper implementing `_verify_gnupg`.
+
+**Direct calls observed in the function body:** `_`, `backend.diagnose`, `create_crypto_backend`, `join`, `self.query_one`, `update`, `value.strip`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 0 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -6407,15 +7071,15 @@ Textual terminal UI and its actions/bindings.
 #### `main.PreferencesScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 324-336  
+**Lines:** 395-425  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
-**Direct calls observed in the function body:** `int`, `self.dismiss`, `self.query_one`, `settings.save`, `str`, `value.strip`.
+**Direct calls observed in the function body:** `_`, `float`, `int`, `self._lines`, `self._verify_gnupg`, `self.dismiss`, `self.query_one`, `settings.save`, `str`, `update`, `value.strip`.
 
-**Object attributes written:** `settings.auto_lock_timeout`, `settings.clipboard_password_timeout`, `settings.clipboard_totp_timeout`, `settings.diagnostics_enabled`, `settings.gpg_executable`, `settings.gpgconf_executable`, `settings.language`, `settings.tree_startup_view`.
+**Object attributes written:** `settings.auto_lock_timeout`, `settings.clipboard_password_timeout`, `settings.clipboard_totp_timeout`, `settings.crypto_backend`, `settings.gpg_executable`, `settings.gpgconf_executable`, `settings.language`, `settings.rdp_linux_client`, `settings.rdp_linux_options`, `settings.rdp_macos_client`, `settings.rdp_macos_options`, `settings.rdp_windows_client`, `settings.rdp_windows_options`, `settings.ssh_terminal`, `settings.ssh_terminal_options`, `settings.tree_startup_view`, `settings.tui_clipboard_notice_background`, `settings.tui_clipboard_notice_foreground`, `settings.tui_clipboard_notice_seconds`.
 
-**Control-flow shape:** 1 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
+**Control-flow shape:** 2 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 2 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -6423,7 +7087,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.HelpScreen`
 
 **Kind:** class  
-**Lines:** 338-356  
+**Lines:** 428-446  
 **Bases:** `ModalScreen[None]`  
 **Methods:** `__init__`, `_text`, `compose`, `on_button_pressed`  
 **Responsibility:** Implements the `HelpScreen` operation in this module.
@@ -6432,7 +7096,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.HelpScreen.__init__`
 
 **Kind:** function/method  
-**Lines:** 340-341  
+**Lines:** 430-431  
 **Signature:** `def __init__(self, resource_name: str='README.md') -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -6448,7 +7112,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.HelpScreen._text`
 
 **Kind:** function/method  
-**Lines:** 342-351  
+**Lines:** 432-441  
 **Signature:** `def _text(self) -> str`  
 **Purpose:** Internal helper implementing `_text`.
 
@@ -6464,7 +7128,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.HelpScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 352-355  
+**Lines:** 442-445  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6478,7 +7142,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.HelpScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 356-356  
+**Lines:** 446-446  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6492,7 +7156,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen`
 
 **Kind:** class  
-**Lines:** 358-515  
+**Lines:** 448-609  
 **Bases:** `ModalScreen[EntryDraft | None]`  
 **Methods:** `__init__`, `compose`, `_collect`, `action_save`, `action_cancel`, `_finish_generated_password`, `_toggle_password_visibility`, `_load_qr`, `on_button_pressed`  
 **Responsibility:** Keyboard-first full editor shared semantically with the GUI editor.
@@ -6501,7 +7165,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen.__init__`
 
 **Kind:** function/method  
-**Lines:** 378-381  
+**Lines:** 468-471  
 **Signature:** `def __init__(self, draft: EntryDraft, title: str) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -6517,13 +7181,13 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 383-455  
+**Lines:** 473-548  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
 **Direct calls observed in the function body:** `Button`, `Horizontal`, `Input`, `Label`, `Select`, `Static`, `TextArea`, `Vertical`, `VerticalScroll`, `_`, `folder_options`.
 
-**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 17 context managers, 0 explicit returns.
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 18 context managers, 0 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -6531,7 +7195,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen._collect`
 
 **Kind:** function/method  
-**Lines:** 457-474  
+**Lines:** 550-568  
 **Signature:** `def _collect(self) -> EntryDraft`  
 **Purpose:** Internal helper implementing `_collect`.
 
@@ -6545,7 +7209,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen.action_save`
 
 **Kind:** function/method  
-**Lines:** 476-477  
+**Lines:** 570-571  
 **Signature:** `def action_save(self) -> None`  
 **Purpose:** Implements the `action_save` operation in this module.
 
@@ -6559,7 +7223,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen.action_cancel`
 
 **Kind:** function/method  
-**Lines:** 479-480  
+**Lines:** 573-574  
 **Signature:** `def action_cancel(self) -> None`  
 **Purpose:** Implements the `action_cancel` operation in this module.
 
@@ -6573,7 +7237,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen._finish_generated_password`
 
 **Kind:** function/method  
-**Lines:** 482-484  
+**Lines:** 576-578  
 **Signature:** `def _finish_generated_password(self, value: str | None) -> None`  
 **Purpose:** Internal helper implementing `_finish_generated_password`.
 
@@ -6589,7 +7253,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen._toggle_password_visibility`
 
 **Kind:** function/method  
-**Lines:** 486-490  
+**Lines:** 580-584  
 **Signature:** `def _toggle_password_visibility(self) -> None`  
 **Purpose:** Internal helper implementing `_toggle_password_visibility`.
 
@@ -6605,7 +7269,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen._load_qr`
 
 **Kind:** function/method  
-**Lines:** 492-503  
+**Lines:** 586-597  
 **Signature:** `def _load_qr(self) -> None`  
 **Purpose:** Internal helper implementing `_load_qr`.
 
@@ -6621,7 +7285,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.EntryEditorScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 505-515  
+**Lines:** 599-609  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6635,7 +7299,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.NameScreen`
 
 **Kind:** class  
-**Lines:** 517-548  
+**Lines:** 611-642  
 **Bases:** `ModalScreen[str | None]`  
 **Methods:** `__init__`, `compose`, `action_save`, `action_cancel`, `on_button_pressed`  
 **Responsibility:** Small modal used for folder creation and rename.
@@ -6644,7 +7308,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.NameScreen.__init__`
 
 **Kind:** function/method  
-**Lines:** 527-530  
+**Lines:** 621-624  
 **Signature:** `def __init__(self, title: str, value: str='') -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -6660,7 +7324,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.NameScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 532-538  
+**Lines:** 626-632  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6674,7 +7338,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.NameScreen.action_save`
 
 **Kind:** function/method  
-**Lines:** 540-542  
+**Lines:** 634-636  
 **Signature:** `def action_save(self) -> None`  
 **Purpose:** Implements the `action_save` operation in this module.
 
@@ -6688,7 +7352,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.NameScreen.action_cancel`
 
 **Kind:** function/method  
-**Lines:** 544-545  
+**Lines:** 638-639  
 **Signature:** `def action_cancel(self) -> None`  
 **Purpose:** Implements the `action_cancel` operation in this module.
 
@@ -6702,7 +7366,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.NameScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 547-548  
+**Lines:** 641-642  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6716,7 +7380,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.MoveScreen`
 
 **Kind:** class  
-**Lines:** 550-582  
+**Lines:** 644-676  
 **Bases:** `ModalScreen[str | None | bool]`  
 **Methods:** `__init__`, `compose`, `action_save`, `action_cancel`, `on_button_pressed`  
 **Responsibility:** Choose a destination folder. False means cancelled; None means root.
@@ -6725,7 +7389,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.MoveScreen.__init__`
 
 **Kind:** function/method  
-**Lines:** 560-564  
+**Lines:** 654-658  
 **Signature:** `def __init__(self, title: str, selected: str | None, exclude_id: str | None=None) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -6741,7 +7405,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.MoveScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 566-572  
+**Lines:** 660-666  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6755,7 +7419,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.MoveScreen.action_save`
 
 **Kind:** function/method  
-**Lines:** 574-576  
+**Lines:** 668-670  
 **Signature:** `def action_save(self) -> None`  
 **Purpose:** Implements the `action_save` operation in this module.
 
@@ -6769,7 +7433,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.MoveScreen.action_cancel`
 
 **Kind:** function/method  
-**Lines:** 578-579  
+**Lines:** 672-673  
 **Signature:** `def action_cancel(self) -> None`  
 **Purpose:** Implements the `action_cancel` operation in this module.
 
@@ -6783,7 +7447,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.MoveScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 581-582  
+**Lines:** 675-676  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6797,7 +7461,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ConfirmScreen`
 
 **Kind:** class  
-**Lines:** 584-611  
+**Lines:** 678-705  
 **Bases:** `ModalScreen[bool]`  
 **Methods:** `__init__`, `compose`, `action_no`, `on_button_pressed`  
 **Responsibility:** Explicit confirmation screen for destructive and sensitive actions.
@@ -6806,7 +7470,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ConfirmScreen.__init__`
 
 **Kind:** function/method  
-**Lines:** 594-598  
+**Lines:** 688-692  
 **Signature:** `def __init__(self, message: str, confirm_label: str | None=None, *, destructive: bool=False) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -6822,7 +7486,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ConfirmScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 600-605  
+**Lines:** 694-699  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6836,7 +7500,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ConfirmScreen.action_no`
 
 **Kind:** function/method  
-**Lines:** 607-608  
+**Lines:** 701-702  
 **Signature:** `def action_no(self) -> None`  
 **Purpose:** Implements the `action_no` operation in this module.
 
@@ -6850,9 +7514,150 @@ Textual terminal UI and its actions/bindings.
 #### `main.ConfirmScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 610-611  
+**Lines:** 704-705  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
+
+**Direct calls observed in the function body:** `self.dismiss`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen -->
+#### `main.StandaloneExportScreen`
+
+**Kind:** class  
+**Lines:** 707-815  
+**Bases:** `ModalScreen[str | None]`  
+**Methods:** `__init__`, `compose`, `on_mount`, `_refresh_keys`, `on_checkbox_changed`, `_import_public_key`, `_perform_export`, `on_button_pressed`, `action_cancel`  
+**Responsibility:** Implements the `StandaloneExportScreen` operation in this module.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.__init__ -->
+#### `main.StandaloneExportScreen.__init__`
+
+**Kind:** function/method  
+**Lines:** 715-719  
+**Signature:** `def __init__(self, entry: Entry) -> None`  
+**Purpose:** Internal helper implementing `__init__`.
+
+**Direct calls observed in the function body:** `__init__`, `super`.
+
+**Object attributes written:** `self.entry`, `self.recipient_keys`, `self.signing_keys`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.compose -->
+#### `main.StandaloneExportScreen.compose`
+
+**Kind:** function/method  
+**Lines:** 721-744  
+**Signature:** `def compose(self) -> ComposeResult`  
+**Purpose:** Implements the `compose` operation in this module.
+
+**Direct calls observed in the function body:** `Button`, `Checkbox`, `Horizontal`, `Input`, `Label`, `Path.cwd`, `Select`, `Static`, `Vertical`, `_`, `ch.isalnum`, `join`, `str`, `strip`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 2 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_mount -->
+#### `main.StandaloneExportScreen.on_mount`
+
+**Kind:** function/method  
+**Lines:** 746-747  
+**Signature:** `def on_mount(self) -> None`  
+**Purpose:** Implements the `on_mount` operation in this module.
+
+**Direct calls observed in the function body:** `self._refresh_keys`.
+
+**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._refresh_keys -->
+#### `main.StandaloneExportScreen._refresh_keys`
+
+**Kind:** function/method  
+**Lines:** 749-764  
+**Signature:** `def _refresh_keys(self, preferred: str | None=None) -> None`  
+**Purpose:** Internal helper implementing `_refresh_keys`.
+
+**Direct calls observed in the function body:** `_`, `recipient_select.set_options`, `self.query_one`, `signer_select.set_options`, `standalone_recipient_keys`, `standalone_signing_keys`.
+
+**Object attributes written:** `recipient_select.value`, `self.recipient_keys`, `self.signing_keys`, `signer_select.disabled`, `signer_select.value`.
+
+**Control-flow shape:** 2 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_checkbox_changed -->
+#### `main.StandaloneExportScreen.on_checkbox_changed`
+
+**Kind:** function/method  
+**Lines:** 766-768  
+**Signature:** `def on_checkbox_changed(self, event: Checkbox.Changed) -> None`  
+**Purpose:** Implements the `on_checkbox_changed` operation in this module.
+
+**Direct calls observed in the function body:** `self.query_one`.
+
+**Object attributes written:** `disabled`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._import_public_key -->
+#### `main.StandaloneExportScreen._import_public_key`
+
+**Kind:** function/method  
+**Lines:** 770-782  
+**Signature:** `def _import_public_key(self) -> None`  
+**Purpose:** Internal helper implementing `_import_public_key`.
+
+**Direct calls observed in the function body:** `_`, `import_standalone_public_key`, `self._refresh_keys`, `self.query_one`, `update`, `value.strip`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._perform_export -->
+#### `main.StandaloneExportScreen._perform_export`
+
+**Kind:** function/method  
+**Lines:** 784-804  
+**Signature:** `def _perform_export(self) -> None`  
+**Purpose:** Internal helper implementing `_perform_export`.
+
+**Direct calls observed in the function body:** `_`, `export_standalone_entry`, `self.dismiss`, `self.query_one`, `str`, `update`, `value.strip`.
+
+**Control-flow shape:** 3 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 3 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_button_pressed -->
+#### `main.StandaloneExportScreen.on_button_pressed`
+
+**Kind:** function/method  
+**Lines:** 806-812  
+**Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
+**Purpose:** Implements the `on_button_pressed` operation in this module.
+
+**Direct calls observed in the function body:** `self._import_public_key`, `self._perform_export`, `self.dismiss`.
+
+**Control-flow shape:** 2 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.action_cancel -->
+#### `main.StandaloneExportScreen.action_cancel`
+
+**Kind:** function/method  
+**Lines:** 814-815  
+**Signature:** `def action_cancel(self) -> None`  
+**Purpose:** Implements the `action_cancel` operation in this module.
 
 **Direct calls observed in the function body:** `self.dismiss`.
 
@@ -6864,7 +7669,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen`
 
 **Kind:** class  
-**Lines:** 613-680  
+**Lines:** 817-884  
 **Bases:** `ModalScreen[None]`  
 **Methods:** `compose`, `on_mount`, `refresh_signers`, `action_close`, `on_select_changed`, `_finish_add`, `_finish_remove`, `on_button_pressed`  
 **Responsibility:** Implements the `TrustedSignersScreen` operation in this module.
@@ -6873,7 +7678,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 621-630  
+**Lines:** 825-834  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -6887,7 +7692,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen.on_mount`
 
 **Kind:** function/method  
-**Lines:** 632-633  
+**Lines:** 836-837  
 **Signature:** `def on_mount(self) -> None`  
 **Purpose:** Implements the `on_mount` operation in this module.
 
@@ -6901,7 +7706,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen.refresh_signers`
 
 **Kind:** function/method  
-**Lines:** 635-643  
+**Lines:** 839-847  
 **Signature:** `def refresh_signers(self) -> None`  
 **Purpose:** Implements the `refresh_signers` operation in this module.
 
@@ -6917,7 +7722,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen.action_close`
 
 **Kind:** function/method  
-**Lines:** 645-646  
+**Lines:** 849-850  
 **Signature:** `def action_close(self) -> None`  
 **Purpose:** Implements the `action_close` operation in this module.
 
@@ -6931,7 +7736,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen.on_select_changed`
 
 **Kind:** function/method  
-**Lines:** 648-650  
+**Lines:** 852-854  
 **Signature:** `def on_select_changed(self, event: Select.Changed) -> None`  
 **Purpose:** Implements the `on_select_changed` operation in this module.
 
@@ -6945,7 +7750,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen._finish_add`
 
 **Kind:** function/method  
-**Lines:** 652-658  
+**Lines:** 856-862  
 **Signature:** `def _finish_add(self, value) -> None`  
 **Purpose:** Internal helper implementing `_finish_add`.
 
@@ -6959,7 +7764,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen._finish_remove`
 
 **Kind:** function/method  
-**Lines:** 660-667  
+**Lines:** 864-871  
 **Signature:** `def _finish_remove(self, confirmed: bool) -> None`  
 **Purpose:** Internal helper implementing `_finish_remove`.
 
@@ -6973,7 +7778,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.TrustedSignersScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 669-680  
+**Lines:** 873-884  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -6987,7 +7792,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ChoiceScreen`
 
 **Kind:** class  
-**Lines:** 683-700  
+**Lines:** 887-904  
 **Bases:** `ModalScreen[str | bool]`  
 **Methods:** `__init__`, `compose`, `on_button_pressed`  
 **Responsibility:** Implements the `ChoiceScreen` operation in this module.
@@ -6996,7 +7801,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ChoiceScreen.__init__`
 
 **Kind:** function/method  
-**Lines:** 689-690  
+**Lines:** 893-894  
 **Signature:** `def __init__(self, title: str, options) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -7012,7 +7817,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ChoiceScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 691-697  
+**Lines:** 895-901  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -7026,7 +7831,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.ChoiceScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 698-700  
+**Lines:** 902-904  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -7040,7 +7845,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen`
 
 **Kind:** class  
-**Lines:** 703-788  
+**Lines:** 907-992  
 **Bases:** `ModalScreen[None]`  
 **Methods:** `__init__`, `compose`, `on_mount`, `action_close`, `_status`, `refresh_inbox`, `show_item`, `selected`, `on_select_changed`, `_finish_unsigned`, `_finish_delete`, `on_button_pressed`  
 **Responsibility:** Implements the `InboxScreen` operation in this module.
@@ -7049,7 +7854,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.__init__`
 
 **Kind:** function/method  
-**Lines:** 711-712  
+**Lines:** 915-916  
 **Signature:** `def __init__(self) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
@@ -7065,7 +7870,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 713-724  
+**Lines:** 917-928  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -7079,7 +7884,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.on_mount`
 
 **Kind:** function/method  
-**Lines:** 725-725  
+**Lines:** 929-929  
 **Signature:** `def on_mount(self) -> None`  
 **Purpose:** Implements the `on_mount` operation in this module.
 
@@ -7093,7 +7898,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.action_close`
 
 **Kind:** function/method  
-**Lines:** 726-726  
+**Lines:** 930-930  
 **Signature:** `def action_close(self) -> None`  
 **Purpose:** Implements the `action_close` operation in this module.
 
@@ -7107,7 +7912,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen._status`
 
 **Kind:** function/method  
-**Lines:** 727-728  
+**Lines:** 931-932  
 **Signature:** `def _status(self, item) -> str`  
 **Purpose:** Internal helper implementing `_status`.
 
@@ -7121,7 +7926,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.refresh_inbox`
 
 **Kind:** function/method  
-**Lines:** 729-740  
+**Lines:** 933-944  
 **Signature:** `def refresh_inbox(self) -> None`  
 **Purpose:** Implements the `refresh_inbox` operation in this module.
 
@@ -7137,7 +7942,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.show_item`
 
 **Kind:** function/method  
-**Lines:** 741-746  
+**Lines:** 945-950  
 **Signature:** `def show_item(self, idx: int) -> None`  
 **Purpose:** Implements the `show_item` operation in this module.
 
@@ -7151,7 +7956,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.selected`
 
 **Kind:** function/method  
-**Lines:** 747-750  
+**Lines:** 951-954  
 **Signature:** `def selected(self)`  
 **Purpose:** Implements the `selected` operation in this module.
 
@@ -7165,7 +7970,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.on_select_changed`
 
 **Kind:** function/method  
-**Lines:** 751-752  
+**Lines:** 955-956  
 **Signature:** `def on_select_changed(self, event: Select.Changed) -> None`  
 **Purpose:** Implements the `on_select_changed` operation in this module.
 
@@ -7179,7 +7984,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen._finish_unsigned`
 
 **Kind:** function/method  
-**Lines:** 753-758  
+**Lines:** 957-962  
 **Signature:** `def _finish_unsigned(self, confirmed: bool) -> None`  
 **Purpose:** Internal helper implementing `_finish_unsigned`.
 
@@ -7193,7 +7998,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen._finish_delete`
 
 **Kind:** function/method  
-**Lines:** 759-764  
+**Lines:** 963-968  
 **Signature:** `def _finish_delete(self, confirmed: bool) -> None`  
 **Purpose:** Internal helper implementing `_finish_delete`.
 
@@ -7207,7 +8012,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.InboxScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 765-788  
+**Lines:** 969-992  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -7221,7 +8026,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultSwitcherScreen`
 
 **Kind:** class  
-**Lines:** 790-828  
+**Lines:** 994-1032  
 **Bases:** `ModalScreen[tuple[str, str | None] | None]`  
 **Methods:** `compose`, `action_cancel`, `on_button_pressed`  
 **Responsibility:** Select, activate, or close one of the vaults already open in the TUI.
@@ -7230,7 +8035,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultSwitcherScreen.compose`
 
 **Kind:** function/method  
-**Lines:** 800-813  
+**Lines:** 1004-1017  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -7246,7 +8051,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultSwitcherScreen.action_cancel`
 
 **Kind:** function/method  
-**Lines:** 815-816  
+**Lines:** 1019-1020  
 **Signature:** `def action_cancel(self) -> None`  
 **Purpose:** Implements the `action_cancel` operation in this module.
 
@@ -7260,7 +8065,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.VaultSwitcherScreen.on_button_pressed`
 
 **Kind:** function/method  
-**Lines:** 818-828  
+**Lines:** 1022-1032  
 **Signature:** `def on_button_pressed(self, event: Button.Pressed) -> None`  
 **Purpose:** Implements the `on_button_pressed` operation in this module.
 
@@ -7274,22 +8079,22 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp`
 
 **Kind:** class  
-**Lines:** 830-1417  
+**Lines:** 1034-1671  
 **Bases:** `App`  
-**Methods:** `__init__`, `compose`, `on_mount`, `rebuild_tree`, `_reset_selection`, `_refresh_after_mutation`, `on_input_changed`, `on_tree_node_selected`, `_status`, `_show_clipboard_banner`, `_hide_clipboard_banner`, `_update_command_hints`, `action_focus_search`, `action_reload_tree`, `action_import_keepassxc`, `action_export_vault`, `_finish_export_vault`, `_display_active_vault`, `_activate_opened_vault`, `action_open_vault`, `_finish_open_vault`, `action_recent_vault`, `_finish_recent_vault`, `action_switch_vault`, `_finish_switch_vault`, `action_close_vault`, `action_preferences`, `action_help`, `action_shortcut_help`, `_finish_help`, `action_inbox`, `action_trusted_signers`, `_copy`, `action_copy_url`, `action_copy_uuid`, `action_copy_username`, `action_copy_password`, `action_copy_notes`, `action_copy_totp`, `action_open_action`, `action_new_entry`, `_finish_new_entry`, `action_edit_selected`, `_finish_edit_entry`, `action_new_folder`, `_finish_new_folder`, `_finish_rename_folder`, `action_move_selected`, `_finish_move`, `action_delete_selected`, `_finish_delete`, `action_export_entry`, `_finish_export_entry`, `action_lock_vault`, `action_hard_lock_vault`, `action_unlock_vault`  
+**Methods:** `__init__`, `compose`, `on_mount`, `rebuild_tree`, `_capture_expanded_folders`, `on_key`, `_reset_selection`, `_refresh_after_mutation`, `on_input_changed`, `on_tree_node_selected`, `_status`, `_show_clipboard_banner`, `_hide_clipboard_banner`, `_update_command_hints`, `action_focus_search`, `action_reload_tree`, `action_import_keepassxc`, `action_export_vault`, `_finish_export_vault`, `_display_active_vault`, `_activate_opened_vault`, `action_open_vault`, `_finish_open_vault`, `action_recent_vault`, `_finish_recent_vault`, `action_switch_vault`, `_finish_switch_vault`, `action_close_vault`, `action_preferences`, `action_help`, `action_shortcut_help`, `_finish_help`, `action_inbox`, `action_trusted_signers`, `_copy`, `action_copy_url`, `action_copy_uuid`, `action_copy_username`, `action_copy_password`, `action_copy_notes`, `action_copy_totp`, `action_open_action`, `action_new_entry`, `_finish_new_entry`, `action_edit_selected`, `_finish_edit_entry`, `action_new_folder`, `_finish_new_folder`, `_finish_rename_folder`, `action_move_selected`, `_finish_move`, `action_delete_selected`, `_finish_delete`, `action_export_standalone`, `_finish_export_standalone`, `action_export_entry`, `_finish_export_entry`, `action_lock_vault`, `action_hard_lock_vault`, `action_unlock_vault`  
 **Responsibility:** Top-level Textual application for one vault.
 
 <!-- symbol:keys_ng.tui.main:main.KeysApp.__init__ -->
 #### `main.KeysApp.__init__`
 
 **Kind:** function/method  
-**Lines:** 878-885  
+**Lines:** 1083-1092  
 **Signature:** `def __init__(self) -> None`  
 **Purpose:** Internal helper implementing `__init__`.
 
 **Direct calls observed in the function body:** `__init__`, `super`.
 
-**Object attributes written:** `self._banner_timer`, `self._inbox_notice_shown`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.current_kind`.
+**Object attributes written:** `self._banner_timer`, `self._expanded_folder_ids`, `self._inbox_notice_shown`, `self._last_tree_query`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.current_kind`.
 
 **Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
@@ -7299,7 +8104,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.compose`
 
 **Kind:** function/method  
-**Lines:** 887-897  
+**Lines:** 1094-1104  
 **Signature:** `def compose(self) -> ComposeResult`  
 **Purpose:** Implements the `compose` operation in this module.
 
@@ -7313,7 +8118,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.on_mount`
 
 **Kind:** function/method  
-**Lines:** 899-907  
+**Lines:** 1106-1114  
 **Signature:** `def on_mount(self) -> None`  
 **Purpose:** Implements the `on_mount` operation in this module.
 
@@ -7329,13 +8134,59 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.rebuild_tree`
 
 **Kind:** function/method  
-**Lines:** 909-941  
+**Lines:** 1116-1155  
 **Signature:** `def rebuild_tree(self, query: str='') -> None`  
 **Purpose:** Implements the `rebuild_tree` operation in this module.
 
-**Direct calls observed in the function body:** `_`, `folder_nodes.get`, `list`, `parent.add`, `parent.add_leaf`, `paths.get`, `remaining.remove`, `self.query_one`, `tree.clear`, `tree.root.add_leaf`, `tree.root.expand`, `tree.root.set_label`, `vault.folder_paths`, `vault.list_folders`, `vault.list_items`, `vault.search`.
+**Direct calls observed in the function body:** `_`, `folder_nodes.get`, `list`, `parent.add`, `parent.add_leaf`, `paths.get`, `remaining.remove`, `self._capture_expanded_folders`, `self.query_one`, `tree.clear`, `tree.root.add_leaf`, `tree.root.expand`, `tree.root.set_label`, `vault.folder_paths`, `vault.list_folders`, `vault.list_items`, `vault.search`.
 
-**Control-flow shape:** 4 conditional blocks, 4 loops, 0 try blocks, 0 context managers, 2 explicit returns.
+**Object attributes written:** `self._last_tree_query`.
+
+**Control-flow shape:** 6 conditional blocks, 4 loops, 0 try blocks, 0 context managers, 2 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders -->
+#### `main.KeysApp._capture_expanded_folders`
+
+**Kind:** function/method  
+**Lines:** 1157-1166  
+**Signature:** `def _capture_expanded_folders(self) -> None`  
+**Purpose:** Internal helper implementing `_capture_expanded_folders`.
+
+**Direct calls observed in the function body:** `expanded.add`, `self.query_one`, `set`, `str`, `visit`.
+
+**Object attributes written:** `self._expanded_folder_ids`.
+
+**Control-flow shape:** 1 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders.visit -->
+#### `main.KeysApp._capture_expanded_folders.visit`
+
+**Kind:** function/method  
+**Lines:** 1160-1164  
+**Signature:** `def visit(node) -> None`  
+**Purpose:** Implements the `visit` operation in this module.
+
+**Direct calls observed in the function body:** `expanded.add`, `str`, `visit`.
+
+**Control-flow shape:** 1 conditional blocks, 1 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.KeysApp.on_key -->
+#### `main.KeysApp.on_key`
+
+**Kind:** function/method  
+**Lines:** 1168-1172  
+**Signature:** `def on_key(self, event) -> None`  
+**Purpose:** Implements the `on_key` operation in this module.
+
+**Direct calls observed in the function body:** `event.prevent_default`, `event.stop`, `focus`, `self.query_one`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -7343,7 +8194,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._reset_selection`
 
 **Kind:** function/method  
-**Lines:** 943-949  
+**Lines:** 1175-1181  
 **Signature:** `def _reset_selection(self) -> None`  
 **Purpose:** Internal helper implementing `_reset_selection`.
 
@@ -7359,7 +8210,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._refresh_after_mutation`
 
 **Kind:** function/method  
-**Lines:** 951-955  
+**Lines:** 1183-1187  
 **Signature:** `def _refresh_after_mutation(self, message: str) -> None`  
 **Purpose:** Internal helper implementing `_refresh_after_mutation`.
 
@@ -7373,7 +8224,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.on_input_changed`
 
 **Kind:** function/method  
-**Lines:** 957-967  
+**Lines:** 1189-1199  
 **Signature:** `def on_input_changed(self, event: Input.Changed) -> None`  
 **Purpose:** Implements the `on_input_changed` operation in this module.
 
@@ -7387,7 +8238,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.on_tree_node_selected`
 
 **Kind:** function/method  
-**Lines:** 969-1011  
+**Lines:** 1201-1243  
 **Signature:** `def on_tree_node_selected(self, event: Tree.NodeSelected) -> None`  
 **Purpose:** Implements the `on_tree_node_selected` operation in this module.
 
@@ -7403,7 +8254,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._status`
 
 **Kind:** function/method  
-**Lines:** 1013-1014  
+**Lines:** 1245-1246  
 **Signature:** `def _status(self, text: str) -> None`  
 **Purpose:** Internal helper implementing `_status`.
 
@@ -7417,7 +8268,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._show_clipboard_banner`
 
 **Kind:** function/method  
-**Lines:** 1016-1033  
+**Lines:** 1248-1265  
 **Signature:** `def _show_clipboard_banner(self, text: str, level: str='success') -> None`  
 **Purpose:** Internal helper implementing `_show_clipboard_banner`.
 
@@ -7433,7 +8284,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._hide_clipboard_banner`
 
 **Kind:** function/method  
-**Lines:** 1035-1037  
+**Lines:** 1267-1269  
 **Signature:** `def _hide_clipboard_banner(self) -> None`  
 **Purpose:** Internal helper implementing `_hide_clipboard_banner`.
 
@@ -7447,7 +8298,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._update_command_hints`
 
 **Kind:** function/method  
-**Lines:** 1039-1047  
+**Lines:** 1271-1279  
 **Signature:** `def _update_command_hints(self) -> None`  
 **Purpose:** Internal helper implementing `_update_command_hints`.
 
@@ -7461,7 +8312,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_focus_search`
 
 **Kind:** function/method  
-**Lines:** 1049-1050  
+**Lines:** 1281-1282  
 **Signature:** `def action_focus_search(self) -> None`  
 **Purpose:** Implements the `action_focus_search` operation in this module.
 
@@ -7475,7 +8326,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_reload_tree`
 
 **Kind:** function/method  
-**Lines:** 1052-1056  
+**Lines:** 1284-1288  
 **Signature:** `def action_reload_tree(self) -> None`  
 **Purpose:** Implements the `action_reload_tree` operation in this module.
 
@@ -7489,7 +8340,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_import_keepassxc`
 
 **Kind:** function/method  
-**Lines:** 1058-1061  
+**Lines:** 1290-1293  
 **Signature:** `def action_import_keepassxc(self) -> None`  
 **Purpose:** Implements the `action_import_keepassxc` operation in this module.
 
@@ -7503,7 +8354,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_export_vault`
 
 **Kind:** function/method  
-**Lines:** 1063-1065  
+**Lines:** 1295-1297  
 **Signature:** `def action_export_vault(self) -> None`  
 **Purpose:** Implements the `action_export_vault` operation in this module.
 
@@ -7517,7 +8368,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_export_vault`
 
 **Kind:** function/method  
-**Lines:** 1067-1072  
+**Lines:** 1299-1304  
 **Signature:** `def _finish_export_vault(self, destination: str | None) -> None`  
 **Purpose:** Internal helper implementing `_finish_export_vault`.
 
@@ -7531,15 +8382,17 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._display_active_vault`
 
 **Kind:** function/method  
-**Lines:** 1074-1093  
+**Lines:** 1306-1326  
 **Signature:** `def _display_active_vault(self, message: str | None=None) -> None`  
 **Purpose:** Refresh the main widgets after the active vault changes.
 
-**Direct calls observed in the function body:** `_`, `focus`, `format`, `self._reset_selection`, `self._status`, `self._update_command_hints`, `self.query_one`, `self.rebuild_tree`, `tree.clear`, `tree.root.expand`, `tree.root.set_label`, `update`.
+**Direct calls observed in the function body:** `_`, `focus`, `format`, `self._reset_selection`, `self._show_clipboard_banner`, `self._status`, `self._update_command_hints`, `self.query_one`, `self.rebuild_tree`, `tree.clear`, `tree.root.expand`, `tree.root.set_label`, `update`.
 
 **Object attributes written:** `self.title`, `value`.
 
 **Control-flow shape:** 2 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Security-relevant effect categories:** clipboard.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -7547,7 +8400,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._activate_opened_vault`
 
 **Kind:** function/method  
-**Lines:** 1095-1101  
+**Lines:** 1328-1334  
 **Signature:** `def _activate_opened_vault(self, path: str) -> None`  
 **Purpose:** Internal helper implementing `_activate_opened_vault`.
 
@@ -7561,7 +8414,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_open_vault`
 
 **Kind:** function/method  
-**Lines:** 1103-1104  
+**Lines:** 1336-1337  
 **Signature:** `def action_open_vault(self) -> None`  
 **Purpose:** Implements the `action_open_vault` operation in this module.
 
@@ -7575,7 +8428,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_open_vault`
 
 **Kind:** function/method  
-**Lines:** 1106-1123  
+**Lines:** 1339-1356  
 **Signature:** `def _finish_open_vault(self, path: str | None) -> None`  
 **Purpose:** Internal helper implementing `_finish_open_vault`.
 
@@ -7589,7 +8442,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_recent_vault`
 
 **Kind:** function/method  
-**Lines:** 1125-1130  
+**Lines:** 1358-1363  
 **Signature:** `def action_recent_vault(self) -> None`  
 **Purpose:** Implements the `action_recent_vault` operation in this module.
 
@@ -7603,7 +8456,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_recent_vault`
 
 **Kind:** function/method  
-**Lines:** 1132-1134  
+**Lines:** 1365-1367  
 **Signature:** `def _finish_recent_vault(self, path) -> None`  
 **Purpose:** Internal helper implementing `_finish_recent_vault`.
 
@@ -7619,7 +8472,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_switch_vault`
 
 **Kind:** function/method  
-**Lines:** 1136-1140  
+**Lines:** 1369-1373  
 **Signature:** `def action_switch_vault(self) -> None`  
 **Purpose:** Implements the `action_switch_vault` operation in this module.
 
@@ -7633,7 +8486,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_switch_vault`
 
 **Kind:** function/method  
-**Lines:** 1142-1165  
+**Lines:** 1375-1398  
 **Signature:** `def _finish_switch_vault(self, result: tuple[str, str | None] | None) -> None`  
 **Purpose:** Internal helper implementing `_finish_switch_vault`.
 
@@ -7649,7 +8502,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_close_vault`
 
 **Kind:** function/method  
-**Lines:** 1167-1177  
+**Lines:** 1400-1410  
 **Signature:** `def action_close_vault(self) -> None`  
 **Purpose:** Implements the `action_close_vault` operation in this module.
 
@@ -7663,7 +8516,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_preferences`
 
 **Kind:** function/method  
-**Lines:** 1179-1180  
+**Lines:** 1412-1413  
 **Signature:** `def action_preferences(self) -> None`  
 **Purpose:** Implements the `action_preferences` operation in this module.
 
@@ -7677,7 +8530,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_help`
 
 **Kind:** function/method  
-**Lines:** 1182-1183  
+**Lines:** 1415-1416  
 **Signature:** `def action_help(self) -> None`  
 **Purpose:** Implements the `action_help` operation in this module.
 
@@ -7691,7 +8544,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_shortcut_help`
 
 **Kind:** function/method  
-**Lines:** 1185-1186  
+**Lines:** 1418-1419  
 **Signature:** `def action_shortcut_help(self) -> None`  
 **Purpose:** Implements the `action_shortcut_help` operation in this module.
 
@@ -7705,7 +8558,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_help`
 
 **Kind:** function/method  
-**Lines:** 1188-1190  
+**Lines:** 1421-1423  
 **Signature:** `def _finish_help(self, resource) -> None`  
 **Purpose:** Internal helper implementing `_finish_help`.
 
@@ -7719,7 +8572,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_inbox`
 
 **Kind:** function/method  
-**Lines:** 1192-1195  
+**Lines:** 1425-1428  
 **Signature:** `def action_inbox(self) -> None`  
 **Purpose:** Implements the `action_inbox` operation in this module.
 
@@ -7733,7 +8586,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_trusted_signers`
 
 **Kind:** function/method  
-**Lines:** 1197-1198  
+**Lines:** 1430-1431  
 **Signature:** `def action_trusted_signers(self) -> None`  
 **Purpose:** Implements the `action_trusted_signers` operation in this module.
 
@@ -7747,7 +8600,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._copy`
 
 **Kind:** function/method  
-**Lines:** 1200-1213  
+**Lines:** 1433-1446  
 **Signature:** `def _copy(self, value: str, timeout: int, success: str) -> None`  
 **Purpose:** Internal helper implementing `_copy`.
 
@@ -7763,7 +8616,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_copy_url`
 
 **Kind:** function/method  
-**Lines:** 1215-1220  
+**Lines:** 1448-1453  
 **Signature:** `def action_copy_url(self) -> None`  
 **Purpose:** Implements the `action_copy_url` operation in this module.
 
@@ -7777,7 +8630,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_copy_uuid`
 
 **Kind:** function/method  
-**Lines:** 1222-1224  
+**Lines:** 1455-1457  
 **Signature:** `def action_copy_uuid(self) -> None`  
 **Purpose:** Implements the `action_copy_uuid` operation in this module.
 
@@ -7791,7 +8644,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_copy_username`
 
 **Kind:** function/method  
-**Lines:** 1226-1233  
+**Lines:** 1459-1466  
 **Signature:** `def action_copy_username(self) -> None`  
 **Purpose:** Implements the `action_copy_username` operation in this module.
 
@@ -7805,7 +8658,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_copy_password`
 
 **Kind:** function/method  
-**Lines:** 1235-1242  
+**Lines:** 1468-1475  
 **Signature:** `def action_copy_password(self) -> None`  
 **Purpose:** Implements the `action_copy_password` operation in this module.
 
@@ -7819,7 +8672,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_copy_notes`
 
 **Kind:** function/method  
-**Lines:** 1244-1246  
+**Lines:** 1477-1479  
 **Signature:** `def action_copy_notes(self) -> None`  
 **Purpose:** Implements the `action_copy_notes` operation in this module.
 
@@ -7833,7 +8686,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_copy_totp`
 
 **Kind:** function/method  
-**Lines:** 1248-1251  
+**Lines:** 1481-1484  
 **Signature:** `def action_copy_totp(self) -> None`  
 **Purpose:** Implements the `action_copy_totp` operation in this module.
 
@@ -7847,11 +8700,11 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_open_action`
 
 **Kind:** function/method  
-**Lines:** 1253-1259  
+**Lines:** 1486-1496  
 **Signature:** `def action_open_action(self) -> None`  
 **Purpose:** Implements the `action_open_action` operation in this module.
 
-**Direct calls observed in the function body:** `_`, `launch_action`, `self._status`, `vault.resolved_action`.
+**Direct calls observed in the function body:** `_`, `launch_action`, `self._status`, `vault.resolved_action`, `vault.resolved_password`.
 
 **Control-flow shape:** 1 conditional blocks, 0 loops, 1 try blocks, 0 context managers, 1 explicit returns.
 
@@ -7861,7 +8714,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_new_entry`
 
 **Kind:** function/method  
-**Lines:** 1261-1266  
+**Lines:** 1498-1503  
 **Signature:** `def action_new_entry(self) -> None`  
 **Purpose:** Implements the `action_new_entry` operation in this module.
 
@@ -7875,7 +8728,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_new_entry`
 
 **Kind:** function/method  
-**Lines:** 1268-1276  
+**Lines:** 1505-1513  
 **Signature:** `def _finish_new_entry(self, draft: EntryDraft | None) -> None`  
 **Purpose:** Internal helper implementing `_finish_new_entry`.
 
@@ -7889,7 +8742,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_edit_selected`
 
 **Kind:** function/method  
-**Lines:** 1278-1290  
+**Lines:** 1515-1527  
 **Signature:** `def action_edit_selected(self) -> None`  
 **Purpose:** Implements the `action_edit_selected` operation in this module.
 
@@ -7903,7 +8756,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_edit_entry`
 
 **Kind:** function/method  
-**Lines:** 1292-1303  
+**Lines:** 1529-1540  
 **Signature:** `def _finish_edit_entry(self, entry_id: str, draft: EntryDraft | None) -> None`  
 **Purpose:** Internal helper implementing `_finish_edit_entry`.
 
@@ -7917,7 +8770,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_new_folder`
 
 **Kind:** function/method  
-**Lines:** 1305-1309  
+**Lines:** 1542-1546  
 **Signature:** `def action_new_folder(self) -> None`  
 **Purpose:** Implements the `action_new_folder` operation in this module.
 
@@ -7931,7 +8784,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_new_folder`
 
 **Kind:** function/method  
-**Lines:** 1311-1318  
+**Lines:** 1548-1555  
 **Signature:** `def _finish_new_folder(self, name: str | None) -> None`  
 **Purpose:** Internal helper implementing `_finish_new_folder`.
 
@@ -7945,7 +8798,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_rename_folder`
 
 **Kind:** function/method  
-**Lines:** 1320-1328  
+**Lines:** 1557-1565  
 **Signature:** `def _finish_rename_folder(self, name: str | None) -> None`  
 **Purpose:** Internal helper implementing `_finish_rename_folder`.
 
@@ -7959,7 +8812,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_move_selected`
 
 **Kind:** function/method  
-**Lines:** 1330-1335  
+**Lines:** 1567-1572  
 **Signature:** `def action_move_selected(self) -> None`  
 **Purpose:** Implements the `action_move_selected` operation in this module.
 
@@ -7973,7 +8826,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_move`
 
 **Kind:** function/method  
-**Lines:** 1337-1349  
+**Lines:** 1574-1586  
 **Signature:** `def _finish_move(self, destination: str | None | bool) -> None`  
 **Purpose:** Internal helper implementing `_finish_move`.
 
@@ -7987,7 +8840,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_delete_selected`
 
 **Kind:** function/method  
-**Lines:** 1351-1355  
+**Lines:** 1588-1592  
 **Signature:** `def action_delete_selected(self) -> None`  
 **Purpose:** Implements the `action_delete_selected` operation in this module.
 
@@ -8001,7 +8854,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_delete`
 
 **Kind:** function/method  
-**Lines:** 1357-1371  
+**Lines:** 1594-1608  
 **Signature:** `def _finish_delete(self, confirmed: bool) -> None`  
 **Purpose:** Internal helper implementing `_finish_delete`.
 
@@ -8011,11 +8864,39 @@ Textual terminal UI and its actions/bindings.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
+<!-- symbol:keys_ng.tui.main:main.KeysApp.action_export_standalone -->
+#### `main.KeysApp.action_export_standalone`
+
+**Kind:** function/method  
+**Lines:** 1610-1617  
+**Signature:** `def action_export_standalone(self) -> None`  
+**Purpose:** Implements the `action_export_standalone` operation in this module.
+
+**Direct calls observed in the function body:** `StandaloneExportScreen`, `self.push_screen`, `vault.get_entry`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 1 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
+<!-- symbol:keys_ng.tui.main:main.KeysApp._finish_export_standalone -->
+#### `main.KeysApp._finish_export_standalone`
+
+**Kind:** function/method  
+**Lines:** 1619-1621  
+**Signature:** `def _finish_export_standalone(self, destination: str | None) -> None`  
+**Purpose:** Internal helper implementing `_finish_export_standalone`.
+
+**Direct calls observed in the function body:** `_`, `format`, `self._status`.
+
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+
+**Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
+
 <!-- symbol:keys_ng.tui.main:main.KeysApp.action_export_entry -->
 #### `main.KeysApp.action_export_entry`
 
 **Kind:** function/method  
-**Lines:** 1373-1383  
+**Lines:** 1623-1633  
 **Signature:** `def action_export_entry(self) -> None`  
 **Purpose:** Implements the `action_export_entry` operation in this module.
 
@@ -8029,7 +8910,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp._finish_export_entry`
 
 **Kind:** function/method  
-**Lines:** 1385-1395  
+**Lines:** 1635-1645  
 **Signature:** `def _finish_export_entry(self, confirmed: bool, entry_id: str) -> None`  
 **Purpose:** Internal helper implementing `_finish_export_entry`.
 
@@ -8043,13 +8924,13 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_lock_vault`
 
 **Kind:** function/method  
-**Lines:** 1397-1401  
+**Lines:** 1647-1653  
 **Signature:** `def action_lock_vault(self) -> None`  
 **Purpose:** Implements the `action_lock_vault` operation in this module.
 
-**Direct calls observed in the function body:** `_`, `self._reset_selection`, `self._status`, `self.query_one`, `update`, `vault.lock`.
+**Direct calls observed in the function body:** `_`, `self._capture_expanded_folders`, `self._reset_selection`, `self._status`, `self.query_one`, `update`, `value.strip`, `vault.lock`.
 
-**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
 **Reviewer note:** Review the listed direct calls together with validation before them and cleanup/error handling after them; source line numbers above are normative.
 
@@ -8057,13 +8938,13 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_hard_lock_vault`
 
 **Kind:** function/method  
-**Lines:** 1403-1408  
+**Lines:** 1655-1662  
 **Signature:** `def action_hard_lock_vault(self) -> None`  
 **Purpose:** Implements the `action_hard_lock_vault` operation in this module.
 
-**Direct calls observed in the function body:** `_`, `self._reset_selection`, `self._status`, `self.query_one`, `sessions.lock_all`, `update`, `vault.crypto.hard_lock`.
+**Direct calls observed in the function body:** `_`, `self._capture_expanded_folders`, `self._reset_selection`, `self._status`, `self.query_one`, `sessions.lock_all`, `update`, `value.strip`, `vault.crypto.hard_lock`.
 
-**Control-flow shape:** 0 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
+**Control-flow shape:** 1 conditional blocks, 0 loops, 0 try blocks, 0 context managers, 0 explicit returns.
 
 **Security-relevant effect categories:** cryptography/key-agent.
 
@@ -8073,7 +8954,7 @@ Textual terminal UI and its actions/bindings.
 #### `main.KeysApp.action_unlock_vault`
 
 **Kind:** function/method  
-**Lines:** 1410-1417  
+**Lines:** 1664-1671  
 **Signature:** `def action_unlock_vault(self) -> None`  
 **Purpose:** Implements the `action_unlock_vault` operation in this module.
 
@@ -8085,49 +8966,6 @@ Textual terminal UI and its actions/bindings.
 
 ## Coverage guarantee
 
-This edition documents **535** class/function symbols discovered by AST traversal. `tests/test_code_review_manual_coverage.py` independently traverses the release source and requires one marker for every symbol in both language editions.
+This edition documents **594** class/function symbols discovered by AST traversal. `tests/test_code_review_manual_coverage.py` independently traverses the release source and requires one marker for every symbol in both language editions.
 
 Generated fields such as direct calls and control-flow counts are descriptive static-analysis aids; they do not prove security. The reviewer must inspect the referenced source and the separate threat model/security review.
-\n\n<!-- symbol:keys_ng.services.standalone_export:standalone_recipient_keys -->\n<!-- symbol:keys_ng.services.standalone_export:standalone_signing_keys -->\n<!-- symbol:keys_ng.services.standalone_export:import_standalone_public_key -->\n<!-- symbol:keys_ng.services.standalone_export:prepare_standalone_entry -->\n<!-- symbol:keys_ng.services.standalone_export:export_standalone_entry -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog.__init__ -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog._refresh_keys -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog.import_public_key -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog.browse_output -->\n<!-- symbol:keys_ng.gui.main:StandaloneExportDialog.perform_export -->\n<!-- symbol:keys_ng.gui.main:VaultPane.export_standalone_clicked -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.__init__ -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.compose -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.on_mount -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen._refresh_keys -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.on_checkbox_changed -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen._import_public_key -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen._perform_export -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.on_button_pressed -->\n<!-- symbol:keys_ng.tui.main:StandaloneExportScreen.action_cancel -->\n<!-- symbol:keys_ng.tui.main:KeysApp.action_export_standalone -->\n<!-- symbol:keys_ng.tui.main:KeysApp._finish_export_standalone -->\n
-
-<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog -->
-<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.__init__ -->
-<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog._refresh_keys -->
-<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.import_public_key -->
-<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.browse_output -->
-<!-- symbol:keys_ng.gui.main:main.StandaloneExportDialog.perform_export -->
-<!-- symbol:keys_ng.gui.main:main.VaultPane.export_standalone_clicked -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.__init__ -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.compose -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_mount -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._refresh_keys -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_checkbox_changed -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._import_public_key -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen._perform_export -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.on_button_pressed -->
-<!-- symbol:keys_ng.tui.main:main.StandaloneExportScreen.action_cancel -->
-<!-- symbol:keys_ng.tui.main:main.KeysApp.action_export_standalone -->
-<!-- symbol:keys_ng.tui.main:main.KeysApp._finish_export_standalone -->
-
-<!-- symbol:keys_ng.services.clipboard:copy_secret_cli.read_acknowledgement -->
-<!-- symbol:keys_ng.tui.main:main._select_value_is_blank -->
-
-
-<!-- symbol:keys_ng.tui.main:main.PreferencesScreen._lines -->
-<!-- symbol:keys_ng.tui.main:main.PreferencesScreen._verify_gnupg -->
-
-
-<!-- symbol:keys_ng.gui.main:main.SearchLineEdit -->
-<!-- symbol:keys_ng.gui.main:main.SearchLineEdit.keyPressEvent -->
-<!-- symbol:keys_ng.gui.main:main.VaultPane.focus_results -->
-<!-- symbol:keys_ng.gui.main:main.VaultPane._capture_expanded_folders -->
-<!-- symbol:keys_ng.gui.main:main.VaultPane._capture_expanded_folders.visit -->
-<!-- symbol:keys_ng.gui.main:main.VaultPane._apply_expanded_folders -->
-<!-- symbol:keys_ng.gui.main:main.VaultPane._apply_expanded_folders.visit -->
-<!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders -->
-<!-- symbol:keys_ng.tui.main:main.KeysApp._capture_expanded_folders.visit -->
-<!-- symbol:keys_ng.tui.main:main.KeysApp.on_key -->
-
-<!-- symbol:keys_ng.gui.main:main.MainWindow.refresh_recent_start_page -->
-<!-- symbol:keys_ng.gui.main:main.MainWindow.open_recent_vault -->

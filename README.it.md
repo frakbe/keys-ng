@@ -4,7 +4,7 @@ Keys NG è una riscrittura di nuova generazione del password manager Bash origin
 
 ## Stato attuale
 
-Il repository è attualmente nello sviluppo **M1.27 di manutenzione e consolidamento multipiattaforma**. Non è ancora una release di sicurezza pronta per uso di produzione.
+Il repository è attualmente nello sviluppo **0.2.01 di perfezionamento della GUI**. Non è ancora una release di sicurezza pronta per uso di produzione.
 
 Funzionalità principali già implementate:
 
@@ -370,3 +370,42 @@ La TUI mantiene ora più vault aperti nella stessa sessione. `F5`/`F6` aggiungon
 ## Release 0.1.27
 
 Questa release aggiunge l'accesso rapido ai tre vault recenti nella schermata iniziale e mantiene lo stato delle cartelle durante l'hard-lock globale della GUI.
+
+
+## GUI 0.2.01
+
+La GUI separa albero cartelle, elenco ordinabile e dettagli. Trascina i divisori
+per ridimensionare i pannelli. Dimensioni, ordine/larghezza/ordinamento colonne e
+Righe compatte vengono ripristinati al riavvio. Le impostazioni Qt conservano
+soltanto il layout, senza metadati decifrati delle voci. I colori seguono il tema
+nativo del sistema.
+
+Selezionando una cartella si vedono le sue voci dirette; Tutte le voci comprende
+l'intero vault. Durante una ricerca, Nel vault cerca in tutte le cartelle e Nella
+cartella limita la ricerca a quella selezionata. Le colonne usano soltanto i
+metadati del catalogo, rispettandone la privacy configurata. La selezione decifra
+i dettagli. Freccia giù dalla ricerca passa ai risultati. Ctrl+N crea una voce,
+Ctrl+E o doppio clic modifica, Ctrl+O apre/connetti. Restano valide le scorciatoie
+di copia e blocco. Il menu contestuale permette copia, modifica, apertura,
+spostamento ed eliminazione. Si possono trascinare voci sulle cartelle e spostare
+le cartelle tramite trascinamento.
+
+I riferimenti username/password mostrano titolo, percorso e campo di origine,
+compresi i passaggi intermedi delle catene. Il tooltip mostra gli UUID canonici.
+Le password restano mascherate; anche uno username riferito a una password viene
+protetto nel dettaglio. Origine mancante, non leggibile/verificabile, campo vuoto,
+ciclo e riferimento malformato hanno messaggi distinti. Le descrizioni decifrano
+soltanto le voci referenziate, non restituiscono valori risolti e si cancellano al
+blocco.
+
+Apri voce di origine seleziona la voce dal pannello dettagli. Nell'editor apre
+un'anteprima identificativa in sola lettura, senza perdere le modifiche in corso.
+Le indicazioni si aggiornano quando si esce dal campo username/password; durante
+la digitazione vengono eliminate le indicazioni precedenti. Campi avanzati
+contiene opzioni SSH, etichette e TOTP; Dettagli avanzati contiene UUID ed export
+standalone. La notifica di copia indica la scadenza configurata; la cancellazione
+resta soggetta ai controlli esistenti sulla proprietà degli appunti.
+
+Blocca vault agisce sul vault attivo. Blocco globale (menu Vault, Ctrl+Shift+L)
+cancella lo stato di tutti i vault e termina il gpg-agent condiviso. Gli editor
+aperti vengono svuotati e chiusi quando il rispettivo vault viene bloccato.

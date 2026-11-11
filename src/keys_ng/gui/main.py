@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import sys
 import time
+from dataclasses import replace
 from pathlib import Path
 
 from keys_ng import __version__
@@ -36,7 +37,7 @@ from keys_ng.storage.vault import Vault
 
 def main() -> None:
     try:
-        from PySide6.QtCore import Qt, QTimer, Signal
+        from PySide6.QtCore import Qt, QTimer, Signal, QSettings
         from PySide6.QtGui import QAction, QIcon, QKeySequence, QShortcut
         from PySide6.QtWidgets import (
             QApplication,
@@ -55,6 +56,9 @@ def main() -> None:
             QListWidgetItem,
             QMainWindow,
             QStackedWidget,
+            QSplitter,
+            QMenu,
+            QScrollArea,
             QSpinBox,
             QMessageBox,
             QPushButton,
@@ -72,6 +76,8 @@ def main() -> None:
     except ImportError:
         print("keys-ng-gui requires PySide6. Install with: pip install 'keys-ng[gui]'", file=sys.stderr)
         raise SystemExit(2)
+
+    from keys_ng.gui.reference_widget import ReferenceWidget
 
     parser = argparse.ArgumentParser(prog="keys-ng-gui")
     parser.add_argument("vault", nargs="*", help="Vault directories to open")
@@ -100,7 +106,8 @@ def main() -> None:
             self.setDefaultDropAction(Qt.DropAction.MoveAction)
 
         def dropEvent(self, event) -> None:
-            item = self.currentItem()
+            source = event.source()
+            item = source.currentItem() if isinstance(source, QTreeWidget) else None
             if item is None:
                 return
             item_type = item.data(0, TYPE_ROLE)
@@ -169,6 +176,7 @@ def main() -> None:
             self.vault = vault_obj
             self.setWindowTitle(_("Edit entry") if entry else _("New entry"))
             self.entry = entry
+            self.setMinimumWidth(620)
             self.title_edit = QLineEdit(entry.title if entry else "")
             self.username_edit = QLineEdit(entry.usernames[0] if entry and entry.usernames else "")
             self.password_edit = QLineEdit(entry.password or "" if entry else "")
@@ -252,6 +260,9 @@ def main() -> None:
             form.addRow(_("Folder"), self.folder_combo)
             form.addRow(_("Entry type"), self.action_type_combo)
             form.addRow(_("Username"), self.username_edit)
+            self.username_reference = ReferenceWidget(self)
+            self.password_reference = ReferenceWidget(self)
+            form.addRow("", self.username_reference)
             password_row = QWidget()
             password_layout = QHBoxLayout(password_row)
             password_layout.setContentsMargins(0, 0, 0, 0)
@@ -259,27 +270,93 @@ def main() -> None:
             password_layout.addWidget(self.password_generate)
             password_layout.addWidget(self.password_toggle)
             form.addRow(_("Password"), password_row)
+            form.addRow("", self.password_reference)
             form.addRow(self.url_label, self.url_edit)
             form.addRow(self.host_label, self.host_edit)
             form.addRow(self.port_label, self.port_edit)
             form.addRow(self.rdp_domain_label, self.rdp_domain_edit)
-            form.addRow(self.ssh_x11_label, self.ssh_x11_combo)
-            form.addRow(self.ssh_options_label, self.ssh_options_edit)
-            form.addRow(_("Tags"), self.tags_edit)
-            form.addRow(_("TOTP URI"), self.totp_edit)
-            form.addRow(_("TOTP secret"), self.totp_secret_edit)
-            form.addRow("", self.qr_button)
-            form.addRow("", self.qr_clipboard_button)
+            self.advanced_button = QPushButton(_("Advanced fields"))
+            self.advanced_button.setCheckable(True)
+            self.advanced_fields = QWidget()
+            advanced_form = QFormLayout(self.advanced_fields)
+            advanced_form.addRow(self.ssh_x11_label, self.ssh_x11_combo)
+            advanced_form.addRow(self.ssh_options_label, self.ssh_options_edit)
+            advanced_form.addRow(_("Tags"), self.tags_edit)
+            advanced_form.addRow(_("TOTP URI"), self.totp_edit)
+            advanced_form.addRow(_("TOTP secret"), self.totp_secret_edit)
+            advanced_form.addRow("", self.qr_button)
+            advanced_form.addRow("", self.qr_clipboard_button)
+            self.advanced_fields.hide()
+            self.advanced_button.toggled.connect(self.advanced_fields.setVisible)
+            form.addRow("", self.advanced_button)
+            form.addRow(self.advanced_fields)
             form.addRow(_("Notes"), self.notes_edit)
+            self.notes_edit.setMaximumHeight(110)
             buttons = QDialogButtonBox(QDialogButtonBox.StandardButton.Save | QDialogButtonBox.StandardButton.Cancel)
             buttons.accepted.connect(self.accept)
             buttons.rejected.connect(self.reject)
             layout = QVBoxLayout(self)
-            layout.addLayout(form)
+            form_widget = QWidget()
+            form_widget.setLayout(form)
+            scroll = QScrollArea()
+            scroll.setWidgetResizable(True)
+            scroll.setWidget(form_widget)
+            layout.addWidget(scroll)
             layout.addWidget(buttons)
+            self.resize(760, 680)
+            self.username_reference.open_origin.connect(self.preview_origin)
+            self.password_reference.open_origin.connect(self.preview_origin)
+            self.username_edit.editingFinished.connect(self.refresh_references)
+            self.password_edit.editingFinished.connect(self.refresh_references)
+            self.username_edit.textChanged.connect(self.username_reference.clear)
+            self.password_edit.textChanged.connect(self.password_reference.clear)
+            self.refresh_references()
+            self.lock_watch = QTimer(self)
+            self.lock_watch.timeout.connect(self.check_lock)
+            self.lock_watch.start(100)
 
             self.action_type_combo.currentIndexChanged.connect(self.update_action_fields)
             self.update_action_fields()
+
+        def check_lock(self) -> None:
+            if self.vault.locked:
+                for field in self.findChildren(QLineEdit):
+                    field.clear()
+                self.notes_edit.clear()
+                self.username_reference.clear()
+                self.password_reference.clear()
+                self.entry = None
+                self.reject()
+
+        def refresh_references(self) -> None:
+            draft = replace(self.entry, usernames=[self.username_edit.text()], password=self.password_edit.text()) if self.entry else None
+            self.username_reference.update_reference(self.vault, self.username_edit.text(), source=draft)
+            self.password_reference.update_reference(self.vault, self.password_edit.text(), source=draft)
+
+        def preview_origin(self, entry_id: str) -> None:
+            # A separate read-only preview preserves all unsaved editor fields.
+            if self.vault.locked:
+                return
+            try:
+                entry = self.vault.get_entry(entry_id)
+                dialog = QDialog(self)
+                dialog.setWindowTitle(_("Source entry — read only"))
+                layout = QVBoxLayout(dialog)
+                label = QLabel()
+                label.setTextFormat(Qt.TextFormat.PlainText)
+                label.setWordWrap(True)
+                label.setText(_("Title: {title}\nFolder: {path}\nUUID: {uuid}\nPassword: hidden").format(
+                    title=entry.title, path=self.vault.folder_path(entry.folder_id) if entry.folder_id else _("Root"), uuid=entry.id))
+                layout.addWidget(label)
+                close = QDialogButtonBox(QDialogButtonBox.StandardButton.Close)
+                close.rejected.connect(dialog.reject)
+                layout.addWidget(close)
+                self.finished.connect(dialog.reject)
+                dialog.exec()
+                label.clear()
+                dialog.deleteLater()
+            except Exception:
+                QMessageBox.warning(self, _("Reference error"), _("Source entry cannot be read or verified."))
 
         def toggle_password_visibility(self, visible: bool) -> None:
             self.password_edit.setEchoMode(QLineEdit.EchoMode.Normal if visible else QLineEdit.EchoMode.Password)
@@ -384,7 +461,7 @@ def main() -> None:
                     if resource_name == "LICENSE.md":
                         text = _("**Installed version:** {version}").format(version=__version__) + "\n\n" + text
                 except Exception as exc:
-                    text = f"{_("Unable to load help document.")}\n\n{exc}"
+                    text = _("Unable to load help document.") + f"\n\n{exc}"
                 browser.setMarkdown(text)
                 tabs.addTab(browser, title)
             tabs.setCurrentIndex(max(0, min(initial_tab, tabs.count() - 1)))
@@ -809,37 +886,135 @@ def main() -> None:
             self.hard_lock_button = QPushButton(_("Hard lock"))
             self.unlock_button = QPushButton(_("Unlock"))
 
-            toolbar1 = QHBoxLayout()
-            for button in (self.new_button, self.edit_button, self.delete_button, self.new_folder_button, self.rename_folder_button, self.delete_folder_button):
-                toolbar1.addWidget(button)
-            toolbar2 = QHBoxLayout()
-            for button in (self.lock_button, self.hard_lock_button, self.unlock_button):
-                toolbar2.addWidget(button)
-            left = QVBoxLayout()
-            left.addLayout(toolbar1)
-            left.addLayout(toolbar2)
-            left.addWidget(self.search)
+            self.ui_state = QSettings("Keys NG", "GUI")
+            self.results = VaultTree(self.tree_move, self.reload, self)
+            self.results.setAcceptDrops(False)
+            self.results.setHeaderHidden(False)
+            self.results.setColumnCount(4)
+            self.results.setHeaderLabels([_("Title"), _("Username"), _("Type"), _("Folder")])
+            self.results.setRootIsDecorated(False)
+            self.results.setAlternatingRowColors(True)
+            self.results.setSortingEnabled(True)
+            self.results.sortItems(0, Qt.SortOrder.AscendingOrder)
+            self.results.header().setSectionsMovable(True)
+            self.results.setColumnWidth(0, 250)
+            self.results.setColumnWidth(1, 190)
+            self.results.setColumnWidth(2, 90)
+            self.results.setColumnWidth(3, 200)
+            self.search_scope = QComboBox()
+            self.search_scope.addItems([_("In vault"), _("In folder")])
+            self.search_scope.currentIndexChanged.connect(self.refresh_results)
+            self.result_count = QLabel()
+            self.vault_state = QLabel()
+            self.username_reference = ReferenceWidget(self)
+            self.password_reference = ReferenceWidget(self)
+            self.username_reference.open_origin.connect(self.open_origin)
+            self.password_reference.open_origin.connect(self.open_origin)
+            self.destination = QLabel()
+            self.password_label = QLabel("••••••••••••")
+            for label in (self.title, self.path_label, self.username, self.destination, self.uuid_label):
+                label.setTextFormat(Qt.TextFormat.PlainText)
+                label.setWordWrap(True)
+                label.setTextInteractionFlags(Qt.TextInteractionFlag.TextSelectableByMouse)
+            title_font = self.title.font()
+            title_font.setPointSize(title_font.pointSize() + 3)
+            title_font.setBold(True)
+            self.title.setFont(title_font)
+            toolbar = QHBoxLayout()
+            for widget in (self.new_button, self.search, self.search_scope, self.lock_button, self.unlock_button):
+                toolbar.addWidget(widget, 1 if widget is self.search else 0)
+            self.lock_button.setText(_("Lock vault"))
+            self.hard_lock_button.setText(_("Global hard lock"))
+            sidebar = QWidget()
+            left = QVBoxLayout(sidebar)
+            left.setContentsMargins(0, 0, 0, 0)
+            left.addWidget(QLabel(_("Folders")))
             left.addWidget(self.entries)
-            right = QVBoxLayout()
+            left.addWidget(self.new_folder_button)
+            # Less frequent folder actions remain in menus and context menus.
+            for button in (self.rename_folder_button, self.delete_folder_button, self.hard_lock_button):
+                button.setParent(self)
+                button.hide()
+            detail = QWidget()
+            right = QVBoxLayout(detail)
             right.addWidget(self.title)
             right.addWidget(self.path_label)
-            right.addWidget(self.uuid_label)
-            right.addWidget(self.username)
-            right.addWidget(self.otp)
+            actions = QHBoxLayout()
+            for button in (self.open_action, self.edit_button, self.delete_button):
+                actions.addWidget(button)
+            actions.addStretch(1)
+            right.addLayout(actions)
+            fields = QFormLayout()
+            for label, value, copy_button in ((_("Username"), self.username, self.copy_username),
+                                               (_("Password"), self.password_label, self.copy_password),
+                                               (_("Destination"), self.destination, self.copy_url),
+                                               (_("TOTP"), self.otp, self.copy_otp)):
+                row = QHBoxLayout()
+                row.addWidget(value, 1)
+                row.addWidget(copy_button)
+                fields.addRow(label, row)
+                if value is self.username:
+                    fields.addRow("", self.username_reference)
+                if value is self.password_label:
+                    fields.addRow("", self.password_reference)
+            right.addLayout(fields)
             right.addWidget(self.notes)
-            right.addWidget(self.copy_url)
-            right.addWidget(self.copy_uuid)
-            right.addWidget(self.copy_username)
-            right.addWidget(self.copy_password)
-            right.addWidget(self.copy_notes)
-            right.addWidget(self.copy_otp)
-            right.addWidget(self.open_action)
-            right.addWidget(self.export_standalone)
-            right.addStretch(1)
-            root_layout = QHBoxLayout()
-            root_layout.addLayout(left, 2)
-            root_layout.addLayout(right, 3)
-            self.setLayout(root_layout)
+            extra = QHBoxLayout()
+            extra.addWidget(self.copy_notes)
+            self.technical_button = QPushButton(_("Advanced details"))
+            self.technical_button.setCheckable(True)
+            extra.addWidget(self.technical_button)
+            extra.addStretch(1)
+            right.addLayout(extra)
+            self.technical = QWidget()
+            technical_layout = QHBoxLayout(self.technical)
+            technical_layout.addWidget(self.uuid_label, 1)
+            technical_layout.addWidget(self.copy_uuid)
+            technical_layout.addWidget(self.export_standalone)
+            self.technical.hide()
+            self.technical_button.toggled.connect(self.technical.setVisible)
+            right.addWidget(self.technical)
+            detail_scroll = QScrollArea()
+            detail_scroll.setWidgetResizable(True)
+            detail_scroll.setWidget(detail)
+            self.vertical_splitter = QSplitter(Qt.Orientation.Vertical)
+            self.vertical_splitter.addWidget(self.results)
+            self.vertical_splitter.addWidget(detail_scroll)
+            self.vertical_splitter.setSizes([280, 340])
+            self.horizontal_splitter = QSplitter(Qt.Orientation.Horizontal)
+            self.horizontal_splitter.addWidget(sidebar)
+            self.horizontal_splitter.addWidget(self.vertical_splitter)
+            self.horizontal_splitter.setSizes([230, 900])
+            self.horizontal_splitter.setChildrenCollapsible(False)
+            self.vertical_splitter.setChildrenCollapsible(False)
+            root_layout = QVBoxLayout(self)
+            root_layout.addLayout(toolbar)
+            root_layout.addWidget(self.horizontal_splitter, 1)
+            footer = QHBoxLayout()
+            footer.addWidget(self.vault_state)
+            footer.addStretch(1)
+            footer.addWidget(self.result_count)
+            root_layout.addLayout(footer)
+            self.compact = QCheckBox(_("Compact rows"))
+            self.compact.setChecked(self.ui_state.value("compact", False, type=bool))
+            self.compact.toggled.connect(self.apply_density)
+            footer.addWidget(self.compact)
+            self.apply_density()
+            for name, widget in (("horizontal", self.horizontal_splitter), ("vertical", self.vertical_splitter), ("columns", self.results.header())):
+                state = self.ui_state.value(name)
+                if state is not None:
+                    widget.restoreState(state)
+            self.horizontal_splitter.splitterMoved.connect(self.save_layout)
+            self.vertical_splitter.splitterMoved.connect(self.save_layout)
+            self.results.header().sectionResized.connect(self.save_layout)
+            self.results.header().sectionMoved.connect(self.save_layout)
+            self.results.header().sortIndicatorChanged.connect(self.save_layout)
+            self.entries.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+            self.entries.customContextMenuRequested.connect(self.folder_menu)
+            self.results.setContextMenuPolicy(Qt.ContextMenuPolicy.CustomContextMenu)
+            self.results.customContextMenuRequested.connect(self.entry_menu)
+            self.results.currentItemChanged.connect(self.select_item)
+            self.results.itemDoubleClicked.connect(lambda _item, _column: self.edit_entry())
 
             # A short debounce avoids rebuilding a large tree for every keypress,
             # while the underlying search itself is served from the in-memory
@@ -849,8 +1024,7 @@ def main() -> None:
             self.search_timer.setInterval(75)
             self.search_timer.timeout.connect(self.reload)
             self.search.textChanged.connect(self.schedule_search)
-            self.entries.currentItemChanged.connect(self.select_item)
-            self.entries.itemDoubleClicked.connect(lambda _item, _column: self.open_action_clicked())
+            self.entries.currentItemChanged.connect(self.select_folder)
             self.copy_url.clicked.connect(self.copy_url_clicked)
             self.copy_uuid.clicked.connect(self.copy_uuid_clicked)
             self.copy_username.clicked.connect(self.copy_username_clicked)
@@ -906,9 +1080,100 @@ def main() -> None:
             self.search_timer.start()
 
         def focus_results(self) -> None:
-            self.entries.setFocus()
-            if self.entries.currentItem() is None and self.entries.topLevelItemCount():
-                self.entries.setCurrentItem(self.entries.topLevelItem(0))
+            self.results.setFocus()
+            if self.results.currentItem() is None and self.results.topLevelItemCount():
+                self.results.setCurrentItem(self.results.topLevelItem(0))
+
+        def apply_density(self) -> None:
+            padding = 2 if self.compact.isChecked() else 6
+            self.results.setStyleSheet(f"QTreeView::item {{ padding: {padding}px 4px; }}")
+            self.ui_state.setValue("compact", self.compact.isChecked())
+
+        def save_layout(self, *unused) -> None:
+            for name, widget in (("horizontal", self.horizontal_splitter), ("vertical", self.vertical_splitter), ("columns", self.results.header())):
+                self.ui_state.setValue(name, widget.saveState())
+
+        def folder_menu(self, position) -> None:
+            item = self.entries.itemAt(position)
+            if item is not None:
+                self.entries.setCurrentItem(item)
+            menu = QMenu(self)
+            for button in (self.new_folder_button, self.rename_folder_button, self.delete_folder_button):
+                action = menu.addAction(button.text())
+                action.setEnabled(not self.vault.locked and (button is self.new_folder_button or self.current_folder_id is not None))
+                action.triggered.connect(button.click)
+            menu.exec(self.entries.viewport().mapToGlobal(position))
+
+        def entry_menu(self, position) -> None:
+            item = self.results.itemAt(position)
+            self.results.setCurrentItem(item)
+            menu = QMenu(self)
+            for button, shortcut in ((self.copy_username, "Ctrl+B"), (self.copy_password, "Ctrl+C"),
+                                     (self.copy_url, "Ctrl+U"), (self.copy_otp, "Ctrl+T"),
+                                     (self.open_action, "Ctrl+O"), (self.edit_button, "Ctrl+E"),
+                                     (self.delete_button, "")):
+                action = menu.addAction(button.text() + ("\t" + shortcut if shortcut else ""))
+                action.setEnabled(button.isEnabled())
+                action.triggered.connect(button.click)
+            move = menu.addAction(_("Move to folder…"))
+            move.setEnabled(self.current_entry is not None)
+            move.triggered.connect(self.move_selected)
+            menu.exec(self.results.viewport().mapToGlobal(position))
+
+        def move_selected(self) -> None:
+            if not self.current_id or self.vault.locked:
+                return
+            folders = [(None, _("Root"))] + [(f.id, self.vault.folder_path(f.id)) for f in self.vault.list_folders()]
+            path, ok = QInputDialog.getItem(self, _("Move to folder…"), _("Folder"), [p for folder_id, p in folders], 0, False)
+            if ok:
+                try:
+                    self.vault.move_entry(self.current_id, next(i for i, p in folders if p == path))
+                    self.reload()
+                except Exception as exc:
+                    QMessageBox.critical(self, _("Error"), str(exc))
+
+        def select_folder(self, current, previous) -> None:
+            self.activity()
+            self.current_folder_id = current.data(0, ID_ROLE) if current is not None else None
+            self.refresh_results()
+
+        def open_origin(self, entry_id: str) -> None:
+            if self.vault.locked:
+                return
+            self.search.clear()
+            self.search_timer.stop()
+            self.entries.blockSignals(True)
+            self.entries.setCurrentItem(self.entries.topLevelItem(0))
+            self.entries.blockSignals(False)
+            self.current_folder_id = None
+            self.refresh_results()
+            for index in range(self.results.topLevelItemCount()):
+                item = self.results.topLevelItem(index)
+                if item.data(0, ID_ROLE) == entry_id:
+                    self.results.setCurrentItem(item)
+                    self.results.scrollToItem(item)
+                    return
+
+        def update_controls(self) -> None:
+            unlocked = not self.vault.locked
+            entry = self.current_entry if unlocked else None
+            for button in (self.copy_username, self.copy_password, self.copy_uuid, self.edit_button, self.delete_button, self.export_standalone):
+                button.setEnabled(entry is not None)
+            self.copy_notes.setEnabled(bool(entry and entry.notes))
+            self.copy_otp.setEnabled(bool(entry and entry.totp))
+            self.copy_url.setEnabled(bool(entry and any(a.type == "url" for a in entry.actions)))
+            self.open_action.setEnabled(bool(entry and entry.actions))
+            self.new_button.setEnabled(unlocked)
+            self.new_folder_button.setEnabled(unlocked)
+            self.search.setEnabled(unlocked)
+            self.lock_button.setVisible(unlocked)
+            self.unlock_button.setVisible(not unlocked)
+            self.vault_state.setText(self.display_name + " · " + (_("Unlocked") if unlocked else _("Locked")))
+            self.password_label.setText("••••••••••••" if entry and entry.password else "—")
+            action = entry.actions[0] if entry and entry.actions else None
+            self.open_action.setText({"ssh": _("Connect SSH"), "rdp": _("Connect RDP"), "url": _("Open website")}.get(action.type if action else "", _("Open")))
+            self.destination.setText((action.url or action.host or "") + (f":{action.port}" if action.port else "") if action else "")
+
         def _capture_expanded_folders(self) -> None:
             expanded: set[str] = set()
             def visit(item) -> None:
@@ -972,41 +1237,38 @@ def main() -> None:
             return item
 
         def _entry_item(self, catalog_item, parent=None, suffix=""):
-            text = catalog_item.title + suffix
-            item = QTreeWidgetItem([text])
+            path = self._folder_paths.get(catalog_item.folder_id, _("Root"))
+            username = catalog_item.usernames[0] if catalog_item.usernames else ""
+            if username.startswith("{REF:"):
+                username = _("Linked credential")
+            kind = next((t.upper() for t in ("ssh", "rdp", "url") if "action:" + t in catalog_item.capabilities), _("Generic"))
+            item = QTreeWidgetItem([catalog_item.title, username, kind, path])
             item.setIcon(0, self._entry_icon(catalog_item))
             item.setData(0, TYPE_ROLE, "entry")
             item.setData(0, ID_ROLE, catalog_item.id)
             item.setFlags((item.flags() | Qt.ItemFlag.ItemIsDragEnabled) & ~Qt.ItemFlag.ItemIsDropEnabled)
-            if parent is None:
-                self.entries.addTopLevelItem(item)
-            else:
-                parent.addChild(item)
+            self.results.addTopLevelItem(item)
             return item
 
         def reload(self) -> None:
             if self.vault.locked:
                 return
             try:
-                query = self.search.text().strip()
-                folders = [] if query else self.vault.list_folders()
-                items = self.vault.search(query) if query else self.vault.list_items()
+                folders = self.vault.list_folders()
+                self._folder_paths = self.vault.folder_paths(catalog_snapshot=True)
             except Exception as exc:
                 QMessageBox.critical(self, _("Error"), str(exc))
                 return
-            if self._last_tree_query == "" and query:
+            if self._last_tree_query is not None:
                 self._capture_expanded_folders()
-            if not query and self._last_tree_query == "":
-                self._capture_expanded_folders()
+            selected_folder = self.current_folder_id
+            self.entries.blockSignals(True)
             self.entries.clear()
-            self.entries.setDragEnabled(not bool(query))
-            if query:
-                paths = self.vault.folder_paths(catalog_snapshot=True)
-                for catalog_item in items:
-                    path = paths.get(catalog_item.folder_id, _("Root")) if catalog_item.folder_id else _("Root")
-                    self._entry_item(catalog_item, suffix=f"  —  {path}")
-                self._last_tree_query = query
-                return
+            root = QTreeWidgetItem([_("All entries")])
+            root.setData(0, TYPE_ROLE, "folder")
+            root.setData(0, ID_ROLE, None)
+            root.setFlags(root.flags() & ~Qt.ItemFlag.ItemIsDragEnabled)
+            self.entries.addTopLevelItem(root)
             folder_widgets = {}
             remaining = list(folders)
             while remaining:
@@ -1018,19 +1280,56 @@ def main() -> None:
                         progress = True
                 if not progress:
                     break
-            for catalog_item in items:
-                self._entry_item(catalog_item, folder_widgets.get(catalog_item.folder_id))
+            self.entries.setCurrentItem(folder_widgets.get(selected_folder, root))
+            self.current_folder_id = selected_folder if selected_folder in folder_widgets else None
             self._apply_expanded_folders()
-            self._last_tree_query = query
-            if (args.tree_view or settings.tree_startup_view) == "expanded":
-                self.entries.expandAll()
-            else:
-                self.entries.collapseAll()
+            self.entries.blockSignals(False)
+            self._last_tree_query = self.search.text().strip()
+            self.refresh_results()
+
+        def refresh_results(self) -> None:
+            if self.vault.locked:
+                return
+            try:
+                query = self.search.text().strip()
+                items = self.vault.search(query) if query else self.vault.list_items()
+                if self.current_folder_id and (not query or self.search_scope.currentIndex() == 1):
+                    items = [item for item in items if item.folder_id == self.current_folder_id]
+                selected_id = self.current_id
+                self.results.blockSignals(True)
+                self.results.clear()
+                self.results.setSortingEnabled(False)
+                selected = None
+                for catalog_item in items:
+                    row = self._entry_item(catalog_item)
+                    if catalog_item.id == selected_id:
+                        selected = row
+                self.results.setSortingEnabled(True)
+                self.results.blockSignals(False)
+                self.clear_selection()
+                if selected is not None:
+                    self.results.setCurrentItem(selected)
+                self.result_count.setText(_("{count} entries").format(count=len(items)))
+                self.update_controls()
+            except Exception as exc:
+                self.results.blockSignals(False)
+                QMessageBox.critical(self, _("Error"), str(exc))
+
+        def clear_selection(self) -> None:
+            self.current_id = None
+            self.current_entry = None
+            for label in (self.title, self.path_label, self.uuid_label, self.username, self.otp, self.destination):
+                label.clear()
+            self.notes.clear()
+            self.username_reference.clear()
+            self.password_reference.clear()
+            self.update_controls()
 
         def select_item(self, current, _previous) -> None:
             started = time.perf_counter()
             self.activity()
             if current is None or self.vault.locked:
+                self.clear_selection()
                 return
             item_type = current.data(0, TYPE_ROLE)
             item_id = current.data(0, ID_ROLE)
@@ -1044,21 +1343,24 @@ def main() -> None:
                 self.uuid_label.clear(); self.username.clear(); self.otp.clear(); self.notes.clear()
                 log.debug("gui.select_item.end kind=folder duration_ms=%.1f", elapsed_ms(started))
                 return
-            self.current_folder_id = None
             self.current_id = item_id
             decrypt_started = time.perf_counter()
             try:
                 self.current_entry = self.vault.get_entry(self.current_id)
             except Exception as exc:
                 log.error("gui.select_item.error kind=entry duration_ms=%.1f error_type=%s", elapsed_ms(started), type(exc).__name__)
+                self.clear_selection()
                 QMessageBox.critical(self, _("Error"), str(exc))
                 return
             log.debug("gui.select_item.entry_loaded duration_ms=%.1f", elapsed_ms(decrypt_started))
-            self.title.setText(f"<b>{self.current_entry.title}</b>")
+            self.title.setText(self.current_entry.title)
             self.path_label.setText(self.vault.folder_path(self.current_entry.folder_id) if self.current_entry.folder_id else _("Root"))
             self.uuid_label.setText(f"{_('UUID')}: {self.current_entry.id}")
+            self.username_reference.update_reference(self.vault, self.current_entry.usernames[0] if self.current_entry.usernames else None)
             try:
-                resolved_username = self.vault.resolved_username(self.current_entry)
+                info = self.username_reference.info
+                protected = info and (info.error or any(h.field == "P" for h in info.hops))
+                resolved_username = _("Protected reference") if protected else self.vault.resolved_username(self.current_entry)
                 raw_username = self.current_entry.usernames[0] if self.current_entry.usernames else None
                 if raw_username and raw_username != resolved_username:
                     self.username.setText(f"{resolved_username or '—'}  ({_('reference')})")
@@ -1066,19 +1368,26 @@ def main() -> None:
                     self.username.setText(resolved_username or "")
             except Exception as exc:
                 self.username.setText(f"{_('Broken reference')}: {exc}")
-            self.notes.setText(self.current_entry.notes)
+            self.notes.setPlainText(self.current_entry.notes)
+            self.password_reference.update_reference(self.vault, self.current_entry.password)
+            self.update_controls()
             self.refresh_otp()
             log.info("gui.select_item.end kind=entry duration_ms=%.1f", elapsed_ms(started))
 
         def clear_details(self) -> None:
-            self.current_id = None
-            self.current_entry = None
-            self.current_folder_id = None
+            self.clear_selection()
+            self.entries.blockSignals(True)
             self.entries.clear()
-            self.title.clear(); self.path_label.clear(); self.uuid_label.clear(); self.username.clear(); self.otp.clear(); self.notes.clear()
+            self.entries.blockSignals(False)
+            self.results.clear()
+            self.result_count.clear()
+            self._folder_paths = {}
+            self.update_controls()
+            for dialog in self.findChildren(EntryDialog):
+                dialog.check_lock()
 
         def tree_move(self, item_type: str, item_id: str, parent_id: str | None) -> None:
-            if self.search.text().strip():
+            if self.vault.locked:
                 return
             if item_type == "folder":
                 self.vault.move_folder(item_id, parent_id)
@@ -1094,8 +1403,7 @@ def main() -> None:
 
         def lock(self, hard: bool) -> None:
             try:
-                if not self.search.text().strip():
-                    self._capture_expanded_folders()
+                self._capture_expanded_folders()
                 self.vault.lock(hard=hard)
                 QApplication.clipboard().clear()
                 self.clear_details()
@@ -1154,6 +1462,7 @@ def main() -> None:
                     if value is None:
                         return
                     copy_secret_qt(value, settings.clipboard_password_timeout * 1000)
+                    self.status_message(_("Password copied. Clipboard clears in {seconds}s.").format(seconds=settings.clipboard_password_timeout), 3000)
                 except Exception as exc:
                     QMessageBox.critical(self, _("Reference error"), str(exc))
 
@@ -1168,6 +1477,7 @@ def main() -> None:
             if self.current_entry and self.current_entry.totp and not self.vault.locked:
                 code, _remaining = generate_totp(self.current_entry.totp[0])
                 copy_secret_qt(code, settings.clipboard_totp_timeout * 1000)
+                self.status_message(_("TOTP copied. Clipboard clears in {seconds}s.").format(seconds=settings.clipboard_totp_timeout), 3000)
 
         def open_action_clicked(self) -> None:
             self.activity()
@@ -1215,9 +1525,11 @@ def main() -> None:
             if self.vault.locked:
                 return
             dialog = EntryDialog(self.vault, self, default_folder_id=self.current_folder_id)
-            if dialog.exec() == QDialog.DialogCode.Accepted:
+            if dialog.exec() == QDialog.DialogCode.Accepted and not self.vault.locked:
                 try:
-                    self.vault.save_entry(dialog.build_entry())
+                    saved_entry = dialog.build_entry()
+                    self.vault.save_entry(saved_entry)
+                    self.current_id = saved_entry.id
                     self.reload()
                 except Exception as exc:
                     QMessageBox.critical(self, _("Error"), str(exc))
@@ -1227,9 +1539,11 @@ def main() -> None:
             if not self.current_entry or self.vault.locked:
                 return
             dialog = EntryDialog(self.vault, self, self.current_entry)
-            if dialog.exec() == QDialog.DialogCode.Accepted:
+            if dialog.exec() == QDialog.DialogCode.Accepted and not self.vault.locked:
                 try:
-                    self.vault.save_entry(dialog.build_entry())
+                    saved_entry = dialog.build_entry()
+                    self.vault.save_entry(saved_entry)
+                    self.current_id = saved_entry.id
                     self.reload()
                 except Exception as exc:
                     QMessageBox.critical(self, _("Error"), str(exc))
@@ -1591,6 +1905,8 @@ def main() -> None:
                 ("Ctrl+Shift+O", self.open_vault_dialog),
                 ("Ctrl+W", self.close_current_vault),
                 ("Ctrl+F", lambda: self.call_active("focus_search")),
+                ("Ctrl+N", lambda: self.call_active("new_entry")),
+                ("Ctrl+E", lambda: self.call_active("edit_entry")),
                 ("Ctrl+U", lambda: self.call_active("copy_url_clicked")),
                 ("Ctrl+Shift+I", lambda: self.call_active("copy_uuid_clicked")),
                 ("Ctrl+B", lambda: self.call_active("copy_username_clicked")),
@@ -1852,8 +2168,7 @@ def main() -> None:
                 return
             try:
                 for pane in panes:
-                    if not pane.search.text().strip():
-                        pane._capture_expanded_folders()
+                    pane._capture_expanded_folders()
                     pane.vault.lock(hard=False)
                     pane.clear_details()
                 panes[0].vault.crypto.hard_lock()

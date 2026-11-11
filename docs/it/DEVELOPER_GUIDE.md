@@ -3396,3 +3396,42 @@ Textual interpreta la virgola nella specifica della chiave di un `Binding` come 
 
 `services.vault_sessions.VaultSessionManager` mantiene l'insieme degli oggetti `Vault` aperti nella TUI e il puntatore al vault attivo. L'apertura di un vault aggiunge/riusa un oggetto invece di terminare e riavviare l'app Textual. Il cambio modifica il riferimento `vault` catturato dalle closure e aggiorna albero/dettaglio. Passare a un vault locked non ne provoca la decifratura. Il lock normale è per-vault; l'hard lock blocca prima tutti i vault aperti (svuotando tutte le cache decifrate) e solo dopo chiama una volta `hard_lock()` sul backend crittografico condiviso. La chiusura blocca il vault prima di rimuoverlo dalla sessione.
 
+
+
+## GUI 0.2.01
+
+La GUI separa albero cartelle, elenco ordinabile e dettagli. Trascina i divisori
+per ridimensionare i pannelli. Dimensioni, ordine/larghezza/ordinamento colonne e
+Righe compatte vengono ripristinati al riavvio. Le impostazioni Qt conservano
+soltanto il layout, senza metadati decifrati delle voci. I colori seguono il tema
+nativo del sistema.
+
+Selezionando una cartella si vedono le sue voci dirette; Tutte le voci comprende
+l'intero vault. Durante una ricerca, Nel vault cerca in tutte le cartelle e Nella
+cartella limita la ricerca a quella selezionata. Le colonne usano soltanto i
+metadati del catalogo, rispettandone la privacy configurata. La selezione decifra
+i dettagli. Freccia giù dalla ricerca passa ai risultati. Ctrl+N crea una voce,
+Ctrl+E o doppio clic modifica, Ctrl+O apre/connetti. Restano valide le scorciatoie
+di copia e blocco. Il menu contestuale permette copia, modifica, apertura,
+spostamento ed eliminazione. Si possono trascinare voci sulle cartelle e spostare
+le cartelle tramite trascinamento.
+
+I riferimenti username/password mostrano titolo, percorso e campo di origine,
+compresi i passaggi intermedi delle catene. Il tooltip mostra gli UUID canonici.
+Le password restano mascherate; anche uno username riferito a una password viene
+protetto nel dettaglio. Origine mancante, non leggibile/verificabile, campo vuoto,
+ciclo e riferimento malformato hanno messaggi distinti. Le descrizioni decifrano
+soltanto le voci referenziate, non restituiscono valori risolti e si cancellano al
+blocco.
+
+Apri voce di origine seleziona la voce dal pannello dettagli. Nell'editor apre
+un'anteprima identificativa in sola lettura, senza perdere le modifiche in corso.
+Le indicazioni si aggiornano quando si esce dal campo username/password; durante
+la digitazione vengono eliminate le indicazioni precedenti. Campi avanzati
+contiene opzioni SSH, etichette e TOTP; Dettagli avanzati contiene UUID ed export
+standalone. La notifica di copia indica la scadenza configurata; la cancellazione
+resta soggetta ai controlli esistenti sulla proprietà degli appunti.
+
+Blocca vault agisce sul vault attivo. Blocco globale (menu Vault, Ctrl+Shift+L)
+cancella lo stato di tutti i vault e termina il gpg-agent condiviso. Gli editor
+aperti vengono svuotati e chiusi quando il rispettivo vault viene bloccato.

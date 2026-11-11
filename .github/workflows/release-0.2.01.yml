@@ -1,0 +1,74 @@
+name: Release 0.2.01
+
+on:
+  push:
+    branches: [main, release/0.2.01]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message == 'Release 0.2.01' || github.ref == 'refs/heads/release/0.2.01'
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ['3.11', '3.12']
+    env:
+      QT_QPA_PLATFORM: offscreen
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Install runtime dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libegl1 libopengl0 libxcb-cursor0 gnupg
+          python -m pip install -e '.[gui,tui]' pytest build
+      - name: Regression and security checks
+        run: |
+          python -m pytest -q
+          python tools/security_static_check.py
+      - name: Build wheel and source distribution
+        run: python -m build
+      - name: Smoke-test installed wheel in clean environment
+        run: |
+          python -m venv .release-venv
+          .release-venv/bin/python -m pip install 'dist/keys_ng-0.2.1-py3-none-any.whl[gui,tui]'
+          .release-venv/bin/keys-ng --version
+          .release-venv/bin/keys-ng-tui version
+          .release-venv/bin/python tools/smoke_gui.py
+          .release-venv/bin/python tools/smoke_gpg.py
+      - uses: actions/upload-artifact@v4
+        if: matrix.python == '3.12'
+        with:
+          name: keys-ng-0.2.01
+          path: dist/*
+  publish:
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event.head_commit.message == 'Release 0.2.01'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: keys-ng-0.2.01
+          path: dist
+      - name: Checksums
+        run: sha256sum dist/* > SHA256SUMS-0.2.01
+      - name: Publish verified release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v0.2.01
+          target_commitish: ${{ github.sha }}
+          name: Keys NG 0.2.01
+          body_path: RELEASE_NOTES_0.2.01.md
+          files: |
+            dist/*
+            SHA256SUMS-0.2.01
+          fail_on_unmatched_files: true

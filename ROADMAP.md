@@ -1,6 +1,6 @@
 # Keys NG roadmap
 
-> **Current implementation status (main, post-0.1.27):** Releases through 0.1.26 are implemented and published. The project remains in M1 (hardened usable alpha). The main branch also contains the recent-vault start screen enhancement; cross-platform validation, external security review and production signing/notarization remain outstanding.
+> **Current implementation status (0.2.01):** GUI workspace redesign and readable credential references implemented. The project remains a hardened usable alpha; external security review, cross-platform native validation and production signing/notarization remain outstanding.
 
 ## M0 - Foundation (complete)
 
@@ -265,3 +265,16 @@
 - [x] Release workflow builds, smoke-tests and publishes the 0.1.27 wheel and checksum.
 - [ ] Execute the independent external review.
 - [ ] Complete macOS packaging and clean-machine validation.
+
+
+## 0.2.01 — GUI workspace and readable references
+
+- [x] Resizable folder / sortable list / details workspace; persisted layout and density.
+- [x] Vault/folder search, result counts, context menus and field-adjacent actions.
+- [x] Collapsible editor/technical sections and native theme integration.
+- [x] Username/password source identity, reference chains and explicit errors.
+- [x] Source navigation/read-only preview preserving unsaved edits; lock clears editors.
+- [x] EN/IT documentation, reference regression tests, GUI and real-GnuPG smoke scripts.
+- [x] Release pipeline gates wheel/source publication on Python 3.11/3.12 tests and smokes.
+- [ ] Native Windows/macOS and interactive desktop validation of the new layout.
+- [ ] Independent external security review (still required).

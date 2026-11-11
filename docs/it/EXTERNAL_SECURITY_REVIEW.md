@@ -2,7 +2,7 @@
 
 ## Scopo
 
-Questo documento prepara la review indipendente di Keys NG 0.1.27. È materiale preparatorio, non un audit e non dimostra che l'implementazione sia stata validata esternamente.
+Questo documento prepara la review indipendente di Keys NG 0.2.01. È materiale preparatorio, non un audit e non dimostra che l'implementazione sia stata validata esternamente.
 
 Il revisore deve analizzare l'esatto tag e commit consegnato dal maintainer. L'ambito comprende core Python, CLI, TUI, GUI, GnuPG, storage del vault, import/export, clipboard, launcher esterni e delega Flatpak verso l'host.
 
@@ -82,3 +82,6 @@ Richiedere executive summary, ambito e commit, inventario ambiente/strumenti, fi
 - Finding:
 - Rischi residui accettati:
 - Decisione finale:
+
+
+Ambito aggiuntivo di review: attraversamento dei riferimenti, rendering come testo, svuotamento editor al blocco e impostazioni Qt limitate al layout.

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This is the hand-off package for an independent review of Keys NG 0.1.27. It is preparation material, not an audit and not a claim that the implementation has been independently validated.
+This is the hand-off package for an independent review of Keys NG 0.2.01. It is preparation material, not an audit and not a claim that the implementation has been independently validated.
 
 The reviewer must inspect the exact release tag and commit supplied by the maintainer. The scope includes the Python core, CLI, TUI, GUI, GnuPG integration, vault storage, import/export, clipboard handling, external launchers and Flatpak host delegation.
 
@@ -82,3 +82,6 @@ Request an executive summary, scope and commit list, tool/environment inventory,
 - Findings:
 - Accepted residual risks:
 - Final decision:
+
+
+Additional review scope: reference metadata traversal, plain-text rendering, editor clearing at lock, and layout-only Qt settings.

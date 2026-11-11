@@ -84,6 +84,7 @@ M1.18 gives the TUI full day-to-day editing parity with the GUI. In the tree vie
 - `M` moves an entry or folder;
 - `Delete` deletes the selected entry or an empty folder after confirmation;
 - `X` exports the selected entry as plaintext KeePass-compatible XML.
+- `s` exports the selected entry as a standalone encrypted record; the guided screen selects the recipient public key, optional signing key and output path.
 
 The entry editor supports generic, Web/URL, SSH and RDP records, UUID references in username/password, tags, notes, TOTP URI/secret, TOTP QR image files, SSH X11 forwarding and advanced SSH argv options. Fields that are not applicable to the selected entry type are ignored on save.
 
@@ -293,6 +294,7 @@ keys-ng import-keepassxc Passwords.xml ~/vaults/personal --format xml
 ```
 
 The importer preserves groups as folders, entries, usernames, passwords, URL actions, TOTP, tags, notes and custom string fields. KeePassXC UUID references are preserved or remapped safely if an UUID collision exists in the destination vault.
+If a command or unsupported action cannot be represented as a Keys NG action, it is preserved in the Notes field without replacing existing notes. The import report marks the entry as partially imported and lists it for manual review. This behavior is shared by KDBX and XML imports.
 
 ## 17. Exporting to KeePassXC XML
 
@@ -495,7 +497,47 @@ Complete-vault and single-entry XML exports contain plaintext credentials. Keys 
 
 In the M1.20.3 TUI, Preferences opens with `F2`. Main bindings no longer use `Ctrl+Shift+<letter>` because many terminals do not distinguish Shift when combined with Ctrl; `Ctrl+I` is also an alias of Tab. Press `?` for the inline command guide.
 
-### M1.20.4 TUI multi-vault
+## M1.20.4 TUI multi-vault switcher
 
-`F5`/`F6` keep additional vaults open in the current TUI session. `Ctrl+J` opens the vault switcher; each vault preserves its own lock state. `Ctrl+L` locks the active vault, while `F9` hard-locks all open vaults and clears the shared GnuPG agent cache.
+The TUI can keep more than one vault open in the same process. `F5` opens a vault and `F6` opens a recent vault without closing the previously active one. `Ctrl+J` opens **Open vaults**, where an already-open vault can be activated or closed. Each vault keeps its own `Vault` instance, decrypted metadata cache and locked/unlocked state. `Ctrl+L` locks only the active vault; `F9` hard-locks every open vault before clearing the shared GnuPG agent cache. `Ctrl+W` closes only the active vault and activates another remaining open vault when possible.
 
+
+
+## Release 0.1.26
+
+KeePassXC imports continue when an entry contains a dangling UUID reference. The reference is preserved, the affected entry is reported as partial for manual review, and remaining entries are imported. In the GUI and TUI, press Down from the search field to focus the results. Normal vault lock/unlock preserves expanded and collapsed folder state.
+
+
+## GUI 0.2.01
+
+The GUI now separates the folder tree, sortable entry list and detail pane.
+Drag the two splitters to resize panels. Column widths/order/sort and the Compact
+rows setting are restored on the next launch; only layout state is persisted in
+Qt settings, not decrypted entry metadata. Native colors follow the system theme.
+
+Select a folder to list its immediate entries; All entries includes the entire
+vault. With a search query, In vault searches all folders; In folder restricts
+the query to the selected folder. The list uses catalog metadata only, respecting
+the configured catalog privacy. Select an entry to decrypt its details. Down from
+the search field focuses the results. Ctrl+N creates, Ctrl+E or double-click edits;
+Ctrl+O opens the entry action. Existing copy and lock shortcuts are unchanged.
+Right-click an entry for copying, editing, opening, moving or deleting. Drag an
+entry onto a folder to move it; folder drag-and-drop remains supported.
+
+Username/password references show the source title, folder and target field,
+including each hop in a chain. Hover for canonical UUID references. Passwords
+remain masked; even a username reference targeting a password is protected in
+the detail view. Missing, unreadable/unverified, empty, circular and malformed
+references have separate messages. Descriptions decrypt only referenced records,
+never return resolved credential values, and are cleared at lock.
+
+Open source entry navigates from the detail pane. Inside the editor it opens a
+read-only identity preview without discarding unsaved fields. Reference previews
+refresh when leaving a username/password field; typing clears stale previews.
+Advanced fields contains SSH options, tags and TOTP settings. Advanced details
+contains UUID and standalone export. Copy feedback states the configured expiry;
+clipboard clearing remains subject to the existing clipboard ownership checks.
+
+Lock vault applies to the active vault; Global hard lock (Vault menu,
+Ctrl+Shift+L) clears all open vaults and terminates the shared GnuPG agent.
+Open editors are cleared and dismissed when their vault locks.

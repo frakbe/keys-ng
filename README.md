@@ -4,7 +4,7 @@ Keys NG is a next-generation rewrite of the original **Keys** Bash password mana
 
 ## Current milestone
 
-The repository is now in **M1.27 maintenance development**. It is not yet an independently audited production security release.
+The repository is now in **0.2.01 GUI development**. It is not yet an independently audited production security release.
 
 Implemented so far:
 
@@ -376,3 +376,38 @@ The TUI now keeps multiple vaults open in one session. `F5`/`F6` add vaults, `Ct
 ## Release 0.1.27
 
 This maintenance release adds quick access to the three most recently used vaults on the GUI start screen and preserves folder expansion state during global GUI hard-lock.
+
+
+## GUI 0.2.01
+
+The GUI now separates the folder tree, sortable entry list and detail pane.
+Drag the two splitters to resize panels. Column widths/order/sort and the Compact
+rows setting are restored on the next launch; only layout state is persisted in
+Qt settings, not decrypted entry metadata. Native colors follow the system theme.
+
+Select a folder to list its immediate entries; All entries includes the entire
+vault. With a search query, In vault searches all folders; In folder restricts
+the query to the selected folder. The list uses catalog metadata only, respecting
+the configured catalog privacy. Select an entry to decrypt its details. Down from
+the search field focuses the results. Ctrl+N creates, Ctrl+E or double-click edits;
+Ctrl+O opens the entry action. Existing copy and lock shortcuts are unchanged.
+Right-click an entry for copying, editing, opening, moving or deleting. Drag an
+entry onto a folder to move it; folder drag-and-drop remains supported.
+
+Username/password references show the source title, folder and target field,
+including each hop in a chain. Hover for canonical UUID references. Passwords
+remain masked; even a username reference targeting a password is protected in
+the detail view. Missing, unreadable/unverified, empty, circular and malformed
+references have separate messages. Descriptions decrypt only referenced records,
+never return resolved credential values, and are cleared at lock.
+
+Open source entry navigates from the detail pane. Inside the editor it opens a
+read-only identity preview without discarding unsaved fields. Reference previews
+refresh when leaving a username/password field; typing clears stale previews.
+Advanced fields contains SSH options, tags and TOTP settings. Advanced details
+contains UUID and standalone export. Copy feedback states the configured expiry;
+clipboard clearing remains subject to the existing clipboard ownership checks.
+
+Lock vault applies to the active vault; Global hard lock (Vault menu,
+Ctrl+Shift+L) clears all open vaults and terminates the shared GnuPG agent.
+Open editors are cleared and dismissed when their vault locks.

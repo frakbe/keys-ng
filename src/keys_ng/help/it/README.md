@@ -89,6 +89,7 @@ Con M1.18 la TUI raggiunge la parità operativa quotidiana con la GUI. Nella vis
 - `M` sposta una voce o una cartella;
 - `Delete` elimina la voce selezionata o una cartella vuota dopo conferma;
 - `X` esporta la voce selezionata come XML KeePass compatibile in chiaro.
+- `s` esporta la voce selezionata come record standalone cifrato; la procedura guidata permette di scegliere chiave pubblica destinataria, firma opzionale e percorso di output.
 
 L'editor supporta credenziali generiche, Web/URL, SSH e RDP, riferimenti UUID in username/password, tag, note, URI/secret TOTP, import TOTP da file immagine QR, forwarding X11 SSH e opzioni SSH avanzate in forma argv. I campi non pertinenti al tipo di voce selezionato vengono ignorati al salvataggio.
 
@@ -499,7 +500,51 @@ Le esportazioni XML, sia dell'intero vault sia della singola voce, contengono cr
 
 Nella TUI M1.20.3 le Preferenze si aprono con `F2`. Le combinazioni `Ctrl+Shift+<lettera>` sono state eliminate dai binding principali perché molti terminali non distinguono Shift quando è combinato con Ctrl; `Ctrl+I` è inoltre un alias di Tab. La guida rapida dei comandi si apre con `?`.
 
-### M1.20.4 TUI multi-vault
+## M1.20.4 selettore multi-vault TUI
 
-`F5`/`F6` mantengono aperti altri vault nella sessione TUI corrente. `Ctrl+J` apre il selettore dei vault; ogni vault conserva il proprio stato di lock. `Ctrl+L` blocca il vault attivo, mentre `F9` esegue hard lock di tutti i vault aperti e svuota la cache condivisa di gpg-agent.
+La TUI può mantenere aperti più vault nello stesso processo. `F5` apre un vault e `F6` apre un vault recente senza chiudere quello precedentemente attivo. `Ctrl+J` apre **Vault aperti**, da cui è possibile attivare o chiudere un vault già aperto. Ogni vault conserva il proprio oggetto `Vault`, la cache dei metadati decifrati e lo stato locked/unlocked. `Ctrl+L` blocca soltanto il vault attivo; `F9` esegue l'hard lock di tutti i vault aperti prima di svuotare la cache condivisa di gpg-agent. `Ctrl+W` chiude solo il vault attivo e, quando possibile, attiva un altro vault rimasto aperto.
 
+
+
+## Release 0.1.26
+
+L'importazione KeePassXC prosegue quando una voce contiene un riferimento UUID mancante. Il riferimento viene conservato, la voce viene segnalata come parziale per la revisione manuale e le altre voci vengono importate. Nella GUI e nella TUI, premere Freccia giù dal campo di ricerca per portare il focus sui risultati. Il blocco/sblocco normale mantiene lo stato di apertura e chiusura delle cartelle.
+
+
+## GUI 0.2.01
+
+La GUI separa albero cartelle, elenco ordinabile e dettagli. Trascina i divisori
+per ridimensionare i pannelli. Dimensioni, ordine/larghezza/ordinamento colonne e
+Righe compatte vengono ripristinati al riavvio. Le impostazioni Qt conservano
+soltanto il layout, senza metadati decifrati delle voci. I colori seguono il tema
+nativo del sistema.
+
+Selezionando una cartella si vedono le sue voci dirette; Tutte le voci comprende
+l'intero vault. Durante una ricerca, Nel vault cerca in tutte le cartelle e Nella
+cartella limita la ricerca a quella selezionata. Le colonne usano soltanto i
+metadati del catalogo, rispettandone la privacy configurata. La selezione decifra
+i dettagli. Freccia giù dalla ricerca passa ai risultati. Ctrl+N crea una voce,
+Ctrl+E o doppio clic modifica, Ctrl+O apre/connetti. Restano valide le scorciatoie
+di copia e blocco. Il menu contestuale permette copia, modifica, apertura,
+spostamento ed eliminazione. Si possono trascinare voci sulle cartelle e spostare
+le cartelle tramite trascinamento.
+
+I riferimenti username/password mostrano titolo, percorso e campo di origine,
+compresi i passaggi intermedi delle catene. Il tooltip mostra gli UUID canonici.
+Le password restano mascherate; anche uno username riferito a una password viene
+protetto nel dettaglio. Origine mancante, non leggibile/verificabile, campo vuoto,
+ciclo e riferimento malformato hanno messaggi distinti. Le descrizioni decifrano
+soltanto le voci referenziate, non restituiscono valori risolti e si cancellano al
+blocco.
+
+Apri voce di origine seleziona la voce dal pannello dettagli. Nell'editor apre
+un'anteprima identificativa in sola lettura, senza perdere le modifiche in corso.
+Le indicazioni si aggiornano quando si esce dal campo username/password; durante
+la digitazione vengono eliminate le indicazioni precedenti. Campi avanzati
+contiene opzioni SSH, etichette e TOTP; Dettagli avanzati contiene UUID ed export
+standalone. La notifica di copia indica la scadenza configurata; la cancellazione
+resta soggetta ai controlli esistenti sulla proprietà degli appunti.
+
+Blocca vault agisce sul vault attivo. Blocco globale (menu Vault, Ctrl+Shift+L)
+cancella lo stato di tutti i vault e termina il gpg-agent condiviso. Gli editor
+aperti vengono svuotati e chiusi quando il rispettivo vault viene bloccato.

@@ -1,0 +1,7 @@
+include README.it.md ROADMAP.md SECURITY.md SECURITY.it.md config.example.toml babel.cfg
+include RELEASE_NOTES_0.2.01.md
+recursive-include docs *.md
+recursive-include tools *.py
+recursive-include locales *.po *.pot *.mo
+recursive-include packaging *
+recursive-include tests *.py
