@@ -2,6 +2,17 @@
 
 Keys NG è una riscrittura di nuova generazione del password manager Bash originale **Keys**. Mantiene l'idea originale di salvare ogni credenziale come oggetto OpenPGP cifrato in modo indipendente, eliminando i file temporanei in chiaro dal normale flusso operativo.
 
+
+### GUI e TUI
+
+**Keys NG GUI**
+![Alt text](images/keys-ng-gui.png)
+
+
+**Keys NG TUI**
+![Alt text](images/keys-ng-tui.png)
+
+
 ## Stato attuale
 
 Il repository è attualmente nello sviluppo **0.2.01 di perfezionamento della GUI**. Non è ancora una release di sicurezza pronta per uso di produzione.
