@@ -3903,7 +3903,7 @@ Per-user desktop launcher installation/status/removal.
 #### `_install_windows`
 
 **Kind:** function/method  
-**Lines:** 98-125  
+**Lines:** 98-131  
 **Signature:** `def _install_windows(paths: DesktopIntegrationPaths) -> None`  
 **Purpose:** Internal helper implementing `_install_windows`.
 
@@ -3921,7 +3921,7 @@ Per-user desktop launcher installation/status/removal.
 #### `_install_macos`
 
 **Kind:** function/method  
-**Lines:** 128-155  
+**Lines:** 134-161  
 **Signature:** `def _install_macos(paths: DesktopIntegrationPaths) -> None`  
 **Purpose:** Internal helper implementing `_install_macos`.
 
@@ -3937,7 +3937,7 @@ Per-user desktop launcher installation/status/removal.
 #### `install_user_desktop_integration`
 
 **Kind:** function/method  
-**Lines:** 158-169  
+**Lines:** 164-175  
 **Signature:** `def install_user_desktop_integration() -> DesktopIntegrationPaths`  
 **Purpose:** Install a per-user application-menu launcher on Linux, Windows or macOS.
 
@@ -3953,7 +3953,7 @@ Per-user desktop launcher installation/status/removal.
 #### `ensure_user_desktop_integration`
 
 **Kind:** function/method  
-**Lines:** 172-188  
+**Lines:** 178-194  
 **Signature:** `def ensure_user_desktop_integration() -> DesktopIntegrationPaths | None`  
 **Purpose:** Best-effort per-user application-menu integration used by the GUI.
 
@@ -3967,7 +3967,7 @@ Per-user desktop launcher installation/status/removal.
 #### `uninstall_user_desktop_integration`
 
 **Kind:** function/method  
-**Lines:** 191-201  
+**Lines:** 197-207  
 **Signature:** `def uninstall_user_desktop_integration() -> DesktopIntegrationPaths`  
 **Purpose:** Implements the `uninstall_user_desktop_integration` operation in this module.
 
@@ -3983,7 +3983,7 @@ Per-user desktop launcher installation/status/removal.
 #### `desktop_integration_status`
 
 **Kind:** function/method  
-**Lines:** 204-210  
+**Lines:** 210-216  
 **Signature:** `def desktop_integration_status() -> tuple[bool, DesktopIntegrationPaths]`  
 **Purpose:** Implements the `desktop_integration_status` operation in this module.
 

@@ -11,7 +11,7 @@
 - “Apri voce di origine” seleziona l'origine nel pannello principale; dall'editor apre un'anteprima in sola lettura preservando la bozza. Le password non vengono rivelate dalla descrizione del riferimento.
 - Il blocco cancella dettagli, riferimenti, appunti ed editor aperti. Nessuna modifica al formato del vault.
 - Notifiche di copia password/TOTP con tempo di cancellazione dagli appunti. Note e titoli trattati come testo, non HTML.
-- Correzione di una sintassi preesistente della guida GUI non compatibile con Python 3.11.
+- Correzione di una sintassi preesistente della guida GUI, integrazione desktop e launcher macOS non compatibile con Python 3.11.
 
 ## English
 
@@ -21,7 +21,7 @@
 - Readable reference chains show source titles, folders and fields, with UUID tooltips and explicit missing/unreadable/empty/cycle/invalid errors.
 - Source navigation from details; read-only source preview from the editor preserves unsaved changes. Reference descriptions never expose resolved passwords.
 - Lock clears details, reference metadata, clipboard and open editors. No vault format changes.
-- Password/TOTP copy feedback, plain-text notes/titles and a pre-existing Python 3.11 syntax fix.
+- Password/TOTP copy feedback, plain-text notes/titles and pre-existing Python 3.11 syntax fixes in GUI help, desktop integration and macOS launcher.
 
 ## Installation and validation
 

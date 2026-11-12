@@ -3903,7 +3903,7 @@ Installazione/stato/rimozione del launcher desktop per utente.
 #### `_install_windows`
 
 **Tipo:** funzione/metodo  
-**Righe:** 98-125  
+**Righe:** 98-131  
 **Firma:** `def _install_windows(paths: DesktopIntegrationPaths) -> None`  
 **Scopo:** Helper interno che implementa `_install_windows`.
 
@@ -3921,7 +3921,7 @@ Installazione/stato/rimozione del launcher desktop per utente.
 #### `_install_macos`
 
 **Tipo:** funzione/metodo  
-**Righe:** 128-155  
+**Righe:** 134-161  
 **Firma:** `def _install_macos(paths: DesktopIntegrationPaths) -> None`  
 **Scopo:** Helper interno che implementa `_install_macos`.
 
@@ -3937,7 +3937,7 @@ Installazione/stato/rimozione del launcher desktop per utente.
 #### `install_user_desktop_integration`
 
 **Tipo:** funzione/metodo  
-**Righe:** 158-169  
+**Righe:** 164-175  
 **Firma:** `def install_user_desktop_integration() -> DesktopIntegrationPaths`  
 **Scopo:** Install a per-user application-menu launcher on Linux, Windows or macOS.
 
@@ -3953,7 +3953,7 @@ Installazione/stato/rimozione del launcher desktop per utente.
 #### `ensure_user_desktop_integration`
 
 **Tipo:** funzione/metodo  
-**Righe:** 172-188  
+**Righe:** 178-194  
 **Firma:** `def ensure_user_desktop_integration() -> DesktopIntegrationPaths | None`  
 **Scopo:** Best-effort per-user application-menu integration used by the GUI.
 
@@ -3967,7 +3967,7 @@ Installazione/stato/rimozione del launcher desktop per utente.
 #### `uninstall_user_desktop_integration`
 
 **Tipo:** funzione/metodo  
-**Righe:** 191-201  
+**Righe:** 197-207  
 **Firma:** `def uninstall_user_desktop_integration() -> DesktopIntegrationPaths`  
 **Scopo:** Implementa l'operazione `uninstall_user_desktop_integration` in questo modulo.
 
@@ -3983,7 +3983,7 @@ Installazione/stato/rimozione del launcher desktop per utente.
 #### `desktop_integration_status`
 
 **Tipo:** funzione/metodo  
-**Righe:** 204-210  
+**Righe:** 210-216  
 **Firma:** `def desktop_integration_status() -> tuple[bool, DesktopIntegrationPaths]`  
 **Scopo:** Implementa l'operazione `desktop_integration_status` in questo modulo.
 

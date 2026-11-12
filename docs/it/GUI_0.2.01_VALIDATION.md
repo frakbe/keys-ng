@@ -29,9 +29,9 @@ riapertura, senza usare le chiavi dell'utente. Agent e chiavi temporanei vengono
 rimossi al termine.
 
 Preparazione locale: 181 test di regressione e controllo statico di sicurezza
-superati; smoke GUI offscreen superato su Linux/Python 3.12. GnuPG reale non è
+superati; smoke GUI offscreen superato su Linux/Python 3.11 e 3.12. GnuPG reale non è
 eseguibile localmente perché l'ambiente vieta i socket dell'agent (`Operation not
-permitted`). La verifica crittografica reale e Python 3.11 sono obbligatorie su
+permitted`). La verifica crittografica reale è obbligatoria su
 GitHub Actions: consultare l'esecuzione per il risultato finale. Non si dichiara
 un controllo Ruff completo senza rilievi: il modulo GUI ha segnalazioni pregresse;
 i nuovi moduli dei riferimenti superano il controllo mirato.

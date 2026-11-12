@@ -111,13 +111,19 @@ def _install_windows(paths: DesktopIntegrationPaths) -> None:
     else:
         target = exe
         arguments = ""
+    # Escape PowerShell literals before interpolation (also supports Python 3.11).
+    shortcut_path = str(paths.desktop_file).replace("'", "''")
+    target_path = target.replace("'", "''")
+    target_arguments = arguments.replace("'", "''")
+    icon_path = str(paths.icon_file).replace("'", "''")
+    working_directory = str(Path.home()).replace("'", "''")
     script = (
         "$w=New-Object -ComObject WScript.Shell;"
-        f"$s=$w.CreateShortcut('{str(paths.desktop_file).replace("'", "''")}');"
-        f"$s.TargetPath='{target.replace("'", "''")}';"
-        f"$s.Arguments='{arguments.replace("'", "''")}';"
-        f"$s.IconLocation='{str(paths.icon_file).replace("'", "''")},0';"
-        f"$s.WorkingDirectory='{str(Path.home()).replace("'", "''")}';"
+        f"$s=$w.CreateShortcut('{shortcut_path}');"
+        f"$s.TargetPath='{target_path}';"
+        f"$s.Arguments='{target_arguments}';"
+        f"$s.IconLocation='{icon_path},0';"
+        f"$s.WorkingDirectory='{working_directory}';"
         "$s.Save()"
     )
     completed = subprocess.run([powershell, "-NoProfile", "-NonInteractive", "-Command", script], check=False)

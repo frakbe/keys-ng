@@ -171,7 +171,7 @@ def _macos_rdp(action: Action, settings: AppSettings) -> None:
         target += f":{action.port}"
     attributes = [f"full%20address=s:{quote(target, safe=':.')}" ]
     if action.username:
-        attributes.append(f"username=s:{quote(action.username, safe='@\\')}")
+        attributes.append("username=s:" + quote(action.username, safe="@\\"))
     uri = "rdp://" + "&".join(attributes)
     subprocess.Popen(host_argv([exe, *settings.rdp_macos_options, uri]), shell=False)
 

@@ -31,9 +31,9 @@ encrypted records, reference inspection, lock/unlock and reopening. It never
 uses the user's keyring. The temporary agent/keyring are removed afterwards.
 
 Local preparation: 181 regression tests and security static check passed;
-offscreen GUI smoke passed on Linux/Python 3.12. Real GnuPG could not run locally
+offscreen GUI smoke passed on Linux/Python 3.11 and 3.12. Real GnuPG could not run locally
 because the execution environment forbids agent sockets (`Operation not
-permitted`). Real OpenPGP and Python 3.11 checks are mandatory in GitHub Actions,
+permitted`). Real OpenPGP checks are mandatory in GitHub Actions,
 not inferred from the local GUI test. See the workflow run for final results.
 Ruff reports existing module-wide lint findings; a clean full-project Ruff run
 is not claimed. The introduced reference modules pass their targeted check.
