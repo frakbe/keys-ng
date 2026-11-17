@@ -47,7 +47,7 @@ def test_existing_pre_folder_vault_remains_readable(tmp_path):
     vault = Vault.init(tmp_path / "vault", FakeCrypto(), ["RECIPIENT"], "SIGNER")
     (vault.path / "folders.gpg").unlink()
     reopened = Vault(vault.path, FakeCrypto())
-    assert reopened.list_folders() == []
+    assert [f.name for f in reopened.list_folders()] == ["Trash"]
 
 
 def test_reindex_preserves_folder_tree(tmp_path):

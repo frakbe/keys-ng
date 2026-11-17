@@ -1034,3 +1034,18 @@ msgstr ""
 msgid "GnuPG agent cache cleared. Press Ctrl+P to unlock."
 msgstr ""
 
+msgid "Add tags, separated by commas"
+msgstr ""
+
+msgid "Select tags"
+msgstr ""
+
+msgid "Empty trash"
+msgstr ""
+
+msgid "Move the selected entry to Trash?"
+msgstr ""
+
+msgid "Permanently delete all entries in Trash?"
+msgstr ""
+

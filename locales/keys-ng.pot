@@ -2012,3 +2012,18 @@ msgid ""
 "unlock the active vault."
 msgstr ""
 
+msgid "Add tags, separated by commas"
+msgstr ""
+
+msgid "Select tags"
+msgstr ""
+
+msgid "Empty trash"
+msgstr ""
+
+msgid "Move the selected entry to Trash?"
+msgstr ""
+
+msgid "Permanently delete all entries in Trash?"
+msgstr ""
+

@@ -64,6 +64,8 @@ class Vault:
         vault = cls(root, crypto)
         vault._write_folders(FolderStore())
         vault._write_catalog(Catalog())
+        vault._folders_cache = None
+        vault.load_folders()
         return vault
 
     def recover_interrupted_writes(self) -> int:
@@ -148,7 +150,47 @@ class Vault:
             self._folders_cache = FolderStore(folders=list(catalog.folders))
         else:
             self._folders_cache = FolderStore.from_bytes(self._decrypt(path.read_bytes()))
+        store = self._folders_cache
+        trash = next((f for f in store.folders if f.parent_id is None and f.name.casefold() == "trash"), None)
+        if trash is None or trash.name != "Trash":
+            # Clone before writing: failed encryption must not poison the cache.
+            store = FolderStore(folders=[replace(f) for f in store.folders], schema=store.schema)
+            if trash is None:
+                store.folders.append(Folder.create("Trash"))
+            else:
+                next(f for f in store.folders if f.id == trash.id).name = "Trash"
+            try:
+                self._write_folders(store)
+                self._write_catalog(self._sync_catalog_folders(store=store))
+            except Exception:
+                self._folders_cache = None
+                raise
         return self._folders_cache
+
+    @property
+    def trash_folder_id(self) -> str:
+        return next(f.id for f in self.load_folders().folders if f.parent_id is None and f.name == "Trash")
+
+    def is_in_trash(self, folder_id: str | None) -> bool:
+        by_id = {f.id: f for f in self.load_folders().folders}
+        trash_id = self.trash_folder_id
+        while folder_id is not None:
+            if folder_id == trash_id:
+                return True
+            folder = by_id.get(folder_id)
+            folder_id = folder.parent_id if folder else None
+        return False
+
+    def empty_trash(self) -> None:
+        self._require_unlocked()
+        for item in list(self.list_items(self.trash_folder_id, recursive=True)):
+            self.delete_entry(item.id)
+
+    def used_tags(self) -> list[str]:
+        # Minimal catalogs intentionally omit tags. Read records only in the editor.
+        items = self.list_items()
+        records = (self.get_entry(i.id) for i in items) if self.config.catalog_privacy == "minimal" else items
+        return sorted({tag for item in records for tag in item.tags}, key=str.casefold)
 
     def _catalog_item(self, entry: Entry, ciphertext: bytes) -> CatalogItem:
         hosts: list[str] = []
@@ -299,6 +341,10 @@ class Vault:
 
     def delete_entry(self, entry_id: str) -> None:
         self._require_unlocked()
+        entry = self.get_entry(entry_id)
+        if not self.is_in_trash(entry.folder_id):
+            self.move_entry(entry_id, self.trash_folder_id)
+            return
         path = self.path / RECORDS_DIR / f"{entry_id}.gpg"
         try:
             path.unlink()
@@ -478,6 +524,8 @@ class Vault:
         return last
 
     def rename_folder(self, folder_id: str, new_name: str) -> Folder:
+        if folder_id == self.trash_folder_id:
+            raise VaultError("The Trash folder cannot be renamed, moved or deleted")
         current = self.load_folders()
         store = FolderStore(folders=[replace(folder) for folder in current.folders], schema=current.schema)
         folder = next((folder for folder in store.folders if folder.id == folder_id), None)
@@ -496,6 +544,8 @@ class Vault:
         return folder
 
     def move_folder(self, folder_id: str, parent_id: str | None) -> Folder:
+        if folder_id == self.trash_folder_id:
+            raise VaultError("The Trash folder cannot be renamed, moved or deleted")
         current = self.load_folders()
         store = FolderStore(folders=[replace(folder) for folder in current.folders], schema=current.schema)
         by_id = {folder.id: folder for folder in store.folders}
@@ -521,6 +571,8 @@ class Vault:
         return folder
 
     def delete_folder(self, folder_id: str) -> None:
+        if folder_id == self.trash_folder_id:
+            raise VaultError("The Trash folder cannot be renamed, moved or deleted")
         store = self.load_folders()
         if any(folder.parent_id == folder_id for folder in store.folders):
             raise VaultError("Folder contains subfolders")

@@ -1,6 +1,6 @@
 # Keys NG roadmap
 
-> **Current implementation status (0.2.01):** GUI workspace redesign and readable credential references implemented. The project remains a hardened usable alpha; external security review, cross-platform native validation and production signing/notarization remain outstanding.
+> **Current implementation status (0.2.2):** GUI tags column and editable multi-tag selector, encrypted Trash lifecycle and updated security references implemented. The project remains a hardened usable alpha; external security review, cross-platform native validation and production signing/notarization remain outstanding.
 
 ## M0 - Foundation (complete)
 
@@ -278,3 +278,10 @@
 - [x] Release pipeline gates wheel/source publication on Python 3.11/3.12 tests and smokes.
 - [ ] Native Windows/macOS and interactive desktop validation of the new layout.
 - [ ] Independent external security review (still required).
+
+## 0.2.2 — Tags and Trash
+
+- [x] Replace GUI username column with tags.
+- [x] Editable selection of multiple existing/new tags.
+- [x] Standard encrypted Trash folder, soft deletion, restore by move, permanent deletion and Empty trash.
+- [x] Bilingual user/security/developer documentation and regression/smoke coverage.

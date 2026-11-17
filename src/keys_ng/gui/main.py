@@ -78,6 +78,7 @@ def main() -> None:
         raise SystemExit(2)
 
     from keys_ng.gui.reference_widget import ReferenceWidget
+    from keys_ng.gui.tag_selector import TagSelector
 
     parser = argparse.ArgumentParser(prog="keys-ng-gui")
     parser.add_argument("vault", nargs="*", help="Vault directories to open")
@@ -232,7 +233,7 @@ def main() -> None:
                     self.ssh_x11_combo.setCurrentIndex(x11_index)
                 self.ssh_options_edit.setText(format_ssh_options(primary_action.ssh_options))
 
-            self.tags_edit = QLineEdit(", ".join(entry.tags) if entry else "")
+            self.tags_edit = TagSelector(self.vault.used_tags(), entry.tags if entry else [], self)
             self.notes_edit = QTextEdit(entry.notes if entry else "")
             self.folder_combo = QComboBox()
             self.folder_combo.addItem(_("(Root)"), None)
@@ -322,6 +323,7 @@ def main() -> None:
             if self.vault.locked:
                 for field in self.findChildren(QLineEdit):
                     field.clear()
+                self.tags_edit.clear()
                 self.notes_edit.clear()
                 self.username_reference.clear()
                 self.password_reference.clear()
@@ -891,7 +893,7 @@ def main() -> None:
             self.results.setAcceptDrops(False)
             self.results.setHeaderHidden(False)
             self.results.setColumnCount(4)
-            self.results.setHeaderLabels([_("Title"), _("Username"), _("Type"), _("Folder")])
+            self.results.setHeaderLabels([_("Title"), _("Tags"), _("Type"), _("Folder")])
             self.results.setRootIsDecorated(False)
             self.results.setAlternatingRowColors(True)
             self.results.setSortingEnabled(True)
@@ -1100,8 +1102,11 @@ def main() -> None:
             menu = QMenu(self)
             for button in (self.new_folder_button, self.rename_folder_button, self.delete_folder_button):
                 action = menu.addAction(button.text())
-                action.setEnabled(not self.vault.locked and (button is self.new_folder_button or self.current_folder_id is not None))
+                action.setEnabled(not self.vault.locked and (button is self.new_folder_button or (self.current_folder_id is not None and self.current_folder_id != self.vault.trash_folder_id)))
                 action.triggered.connect(button.click)
+            if not self.vault.locked and self.current_folder_id == self.vault.trash_folder_id:
+                menu.addSeparator()
+                menu.addAction(_("Empty trash"), self.empty_trash)
             menu.exec(self.entries.viewport().mapToGlobal(position))
 
         def entry_menu(self, position) -> None:
@@ -1145,8 +1150,9 @@ def main() -> None:
             self.entries.blockSignals(True)
             self.entries.setCurrentItem(self.entries.topLevelItem(0))
             self.entries.blockSignals(False)
-            self.current_folder_id = None
-            self.refresh_results()
+            target = next((i for i in self.vault.list_items() if i.id == entry_id), None)
+            self.current_folder_id = target.folder_id if target and self.vault.is_in_trash(target.folder_id) else None
+            self.reload()
             for index in range(self.results.topLevelItemCount()):
                 item = self.results.topLevelItem(index)
                 if item.data(0, ID_ROLE) == entry_id:
@@ -1226,10 +1232,12 @@ def main() -> None:
 
         def _folder_item(self, folder, parent=None):
             item = QTreeWidgetItem([folder.name])
-            item.setIcon(0, self._folder_icon())
+            item.setIcon(0, self._theme_icon(("user-trash",), QStyle.StandardPixmap.SP_TrashIcon) if folder.id == self.vault.trash_folder_id else self._folder_icon())
             item.setData(0, TYPE_ROLE, "folder")
             item.setData(0, ID_ROLE, folder.id)
             item.setFlags(item.flags() | Qt.ItemFlag.ItemIsDropEnabled | Qt.ItemFlag.ItemIsDragEnabled)
+            if folder.id == self.vault.trash_folder_id:
+                item.setFlags(item.flags() & ~Qt.ItemFlag.ItemIsDragEnabled)
             if parent is None:
                 self.entries.addTopLevelItem(item)
             else:
@@ -1238,11 +1246,8 @@ def main() -> None:
 
         def _entry_item(self, catalog_item, parent=None, suffix=""):
             path = self._folder_paths.get(catalog_item.folder_id, _("Root"))
-            username = catalog_item.usernames[0] if catalog_item.usernames else ""
-            if username.startswith("{REF:"):
-                username = _("Linked credential")
             kind = next((t.upper() for t in ("ssh", "rdp", "url") if "action:" + t in catalog_item.capabilities), _("Generic"))
-            item = QTreeWidgetItem([catalog_item.title, username, kind, path])
+            item = QTreeWidgetItem([catalog_item.title, ", ".join(catalog_item.tags), kind, path])
             item.setIcon(0, self._entry_icon(catalog_item))
             item.setData(0, TYPE_ROLE, "entry")
             item.setData(0, ID_ROLE, catalog_item.id)
@@ -1295,6 +1300,8 @@ def main() -> None:
                 items = self.vault.search(query) if query else self.vault.list_items()
                 if self.current_folder_id and (not query or self.search_scope.currentIndex() == 1):
                     items = [item for item in items if item.folder_id == self.current_folder_id]
+                viewing_trash = self.vault.is_in_trash(self.current_folder_id)
+                items = [item for item in items if self.vault.is_in_trash(item.folder_id) == viewing_trash]
                 selected_id = self.current_id
                 self.results.blockSignals(True)
                 self.results.clear()
@@ -1552,10 +1559,25 @@ def main() -> None:
             self.activity()
             if not self.current_id or self.vault.locked:
                 return
-            answer = QMessageBox.question(self, _("Delete entry"), _("Delete the selected entry permanently?"))
+            permanent = self.vault.is_in_trash(self.current_entry.folder_id)
+            message = _("Delete the selected entry permanently?") if permanent else _("Move the selected entry to Trash?")
+            answer = QMessageBox.question(self, _("Delete entry"), message, QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No, QMessageBox.StandardButton.No)
             if answer == QMessageBox.StandardButton.Yes:
                 try:
                     self.vault.delete_entry(self.current_id)
+                    self.clear_details()
+                    self.reload()
+                except Exception as exc:
+                    QMessageBox.critical(self, _("Error"), str(exc))
+
+        def empty_trash(self) -> None:
+            self.activity()
+            if self.vault.locked:
+                return
+            answer = QMessageBox.question(self, _("Empty trash"), _("Permanently delete all entries in Trash?"), QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No, QMessageBox.StandardButton.No)
+            if answer == QMessageBox.StandardButton.Yes:
+                try:
+                    self.vault.empty_trash()
                     self.clear_details()
                     self.reload()
                 except Exception as exc:

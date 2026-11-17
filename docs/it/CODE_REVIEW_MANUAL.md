@@ -1,6 +1,6 @@
-# Keys NG 0.2.01 — Manuale completo per la revisione del codice
+# Keys NG 0.2.2 — Manuale completo per la revisione del codice
 
-Versione: `0.2.01`. Questo documento è generato dall'esatto albero sorgente Python distribuito con 0.2.01.
+Versione: `0.2.2`. Questo documento è generato dall'esatto albero sorgente Python distribuito con 0.2.2.
 
 ## Scopo e metodo di lettura
 
@@ -660,7 +660,7 @@ Gerarchia delle eccezioni del progetto.
 GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione multi-vault.
 
 **Sorgente:** `src/keys_ng/gui/main.py`  
-**Simboli eseguibili:** 135
+**Simboli eseguibili:** 136
 
 **Dipendenze dirette del modulo:** `__future__`, `argparse`, `dataclasses`, `keys_ng`, `keys_ng.crypto.factory`, `keys_ng.i18n`, `keys_ng.migration.keepassxc`, `keys_ng.migration.keepassxc_export`, `keys_ng.models`, `keys_ng.platform.app_identity`, `keys_ng.platform.desktop_integration`, `keys_ng.services.actions`, `keys_ng.services.clipboard`, `keys_ng.services.diagnostics`, `keys_ng.services.entry_editor`, `keys_ng.services.passwords`, `keys_ng.services.qr`, `keys_ng.services.ssh_options`, `keys_ng.services.standalone_export`, `keys_ng.services.totp`, `keys_ng.services.trusted_signers`, `keys_ng.services.vault_init`, `keys_ng.storage.inbox`, `keys_ng.storage.settings`, `keys_ng.storage.vault`, `pathlib`, `sys`, `time`
 
@@ -668,17 +668,17 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main`
 
 **Tipo:** funzione/metodo  
-**Righe:** 38-2189  
+**Righe:** 38-2211  
 **Firma:** `def main() -> None`  
 **Scopo:** Implementa l'operazione `main` in questo modulo.
 
-**Chiamate dirette osservate nel corpo:** `AppSettings.load`, `EntryDialog`, `EntryDraft`, `HelpDialog`, `InboxDialog`, `KeePassXCImportDialog`, `MainWindow`, `NewVaultWizard`, `PasswordGeneratorDialog`, `Path`, `Path.cwd`, `Path.home`, `QApplication`, `QApplication.clipboard`, `QApplication.focusWidget`, `QCheckBox`, `QComboBox`, `QDialog`, `QDialogButtonBox`, `QDoubleSpinBox`, `QFileDialog.getExistingDirectory`, `QFileDialog.getOpenFileName`, `QFileDialog.getSaveFileName`, `QFormLayout`, `QHBoxLayout`, `QIcon.fromTheme`, `QInputDialog.getItem`, `QInputDialog.getText`, `QKeySequence`, `QLabel`, `QLineEdit`, `QListWidget`, `QListWidgetItem`, `QMenu`, `QMessageBox.critical`, `QMessageBox.information`, `QMessageBox.question`, `QMessageBox.warning`, `QPushButton`, `QScrollArea`, `QSettings`, `QShortcut`, `QSpinBox`, `QSplitter`, `QStackedWidget`, `QTabWidget`, `QTextBrowser`, `QTextEdit`, `QTimer`, `QTreeWidgetItem`, `QVBoxLayout`, `QWidget`, `QWizardPage`, `ReferenceWidget`, `SearchLineEdit`, `SettingsDialog`, `Signal`, `StandaloneExportDialog`, `SystemExit`, `TrustedSignersDialog`, `ValueError`, `Vault`, `VaultInitRequest`, `VaultPane`, `VaultTree`, `_`, `__init__`, `action.setEnabled`, `action.setToolTip`, `action.triggered.connect`, `actions.addStretch`, `actions.addWidget`, `addMenu`, `add_button.clicked.connect`, `add_trusted_signer`, `advanced_form.addRow`, `any`, `app.exec`, `apply_qt_identity`, `argparse.ArgumentParser`, `authorize_button.clicked.connect`, `available_vault_keys`, `backend.diagnose`, `bool`, `box.toggled.connect`, `browse.clicked.connect`, `browser.setMarkdown`, `browser.setOpenExternalLinks`, `build_entry_from_draft`, `build_otpauth_uri`, `button.hide`, `button.isEnabled`, `button.setEnabled`, `button.setParent`, `button.text`, `buttons.accepted.connect`, `buttons.addStretch`, `buttons.addWidget`, `buttons.rejected.connect`, `ch.isalnum`, `clear`, `clipboard_form.addRow`, `close.rejected.connect`, `close_button.clicked.connect`, `close_buttons.rejected.connect`, `configure_diagnostics`, `configure_language`, `configure_process_identity`, `copy_secret_qt`, `create_button.clicked.connect`, `create_crypto_backend`, `create_vault`, `current.data`, `current.text`, `current_language`, `data`, `delete_button.clicked.connect`, `delete_inbox_item`, `detail_scroll.setWidget`, `detail_scroll.setWidgetResizable`, `dialog.apply`, `dialog.build_entry`, `dialog.check_lock`, `dialog.deleteLater`, `dialog.exec`, `dialog.setWindowTitle`, `dialog.value`, `elapsed_ms`, `eligible_signing_keys`, `empty_label.setAlignment`, `empty_layout.addStretch`, `empty_layout.addWidget`, `ensure_user_desktop_integration`, `entry_menu.addSeparator`, `event.accept`, `event.key`, `event.position`, `event.source`, `exec`, `expanded.add`, `expanduser`, `export_entry_xml`, `export_standalone_entry`, `export_vault_xml`, `extra.addStretch`, `extra.addWidget`, `failures.append`, `field.clear`, `fields.addRow`, `files`, `float`, `focus.copy`, `focus.hasSelectedText`, `focus.textCursor`, `folder_widgets.get`, `footer.addStretch`, `footer.addWidget`, `form.addRow`, `form_widget.setLayout`, `format`, `format_import_report`, `format_ssh_options`, `general_form.addRow`, `generate_password`, `generate_totp`, `get`, `get_logger`, `getattr`, `hasSelection`, `hasattr`, `help_label`, `help_root.joinpath`, `icon.isNull`, `image`, `image.isNull`, `import_button.clicked.connect`, `import_inbox_item`, `import_keepassxc`, `import_standalone_public_key`, `import_trusted_button.clicked.connect`, `inspect_inbox`, `int`, `isinstance`, `item.child`, `item.childCount`, `item.data`, `item.flags`, `item.isExpanded`, `item.setData`, `item.setExpanded`, `item.setFlags`, `item.setIcon`, `item.setToolTip`, `join`, `joinpath`, `keyPressEvent`, `key_button.clicked.connect`, `key_layout.addWidget`, `key_layout.setContentsMargins`, `keys_form.addRow`, `keys_page.setSubTitle`, `keys_page.setTitle`, `label.clear`, `label.setStyleSheet`, `label.setText`, `label.setTextFormat`, `label.setTextInteractionFlags`, `label.setWordWrap`, `labels.index`, `launch_action`, `layout.addLayout`, `layout.addWidget`, `left.addWidget`, `left.setContentsMargins`, `len`, `line.strip`, `list`, `list_trusted_signers`, `location.setSubTitle`, `location.setTitle`, `location_layout.addLayout`, `log.debug`, `log.error`, `log.info`, `mapToGlobal`, `mapping.get`, `max`, `menu.addAction`, `menu.exec`, `min`, `move.setEnabled`, `move.triggered.connect`, `name.strip`, `next`, `open_button.clicked.connect`, `options.setSubTitle`, `options.setTitle`, `options_form.addRow`, `output_button.clicked.connect`, `output_layout.addWidget`, `output_layout.setContentsMargins`, `pane._capture_expanded_folders`, `pane.clear_details`, `pane.deleteLater`, `pane.reload`, `pane.reset_auto_lock_timer`, `pane.vault.lock`, `parent.addChild`, `parse_totp_qimage`, `parse_totp_qr_file`, `parser.add_argument`, `parser.parse_args`, `password_layout.addWidget`, `password_layout.setContentsMargins`, `pending_inbox_paths`, `preferences_action.setMenuRole`, `preview_button.clicked.connect`, `print`, `range`, `rdp_form.addRow`, `recipient_layout.addWidget`, `recipient_layout.setContentsMargins`, `refresh.clicked.connect`, `refresh_button.clicked.connect`, `remaining.remove`, `remove_button.clicked.connect`, `remove_trusted_signer`, `replace`, `resolve`, `resource.is_file`, `resource.read_text`, `right.addLayout`, `right.addWidget`, `root.flags`, `root.setData`, `root.setFlags`, `root_layout.addLayout`, `root_layout.addWidget`, `row.addStretch`, `row.addWidget`, `s.save`, `scroll.setWidget`, `scroll.setWidgetResizable`, `sectionMoved.connect`, `sectionResized.connect`, `self._apply_expanded_folders`, `self._capture_expanded_folders`, `self._entry_icon`, `self._entry_item`, `self._folder_icon`, `self._folder_item`, `self._folder_paths.get`, `self._lines`, `self._menu_action`, `self._refresh_keys`, `self._run`, `self._status_text`, `self._sync_empty_state`, `self._theme_icon`, `self.accept`, `self.action_type_combo.addItem`, `self.action_type_combo.currentData`, `self.action_type_combo.currentIndexChanged.connect`, `self.action_type_combo.findData`, `self.action_type_combo.setCurrentIndex`, `self.active_pane`, `self.activity`, `self.addPage`, `self.advanced_button.setCheckable`, `self.advanced_button.toggled.connect`, `self.advanced_fields.hide`, `self.ambiguous.isChecked`, `self.ambiguous.setChecked`, `self.apply_density`, `self.auto_lock_spin.setRange`, `self.auto_lock_spin.setSuffix`, `self.auto_lock_spin.setValue`, `self.auto_lock_spin.value`, `self.auto_lock_timer.setSingleShot`, `self.auto_lock_timer.start`, `self.auto_lock_timer.timeout.connect`, `self.build_menus`, `self.call_active`, `self.clear_details`, `self.clear_selection`, `self.close_vault`, `self.compact.isChecked`, `self.compact.setChecked`, `self.compact.toggled.connect`, `self.copy_notes.clicked.connect`, `self.copy_notes.setEnabled`, `self.copy_otp.clicked.connect`, `self.copy_otp.setEnabled`, `self.copy_otp.setToolTip`, `self.copy_password.clicked.connect`, `self.copy_password.setToolTip`, `self.copy_url.clicked.connect`, `self.copy_url.setEnabled`, `self.copy_url.setToolTip`, `self.copy_username.clicked.connect`, `self.copy_username.setToolTip`, `self.copy_uuid.clicked.connect`, `self.copy_uuid.setToolTip`, `self.crypto_combo.addItem`, `self.crypto_combo.currentData`, `self.crypto_combo.findData`, `self.crypto_combo.setCurrentIndex`, `self.currentIdChanged.connect`, `self.delete_button.clicked.connect`, `self.delete_folder_button.clicked.connect`, `self.destination.setText`, `self.details.clear`, `self.details.setText`, `self.details.setWordWrap`, `self.digits.isChecked`, `self.digits.setChecked`, `self.edit_button.clicked.connect`, `self.edit_entry`, `self.entries.addTopLevelItem`, `self.entries.blockSignals`, `self.entries.clear`, `self.entries.collapseAll`, `self.entries.currentItemChanged.connect`, `self.entries.customContextMenuRequested.connect`, `self.entries.expandAll`, `self.entries.itemAt`, `self.entries.setContextMenuPolicy`, `self.entries.setCurrentItem`, `self.entries.topLevelItem`, `self.entries.topLevelItemCount`, `self.entries.viewport`, `self.export_standalone.clicked.connect`, `self.export_standalone.setToolTip`, `self.findChildren`, `self.finished.connect`, `self.folder_combo.addItem`, `self.folder_combo.currentData`, `self.folder_combo.findData`, `self.folder_combo.setCurrentIndex`, `self.gpg_path_edit.setPlaceholderText`, `self.gpg_path_edit.text`, `self.gpgconf_path_edit.setPlaceholderText`, `self.gpgconf_path_edit.text`, `self.hard_lock_button.clicked.connect`, `self.hard_lock_button.setText`, `self.horizontal_splitter.addWidget`, `self.horizontal_splitter.setChildrenCollapsible`, `self.horizontal_splitter.setSizes`, `self.horizontal_splitter.splitterMoved.connect`, `self.host_edit.setVisible`, `self.host_edit.text`, `self.host_label.setVisible`, `self.import_button.clicked.connect`, `self.info.setText`, `self.info.setWordWrap`, `self.itemAt`, `self.key_file_edit.setText`, `self.key_file_edit.text`, `self.language_combo.addItem`, `self.language_combo.currentData`, `self.language_combo.findData`, `self.language_combo.setCurrentIndex`, `self.length.setRange`, `self.length.setValue`, `self.length.value`, `self.length.valueChanged.connect`, `self.list.addItem`, `self.list.clear`, `self.list.count`, `self.list.currentItem`, `self.list.currentRow`, `self.list.currentRowChanged.connect`, `self.list.item`, `self.list.setCurrentRow`, `self.lock`, `self.lock_button.clicked.connect`, `self.lock_button.setText`, `self.lock_button.setVisible`, `self.lock_watch.start`, `self.lock_watch.timeout.connect`, `self.lower.isChecked`, `self.lower.setChecked`, `self.menuBar`, `self.move_to_results.emit`, `self.new_button.clicked.connect`, `self.new_button.setEnabled`, `self.new_folder_button.clicked.connect`, `self.new_folder_button.setEnabled`, `self.no_password.isChecked`, `self.notes.clear`, `self.notes.setMinimumHeight`, `self.notes.setPlainText`, `self.notes.setReadOnly`, `self.notes.setToolTip`, `self.notes_edit.clear`, `self.notes_edit.setMaximumHeight`, `self.notes_edit.toPlainText`, `self.on_move`, `self.on_reload`, `self.open_action.clicked.connect`, `self.open_action.setEnabled`, `self.open_action.setText`, `self.open_action.setToolTip`, `self.open_vault`, `self.otp.clear`, `self.otp.setText`, `self.output_edit.setText`, `self.output_edit.text`, `self.password_edit.editingFinished.connect`, `self.password_edit.setEchoMode`, `self.password_edit.setText`, `self.password_edit.setToolTip`, `self.password_edit.text`, `self.password_edit.textChanged.connect`, `self.password_generate.clicked.connect`, `self.password_generate.setToolTip`, `self.password_label.setText`, `self.password_reference.clear`, `self.password_reference.open_origin.connect`, `self.password_reference.update_reference`, `self.password_timeout_spin.setRange`, `self.password_timeout_spin.setSuffix`, `self.password_timeout_spin.setValue`, `self.password_timeout_spin.value`, `self.password_toggle.setCheckable`, `self.password_toggle.setText`, `self.password_toggle.setToolTip`, `self.password_toggle.toggled.connect`, `self.path_edit.setText`, `self.path_edit.text`, `self.path_label.setText`, `self.port_edit.setPlaceholderText`, `self.port_edit.setVisible`, `self.port_edit.text`, `self.port_label.setVisible`, `self.preview.setReadOnly`, `self.preview.setText`, `self.preview.text`, `self.privacy_combo.addItem`, `self.privacy_combo.currentData`, `self.privacy_combo.setCurrentIndex`, `self.qr_button.clicked.connect`, `self.qr_clipboard_button.clicked.connect`, `self.rdp_domain_edit.setPlaceholderText`, `self.rdp_domain_edit.setToolTip`, `self.rdp_domain_edit.setVisible`, `self.rdp_domain_edit.text`, `self.rdp_domain_label.setVisible`, `self.rdp_linux_client_edit.text`, `self.rdp_linux_options_edit.setMaximumHeight`, `self.rdp_linux_options_edit.setPlainText`, `self.rdp_macos_client_edit.text`, `self.rdp_macos_options_edit.setMaximumHeight`, `self.rdp_macos_options_edit.setPlainText`, `self.rdp_windows_client_edit.text`, `self.rdp_windows_options_edit.setMaximumHeight`, `self.rdp_windows_options_edit.setPlainText`, `self.recent_label.setAlignment`, `self.recent_label.setVisible`, `self.recent_list.addItem`, `self.recent_list.clear`, `self.recent_list.itemClicked.connect`, `self.recent_list.setMaximumHeight`, `self.recent_list.setMinimumWidth`, `self.recent_list.setSelectionMode`, `self.recent_list.setVisible`, `self.recent_menu.aboutToShow.connect`, `self.recent_menu.addAction`, `self.recent_menu.clear`, `self.recipient_combo.addItem`, `self.recipient_combo.clear`, `self.recipient_combo.currentData`, `self.recipient_combo.findData`, `self.recipient_combo.setCurrentIndex`, `self.refresh`, `self.refresh_otp`, `self.refresh_recent_menu`, `self.refresh_recent_start_page`, `self.refresh_references`, `self.refresh_results`, `self.regenerate`, `self.reject`, `self.reload`, `self.rename_folder_button.clicked.connect`, `self.report.setPlaceholderText`, `self.report.setPlainText`, `self.report.setReadOnly`, `self.require_signature.isChecked`, `self.require_signature.setChecked`, `self.resize`, `self.result_count.clear`, `self.result_count.setText`, `self.results.addTopLevelItem`, `self.results.blockSignals`, `self.results.clear`, `self.results.currentItem`, `self.results.currentItemChanged.connect`, `self.results.customContextMenuRequested.connect`, `self.results.header`, `self.results.itemAt`, `self.results.itemDoubleClicked.connect`, `self.results.scrollToItem`, `self.results.setAcceptDrops`, `self.results.setAlternatingRowColors`, `self.results.setColumnCount`, `self.results.setColumnWidth`, `self.results.setContextMenuPolicy`, `self.results.setCurrentItem`, `self.results.setFocus`, `self.results.setHeaderHidden`, `self.results.setHeaderLabels`, `self.results.setRootIsDecorated`, `self.results.setSortingEnabled`, `self.results.setStyleSheet`, `self.results.sortItems`, `self.results.topLevelItem`, `self.results.topLevelItemCount`, `self.results.viewport`, `self.search.clear`, `self.search.move_to_results.connect`, `self.search.selectAll`, `self.search.setClearButtonEnabled`, `self.search.setEnabled`, `self.search.setFocus`, `self.search.setPlaceholderText`, `self.search.setToolTip`, `self.search.text`, `self.search.textChanged.connect`, `self.search_scope.addItems`, `self.search_scope.currentIndex`, `self.search_scope.currentIndexChanged.connect`, `self.search_timer.setInterval`, `self.search_timer.setSingleShot`, `self.search_timer.start`, `self.search_timer.stop`, `self.search_timer.timeout.connect`, `self.setAcceptDrops`, `self.setCentralWidget`, `self.setDefaultDropAction`, `self.setDragDropMode`, `self.setDragEnabled`, `self.setDropIndicatorShown`, `self.setHeaderHidden`, `self.setMinimumWidth`, `self.setWindowTitle`, `self.shortcuts.append`, `self.show_help`, `self.show_inbox`, `self.sign_checkbox.isChecked`, `self.sign_checkbox.toggled.connect`, `self.signer_combo.addItem`, `self.signer_combo.clear`, `self.signer_combo.currentData`, `self.signer_combo.setEnabled`, `self.source_edit.setText`, `self.source_edit.text`, `self.ssh_options_edit.setMaximumHeight`, `self.ssh_options_edit.setPlaceholderText`, `self.ssh_options_edit.setPlainText`, `self.ssh_options_edit.setText`, `self.ssh_options_edit.setVisible`, `self.ssh_options_edit.text`, `self.ssh_options_label.setVisible`, `self.ssh_terminal_edit.text`, `self.ssh_x11_combo.addItem`, `self.ssh_x11_combo.currentData`, `self.ssh_x11_combo.findData`, `self.ssh_x11_combo.setCurrentIndex`, `self.ssh_x11_combo.setVisible`, `self.ssh_x11_label.setVisible`, `self.stack.addWidget`, `self.stack.setCurrentWidget`, `self.statusBar`, `self.status_message`, `self.style`, `self.summary_label.setText`, `self.summary_label.setWordWrap`, `self.symbols.isChecked`, `self.symbols.setChecked`, `self.tabs.addTab`, `self.tabs.count`, `self.tabs.currentChanged.connect`, `self.tabs.currentIndex`, `self.tabs.currentWidget`, `self.tabs.removeTab`, `self.tabs.setCurrentIndex`, `self.tabs.setMovable`, `self.tabs.setTabPosition`, `self.tabs.setTabToolTip`, `self.tabs.setTabsClosable`, `self.tabs.tabCloseRequested.connect`, `self.tabs.widget`, `self.tags_edit.text`, `self.technical.hide`, `self.technical_button.setCheckable`, `self.technical_button.toggled.connect`, `self.timer.start`, `self.timer.timeout.connect`, `self.title.font`, `self.title.setFont`, `self.title.setText`, `self.title_edit.text`, `self.totp_edit.setText`, `self.totp_edit.text`, `self.totp_secret_edit.setEchoMode`, `self.totp_secret_edit.setText`, `self.totp_secret_edit.text`, `self.totp_timeout_spin.setRange`, `self.totp_timeout_spin.setSuffix`, `self.totp_timeout_spin.setValue`, `self.totp_timeout_spin.value`, `self.tree_combo.addItem`, `self.tree_combo.currentData`, `self.tree_combo.findData`, `self.tree_combo.setCurrentIndex`, `self.tui_notice_background_edit.setPlaceholderText`, `self.tui_notice_background_edit.text`, `self.tui_notice_foreground_edit.setPlaceholderText`, `self.tui_notice_foreground_edit.text`, `self.tui_notice_seconds_spin.setRange`, `self.tui_notice_seconds_spin.setSingleStep`, `self.tui_notice_seconds_spin.setSuffix`, `self.tui_notice_seconds_spin.setValue`, `self.tui_notice_seconds_spin.value`, `self.ui_state.setValue`, `self.ui_state.value`, `self.unlock_button.clicked.connect`, `self.unlock_button.setVisible`, `self.update_action_fields`, `self.update_controls`, `self.update_window_title`, `self.upper.isChecked`, `self.upper.setChecked`, `self.url_edit.setVisible`, `self.url_edit.text`, `self.url_label.setVisible`, `self.username.clear`, `self.username.setText`, `self.username_edit.editingFinished.connect`, `self.username_edit.setToolTip`, `self.username_edit.text`, `self.username_edit.textChanged.connect`, `self.username_reference.clear`, `self.username_reference.open_origin.connect`, `self.username_reference.update_reference`, `self.uuid_label.clear`, `self.uuid_label.setText`, `self.vault.create_folder`, `self.vault.delete_entry`, `self.vault.delete_folder`, `self.vault.folder_path`, `self.vault.folder_paths`, `self.vault.get_entry`, `self.vault.get_folder`, `self.vault.list_folders`, `self.vault.list_items`, `self.vault.lock`, `self.vault.move_entry`, `self.vault.move_folder`, `self.vault.rename_folder`, `self.vault.resolved_action`, `self.vault.resolved_password`, `self.vault.resolved_username`, `self.vault.save_entry`, `self.vault.search`, `self.vault.unlock`, `self.vault_state.setText`, `self.vertical_splitter.addWidget`, `self.vertical_splitter.setChildrenCollapsible`, `self.vertical_splitter.setSizes`, `self.vertical_splitter.splitterMoved.connect`, `self.window`, `self.yubikey_edit.setPlaceholderText`, `self.yubikey_edit.text`, `set`, `setData`, `setSectionsMovable`, `settings.remember_vault`, `settings.save`, `shortcut.activated.connect`, `shortcut.setContext`, `showMessage`, `sortIndicatorChanged.connect`, `source.currentItem`, `source_button.clicked.connect`, `source_layout.addWidget`, `source_layout.setContentsMargins`, `splitlines`, `ssh_form.addRow`, `standalone_recipient_keys`, `standalone_signing_keys`, `standardIcon`, `str`, `strip`, `summary.setSubTitle`, `summary.setTitle`, `summary_layout.addWidget`, `super`, `t.upper`, `tabs.addTab`, `tabs.count`, `tabs.setCurrentIndex`, `target.data`, `target.parent`, `technical_layout.addWidget`, `time.perf_counter`, `title_font.pointSize`, `title_font.setBold`, `title_font.setPointSize`, `toPoint`, `toolbar.addWidget`, `type`, `username.startswith`, `vault.crypto.hard_lock`, `vault_menu.addMenu`, `vault_menu.addSeparator`, `verify_gpg.clicked.connect`, `visit`, `widget.restoreState`, `widget.saveState`, `widget.toPlainText`, `window.hard_lock_all`, `window.resize`, `window.setWindowIcon`, `window.show`, `window.statusBar`, `wizard.exec`, `wizard.request`, `write_export`.
+**Chiamate dirette osservate nel corpo:** `AppSettings.load`, `EntryDialog`, `EntryDraft`, `HelpDialog`, `InboxDialog`, `KeePassXCImportDialog`, `MainWindow`, `NewVaultWizard`, `PasswordGeneratorDialog`, `Path`, `Path.cwd`, `Path.home`, `QApplication`, `QApplication.clipboard`, `QApplication.focusWidget`, `QCheckBox`, `QComboBox`, `QDialog`, `QDialogButtonBox`, `QDoubleSpinBox`, `QFileDialog.getExistingDirectory`, `QFileDialog.getOpenFileName`, `QFileDialog.getSaveFileName`, `QFormLayout`, `QHBoxLayout`, `QIcon.fromTheme`, `QInputDialog.getItem`, `QInputDialog.getText`, `QKeySequence`, `QLabel`, `QLineEdit`, `QListWidget`, `QListWidgetItem`, `QMenu`, `QMessageBox.critical`, `QMessageBox.information`, `QMessageBox.question`, `QMessageBox.warning`, `QPushButton`, `QScrollArea`, `QSettings`, `QShortcut`, `QSpinBox`, `QSplitter`, `QStackedWidget`, `QTabWidget`, `QTextBrowser`, `QTextEdit`, `QTimer`, `QTreeWidgetItem`, `QVBoxLayout`, `QWidget`, `QWizardPage`, `ReferenceWidget`, `SearchLineEdit`, `SettingsDialog`, `Signal`, `StandaloneExportDialog`, `SystemExit`, `TagSelector`, `TrustedSignersDialog`, `ValueError`, `Vault`, `VaultInitRequest`, `VaultPane`, `VaultTree`, `_`, `__init__`, `action.setEnabled`, `action.setToolTip`, `action.triggered.connect`, `actions.addStretch`, `actions.addWidget`, `addMenu`, `add_button.clicked.connect`, `add_trusted_signer`, `advanced_form.addRow`, `any`, `app.exec`, `apply_qt_identity`, `argparse.ArgumentParser`, `authorize_button.clicked.connect`, `available_vault_keys`, `backend.diagnose`, `bool`, `box.toggled.connect`, `browse.clicked.connect`, `browser.setMarkdown`, `browser.setOpenExternalLinks`, `build_entry_from_draft`, `build_otpauth_uri`, `button.hide`, `button.isEnabled`, `button.setEnabled`, `button.setParent`, `button.text`, `buttons.accepted.connect`, `buttons.addStretch`, `buttons.addWidget`, `buttons.rejected.connect`, `ch.isalnum`, `clear`, `clipboard_form.addRow`, `close.rejected.connect`, `close_button.clicked.connect`, `close_buttons.rejected.connect`, `configure_diagnostics`, `configure_language`, `configure_process_identity`, `copy_secret_qt`, `create_button.clicked.connect`, `create_crypto_backend`, `create_vault`, `current.data`, `current.text`, `current_language`, `data`, `delete_button.clicked.connect`, `delete_inbox_item`, `detail_scroll.setWidget`, `detail_scroll.setWidgetResizable`, `dialog.apply`, `dialog.build_entry`, `dialog.check_lock`, `dialog.deleteLater`, `dialog.exec`, `dialog.setWindowTitle`, `dialog.value`, `elapsed_ms`, `eligible_signing_keys`, `empty_label.setAlignment`, `empty_layout.addStretch`, `empty_layout.addWidget`, `ensure_user_desktop_integration`, `entry_menu.addSeparator`, `event.accept`, `event.key`, `event.position`, `event.source`, `exec`, `expanded.add`, `expanduser`, `export_entry_xml`, `export_standalone_entry`, `export_vault_xml`, `extra.addStretch`, `extra.addWidget`, `failures.append`, `field.clear`, `fields.addRow`, `files`, `float`, `focus.copy`, `focus.hasSelectedText`, `focus.textCursor`, `folder_widgets.get`, `footer.addStretch`, `footer.addWidget`, `form.addRow`, `form_widget.setLayout`, `format`, `format_import_report`, `format_ssh_options`, `general_form.addRow`, `generate_password`, `generate_totp`, `get`, `get_logger`, `getattr`, `hasSelection`, `hasattr`, `help_label`, `help_root.joinpath`, `icon.isNull`, `image`, `image.isNull`, `import_button.clicked.connect`, `import_inbox_item`, `import_keepassxc`, `import_standalone_public_key`, `import_trusted_button.clicked.connect`, `inspect_inbox`, `int`, `isinstance`, `item.child`, `item.childCount`, `item.data`, `item.flags`, `item.isExpanded`, `item.setData`, `item.setExpanded`, `item.setFlags`, `item.setIcon`, `item.setToolTip`, `join`, `joinpath`, `keyPressEvent`, `key_button.clicked.connect`, `key_layout.addWidget`, `key_layout.setContentsMargins`, `keys_form.addRow`, `keys_page.setSubTitle`, `keys_page.setTitle`, `label.clear`, `label.setStyleSheet`, `label.setText`, `label.setTextFormat`, `label.setTextInteractionFlags`, `label.setWordWrap`, `labels.index`, `launch_action`, `layout.addLayout`, `layout.addWidget`, `left.addWidget`, `left.setContentsMargins`, `len`, `line.strip`, `list`, `list_trusted_signers`, `location.setSubTitle`, `location.setTitle`, `location_layout.addLayout`, `log.debug`, `log.error`, `log.info`, `mapToGlobal`, `mapping.get`, `max`, `menu.addAction`, `menu.addSeparator`, `menu.exec`, `min`, `move.setEnabled`, `move.triggered.connect`, `name.strip`, `next`, `open_button.clicked.connect`, `options.setSubTitle`, `options.setTitle`, `options_form.addRow`, `output_button.clicked.connect`, `output_layout.addWidget`, `output_layout.setContentsMargins`, `pane._capture_expanded_folders`, `pane.clear_details`, `pane.deleteLater`, `pane.reload`, `pane.reset_auto_lock_timer`, `pane.vault.lock`, `parent.addChild`, `parse_totp_qimage`, `parse_totp_qr_file`, `parser.add_argument`, `parser.parse_args`, `password_layout.addWidget`, `password_layout.setContentsMargins`, `pending_inbox_paths`, `preferences_action.setMenuRole`, `preview_button.clicked.connect`, `print`, `range`, `rdp_form.addRow`, `recipient_layout.addWidget`, `recipient_layout.setContentsMargins`, `refresh.clicked.connect`, `refresh_button.clicked.connect`, `remaining.remove`, `remove_button.clicked.connect`, `remove_trusted_signer`, `replace`, `resolve`, `resource.is_file`, `resource.read_text`, `right.addLayout`, `right.addWidget`, `root.flags`, `root.setData`, `root.setFlags`, `root_layout.addLayout`, `root_layout.addWidget`, `row.addStretch`, `row.addWidget`, `s.save`, `scroll.setWidget`, `scroll.setWidgetResizable`, `sectionMoved.connect`, `sectionResized.connect`, `self._apply_expanded_folders`, `self._capture_expanded_folders`, `self._entry_icon`, `self._entry_item`, `self._folder_icon`, `self._folder_item`, `self._folder_paths.get`, `self._lines`, `self._menu_action`, `self._refresh_keys`, `self._run`, `self._status_text`, `self._sync_empty_state`, `self._theme_icon`, `self.accept`, `self.action_type_combo.addItem`, `self.action_type_combo.currentData`, `self.action_type_combo.currentIndexChanged.connect`, `self.action_type_combo.findData`, `self.action_type_combo.setCurrentIndex`, `self.active_pane`, `self.activity`, `self.addPage`, `self.advanced_button.setCheckable`, `self.advanced_button.toggled.connect`, `self.advanced_fields.hide`, `self.ambiguous.isChecked`, `self.ambiguous.setChecked`, `self.apply_density`, `self.auto_lock_spin.setRange`, `self.auto_lock_spin.setSuffix`, `self.auto_lock_spin.setValue`, `self.auto_lock_spin.value`, `self.auto_lock_timer.setSingleShot`, `self.auto_lock_timer.start`, `self.auto_lock_timer.timeout.connect`, `self.build_menus`, `self.call_active`, `self.clear_details`, `self.clear_selection`, `self.close_vault`, `self.compact.isChecked`, `self.compact.setChecked`, `self.compact.toggled.connect`, `self.copy_notes.clicked.connect`, `self.copy_notes.setEnabled`, `self.copy_otp.clicked.connect`, `self.copy_otp.setEnabled`, `self.copy_otp.setToolTip`, `self.copy_password.clicked.connect`, `self.copy_password.setToolTip`, `self.copy_url.clicked.connect`, `self.copy_url.setEnabled`, `self.copy_url.setToolTip`, `self.copy_username.clicked.connect`, `self.copy_username.setToolTip`, `self.copy_uuid.clicked.connect`, `self.copy_uuid.setToolTip`, `self.crypto_combo.addItem`, `self.crypto_combo.currentData`, `self.crypto_combo.findData`, `self.crypto_combo.setCurrentIndex`, `self.currentIdChanged.connect`, `self.delete_button.clicked.connect`, `self.delete_folder_button.clicked.connect`, `self.destination.setText`, `self.details.clear`, `self.details.setText`, `self.details.setWordWrap`, `self.digits.isChecked`, `self.digits.setChecked`, `self.edit_button.clicked.connect`, `self.edit_entry`, `self.entries.addTopLevelItem`, `self.entries.blockSignals`, `self.entries.clear`, `self.entries.collapseAll`, `self.entries.currentItemChanged.connect`, `self.entries.customContextMenuRequested.connect`, `self.entries.expandAll`, `self.entries.itemAt`, `self.entries.setContextMenuPolicy`, `self.entries.setCurrentItem`, `self.entries.topLevelItem`, `self.entries.topLevelItemCount`, `self.entries.viewport`, `self.export_standalone.clicked.connect`, `self.export_standalone.setToolTip`, `self.findChildren`, `self.finished.connect`, `self.folder_combo.addItem`, `self.folder_combo.currentData`, `self.folder_combo.findData`, `self.folder_combo.setCurrentIndex`, `self.gpg_path_edit.setPlaceholderText`, `self.gpg_path_edit.text`, `self.gpgconf_path_edit.setPlaceholderText`, `self.gpgconf_path_edit.text`, `self.hard_lock_button.clicked.connect`, `self.hard_lock_button.setText`, `self.horizontal_splitter.addWidget`, `self.horizontal_splitter.setChildrenCollapsible`, `self.horizontal_splitter.setSizes`, `self.horizontal_splitter.splitterMoved.connect`, `self.host_edit.setVisible`, `self.host_edit.text`, `self.host_label.setVisible`, `self.import_button.clicked.connect`, `self.info.setText`, `self.info.setWordWrap`, `self.itemAt`, `self.key_file_edit.setText`, `self.key_file_edit.text`, `self.language_combo.addItem`, `self.language_combo.currentData`, `self.language_combo.findData`, `self.language_combo.setCurrentIndex`, `self.length.setRange`, `self.length.setValue`, `self.length.value`, `self.length.valueChanged.connect`, `self.list.addItem`, `self.list.clear`, `self.list.count`, `self.list.currentItem`, `self.list.currentRow`, `self.list.currentRowChanged.connect`, `self.list.item`, `self.list.setCurrentRow`, `self.lock`, `self.lock_button.clicked.connect`, `self.lock_button.setText`, `self.lock_button.setVisible`, `self.lock_watch.start`, `self.lock_watch.timeout.connect`, `self.lower.isChecked`, `self.lower.setChecked`, `self.menuBar`, `self.move_to_results.emit`, `self.new_button.clicked.connect`, `self.new_button.setEnabled`, `self.new_folder_button.clicked.connect`, `self.new_folder_button.setEnabled`, `self.no_password.isChecked`, `self.notes.clear`, `self.notes.setMinimumHeight`, `self.notes.setPlainText`, `self.notes.setReadOnly`, `self.notes.setToolTip`, `self.notes_edit.clear`, `self.notes_edit.setMaximumHeight`, `self.notes_edit.toPlainText`, `self.on_move`, `self.on_reload`, `self.open_action.clicked.connect`, `self.open_action.setEnabled`, `self.open_action.setText`, `self.open_action.setToolTip`, `self.open_vault`, `self.otp.clear`, `self.otp.setText`, `self.output_edit.setText`, `self.output_edit.text`, `self.password_edit.editingFinished.connect`, `self.password_edit.setEchoMode`, `self.password_edit.setText`, `self.password_edit.setToolTip`, `self.password_edit.text`, `self.password_edit.textChanged.connect`, `self.password_generate.clicked.connect`, `self.password_generate.setToolTip`, `self.password_label.setText`, `self.password_reference.clear`, `self.password_reference.open_origin.connect`, `self.password_reference.update_reference`, `self.password_timeout_spin.setRange`, `self.password_timeout_spin.setSuffix`, `self.password_timeout_spin.setValue`, `self.password_timeout_spin.value`, `self.password_toggle.setCheckable`, `self.password_toggle.setText`, `self.password_toggle.setToolTip`, `self.password_toggle.toggled.connect`, `self.path_edit.setText`, `self.path_edit.text`, `self.path_label.setText`, `self.port_edit.setPlaceholderText`, `self.port_edit.setVisible`, `self.port_edit.text`, `self.port_label.setVisible`, `self.preview.setReadOnly`, `self.preview.setText`, `self.preview.text`, `self.privacy_combo.addItem`, `self.privacy_combo.currentData`, `self.privacy_combo.setCurrentIndex`, `self.qr_button.clicked.connect`, `self.qr_clipboard_button.clicked.connect`, `self.rdp_domain_edit.setPlaceholderText`, `self.rdp_domain_edit.setToolTip`, `self.rdp_domain_edit.setVisible`, `self.rdp_domain_edit.text`, `self.rdp_domain_label.setVisible`, `self.rdp_linux_client_edit.text`, `self.rdp_linux_options_edit.setMaximumHeight`, `self.rdp_linux_options_edit.setPlainText`, `self.rdp_macos_client_edit.text`, `self.rdp_macos_options_edit.setMaximumHeight`, `self.rdp_macos_options_edit.setPlainText`, `self.rdp_windows_client_edit.text`, `self.rdp_windows_options_edit.setMaximumHeight`, `self.rdp_windows_options_edit.setPlainText`, `self.recent_label.setAlignment`, `self.recent_label.setVisible`, `self.recent_list.addItem`, `self.recent_list.clear`, `self.recent_list.itemClicked.connect`, `self.recent_list.setMaximumHeight`, `self.recent_list.setMinimumWidth`, `self.recent_list.setSelectionMode`, `self.recent_list.setVisible`, `self.recent_menu.aboutToShow.connect`, `self.recent_menu.addAction`, `self.recent_menu.clear`, `self.recipient_combo.addItem`, `self.recipient_combo.clear`, `self.recipient_combo.currentData`, `self.recipient_combo.findData`, `self.recipient_combo.setCurrentIndex`, `self.refresh`, `self.refresh_otp`, `self.refresh_recent_menu`, `self.refresh_recent_start_page`, `self.refresh_references`, `self.refresh_results`, `self.regenerate`, `self.reject`, `self.reload`, `self.rename_folder_button.clicked.connect`, `self.report.setPlaceholderText`, `self.report.setPlainText`, `self.report.setReadOnly`, `self.require_signature.isChecked`, `self.require_signature.setChecked`, `self.resize`, `self.result_count.clear`, `self.result_count.setText`, `self.results.addTopLevelItem`, `self.results.blockSignals`, `self.results.clear`, `self.results.currentItem`, `self.results.currentItemChanged.connect`, `self.results.customContextMenuRequested.connect`, `self.results.header`, `self.results.itemAt`, `self.results.itemDoubleClicked.connect`, `self.results.scrollToItem`, `self.results.setAcceptDrops`, `self.results.setAlternatingRowColors`, `self.results.setColumnCount`, `self.results.setColumnWidth`, `self.results.setContextMenuPolicy`, `self.results.setCurrentItem`, `self.results.setFocus`, `self.results.setHeaderHidden`, `self.results.setHeaderLabels`, `self.results.setRootIsDecorated`, `self.results.setSortingEnabled`, `self.results.setStyleSheet`, `self.results.sortItems`, `self.results.topLevelItem`, `self.results.topLevelItemCount`, `self.results.viewport`, `self.search.clear`, `self.search.move_to_results.connect`, `self.search.selectAll`, `self.search.setClearButtonEnabled`, `self.search.setEnabled`, `self.search.setFocus`, `self.search.setPlaceholderText`, `self.search.setToolTip`, `self.search.text`, `self.search.textChanged.connect`, `self.search_scope.addItems`, `self.search_scope.currentIndex`, `self.search_scope.currentIndexChanged.connect`, `self.search_timer.setInterval`, `self.search_timer.setSingleShot`, `self.search_timer.start`, `self.search_timer.stop`, `self.search_timer.timeout.connect`, `self.setAcceptDrops`, `self.setCentralWidget`, `self.setDefaultDropAction`, `self.setDragDropMode`, `self.setDragEnabled`, `self.setDropIndicatorShown`, `self.setHeaderHidden`, `self.setMinimumWidth`, `self.setWindowTitle`, `self.shortcuts.append`, `self.show_help`, `self.show_inbox`, `self.sign_checkbox.isChecked`, `self.sign_checkbox.toggled.connect`, `self.signer_combo.addItem`, `self.signer_combo.clear`, `self.signer_combo.currentData`, `self.signer_combo.setEnabled`, `self.source_edit.setText`, `self.source_edit.text`, `self.ssh_options_edit.setMaximumHeight`, `self.ssh_options_edit.setPlaceholderText`, `self.ssh_options_edit.setPlainText`, `self.ssh_options_edit.setText`, `self.ssh_options_edit.setVisible`, `self.ssh_options_edit.text`, `self.ssh_options_label.setVisible`, `self.ssh_terminal_edit.text`, `self.ssh_x11_combo.addItem`, `self.ssh_x11_combo.currentData`, `self.ssh_x11_combo.findData`, `self.ssh_x11_combo.setCurrentIndex`, `self.ssh_x11_combo.setVisible`, `self.ssh_x11_label.setVisible`, `self.stack.addWidget`, `self.stack.setCurrentWidget`, `self.statusBar`, `self.status_message`, `self.style`, `self.summary_label.setText`, `self.summary_label.setWordWrap`, `self.symbols.isChecked`, `self.symbols.setChecked`, `self.tabs.addTab`, `self.tabs.count`, `self.tabs.currentChanged.connect`, `self.tabs.currentIndex`, `self.tabs.currentWidget`, `self.tabs.removeTab`, `self.tabs.setCurrentIndex`, `self.tabs.setMovable`, `self.tabs.setTabPosition`, `self.tabs.setTabToolTip`, `self.tabs.setTabsClosable`, `self.tabs.tabCloseRequested.connect`, `self.tabs.widget`, `self.tags_edit.clear`, `self.tags_edit.text`, `self.technical.hide`, `self.technical_button.setCheckable`, `self.technical_button.toggled.connect`, `self.timer.start`, `self.timer.timeout.connect`, `self.title.font`, `self.title.setFont`, `self.title.setText`, `self.title_edit.text`, `self.totp_edit.setText`, `self.totp_edit.text`, `self.totp_secret_edit.setEchoMode`, `self.totp_secret_edit.setText`, `self.totp_secret_edit.text`, `self.totp_timeout_spin.setRange`, `self.totp_timeout_spin.setSuffix`, `self.totp_timeout_spin.setValue`, `self.totp_timeout_spin.value`, `self.tree_combo.addItem`, `self.tree_combo.currentData`, `self.tree_combo.findData`, `self.tree_combo.setCurrentIndex`, `self.tui_notice_background_edit.setPlaceholderText`, `self.tui_notice_background_edit.text`, `self.tui_notice_foreground_edit.setPlaceholderText`, `self.tui_notice_foreground_edit.text`, `self.tui_notice_seconds_spin.setRange`, `self.tui_notice_seconds_spin.setSingleStep`, `self.tui_notice_seconds_spin.setSuffix`, `self.tui_notice_seconds_spin.setValue`, `self.tui_notice_seconds_spin.value`, `self.ui_state.setValue`, `self.ui_state.value`, `self.unlock_button.clicked.connect`, `self.unlock_button.setVisible`, `self.update_action_fields`, `self.update_controls`, `self.update_window_title`, `self.upper.isChecked`, `self.upper.setChecked`, `self.url_edit.setVisible`, `self.url_edit.text`, `self.url_label.setVisible`, `self.username.clear`, `self.username.setText`, `self.username_edit.editingFinished.connect`, `self.username_edit.setToolTip`, `self.username_edit.text`, `self.username_edit.textChanged.connect`, `self.username_reference.clear`, `self.username_reference.open_origin.connect`, `self.username_reference.update_reference`, `self.uuid_label.clear`, `self.uuid_label.setText`, `self.vault.create_folder`, `self.vault.delete_entry`, `self.vault.delete_folder`, `self.vault.empty_trash`, `self.vault.folder_path`, `self.vault.folder_paths`, `self.vault.get_entry`, `self.vault.get_folder`, `self.vault.is_in_trash`, `self.vault.list_folders`, `self.vault.list_items`, `self.vault.lock`, `self.vault.move_entry`, `self.vault.move_folder`, `self.vault.rename_folder`, `self.vault.resolved_action`, `self.vault.resolved_password`, `self.vault.resolved_username`, `self.vault.save_entry`, `self.vault.search`, `self.vault.unlock`, `self.vault.used_tags`, `self.vault_state.setText`, `self.vertical_splitter.addWidget`, `self.vertical_splitter.setChildrenCollapsible`, `self.vertical_splitter.setSizes`, `self.vertical_splitter.splitterMoved.connect`, `self.window`, `self.yubikey_edit.setPlaceholderText`, `self.yubikey_edit.text`, `set`, `setData`, `setSectionsMovable`, `settings.remember_vault`, `settings.save`, `shortcut.activated.connect`, `shortcut.setContext`, `showMessage`, `sortIndicatorChanged.connect`, `source.currentItem`, `source_button.clicked.connect`, `source_layout.addWidget`, `source_layout.setContentsMargins`, `splitlines`, `ssh_form.addRow`, `standalone_recipient_keys`, `standalone_signing_keys`, `standardIcon`, `str`, `strip`, `summary.setSubTitle`, `summary.setTitle`, `summary_layout.addWidget`, `super`, `t.upper`, `tabs.addTab`, `tabs.count`, `tabs.setCurrentIndex`, `target.data`, `target.parent`, `technical_layout.addWidget`, `time.perf_counter`, `title_font.pointSize`, `title_font.setBold`, `title_font.setPointSize`, `toPoint`, `toolbar.addWidget`, `type`, `vault.crypto.hard_lock`, `vault_menu.addMenu`, `vault_menu.addSeparator`, `verify_gpg.clicked.connect`, `visit`, `widget.restoreState`, `widget.saveState`, `widget.toPlainText`, `window.hard_lock_all`, `window.resize`, `window.setWindowIcon`, `window.show`, `window.statusBar`, `wizard.exec`, `wizard.request`, `write_export`.
 
 **Eccezioni sollevate esplicitamente:** `SystemExit`, `ValueError`.
 
 **Attributi oggetto modificati:** `s.auto_lock_timeout`, `s.clipboard_password_timeout`, `s.clipboard_totp_timeout`, `s.crypto_backend`, `s.gpg_executable`, `s.gpgconf_executable`, `s.language`, `s.rdp_linux_client`, `s.rdp_linux_options`, `s.rdp_macos_client`, `s.rdp_macos_options`, `s.rdp_windows_client`, `s.rdp_windows_options`, `s.ssh_terminal`, `s.ssh_terminal_options`, `s.tree_startup_view`, `s.tui_clipboard_notice_background`, `s.tui_clipboard_notice_foreground`, `s.tui_clipboard_notice_seconds`, `self._choices`, `self._expanded_folder_ids`, `self._folder_paths`, `self._last_tree_query`, `self.action_type_combo`, `self.advanced_button`, `self.advanced_fields`, `self.ambiguous`, `self.app_settings`, `self.auto_lock_spin`, `self.auto_lock_timer`, `self.compact`, `self.copy_notes`, `self.copy_otp`, `self.copy_password`, `self.copy_url`, `self.copy_username`, `self.copy_uuid`, `self.crypto`, `self.crypto_combo`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.delete_button`, `self.delete_folder_button`, `self.destination`, `self.details`, `self.digits`, `self.edit_button`, `self.empty_page`, `self.entries`, `self.entry`, `self.export_standalone`, `self.folder_combo`, `self.gpg_path_edit`, `self.gpgconf_path_edit`, `self.hard_lock_button`, `self.horizontal_splitter`, `self.host_edit`, `self.host_label`, `self.import_button`, `self.info`, `self.items`, `self.key_file_edit`, `self.language_combo`, `self.length`, `self.list`, `self.lock_button`, `self.lock_watch`, `self.lower`, `self.new_button`, `self.new_folder_button`, `self.no_password`, `self.notes`, `self.notes_edit`, `self.on_move`, `self.on_reload`, `self.open_action`, `self.otp`, `self.output_edit`, `self.password_edit`, `self.password_generate`, `self.password_label`, `self.password_reference`, `self.password_timeout_spin`, `self.password_toggle`, `self.path_edit`, `self.path_label`, `self.port_edit`, `self.port_label`, `self.preview`, `self.privacy_combo`, `self.qr_button`, `self.qr_clipboard_button`, `self.rdp_domain_edit`, `self.rdp_domain_label`, `self.rdp_linux_client_edit`, `self.rdp_linux_options_edit`, `self.rdp_macos_client_edit`, `self.rdp_macos_options_edit`, `self.rdp_windows_client_edit`, `self.rdp_windows_options_edit`, `self.recent_label`, `self.recent_list`, `self.recent_menu`, `self.recipient_combo`, `self.rename_folder_button`, `self.report`, `self.require_signature`, `self.result_count`, `self.results`, `self.search`, `self.search_scope`, `self.search_timer`, `self.shortcuts`, `self.sign_checkbox`, `self.signer_combo`, `self.source_edit`, `self.ssh_options_edit`, `self.ssh_options_label`, `self.ssh_terminal_edit`, `self.ssh_x11_combo`, `self.ssh_x11_label`, `self.stack`, `self.summary_label`, `self.symbols`, `self.tabs`, `self.tags_edit`, `self.technical`, `self.technical_button`, `self.timer`, `self.title`, `self.title_edit`, `self.totp_edit`, `self.totp_secret_edit`, `self.totp_timeout_spin`, `self.tree_combo`, `self.tui_notice_background_edit`, `self.tui_notice_foreground_edit`, `self.tui_notice_seconds_spin`, `self.ui_state`, `self.unlock_button`, `self.upper`, `self.url_edit`, `self.url_label`, `self.username`, `self.username_edit`, `self.username_reference`, `self.uuid_label`, `self.vault`, `self.vault_path`, `self.vault_state`, `self.vertical_splitter`, `self.yubikey_edit`.
 
-**Forma del flusso di controllo:** 141 blocchi condizionali, 42 cicli, 41 blocchi try, 0 context manager, 79 return espliciti.
+**Forma del flusso di controllo:** 144 blocchi condizionali, 42 cicli, 42 blocchi try, 0 context manager, 80 return espliciti.
 
 **Categorie di effetti rilevanti per la sicurezza:** process, filesystem, cryptography/key-agent, clipboard, parser/serialization.
 
@@ -688,7 +688,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultTree`
 
 **Tipo:** classe  
-**Righe:** 96-128  
+**Righe:** 97-129  
 **Basi:** `QTreeWidget`  
 **Metodi:** `__init__`, `dropEvent`  
 **Responsabilità:** Implementa l'operazione `VaultTree` in questo modulo.
@@ -697,7 +697,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultTree.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 97-106  
+**Righe:** 98-107  
 **Firma:** `def __init__(self, on_move, on_reload, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -713,7 +713,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultTree.dropEvent`
 
 **Tipo:** funzione/metodo  
-**Righe:** 108-128  
+**Righe:** 109-129  
 **Firma:** `def dropEvent(self, event) -> None`  
 **Scopo:** Implementa l'operazione `dropEvent` in questo modulo.
 
@@ -729,7 +729,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.SearchLineEdit`
 
 **Tipo:** classe  
-**Righe:** 130-137  
+**Righe:** 131-138  
 **Basi:** `QLineEdit`  
 **Metodi:** `keyPressEvent`  
 **Responsabilità:** Implementa l'operazione `SearchLineEdit` in questo modulo.
@@ -738,7 +738,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.SearchLineEdit.keyPressEvent`
 
 **Tipo:** funzione/metodo  
-**Righe:** 132-137  
+**Righe:** 133-138  
 **Firma:** `def keyPressEvent(self, event) -> None`  
 **Scopo:** Implementa l'operazione `keyPressEvent` in questo modulo.
 
@@ -752,7 +752,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.PasswordGeneratorDialog`
 
 **Tipo:** classe  
-**Righe:** 139-169  
+**Righe:** 140-170  
 **Basi:** `QDialog`  
 **Metodi:** `__init__`, `regenerate`, `value`  
 **Responsabilità:** Implementa l'operazione `PasswordGeneratorDialog` in questo modulo.
@@ -761,7 +761,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.PasswordGeneratorDialog.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 140-159  
+**Righe:** 141-160  
 **Firma:** `def __init__(self, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -777,7 +777,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.PasswordGeneratorDialog.regenerate`
 
 **Tipo:** funzione/metodo  
-**Righe:** 160-167  
+**Righe:** 161-168  
 **Firma:** `def regenerate(self) -> None`  
 **Scopo:** Implementa l'operazione `regenerate` in questo modulo.
 
@@ -791,7 +791,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.PasswordGeneratorDialog.value`
 
 **Tipo:** funzione/metodo  
-**Righe:** 168-169  
+**Righe:** 169-170  
 **Firma:** `def value(self) -> str`  
 **Scopo:** Implementa l'operazione `value` in questo modulo.
 
@@ -805,7 +805,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog`
 
 **Tipo:** classe  
-**Righe:** 171-438  
+**Righe:** 172-440  
 **Basi:** `QDialog`  
 **Metodi:** `__init__`, `check_lock`, `refresh_references`, `preview_origin`, `toggle_password_visibility`, `generate_password_value`, `update_action_fields`, `import_qr`, `import_qr_clipboard`, `build_entry`  
 **Responsabilità:** Implementa l'operazione `EntryDialog` in questo modulo.
@@ -814,11 +814,11 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 174-319  
+**Righe:** 175-320  
 **Firma:** `def __init__(self, vault_obj: Vault, parent=None, entry: Entry | None=None, default_folder_id: str | None=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
-**Chiamate dirette osservate nel corpo:** `QComboBox`, `QDialogButtonBox`, `QFormLayout`, `QHBoxLayout`, `QLabel`, `QLineEdit`, `QPushButton`, `QScrollArea`, `QTextEdit`, `QTimer`, `QVBoxLayout`, `QWidget`, `ReferenceWidget`, `_`, `__init__`, `advanced_form.addRow`, `build_otpauth_uri`, `buttons.accepted.connect`, `buttons.rejected.connect`, `form.addRow`, `form_widget.setLayout`, `format_ssh_options`, `join`, `layout.addWidget`, `next`, `password_layout.addWidget`, `password_layout.setContentsMargins`, `scroll.setWidget`, `scroll.setWidgetResizable`, `self.action_type_combo.addItem`, `self.action_type_combo.currentIndexChanged.connect`, `self.action_type_combo.findData`, `self.action_type_combo.setCurrentIndex`, `self.advanced_button.setCheckable`, `self.advanced_button.toggled.connect`, `self.advanced_fields.hide`, `self.folder_combo.addItem`, `self.folder_combo.findData`, `self.folder_combo.setCurrentIndex`, `self.lock_watch.start`, `self.lock_watch.timeout.connect`, `self.notes_edit.setMaximumHeight`, `self.password_edit.editingFinished.connect`, `self.password_edit.setEchoMode`, `self.password_edit.setToolTip`, `self.password_edit.textChanged.connect`, `self.password_generate.clicked.connect`, `self.password_generate.setToolTip`, `self.password_reference.open_origin.connect`, `self.password_toggle.setCheckable`, `self.password_toggle.setToolTip`, `self.password_toggle.toggled.connect`, `self.qr_button.clicked.connect`, `self.qr_clipboard_button.clicked.connect`, `self.rdp_domain_edit.setPlaceholderText`, `self.rdp_domain_edit.setToolTip`, `self.refresh_references`, `self.resize`, `self.setMinimumWidth`, `self.setWindowTitle`, `self.ssh_options_edit.setPlaceholderText`, `self.ssh_options_edit.setText`, `self.ssh_x11_combo.addItem`, `self.ssh_x11_combo.findData`, `self.ssh_x11_combo.setCurrentIndex`, `self.totp_edit.setText`, `self.totp_secret_edit.setEchoMode`, `self.totp_secret_edit.setText`, `self.update_action_fields`, `self.username_edit.editingFinished.connect`, `self.username_edit.setToolTip`, `self.username_edit.textChanged.connect`, `self.username_reference.open_origin.connect`, `self.vault.folder_path`, `self.vault.list_folders`, `str`, `super`.
+**Chiamate dirette osservate nel corpo:** `QComboBox`, `QDialogButtonBox`, `QFormLayout`, `QHBoxLayout`, `QLabel`, `QLineEdit`, `QPushButton`, `QScrollArea`, `QTextEdit`, `QTimer`, `QVBoxLayout`, `QWidget`, `ReferenceWidget`, `TagSelector`, `_`, `__init__`, `advanced_form.addRow`, `build_otpauth_uri`, `buttons.accepted.connect`, `buttons.rejected.connect`, `form.addRow`, `form_widget.setLayout`, `format_ssh_options`, `layout.addWidget`, `next`, `password_layout.addWidget`, `password_layout.setContentsMargins`, `scroll.setWidget`, `scroll.setWidgetResizable`, `self.action_type_combo.addItem`, `self.action_type_combo.currentIndexChanged.connect`, `self.action_type_combo.findData`, `self.action_type_combo.setCurrentIndex`, `self.advanced_button.setCheckable`, `self.advanced_button.toggled.connect`, `self.advanced_fields.hide`, `self.folder_combo.addItem`, `self.folder_combo.findData`, `self.folder_combo.setCurrentIndex`, `self.lock_watch.start`, `self.lock_watch.timeout.connect`, `self.notes_edit.setMaximumHeight`, `self.password_edit.editingFinished.connect`, `self.password_edit.setEchoMode`, `self.password_edit.setToolTip`, `self.password_edit.textChanged.connect`, `self.password_generate.clicked.connect`, `self.password_generate.setToolTip`, `self.password_reference.open_origin.connect`, `self.password_toggle.setCheckable`, `self.password_toggle.setToolTip`, `self.password_toggle.toggled.connect`, `self.qr_button.clicked.connect`, `self.qr_clipboard_button.clicked.connect`, `self.rdp_domain_edit.setPlaceholderText`, `self.rdp_domain_edit.setToolTip`, `self.refresh_references`, `self.resize`, `self.setMinimumWidth`, `self.setWindowTitle`, `self.ssh_options_edit.setPlaceholderText`, `self.ssh_options_edit.setText`, `self.ssh_x11_combo.addItem`, `self.ssh_x11_combo.findData`, `self.ssh_x11_combo.setCurrentIndex`, `self.totp_edit.setText`, `self.totp_secret_edit.setEchoMode`, `self.totp_secret_edit.setText`, `self.update_action_fields`, `self.username_edit.editingFinished.connect`, `self.username_edit.setToolTip`, `self.username_edit.textChanged.connect`, `self.username_reference.open_origin.connect`, `self.vault.folder_path`, `self.vault.list_folders`, `self.vault.used_tags`, `str`, `super`.
 
 **Attributi oggetto modificati:** `self.action_type_combo`, `self.advanced_button`, `self.advanced_fields`, `self.entry`, `self.folder_combo`, `self.host_edit`, `self.host_label`, `self.lock_watch`, `self.notes_edit`, `self.password_edit`, `self.password_generate`, `self.password_reference`, `self.password_toggle`, `self.port_edit`, `self.port_label`, `self.qr_button`, `self.qr_clipboard_button`, `self.rdp_domain_edit`, `self.rdp_domain_label`, `self.ssh_options_edit`, `self.ssh_options_label`, `self.ssh_x11_combo`, `self.ssh_x11_label`, `self.tags_edit`, `self.title_edit`, `self.totp_edit`, `self.totp_secret_edit`, `self.url_edit`, `self.url_label`, `self.username_edit`, `self.username_reference`, `self.vault`.
 
@@ -832,11 +832,11 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.check_lock`
 
 **Tipo:** funzione/metodo  
-**Righe:** 321-329  
+**Righe:** 322-331  
 **Firma:** `def check_lock(self) -> None`  
 **Scopo:** Implementa l'operazione `check_lock` in questo modulo.
 
-**Chiamate dirette osservate nel corpo:** `field.clear`, `self.findChildren`, `self.notes_edit.clear`, `self.password_reference.clear`, `self.reject`, `self.username_reference.clear`.
+**Chiamate dirette osservate nel corpo:** `field.clear`, `self.findChildren`, `self.notes_edit.clear`, `self.password_reference.clear`, `self.reject`, `self.tags_edit.clear`, `self.username_reference.clear`.
 
 **Attributi oggetto modificati:** `self.entry`.
 
@@ -848,7 +848,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.refresh_references`
 
 **Tipo:** funzione/metodo  
-**Righe:** 331-334  
+**Righe:** 333-336  
 **Firma:** `def refresh_references(self) -> None`  
 **Scopo:** Implementa l'operazione `refresh_references` in questo modulo.
 
@@ -864,7 +864,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.preview_origin`
 
 **Tipo:** funzione/metodo  
-**Righe:** 336-359  
+**Righe:** 338-361  
 **Firma:** `def preview_origin(self, entry_id: str) -> None`  
 **Scopo:** Implementa l'operazione `preview_origin` in questo modulo.
 
@@ -878,7 +878,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.toggle_password_visibility`
 
 **Tipo:** funzione/metodo  
-**Righe:** 361-363  
+**Righe:** 363-365  
 **Firma:** `def toggle_password_visibility(self, visible: bool) -> None`  
 **Scopo:** Implementa l'operazione `toggle_password_visibility` in questo modulo.
 
@@ -892,7 +892,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.generate_password_value`
 
 **Tipo:** funzione/metodo  
-**Righe:** 365-368  
+**Righe:** 367-370  
 **Firma:** `def generate_password_value(self) -> None`  
 **Scopo:** Implementa l'operazione `generate_password_value` in questo modulo.
 
@@ -906,7 +906,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.update_action_fields`
 
 **Tipo:** funzione/metodo  
-**Righe:** 370-393  
+**Righe:** 372-395  
 **Firma:** `def update_action_fields(self) -> None`  
 **Scopo:** Implementa l'operazione `update_action_fields` in questo modulo.
 
@@ -920,7 +920,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.import_qr`
 
 **Tipo:** funzione/metodo  
-**Righe:** 395-405  
+**Righe:** 397-407  
 **Firma:** `def import_qr(self) -> None`  
 **Scopo:** Importa `import_qr`.
 
@@ -936,7 +936,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.import_qr_clipboard`
 
 **Tipo:** funzione/metodo  
-**Righe:** 407-418  
+**Righe:** 409-420  
 **Firma:** `def import_qr_clipboard(self) -> None`  
 **Scopo:** Importa `import_qr_clipboard`.
 
@@ -954,7 +954,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.EntryDialog.build_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 420-438  
+**Righe:** 422-440  
 **Firma:** `def build_entry(self) -> Entry`  
 **Scopo:** Costruisce `build_entry`.
 
@@ -968,7 +968,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.HelpDialog`
 
 **Tipo:** classe  
-**Righe:** 440-472  
+**Righe:** 442-474  
 **Basi:** `QDialog`  
 **Metodi:** `__init__`  
 **Responsabilità:** Implementa l'operazione `HelpDialog` in questo modulo.
@@ -977,7 +977,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.HelpDialog.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 441-472  
+**Righe:** 443-474  
 **Firma:** `def __init__(self, parent=None, initial_tab: int=0) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -993,7 +993,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.KeePassXCImportDialog`
 
 **Tipo:** classe  
-**Righe:** 474-551  
+**Righe:** 476-553  
 **Basi:** `QDialog`  
 **Metodi:** `__init__`, `browse_source`, `browse_key_file`, `_run`, `preview_import`, `perform_import`  
 **Responsabilità:** Preview and import a KeePassXC KDBX/XML source into an open vault.
@@ -1002,7 +1002,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.KeePassXCImportDialog.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 477-513  
+**Righe:** 479-515  
 **Firma:** `def __init__(self, vault_obj: Vault, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -1018,7 +1018,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.KeePassXCImportDialog.browse_source`
 
 **Tipo:** funzione/metodo  
-**Righe:** 515-517  
+**Righe:** 517-519  
 **Firma:** `def browse_source(self) -> None`  
 **Scopo:** Implementa l'operazione `browse_source` in questo modulo.
 
@@ -1034,7 +1034,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.KeePassXCImportDialog.browse_key_file`
 
 **Tipo:** funzione/metodo  
-**Righe:** 519-521  
+**Righe:** 521-523  
 **Firma:** `def browse_key_file(self) -> None`  
 **Scopo:** Implementa l'operazione `browse_key_file` in questo modulo.
 
@@ -1050,7 +1050,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.KeePassXCImportDialog._run`
 
 **Tipo:** funzione/metodo  
-**Righe:** 523-533  
+**Righe:** 525-535  
 **Firma:** `def _run(self, dry_run: bool)`  
 **Scopo:** Helper interno che implementa `_run`.
 
@@ -1066,7 +1066,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.KeePassXCImportDialog.preview_import`
 
 **Tipo:** funzione/metodo  
-**Righe:** 535-540  
+**Righe:** 537-542  
 **Firma:** `def preview_import(self) -> None`  
 **Scopo:** Implementa l'operazione `preview_import` in questo modulo.
 
@@ -1082,7 +1082,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.KeePassXCImportDialog.perform_import`
 
 **Tipo:** funzione/metodo  
-**Righe:** 542-551  
+**Righe:** 544-553  
 **Firma:** `def perform_import(self) -> None`  
 **Scopo:** Implementa l'operazione `perform_import` in questo modulo.
 
@@ -1098,7 +1098,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.TrustedSignersDialog`
 
 **Tipo:** classe  
-**Righe:** 553-608  
+**Righe:** 555-610  
 **Basi:** `QDialog`  
 **Metodi:** `__init__`, `refresh`, `add_signer`, `remove_signer`  
 **Responsabilità:** Implementa l'operazione `TrustedSignersDialog` in questo modulo.
@@ -1107,7 +1107,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.TrustedSignersDialog.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 554-572  
+**Righe:** 556-574  
 **Firma:** `def __init__(self, vault: Vault, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -1123,7 +1123,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.TrustedSignersDialog.refresh`
 
 **Tipo:** funzione/metodo  
-**Righe:** 574-579  
+**Righe:** 576-581  
 **Firma:** `def refresh(self) -> None`  
 **Scopo:** Implementa l'operazione `refresh` in questo modulo.
 
@@ -1137,7 +1137,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.TrustedSignersDialog.add_signer`
 
 **Tipo:** funzione/metodo  
-**Righe:** 581-595  
+**Righe:** 583-597  
 **Firma:** `def add_signer(self) -> None`  
 **Scopo:** Implementa l'operazione `add_signer` in questo modulo.
 
@@ -1151,7 +1151,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.TrustedSignersDialog.remove_signer`
 
 **Tipo:** funzione/metodo  
-**Righe:** 597-608  
+**Righe:** 599-610  
 **Firma:** `def remove_signer(self) -> None`  
 **Scopo:** Implementa l'operazione `remove_signer` in questo modulo.
 
@@ -1165,7 +1165,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog`
 
 **Tipo:** classe  
-**Righe:** 611-722  
+**Righe:** 613-724  
 **Basi:** `QDialog`  
 **Metodi:** `__init__`, `_status_text`, `refresh`, `show_details`, `import_selected`, `import_all_trusted`, `authorize_selected`, `delete_selected`  
 **Responsabilità:** Implementa l'operazione `InboxDialog` in questo modulo.
@@ -1174,7 +1174,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 612-642  
+**Righe:** 614-644  
 **Firma:** `def __init__(self, vault: Vault, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -1190,7 +1190,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog._status_text`
 
 **Tipo:** funzione/metodo  
-**Righe:** 644-653  
+**Righe:** 646-655  
 **Firma:** `def _status_text(self, item) -> str`  
 **Scopo:** Helper interno che implementa `_status_text`.
 
@@ -1204,7 +1204,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog.refresh`
 
 **Tipo:** funzione/metodo  
-**Righe:** 655-664  
+**Righe:** 657-666  
 **Firma:** `def refresh(self) -> None`  
 **Scopo:** Implementa l'operazione `refresh` in questo modulo.
 
@@ -1220,7 +1220,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog.show_details`
 
 **Tipo:** funzione/metodo  
-**Righe:** 666-674  
+**Righe:** 668-676  
 **Firma:** `def show_details(self, row: int) -> None`  
 **Scopo:** Implementa l'operazione `show_details` in questo modulo.
 
@@ -1234,7 +1234,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog.import_selected`
 
 **Tipo:** funzione/metodo  
-**Righe:** 676-689  
+**Righe:** 678-691  
 **Firma:** `def import_selected(self) -> None`  
 **Scopo:** Importa `import_selected`.
 
@@ -1248,7 +1248,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog.import_all_trusted`
 
 **Tipo:** funzione/metodo  
-**Righe:** 691-698  
+**Righe:** 693-700  
 **Firma:** `def import_all_trusted(self) -> None`  
 **Scopo:** Importa `import_all_trusted`.
 
@@ -1262,7 +1262,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog.authorize_selected`
 
 **Tipo:** funzione/metodo  
-**Righe:** 700-712  
+**Righe:** 702-714  
 **Firma:** `def authorize_selected(self) -> None`  
 **Scopo:** Implementa l'operazione `authorize_selected` in questo modulo.
 
@@ -1276,7 +1276,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.InboxDialog.delete_selected`
 
 **Tipo:** funzione/metodo  
-**Righe:** 714-722  
+**Righe:** 716-724  
 **Firma:** `def delete_selected(self) -> None`  
 **Scopo:** Elimina `delete_selected`.
 
@@ -1290,7 +1290,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.StandaloneExportDialog`
 
 **Tipo:** classe  
-**Righe:** 724-844  
+**Righe:** 726-846  
 **Basi:** `QDialog`  
 **Metodi:** `__init__`, `_refresh_keys`, `import_public_key`, `browse_output`, `perform_export`  
 **Responsabilità:** Implementa l'operazione `StandaloneExportDialog` in questo modulo.
@@ -1299,7 +1299,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.StandaloneExportDialog.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 725-771  
+**Righe:** 727-773  
 **Firma:** `def __init__(self, vault: Vault, entry: Entry, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -1315,7 +1315,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.StandaloneExportDialog._refresh_keys`
 
 **Tipo:** funzione/metodo  
-**Righe:** 773-787  
+**Righe:** 775-789  
 **Firma:** `def _refresh_keys(self, preferred: str | None=None) -> None`  
 **Scopo:** Helper interno che implementa `_refresh_keys`.
 
@@ -1329,7 +1329,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.StandaloneExportDialog.import_public_key`
 
 **Tipo:** funzione/metodo  
-**Righe:** 789-809  
+**Righe:** 791-811  
 **Firma:** `def import_public_key(self) -> None`  
 **Scopo:** Importa `import_public_key`.
 
@@ -1345,7 +1345,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.StandaloneExportDialog.browse_output`
 
 **Tipo:** funzione/metodo  
-**Righe:** 811-816  
+**Righe:** 813-818  
 **Firma:** `def browse_output(self) -> None`  
 **Scopo:** Implementa l'operazione `browse_output` in questo modulo.
 
@@ -1359,7 +1359,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.StandaloneExportDialog.perform_export`
 
 **Tipo:** funzione/metodo  
-**Righe:** 818-844  
+**Righe:** 820-846  
 **Firma:** `def perform_export(self) -> None`  
 **Scopo:** Implementa l'operazione `perform_export` in questo modulo.
 
@@ -1373,16 +1373,16 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane`
 
 **Tipo:** classe  
-**Righe:** 846-1598  
+**Righe:** 848-1620  
 **Basi:** `QWidget`  
-**Metodi:** `__init__`, `display_name`, `status_message`, `focus_search`, `schedule_search`, `focus_results`, `apply_density`, `save_layout`, `folder_menu`, `entry_menu`, `move_selected`, `select_folder`, `open_origin`, `update_controls`, `_capture_expanded_folders`, `_apply_expanded_folders`, `activity`, `_theme_icon`, `_folder_icon`, `_entry_icon`, `_folder_item`, `_entry_item`, `reload`, `refresh_results`, `clear_selection`, `select_item`, `clear_details`, `tree_move`, `request_hard_lock`, `lock`, `unlock`, `refresh_otp`, `copy_url_clicked`, `copy_uuid_clicked`, `copy_username_clicked`, `copy_password_clicked`, `copy_notes_clicked`, `copy_otp_clicked`, `open_action_clicked`, `export_entry_keepassxc`, `export_standalone_clicked`, `new_entry`, `edit_entry`, `delete_entry`, `new_folder`, `rename_folder`, `delete_folder`  
+**Metodi:** `__init__`, `display_name`, `status_message`, `focus_search`, `schedule_search`, `focus_results`, `apply_density`, `save_layout`, `folder_menu`, `entry_menu`, `move_selected`, `select_folder`, `open_origin`, `update_controls`, `_capture_expanded_folders`, `_apply_expanded_folders`, `activity`, `_theme_icon`, `_folder_icon`, `_entry_icon`, `_folder_item`, `_entry_item`, `reload`, `refresh_results`, `clear_selection`, `select_item`, `clear_details`, `tree_move`, `request_hard_lock`, `lock`, `unlock`, `refresh_otp`, `copy_url_clicked`, `copy_uuid_clicked`, `copy_username_clicked`, `copy_password_clicked`, `copy_notes_clicked`, `copy_otp_clicked`, `open_action_clicked`, `export_entry_keepassxc`, `export_standalone_clicked`, `new_entry`, `edit_entry`, `delete_entry`, `empty_trash`, `new_folder`, `rename_folder`, `delete_folder`  
 **Responsabilità:** Stato e widget GUI per una singola scheda vault con lock indipendente.
 
 <!-- symbol:keys_ng.gui.main:main.VaultPane.__init__ -->
 #### `main.VaultPane.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 847-1062  
+**Righe:** 849-1064  
 **Firma:** `def __init__(self, vault_path: str, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -1400,7 +1400,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.display_name`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1065-1066  
+**Righe:** 1067-1068  
 **Firma:** `def display_name(self) -> str`  
 **Scopo:** Implementa l'operazione `display_name` in questo modulo.
 
@@ -1414,7 +1414,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.status_message`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1068-1071  
+**Righe:** 1070-1073  
 **Firma:** `def status_message(self, message: str, timeout: int=0) -> None`  
 **Scopo:** Implementa l'operazione `status_message` in questo modulo.
 
@@ -1428,7 +1428,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.focus_search`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1073-1076  
+**Righe:** 1075-1078  
 **Firma:** `def focus_search(self) -> None`  
 **Scopo:** Implementa l'operazione `focus_search` in questo modulo.
 
@@ -1442,7 +1442,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.schedule_search`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1078-1080  
+**Righe:** 1080-1082  
 **Firma:** `def schedule_search(self) -> None`  
 **Scopo:** Implementa l'operazione `schedule_search` in questo modulo.
 
@@ -1456,7 +1456,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.focus_results`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1082-1085  
+**Righe:** 1084-1087  
 **Firma:** `def focus_results(self) -> None`  
 **Scopo:** Implementa l'operazione `focus_results` in questo modulo.
 
@@ -1470,7 +1470,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.apply_density`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1087-1090  
+**Righe:** 1089-1092  
 **Firma:** `def apply_density(self) -> None`  
 **Scopo:** Implementa l'operazione `apply_density` in questo modulo.
 
@@ -1484,7 +1484,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.save_layout`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1092-1094  
+**Righe:** 1094-1096  
 **Firma:** `def save_layout(self, *unused) -> None`  
 **Scopo:** Valida e persiste lo stato per `save_layout`.
 
@@ -1500,13 +1500,13 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.folder_menu`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1096-1105  
+**Righe:** 1098-1110  
 **Firma:** `def folder_menu(self, position) -> None`  
 **Scopo:** Implementa l'operazione `folder_menu` in questo modulo.
 
-**Chiamate dirette osservate nel corpo:** `QMenu`, `action.setEnabled`, `action.triggered.connect`, `button.text`, `mapToGlobal`, `menu.addAction`, `menu.exec`, `self.entries.itemAt`, `self.entries.setCurrentItem`, `self.entries.viewport`.
+**Chiamate dirette osservate nel corpo:** `QMenu`, `_`, `action.setEnabled`, `action.triggered.connect`, `button.text`, `mapToGlobal`, `menu.addAction`, `menu.addSeparator`, `menu.exec`, `self.entries.itemAt`, `self.entries.setCurrentItem`, `self.entries.viewport`.
 
-**Forma del flusso di controllo:** 1 blocchi condizionali, 1 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
+**Forma del flusso di controllo:** 2 blocchi condizionali, 1 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
 
 **Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
 
@@ -1514,7 +1514,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.entry_menu`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1107-1121  
+**Righe:** 1112-1126  
 **Firma:** `def entry_menu(self, position) -> None`  
 **Scopo:** Implementa l'operazione `entry_menu` in questo modulo.
 
@@ -1528,7 +1528,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.move_selected`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1123-1133  
+**Righe:** 1128-1138  
 **Firma:** `def move_selected(self) -> None`  
 **Scopo:** Implementa l'operazione `move_selected` in questo modulo.
 
@@ -1542,7 +1542,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.select_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1135-1138  
+**Righe:** 1140-1143  
 **Firma:** `def select_folder(self, current, previous) -> None`  
 **Scopo:** Implementa l'operazione `select_folder` in questo modulo.
 
@@ -1558,11 +1558,11 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.open_origin`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1140-1155  
+**Righe:** 1145-1161  
 **Firma:** `def open_origin(self, entry_id: str) -> None`  
 **Scopo:** Implementa l'operazione `open_origin` in questo modulo.
 
-**Chiamate dirette osservate nel corpo:** `item.data`, `range`, `self.entries.blockSignals`, `self.entries.setCurrentItem`, `self.entries.topLevelItem`, `self.refresh_results`, `self.results.scrollToItem`, `self.results.setCurrentItem`, `self.results.topLevelItem`, `self.results.topLevelItemCount`, `self.search.clear`, `self.search_timer.stop`.
+**Chiamate dirette osservate nel corpo:** `item.data`, `next`, `range`, `self.entries.blockSignals`, `self.entries.setCurrentItem`, `self.entries.topLevelItem`, `self.reload`, `self.results.scrollToItem`, `self.results.setCurrentItem`, `self.results.topLevelItem`, `self.results.topLevelItemCount`, `self.search.clear`, `self.search_timer.stop`, `self.vault.is_in_trash`, `self.vault.list_items`.
 
 **Attributi oggetto modificati:** `self.current_folder_id`.
 
@@ -1574,7 +1574,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.update_controls`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1157-1175  
+**Righe:** 1163-1181  
 **Firma:** `def update_controls(self) -> None`  
 **Scopo:** Implementa l'operazione `update_controls` in questo modulo.
 
@@ -1590,7 +1590,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._capture_expanded_folders`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1177-1186  
+**Righe:** 1183-1192  
 **Firma:** `def _capture_expanded_folders(self) -> None`  
 **Scopo:** Helper interno che implementa `_capture_expanded_folders`.
 
@@ -1606,7 +1606,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._capture_expanded_folders.visit`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1179-1183  
+**Righe:** 1185-1189  
 **Firma:** `def visit(item) -> None`  
 **Scopo:** Implementa l'operazione `visit` in questo modulo.
 
@@ -1620,7 +1620,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._apply_expanded_folders`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1187-1200  
+**Righe:** 1193-1206  
 **Firma:** `def _apply_expanded_folders(self) -> None`  
 **Scopo:** Helper interno che implementa `_apply_expanded_folders`.
 
@@ -1634,7 +1634,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._apply_expanded_folders.visit`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1194-1198  
+**Righe:** 1200-1204  
 **Firma:** `def visit(item) -> None`  
 **Scopo:** Implementa l'operazione `visit` in questo modulo.
 
@@ -1648,7 +1648,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.activity`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1201-1203  
+**Righe:** 1207-1209  
 **Firma:** `def activity(self) -> None`  
 **Scopo:** Implementa l'operazione `activity` in questo modulo.
 
@@ -1662,7 +1662,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._theme_icon`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1205-1210  
+**Righe:** 1211-1216  
 **Firma:** `def _theme_icon(self, names: tuple[str, ...], fallback) -> QIcon`  
 **Scopo:** Helper interno che implementa `_theme_icon`.
 
@@ -1676,7 +1676,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._folder_icon`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1212-1213  
+**Righe:** 1218-1219  
 **Firma:** `def _folder_icon(self) -> QIcon`  
 **Scopo:** Helper interno che implementa `_folder_icon`.
 
@@ -1690,7 +1690,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._entry_icon`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1215-1225  
+**Righe:** 1221-1231  
 **Firma:** `def _entry_icon(self, catalog_item) -> QIcon`  
 **Scopo:** Helper interno che implementa `_entry_icon`.
 
@@ -1704,13 +1704,13 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._folder_item`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1227-1237  
+**Righe:** 1233-1245  
 **Firma:** `def _folder_item(self, folder, parent=None)`  
 **Scopo:** Helper interno che implementa `_folder_item`.
 
-**Chiamate dirette osservate nel corpo:** `QTreeWidgetItem`, `item.flags`, `item.setData`, `item.setFlags`, `item.setIcon`, `parent.addChild`, `self._folder_icon`, `self.entries.addTopLevelItem`.
+**Chiamate dirette osservate nel corpo:** `QTreeWidgetItem`, `item.flags`, `item.setData`, `item.setFlags`, `item.setIcon`, `parent.addChild`, `self._folder_icon`, `self._theme_icon`, `self.entries.addTopLevelItem`.
 
-**Forma del flusso di controllo:** 1 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
+**Forma del flusso di controllo:** 2 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
 
 **Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
 
@@ -1718,13 +1718,13 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane._entry_item`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1239-1251  
+**Righe:** 1247-1256  
 **Firma:** `def _entry_item(self, catalog_item, parent=None, suffix='')`  
 **Scopo:** Helper interno che implementa `_entry_item`.
 
-**Chiamate dirette osservate nel corpo:** `QTreeWidgetItem`, `_`, `item.flags`, `item.setData`, `item.setFlags`, `item.setIcon`, `next`, `self._entry_icon`, `self._folder_paths.get`, `self.results.addTopLevelItem`, `t.upper`, `username.startswith`.
+**Chiamate dirette osservate nel corpo:** `QTreeWidgetItem`, `_`, `item.flags`, `item.setData`, `item.setFlags`, `item.setIcon`, `join`, `next`, `self._entry_icon`, `self._folder_paths.get`, `self.results.addTopLevelItem`, `t.upper`.
 
-**Forma del flusso di controllo:** 1 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
+**Forma del flusso di controllo:** 0 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
 
 **Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
 
@@ -1732,7 +1732,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.reload`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1253-1288  
+**Righe:** 1258-1293  
 **Firma:** `def reload(self) -> None`  
 **Scopo:** Implementa l'operazione `reload` in questo modulo.
 
@@ -1748,11 +1748,11 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.refresh_results`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1290-1316  
+**Righe:** 1295-1323  
 **Firma:** `def refresh_results(self) -> None`  
 **Scopo:** Implementa l'operazione `refresh_results` in questo modulo.
 
-**Chiamate dirette osservate nel corpo:** `QMessageBox.critical`, `_`, `format`, `len`, `self._entry_item`, `self.clear_selection`, `self.result_count.setText`, `self.results.blockSignals`, `self.results.clear`, `self.results.setCurrentItem`, `self.results.setSortingEnabled`, `self.search.text`, `self.search_scope.currentIndex`, `self.update_controls`, `self.vault.list_items`, `self.vault.search`, `str`, `strip`.
+**Chiamate dirette osservate nel corpo:** `QMessageBox.critical`, `_`, `format`, `len`, `self._entry_item`, `self.clear_selection`, `self.result_count.setText`, `self.results.blockSignals`, `self.results.clear`, `self.results.setCurrentItem`, `self.results.setSortingEnabled`, `self.search.text`, `self.search_scope.currentIndex`, `self.update_controls`, `self.vault.is_in_trash`, `self.vault.list_items`, `self.vault.search`, `str`, `strip`.
 
 **Forma del flusso di controllo:** 4 blocchi condizionali, 1 cicli, 1 blocchi try, 0 context manager, 1 return espliciti.
 
@@ -1762,7 +1762,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.clear_selection`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1318-1326  
+**Righe:** 1325-1333  
 **Firma:** `def clear_selection(self) -> None`  
 **Scopo:** Implementa l'operazione `clear_selection` in questo modulo.
 
@@ -1778,7 +1778,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.select_item`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1328-1375  
+**Righe:** 1335-1382  
 **Firma:** `def select_item(self, current, _previous) -> None`  
 **Scopo:** Implementa l'operazione `select_item` in questo modulo.
 
@@ -1794,7 +1794,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.clear_details`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1377-1387  
+**Righe:** 1384-1394  
 **Firma:** `def clear_details(self) -> None`  
 **Scopo:** Implementa l'operazione `clear_details` in questo modulo.
 
@@ -1810,7 +1810,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.tree_move`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1389-1395  
+**Righe:** 1396-1402  
 **Firma:** `def tree_move(self, item_type: str, item_id: str, parent_id: str | None) -> None`  
 **Scopo:** Implementa l'operazione `tree_move` in questo modulo.
 
@@ -1824,7 +1824,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.request_hard_lock`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1397-1402  
+**Righe:** 1404-1409  
 **Firma:** `def request_hard_lock(self) -> None`  
 **Scopo:** Implementa l'operazione `request_hard_lock` in questo modulo.
 
@@ -1840,7 +1840,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.lock`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1404-1412  
+**Righe:** 1411-1419  
 **Firma:** `def lock(self, hard: bool) -> None`  
 **Scopo:** Implementa l'operazione `lock` in questo modulo.
 
@@ -1856,7 +1856,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.unlock`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1414-1421  
+**Righe:** 1421-1428  
 **Firma:** `def unlock(self) -> None`  
 **Scopo:** Implementa l'operazione `unlock` in questo modulo.
 
@@ -1870,7 +1870,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.refresh_otp`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1423-1428  
+**Righe:** 1430-1435  
 **Firma:** `def refresh_otp(self) -> None`  
 **Scopo:** Implementa l'operazione `refresh_otp` in questo modulo.
 
@@ -1884,7 +1884,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.copy_url_clicked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1430-1437  
+**Righe:** 1437-1444  
 **Firma:** `def copy_url_clicked(self) -> None`  
 **Scopo:** Copia un valore usando `copy_url_clicked`.
 
@@ -1898,7 +1898,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.copy_uuid_clicked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1439-1443  
+**Righe:** 1446-1450  
 **Firma:** `def copy_uuid_clicked(self) -> None`  
 **Scopo:** Copia un valore usando `copy_uuid_clicked`.
 
@@ -1912,7 +1912,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.copy_username_clicked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1445-1455  
+**Righe:** 1452-1462  
 **Firma:** `def copy_username_clicked(self) -> None`  
 **Scopo:** Copia un valore usando `copy_username_clicked`.
 
@@ -1926,7 +1926,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.copy_password_clicked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1457-1467  
+**Righe:** 1464-1474  
 **Firma:** `def copy_password_clicked(self) -> None`  
 **Scopo:** Copia un valore usando `copy_password_clicked`.
 
@@ -1940,7 +1940,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.copy_notes_clicked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1469-1473  
+**Righe:** 1476-1480  
 **Firma:** `def copy_notes_clicked(self) -> None`  
 **Scopo:** Copia un valore usando `copy_notes_clicked`.
 
@@ -1954,7 +1954,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.copy_otp_clicked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1475-1480  
+**Righe:** 1482-1487  
 **Firma:** `def copy_otp_clicked(self) -> None`  
 **Scopo:** Copia un valore usando `copy_otp_clicked`.
 
@@ -1968,7 +1968,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.open_action_clicked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1482-1492  
+**Righe:** 1489-1499  
 **Firma:** `def open_action_clicked(self) -> None`  
 **Scopo:** Implementa l'operazione `open_action_clicked` in questo modulo.
 
@@ -1982,7 +1982,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.export_entry_keepassxc`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1494-1513  
+**Righe:** 1501-1520  
 **Firma:** `def export_entry_keepassxc(self) -> None`  
 **Scopo:** Esporta `export_entry_keepassxc`.
 
@@ -1996,7 +1996,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.export_standalone_clicked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1515-1521  
+**Righe:** 1522-1528  
 **Firma:** `def export_standalone_clicked(self) -> None`  
 **Scopo:** Esporta `export_standalone_clicked`.
 
@@ -2010,7 +2010,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.new_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1523-1535  
+**Righe:** 1530-1542  
 **Firma:** `def new_entry(self) -> None`  
 **Scopo:** Implementa l'operazione `new_entry` in questo modulo.
 
@@ -2026,7 +2026,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.edit_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1537-1549  
+**Righe:** 1544-1556  
 **Firma:** `def edit_entry(self) -> None`  
 **Scopo:** Implementa l'operazione `edit_entry` in questo modulo.
 
@@ -2042,11 +2042,25 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.delete_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1551-1562  
+**Righe:** 1558-1571  
 **Firma:** `def delete_entry(self) -> None`  
 **Scopo:** Elimina `delete_entry`.
 
-**Chiamate dirette osservate nel corpo:** `QMessageBox.critical`, `QMessageBox.question`, `_`, `self.activity`, `self.clear_details`, `self.reload`, `self.vault.delete_entry`, `str`.
+**Chiamate dirette osservate nel corpo:** `QMessageBox.critical`, `QMessageBox.question`, `_`, `self.activity`, `self.clear_details`, `self.reload`, `self.vault.delete_entry`, `self.vault.is_in_trash`, `str`.
+
+**Forma del flusso di controllo:** 2 blocchi condizionali, 0 cicli, 1 blocchi try, 0 context manager, 1 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.gui.main:main.VaultPane.empty_trash -->
+#### `main.VaultPane.empty_trash`
+
+**Tipo:** funzione/metodo  
+**Righe:** 1573-1584  
+**Firma:** `def empty_trash(self) -> None`  
+**Scopo:** Implementa l'operazione `empty_trash` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `QMessageBox.critical`, `QMessageBox.question`, `_`, `self.activity`, `self.clear_details`, `self.reload`, `self.vault.empty_trash`, `str`.
 
 **Forma del flusso di controllo:** 2 blocchi condizionali, 0 cicli, 1 blocchi try, 0 context manager, 1 return espliciti.
 
@@ -2056,7 +2070,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.new_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1564-1574  
+**Righe:** 1586-1596  
 **Firma:** `def new_folder(self) -> None`  
 **Scopo:** Implementa l'operazione `new_folder` in questo modulo.
 
@@ -2070,7 +2084,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.rename_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1576-1586  
+**Righe:** 1598-1608  
 **Firma:** `def rename_folder(self) -> None`  
 **Scopo:** Implementa l'operazione `rename_folder` in questo modulo.
 
@@ -2084,7 +2098,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.VaultPane.delete_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1588-1598  
+**Righe:** 1610-1620  
 **Firma:** `def delete_folder(self) -> None`  
 **Scopo:** Elimina `delete_folder`.
 
@@ -2098,7 +2112,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.NewVaultWizard`
 
 **Tipo:** classe  
-**Righe:** 1601-1692  
+**Righe:** 1623-1714  
 **Basi:** `QWizard`  
 **Metodi:** `__init__`, `_browse`, `_update_summary`, `request`  
 **Responsabilità:** Guided vault creation using the same initialization service as the CLI.
@@ -2107,7 +2121,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.NewVaultWizard.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1604-1661  
+**Righe:** 1626-1683  
 **Firma:** `def __init__(self, crypto, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -2123,7 +2137,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.NewVaultWizard._browse`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1663-1667  
+**Righe:** 1685-1689  
 **Firma:** `def _browse(self) -> None`  
 **Scopo:** Helper interno che implementa `_browse`.
 
@@ -2137,7 +2151,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.NewVaultWizard._update_summary`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1669-1677  
+**Righe:** 1691-1699  
 **Firma:** `def _update_summary(self, _page_id: int) -> None`  
 **Scopo:** Helper interno che implementa `_update_summary`.
 
@@ -2151,7 +2165,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.NewVaultWizard.request`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1679-1692  
+**Righe:** 1701-1714  
 **Firma:** `def request(self) -> VaultInitRequest`  
 **Scopo:** Implementa l'operazione `request` in questo modulo.
 
@@ -2167,7 +2181,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.SettingsDialog`
 
 **Tipo:** classe  
-**Righe:** 1695-1860  
+**Righe:** 1717-1882  
 **Basi:** `QDialog`  
 **Metodi:** `__init__`, `_lines`, `_verify_gnupg`, `apply`  
 **Responsabilità:** Edit the global Keys NG config.toml without exposing TOML syntax.
@@ -2176,7 +2190,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.SettingsDialog.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1698-1821  
+**Righe:** 1720-1843  
 **Firma:** `def __init__(self, app_settings: AppSettings, parent=None) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -2194,7 +2208,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.SettingsDialog.__init__.help_label`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1707-1711  
+**Righe:** 1729-1733  
 **Firma:** `def help_label(text: str) -> QLabel`  
 **Scopo:** Implementa l'operazione `help_label` in questo modulo.
 
@@ -2208,7 +2222,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.SettingsDialog._lines`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1824-1825  
+**Righe:** 1846-1847  
 **Firma:** `def _lines(widget: QTextEdit) -> list[str]`  
 **Scopo:** Helper interno che implementa `_lines`.
 
@@ -2224,7 +2238,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.SettingsDialog._verify_gnupg`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1827-1837  
+**Righe:** 1849-1859  
 **Firma:** `def _verify_gnupg(self) -> None`  
 **Scopo:** Helper interno che implementa `_verify_gnupg`.
 
@@ -2238,7 +2252,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.SettingsDialog.apply`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1839-1860  
+**Righe:** 1861-1882  
 **Firma:** `def apply(self) -> None`  
 **Scopo:** Implementa l'operazione `apply` in questo modulo.
 
@@ -2254,7 +2268,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow`
 
 **Tipo:** classe  
-**Righe:** 1862-2178  
+**Righe:** 1884-2200  
 **Basi:** `QMainWindow`  
 **Metodi:** `__init__`, `_menu_action`, `build_menus`, `copy_context_or_password`, `show_keepassxc_import`, `export_vault_keepassxc`, `show_inbox`, `show_trusted_signers`, `show_preferences`, `refresh_recent_menu`, `show_help`, `active_pane`, `call_active`, `refresh_recent_start_page`, `open_recent_vault`, `_sync_empty_state`, `update_window_title`, `create_vault_wizard`, `open_vault_dialog`, `open_vault`, `close_current_vault`, `close_vault`, `hard_lock_all`  
 **Responsabilità:** Finestra GUI principale che coordina più istanze VaultPane.
@@ -2263,7 +2277,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.__init__`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1863-1929  
+**Righe:** 1885-1951  
 **Firma:** `def __init__(self, initial_vaults: list[str]) -> None`  
 **Scopo:** Helper interno che implementa `__init__`.
 
@@ -2281,7 +2295,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow._menu_action`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1931-1935  
+**Righe:** 1953-1957  
 **Firma:** `def _menu_action(self, menu, label: str, callback, shortcut_text: str | None=None)`  
 **Scopo:** Helper interno che implementa `_menu_action`.
 
@@ -2295,7 +2309,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.build_menus`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1937-1985  
+**Righe:** 1959-2007  
 **Firma:** `def build_menus(self) -> None`  
 **Scopo:** Costruisce `build_menus`.
 
@@ -2311,7 +2325,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.copy_context_or_password`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1987-1993  
+**Righe:** 2009-2015  
 **Firma:** `def copy_context_or_password(self) -> None`  
 **Scopo:** Copia un valore usando `copy_context_or_password`.
 
@@ -2325,7 +2339,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.show_keepassxc_import`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1995-2001  
+**Righe:** 2017-2023  
 **Firma:** `def show_keepassxc_import(self) -> None`  
 **Scopo:** Implementa l'operazione `show_keepassxc_import` in questo modulo.
 
@@ -2339,7 +2353,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.export_vault_keepassxc`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2003-2014  
+**Righe:** 2025-2036  
 **Firma:** `def export_vault_keepassxc(self) -> None`  
 **Scopo:** Esporta `export_vault_keepassxc`.
 
@@ -2353,7 +2367,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.show_inbox`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2016-2020  
+**Righe:** 2038-2042  
 **Firma:** `def show_inbox(self) -> None`  
 **Scopo:** Implementa l'operazione `show_inbox` in questo modulo.
 
@@ -2367,7 +2381,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.show_trusted_signers`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2022-2025  
+**Righe:** 2044-2047  
 **Firma:** `def show_trusted_signers(self) -> None`  
 **Scopo:** Implementa l'operazione `show_trusted_signers` in questo modulo.
 
@@ -2381,7 +2395,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.show_preferences`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2027-2039  
+**Righe:** 2049-2061  
 **Firma:** `def show_preferences(self) -> None`  
 **Scopo:** Implementa l'operazione `show_preferences` in questo modulo.
 
@@ -2395,7 +2409,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.refresh_recent_menu`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2041-2053  
+**Righe:** 2063-2075  
 **Firma:** `def refresh_recent_menu(self) -> None`  
 **Scopo:** Implementa l'operazione `refresh_recent_menu` in questo modulo.
 
@@ -2411,7 +2425,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.show_help`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2055-2056  
+**Righe:** 2077-2078  
 **Firma:** `def show_help(self, tab: int=0) -> None`  
 **Scopo:** Implementa l'operazione `show_help` in questo modulo.
 
@@ -2425,7 +2439,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.active_pane`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2058-2060  
+**Righe:** 2080-2082  
 **Firma:** `def active_pane(self) -> VaultPane | None`  
 **Scopo:** Implementa l'operazione `active_pane` in questo modulo.
 
@@ -2439,7 +2453,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.call_active`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2062-2066  
+**Righe:** 2084-2088  
 **Firma:** `def call_active(self, method: str, *args) -> None`  
 **Scopo:** Implementa l'operazione `call_active` in questo modulo.
 
@@ -2453,7 +2467,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.refresh_recent_start_page`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2068-2078  
+**Righe:** 2090-2100  
 **Firma:** `def refresh_recent_start_page(self) -> None`  
 **Scopo:** Implementa l'operazione `refresh_recent_start_page` in questo modulo.
 
@@ -2467,7 +2481,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.open_recent_vault`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2080-2083  
+**Righe:** 2102-2105  
 **Firma:** `def open_recent_vault(self, item: QListWidgetItem) -> None`  
 **Scopo:** Implementa l'operazione `open_recent_vault` in questo modulo.
 
@@ -2483,7 +2497,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow._sync_empty_state`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2085-2088  
+**Righe:** 2107-2110  
 **Firma:** `def _sync_empty_state(self) -> None`  
 **Scopo:** Helper interno che implementa `_sync_empty_state`.
 
@@ -2497,7 +2511,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.update_window_title`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2090-2092  
+**Righe:** 2112-2114  
 **Firma:** `def update_window_title(self, _index: int | None=None) -> None`  
 **Scopo:** Implementa l'operazione `update_window_title` in questo modulo.
 
@@ -2511,7 +2525,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.create_vault_wizard`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2094-2106  
+**Righe:** 2116-2128  
 **Firma:** `def create_vault_wizard(self) -> None`  
 **Scopo:** Crea `create_vault_wizard`.
 
@@ -2527,7 +2541,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.open_vault_dialog`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2108-2111  
+**Righe:** 2130-2133  
 **Firma:** `def open_vault_dialog(self) -> None`  
 **Scopo:** Implementa l'operazione `open_vault_dialog` in questo modulo.
 
@@ -2543,7 +2557,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.open_vault`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2113-2144  
+**Righe:** 2135-2166  
 **Firma:** `def open_vault(self, path: str) -> None`  
 **Scopo:** Implementa l'operazione `open_vault` in questo modulo.
 
@@ -2557,7 +2571,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.close_current_vault`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2146-2149  
+**Righe:** 2168-2171  
 **Firma:** `def close_current_vault(self) -> None`  
 **Scopo:** Implementa l'operazione `close_current_vault` in questo modulo.
 
@@ -2571,7 +2585,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.close_vault`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2151-2162  
+**Righe:** 2173-2184  
 **Firma:** `def close_vault(self, index: int) -> None`  
 **Scopo:** Implementa l'operazione `close_vault` in questo modulo.
 
@@ -2585,7 +2599,7 @@ GUI desktop PySide6, inclusi dialoghi, pannelli per vault, menu e orchestrazione
 #### `main.MainWindow.hard_lock_all`
 
 **Tipo:** funzione/metodo  
-**Righe:** 2164-2178  
+**Righe:** 2186-2200  
 **Firma:** `def hard_lock_all(self) -> None`  
 **Scopo:** Implementa l'operazione `hard_lock_all` in questo modulo.
 
@@ -2680,6 +2694,110 @@ Modulo sorgente.
 **Forma del flusso di controllo:** 1 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
 
 **Categorie di effetti rilevanti per la sicurezza:** filesystem.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+### `keys_ng.gui.tag_selector`
+
+Modulo sorgente.
+
+**Sorgente:** `src/keys_ng/gui/tag_selector.py`  
+**Simboli eseguibili:** 7
+
+**Dipendenze dirette del modulo:** `PySide6.QtWidgets`, `keys_ng.i18n`
+
+<!-- symbol:keys_ng.gui.tag_selector:TagSelector -->
+#### `TagSelector`
+
+**Tipo:** classe  
+**Righe:** 7-51  
+**Basi:** `QWidget`  
+**Metodi:** `__init__`, `selected_tags`, `text`, `refresh_menu`, `toggle_tag`, `clear`  
+**Responsabilità:** Implementa l'operazione `TagSelector` in questo modulo.
+
+<!-- symbol:keys_ng.gui.tag_selector:TagSelector.__init__ -->
+#### `TagSelector.__init__`
+
+**Tipo:** funzione/metodo  
+**Righe:** 8-22  
+**Firma:** `def __init__(self, available, selected, parent=None)`  
+**Scopo:** Helper interno che implementa `__init__`.
+
+**Chiamate dirette osservate nel corpo:** `QHBoxLayout`, `QLineEdit`, `QMenu`, `QToolButton`, `_`, `__init__`, `join`, `layout.addWidget`, `layout.setContentsMargins`, `self.button.setMenu`, `self.button.setPopupMode`, `self.button.setText`, `self.edit.setPlaceholderText`, `self.menu.aboutToShow.connect`, `set`, `super`.
+
+**Attributi oggetto modificati:** `self.available`, `self.button`, `self.edit`, `self.menu`.
+
+**Forma del flusso di controllo:** 0 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.gui.tag_selector:TagSelector.selected_tags -->
+#### `TagSelector.selected_tags`
+
+**Tipo:** funzione/metodo  
+**Righe:** 24-25  
+**Firma:** `def selected_tags(self)`  
+**Scopo:** Implementa l'operazione `selected_tags` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `dict.fromkeys`, `list`, `self.edit.text`, `split`, `t.strip`.
+
+**Forma del flusso di controllo:** 0 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.gui.tag_selector:TagSelector.text -->
+#### `TagSelector.text`
+
+**Tipo:** funzione/metodo  
+**Righe:** 27-28  
+**Firma:** `def text(self)`  
+**Scopo:** Implementa l'operazione `text` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `join`, `self.selected_tags`.
+
+**Forma del flusso di controllo:** 0 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.gui.tag_selector:TagSelector.refresh_menu -->
+#### `TagSelector.refresh_menu`
+
+**Tipo:** funzione/metodo  
+**Righe:** 30-38  
+**Firma:** `def refresh_menu(self)`  
+**Scopo:** Implementa l'operazione `refresh_menu` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `action.setCheckable`, `action.setChecked`, `action.toggled.connect`, `self.available.update`, `self.menu.addAction`, `self.menu.clear`, `self.selected_tags`, `self.toggle_tag`, `sorted`.
+
+**Forma del flusso di controllo:** 0 blocchi condizionali, 1 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.gui.tag_selector:TagSelector.toggle_tag -->
+#### `TagSelector.toggle_tag`
+
+**Tipo:** funzione/metodo  
+**Righe:** 40-46  
+**Firma:** `def toggle_tag(self, tag, checked)`  
+**Scopo:** Implementa l'operazione `toggle_tag` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `join`, `selected.append`, `self.edit.setText`, `self.selected_tags`.
+
+**Forma del flusso di controllo:** 2 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.gui.tag_selector:TagSelector.clear -->
+#### `TagSelector.clear`
+
+**Tipo:** funzione/metodo  
+**Righe:** 48-51  
+**Firma:** `def clear(self)`  
+**Scopo:** Implementa l'operazione `clear` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `self.available.clear`, `self.edit.clear`, `self.menu.clear`.
+
+**Forma del flusso di controllo:** 0 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
 
 **Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
 
@@ -5964,7 +6082,7 @@ Impostazioni applicative TOML per utente.
 Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, riferimenti e binding d'integrità.
 
 **Sorgente:** `src/keys_ng/storage/vault.py`  
-**Simboli eseguibili:** 42
+**Simboli eseguibili:** 46
 
 **Dipendenze dirette del modulo:** `__future__`, `dataclasses`, `hashlib`, `keys_ng.crypto.backend`, `keys_ng.errors`, `keys_ng.models`, `keys_ng.services.diagnostics`, `keys_ng.services.references`, `keys_ng.storage.atomic`, `keys_ng.storage.config`, `os`, `pathlib`, `time`, `urllib.parse`
 
@@ -5972,8 +6090,8 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault`
 
 **Tipo:** classe  
-**Righe:** 26-544  
-**Metodi:** `__init__`, `init`, `recover_interrupted_writes`, `locked`, `lock`, `unlock`, `_require_unlocked`, `_verify`, `_encrypt`, `_decrypt`, `_write_catalog`, `_write_folders`, `load_catalog`, `load_folders`, `_catalog_item`, `_sync_catalog_folders`, `save_entry`, `_verify_record_binding`, `get_entry`, `resolve_reference_value`, `resolved_username`, `resolved_password`, `resolved_action`, `delete_entry`, `list_items`, `_folder_paths_from`, `folder_paths`, `search`, `reindex`, `catalog_health`, `list_folders`, `get_folder`, `folder_path`, `resolve_folder_path`, `create_folder`, `create_folder_path`, `rename_folder`, `move_folder`, `delete_folder`, `move_entry`  
+**Righe:** 26-596  
+**Metodi:** `__init__`, `init`, `recover_interrupted_writes`, `locked`, `lock`, `unlock`, `_require_unlocked`, `_verify`, `_encrypt`, `_decrypt`, `_write_catalog`, `_write_folders`, `load_catalog`, `load_folders`, `trash_folder_id`, `is_in_trash`, `empty_trash`, `used_tags`, `_catalog_item`, `_sync_catalog_folders`, `save_entry`, `_verify_record_binding`, `get_entry`, `resolve_reference_value`, `resolved_username`, `resolved_password`, `resolved_action`, `delete_entry`, `list_items`, `_folder_paths_from`, `folder_paths`, `search`, `reindex`, `catalog_health`, `list_folders`, `get_folder`, `folder_path`, `resolve_folder_path`, `create_folder`, `create_folder_path`, `rename_folder`, `move_folder`, `delete_folder`, `move_entry`  
 **Responsabilità:** Rappresenta un singolo vault e ne applica la policy di storage/sicurezza.
 
 <!-- symbol:keys_ng.storage.vault:Vault.__init__ -->
@@ -5996,13 +6114,15 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.init`
 
 **Tipo:** funzione/metodo  
-**Righe:** 40-67  
+**Righe:** 40-69  
 **Firma:** `def init(cls, path: str | Path, crypto: CryptoBackend, recipients: list[str], signer: str | None, require_signature: bool=True, catalog_privacy: str='standard') -> 'Vault'`  
 **Scopo:** Implementa l'operazione `init` in questo modulo.
 
-**Chiamate dirette osservate nel corpo:** `Catalog`, `FolderStore`, `Path`, `VaultConfig`, `VaultError`, `any`, `cls`, `config.to_json`, `config_path.write_text`, `expanduser`, `mkdir`, `os.chmod`, `resolve`, `root.exists`, `root.iterdir`, `vault._write_catalog`, `vault._write_folders`.
+**Chiamate dirette osservate nel corpo:** `Catalog`, `FolderStore`, `Path`, `VaultConfig`, `VaultError`, `any`, `cls`, `config.to_json`, `config_path.write_text`, `expanduser`, `mkdir`, `os.chmod`, `resolve`, `root.exists`, `root.iterdir`, `vault._write_catalog`, `vault._write_folders`, `vault.load_folders`.
 
 **Eccezioni sollevate esplicitamente:** `VaultError`.
+
+**Attributi oggetto modificati:** `vault._folders_cache`.
 
 **Forma del flusso di controllo:** 3 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
 
@@ -6014,7 +6134,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.recover_interrupted_writes`
 
 **Tipo:** funzione/metodo  
-**Righe:** 69-73  
+**Righe:** 71-75  
 **Firma:** `def recover_interrupted_writes(self) -> int`  
 **Scopo:** Implementa l'operazione `recover_interrupted_writes` in questo modulo.
 
@@ -6028,7 +6148,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.locked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 76-77  
+**Righe:** 78-79  
 **Firma:** `def locked(self) -> bool`  
 **Scopo:** Implementa l'operazione `locked` in questo modulo.
 
@@ -6040,7 +6160,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.lock`
 
 **Tipo:** funzione/metodo  
-**Righe:** 79-84  
+**Righe:** 81-86  
 **Firma:** `def lock(self, hard: bool=False) -> None`  
 **Scopo:** Implementa l'operazione `lock` in questo modulo.
 
@@ -6058,7 +6178,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.unlock`
 
 **Tipo:** funzione/metodo  
-**Righe:** 86-93  
+**Righe:** 88-95  
 **Firma:** `def unlock(self) -> None`  
 **Scopo:** Implementa l'operazione `unlock` in questo modulo.
 
@@ -6074,7 +6194,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._require_unlocked`
 
 **Tipo:** funzione/metodo  
-**Righe:** 95-97  
+**Righe:** 97-99  
 **Firma:** `def _require_unlocked(self) -> None`  
 **Scopo:** Helper interno che implementa `_require_unlocked`.
 
@@ -6090,7 +6210,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._verify`
 
 **Tipo:** funzione/metodo  
-**Righe:** 99-107  
+**Righe:** 101-109  
 **Firma:** `def _verify(self, signer_fingerprint: str | None, signature_valid: bool, primary_signer_fingerprint: str | None=None) -> None`  
 **Scopo:** Helper interno che implementa `_verify`.
 
@@ -6106,7 +6226,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._encrypt`
 
 **Tipo:** funzione/metodo  
-**Righe:** 109-111  
+**Righe:** 111-113  
 **Firma:** `def _encrypt(self, plaintext: bytes) -> bytes`  
 **Scopo:** Helper interno che implementa `_encrypt`.
 
@@ -6122,7 +6242,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._decrypt`
 
 **Tipo:** funzione/metodo  
-**Righe:** 113-117  
+**Righe:** 115-119  
 **Firma:** `def _decrypt(self, ciphertext: bytes) -> bytes`  
 **Scopo:** Helper interno che implementa `_decrypt`.
 
@@ -6138,7 +6258,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._write_catalog`
 
 **Tipo:** funzione/metodo  
-**Righe:** 119-122  
+**Righe:** 121-124  
 **Firma:** `def _write_catalog(self, catalog: Catalog) -> None`  
 **Scopo:** Helper interno che implementa `_write_catalog`.
 
@@ -6156,7 +6276,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._write_folders`
 
 **Tipo:** funzione/metodo  
-**Righe:** 124-127  
+**Righe:** 126-129  
 **Firma:** `def _write_folders(self, store: FolderStore) -> None`  
 **Scopo:** Helper interno che implementa `_write_folders`.
 
@@ -6174,7 +6294,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.load_catalog`
 
 **Tipo:** funzione/metodo  
-**Righe:** 129-138  
+**Righe:** 131-140  
 **Firma:** `def load_catalog(self) -> Catalog`  
 **Scopo:** Carica e valida `load_catalog`.
 
@@ -6192,17 +6312,73 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.load_folders`
 
 **Tipo:** funzione/metodo  
-**Righe:** 140-151  
+**Righe:** 142-168  
 **Firma:** `def load_folders(self) -> FolderStore`  
 **Scopo:** Carica e valida `load_folders`.
 
-**Chiamate dirette osservate nel corpo:** `FolderStore`, `FolderStore.from_bytes`, `list`, `path.exists`, `path.read_bytes`, `self._decrypt`, `self._require_unlocked`, `self.load_catalog`.
+**Chiamate dirette osservate nel corpo:** `Folder.create`, `FolderStore`, `FolderStore.from_bytes`, `f.name.casefold`, `list`, `next`, `path.exists`, `path.read_bytes`, `replace`, `self._decrypt`, `self._require_unlocked`, `self._sync_catalog_folders`, `self._write_catalog`, `self._write_folders`, `self.load_catalog`, `store.folders.append`.
 
-**Attributi oggetto modificati:** `self._folders_cache`.
+**Attributi oggetto modificati:** `name`, `self._folders_cache`.
 
-**Forma del flusso di controllo:** 2 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 2 return espliciti.
+**Forma del flusso di controllo:** 4 blocchi condizionali, 0 cicli, 1 blocchi try, 0 context manager, 2 return espliciti.
 
 **Categorie di effetti rilevanti per la sicurezza:** filesystem, cryptography/key-agent.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.storage.vault:Vault.trash_folder_id -->
+#### `Vault.trash_folder_id`
+
+**Tipo:** funzione/metodo  
+**Righe:** 171-172  
+**Firma:** `def trash_folder_id(self) -> str`  
+**Scopo:** Implementa l'operazione `trash_folder_id` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `next`, `self.load_folders`.
+
+**Forma del flusso di controllo:** 0 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.storage.vault:Vault.is_in_trash -->
+#### `Vault.is_in_trash`
+
+**Tipo:** funzione/metodo  
+**Righe:** 174-182  
+**Firma:** `def is_in_trash(self, folder_id: str | None) -> bool`  
+**Scopo:** Implementa l'operazione `is_in_trash` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `by_id.get`, `self.load_folders`.
+
+**Forma del flusso di controllo:** 1 blocchi condizionali, 1 cicli, 0 blocchi try, 0 context manager, 2 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.storage.vault:Vault.empty_trash -->
+#### `Vault.empty_trash`
+
+**Tipo:** funzione/metodo  
+**Righe:** 184-187  
+**Firma:** `def empty_trash(self) -> None`  
+**Scopo:** Implementa l'operazione `empty_trash` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `list`, `self._require_unlocked`, `self.delete_entry`, `self.list_items`.
+
+**Forma del flusso di controllo:** 0 blocchi condizionali, 1 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
+
+**Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
+
+<!-- symbol:keys_ng.storage.vault:Vault.used_tags -->
+#### `Vault.used_tags`
+
+**Tipo:** funzione/metodo  
+**Righe:** 189-193  
+**Firma:** `def used_tags(self) -> list[str]`  
+**Scopo:** Implementa l'operazione `used_tags` in questo modulo.
+
+**Chiamate dirette osservate nel corpo:** `self.get_entry`, `self.list_items`, `sorted`.
+
+**Forma del flusso di controllo:** 0 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
 
 **Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
 
@@ -6210,7 +6386,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._catalog_item`
 
 **Tipo:** funzione/metodo  
-**Righe:** 153-182  
+**Righe:** 195-224  
 **Firma:** `def _catalog_item(self, entry: Entry, ciphertext: bytes) -> CatalogItem`  
 **Scopo:** Helper interno che implementa `_catalog_item`.
 
@@ -6224,7 +6400,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._sync_catalog_folders`
 
 **Tipo:** funzione/metodo  
-**Righe:** 184-188  
+**Righe:** 226-230  
 **Firma:** `def _sync_catalog_folders(self, catalog: Catalog | None=None, store: FolderStore | None=None) -> Catalog`  
 **Scopo:** Helper interno che implementa `_sync_catalog_folders`.
 
@@ -6240,7 +6416,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.save_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 190-205  
+**Righe:** 232-247  
 **Firma:** `def save_entry(self, entry: Entry) -> Entry`  
 **Scopo:** Valida e persiste lo stato per `save_entry`.
 
@@ -6260,7 +6436,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._verify_record_binding`
 
 **Tipo:** funzione/metodo  
-**Righe:** 207-223  
+**Righe:** 249-265  
 **Firma:** `def _verify_record_binding(self, entry_id: str, ciphertext: bytes, entry: Entry) -> None`  
 **Scopo:** Bind a decrypted record to its signed catalog snapshot. This detects replacement or rollback of a single record while the catalog remains current. It intentionally does not claim protection against an attacker who rolls back the record and the signed catalog together.
 
@@ -6276,7 +6452,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.get_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 225-246  
+**Righe:** 267-288  
 **Firma:** `def get_entry(self, entry_id: str) -> Entry`  
 **Scopo:** Recupera `get_entry`.
 
@@ -6294,7 +6470,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.resolve_reference_value`
 
 **Tipo:** funzione/metodo  
-**Righe:** 248-281  
+**Righe:** 290-323  
 **Firma:** `def resolve_reference_value(self, value: str | None, *, _stack: tuple[tuple[str, str], ...]=(), _max_depth: int=32) -> str | None`  
 **Scopo:** Resolve a KeePassXC-style UUID reference stored as a whole field. Keys NG intentionally implements the UUID subset requested for reusable credentials: {REF:U@I:<UUID>} and {REF:P@I:<UUID>}. References can be chained, but cycles and excessive nesting are rejected.
 
@@ -6310,7 +6486,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.resolved_username`
 
 **Tipo:** funzione/metodo  
-**Righe:** 283-286  
+**Righe:** 325-328  
 **Firma:** `def resolved_username(self, entry: Entry | str) -> str | None`  
 **Scopo:** Implementa l'operazione `resolved_username` in questo modulo.
 
@@ -6324,7 +6500,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.resolved_password`
 
 **Tipo:** funzione/metodo  
-**Righe:** 288-290  
+**Righe:** 330-332  
 **Firma:** `def resolved_password(self, entry: Entry | str) -> str | None`  
 **Scopo:** Implementa l'operazione `resolved_password` in questo modulo.
 
@@ -6338,7 +6514,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.resolved_action`
 
 **Tipo:** funzione/metodo  
-**Righe:** 292-298  
+**Righe:** 334-340  
 **Firma:** `def resolved_action(self, entry: Entry, action: Action) -> Action`  
 **Scopo:** Return an action with any UUID-referenced username resolved.
 
@@ -6354,17 +6530,17 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.delete_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 300-309  
+**Righe:** 342-355  
 **Firma:** `def delete_entry(self, entry_id: str) -> None`  
 **Scopo:** Elimina `delete_entry`.
 
-**Chiamate dirette osservate nel corpo:** `VaultError`, `path.unlink`, `self._require_unlocked`, `self._write_catalog`, `self.load_catalog`.
+**Chiamate dirette osservate nel corpo:** `VaultError`, `path.unlink`, `self._require_unlocked`, `self._write_catalog`, `self.get_entry`, `self.is_in_trash`, `self.load_catalog`, `self.move_entry`.
 
 **Eccezioni sollevate esplicitamente:** `VaultError`.
 
 **Attributi oggetto modificati:** `catalog.items`.
 
-**Forma del flusso di controllo:** 0 blocchi condizionali, 0 cicli, 1 blocchi try, 0 context manager, 0 return espliciti.
+**Forma del flusso di controllo:** 1 blocchi condizionali, 0 cicli, 1 blocchi try, 0 context manager, 1 return espliciti.
 
 **Categorie di effetti rilevanti per la sicurezza:** filesystem.
 
@@ -6374,7 +6550,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.list_items`
 
 **Tipo:** funzione/metodo  
-**Righe:** 311-325  
+**Righe:** 357-371  
 **Firma:** `def list_items(self, folder_id: str | None=None, recursive: bool=False) -> list[CatalogItem]`  
 **Scopo:** Restituisce una vista filtrata/elencata di `list_items`.
 
@@ -6388,7 +6564,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._folder_paths_from`
 
 **Tipo:** funzione/metodo  
-**Righe:** 328-354  
+**Righe:** 374-400  
 **Firma:** `def _folder_paths_from(folders: list[Folder]) -> dict[str, str]`  
 **Scopo:** Build all folder paths in O(n) without repeated vault decryptions.
 
@@ -6404,7 +6580,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault._folder_paths_from.resolve`
 
 **Tipo:** funzione/metodo  
-**Righe:** 333-350  
+**Righe:** 379-396  
 **Firma:** `def resolve(folder_id: str, visiting: set[str] | None=None) -> str`  
 **Scopo:** Implementa l'operazione `resolve` in questo modulo.
 
@@ -6420,7 +6596,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.folder_paths`
 
 **Tipo:** funzione/metodo  
-**Righe:** 356-358  
+**Righe:** 402-404  
 **Firma:** `def folder_paths(self, *, catalog_snapshot: bool=False) -> dict[str, str]`  
 **Scopo:** Implementa l'operazione `folder_paths` in questo modulo.
 
@@ -6434,7 +6610,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.search`
 
 **Tipo:** funzione/metodo  
-**Righe:** 360-375  
+**Righe:** 406-421  
 **Firma:** `def search(self, query: str) -> list[CatalogItem]`  
 **Scopo:** Implementa l'operazione `search` in questo modulo.
 
@@ -6448,7 +6624,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.reindex`
 
 **Tipo:** funzione/metodo  
-**Righe:** 377-387  
+**Righe:** 423-433  
 **Firma:** `def reindex(self) -> Catalog`  
 **Scopo:** Implementa l'operazione `reindex` in questo modulo.
 
@@ -6464,7 +6640,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.catalog_health`
 
 **Tipo:** funzione/metodo  
-**Righe:** 389-410  
+**Righe:** 435-456  
 **Firma:** `def catalog_health(self) -> tuple[bool, list[str]]`  
 **Scopo:** Implementa l'operazione `catalog_health` in questo modulo.
 
@@ -6480,7 +6656,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.list_folders`
 
 **Tipo:** funzione/metodo  
-**Righe:** 413-416  
+**Righe:** 459-462  
 **Firma:** `def list_folders(self) -> list[Folder]`  
 **Scopo:** Restituisce una vista filtrata/elencata di `list_folders`.
 
@@ -6494,7 +6670,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.get_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 418-422  
+**Righe:** 464-468  
 **Firma:** `def get_folder(self, folder_id: str) -> Folder`  
 **Scopo:** Recupera `get_folder`.
 
@@ -6510,7 +6686,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.folder_path`
 
 **Tipo:** funzione/metodo  
-**Righe:** 424-430  
+**Righe:** 470-476  
 **Firma:** `def folder_path(self, folder_id: str | None) -> str`  
 **Scopo:** Implementa l'operazione `folder_path` in questo modulo.
 
@@ -6526,7 +6702,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.resolve_folder_path`
 
 **Tipo:** funzione/metodo  
-**Righe:** 432-445  
+**Righe:** 478-491  
 **Firma:** `def resolve_folder_path(self, path: str) -> str | None`  
 **Scopo:** Risolve `resolve_folder_path`.
 
@@ -6544,7 +6720,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.create_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 447-462  
+**Righe:** 493-508  
 **Firma:** `def create_folder(self, name: str, parent_id: str | None=None) -> Folder`  
 **Scopo:** Crea `create_folder`.
 
@@ -6560,7 +6736,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.create_folder_path`
 
 **Tipo:** funzione/metodo  
-**Righe:** 464-478  
+**Righe:** 510-524  
 **Firma:** `def create_folder_path(self, path: str) -> Folder | None`  
 **Scopo:** Crea `create_folder_path`.
 
@@ -6576,7 +6752,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.rename_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 480-496  
+**Righe:** 526-544  
 **Firma:** `def rename_folder(self, folder_id: str, new_name: str) -> Folder`  
 **Scopo:** Implementa l'operazione `rename_folder` in questo modulo.
 
@@ -6586,7 +6762,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 
 **Attributi oggetto modificati:** `folder.name`, `folder.updated_at`.
 
-**Forma del flusso di controllo:** 2 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
+**Forma del flusso di controllo:** 3 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
 
 **Categorie di effetti rilevanti per la sicurezza:** filesystem.
 
@@ -6596,7 +6772,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.move_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 498-521  
+**Righe:** 546-571  
 **Firma:** `def move_folder(self, folder_id: str, parent_id: str | None) -> Folder`  
 **Scopo:** Implementa l'operazione `move_folder` in questo modulo.
 
@@ -6606,7 +6782,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 
 **Attributi oggetto modificati:** `folder.parent_id`, `folder.updated_at`.
 
-**Forma del flusso di controllo:** 4 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
+**Forma del flusso di controllo:** 5 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
 
 **Categorie di effetti rilevanti per la sicurezza:** filesystem.
 
@@ -6616,7 +6792,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.delete_folder`
 
 **Tipo:** funzione/metodo  
-**Righe:** 523-536  
+**Righe:** 573-588  
 **Firma:** `def delete_folder(self, folder_id: str) -> None`  
 **Scopo:** Elimina `delete_folder`.
 
@@ -6626,7 +6802,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 
 **Attributi oggetto modificati:** `store.folders`.
 
-**Forma del flusso di controllo:** 3 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
+**Forma del flusso di controllo:** 4 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 0 return espliciti.
 
 **Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
 
@@ -6634,7 +6810,7 @@ Servizio centrale del vault: cifratura, firme, catalogo, record, cartelle, rifer
 #### `Vault.move_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 538-544  
+**Righe:** 590-596  
 **Firma:** `def move_entry(self, entry_id: str, folder_id: str | None) -> Entry`  
 **Scopo:** Implementa l'operazione `move_entry` in questo modulo.
 
@@ -6661,17 +6837,17 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main`
 
 **Tipo:** funzione/metodo  
-**Righe:** 38-1691  
+**Righe:** 38-1693  
 **Firma:** `def main() -> None`  
 **Scopo:** Implementa l'operazione `main` in questo modulo.
 
-**Chiamate dirette osservate nel corpo:** `AppSettings.load`, `Binding`, `Button`, `Checkbox`, `ChoiceScreen`, `ConfirmScreen`, `EntryDraft`, `EntryDraft.from_entry`, `EntryEditorScreen`, `ExportVaultScreen`, `Footer`, `Header`, `HelpScreen`, `Horizontal`, `InboxScreen`, `Input`, `KeePassXCImportScreen`, `KeysApp`, `Label`, `MoveScreen`, `NameScreen`, `PasswordGeneratorScreen`, `Path`, `Path.cwd`, `Path.home`, `PreferencesScreen`, `Select`, `StandaloneExportScreen`, `Static`, `SystemExit`, `TextArea`, `Tree`, `TrustedSignersScreen`, `ValueError`, `Vault`, `VaultCreationApp`, `VaultInitRequest`, `VaultSessionManager`, `VaultStartApp`, `VaultSwitcherScreen`, `Vertical`, `VerticalScroll`, `_`, `__init__`, `_select_value_is_blank`, `add_trusted_signer`, `argparse.ArgumentParser`, `available_vault_keys`, `backend.diagnose`, `banner.add_class`, `banner.remove_class`, `banner.update`, `bool`, `build_entry_from_draft`, `build_otpauth_uri`, `ch.isalnum`, `choose_vault`, `configure_diagnostics`, `configure_language`, `copy_secret_cli`, `create_crypto_backend`, `create_vault`, `current_language`, `delete_inbox_item`, `eligible_signing_keys`, `enumerate`, `event.prevent_default`, `event.stop`, `event.value.strip`, `exists`, `expanded.add`, `expanduser`, `export_entry_xml`, `export_standalone_entry`, `export_vault_xml`, `files`, `float`, `focus`, `folder_nodes.get`, `folder_options`, `format`, `format_import_report`, `generate_password`, `generate_totp`, `get`, `get_logger`, `getattr`, `import_inbox_item`, `import_keepassxc`, `import_standalone_public_key`, `info`, `inspect_inbox`, `int`, `isinstance`, `join`, `joinpath`, `launch_action`, `len`, `line.strip`, `list`, `list_trusted_signers`, `load_text`, `next`, `options.append`, `parent.add`, `parent.add_leaf`, `parse_totp_qr_file`, `parser.add_argument`, `parser.parse_args`, `paths.get`, `pending_inbox_paths`, `print`, `recipient_select.set_options`, `remaining.remove`, `remove_trusted_signer`, `resolve`, `resource.is_file`, `resource.read_text`, `root.joinpath`, `run`, `select.set_options`, `self._activate_opened_vault`, `self._banner_timer.stop`, `self._capture_expanded_folders`, `self._collect`, `self._copy`, `self._copy_generated`, `self._display_active_vault`, `self._finish_edit_entry`, `self._finish_export_entry`, `self._finish_open_vault`, `self._generate`, `self._import_public_key`, `self._lines`, `self._load_qr`, `self._perform_export`, `self._refresh_after_mutation`, `self._refresh_keys`, `self._reset_selection`, `self._run`, `self._show_clipboard_banner`, `self._status`, `self._text`, `self._toggle_password_visibility`, `self._update_command_hints`, `self._verify_gnupg`, `self.action_cancel`, `self.action_close`, `self.action_reload_tree`, `self.action_save`, `self.app.copy_to_clipboard`, `self.app.push_screen`, `self.copy_to_clipboard`, `self.dismiss`, `self.exit`, `self.push_screen`, `self.query_one`, `self.rebuild_tree`, `self.refresh_inbox`, `self.refresh_signers`, `self.selected`, `self.set_timer`, `self.show_item`, `sessions.activate`, `sessions.add`, `sessions.close`, `sessions.contains`, `sessions.lock_all`, `sessions.opened`, `set`, `set_textual_terminal_title`, `settings.remember_vault`, `settings.save`, `signer_select.set_options`, `standalone_recipient_keys`, `standalone_signing_keys`, `status.update`, `str`, `strip`, `super`, `tree.clear`, `tree.root.add_leaf`, `tree.root.expand`, `tree.root.set_label`, `type`, `update`, `value.startswith`, `value.strip`, `vault.create_folder`, `vault.crypto.hard_lock`, `vault.delete_entry`, `vault.delete_folder`, `vault.folder_path`, `vault.folder_paths`, `vault.get_entry`, `vault.get_folder`, `vault.list_folders`, `vault.list_items`, `vault.lock`, `vault.move_entry`, `vault.move_folder`, `vault.rename_folder`, `vault.resolved_action`, `vault.resolved_password`, `vault.resolved_username`, `vault.save_entry`, `vault.search`, `vault.unlock`, `visit`, `widget.text.splitlines`, `write_export`.
+**Chiamate dirette osservate nel corpo:** `AppSettings.load`, `Binding`, `Button`, `Checkbox`, `ChoiceScreen`, `ConfirmScreen`, `EntryDraft`, `EntryDraft.from_entry`, `EntryEditorScreen`, `ExportVaultScreen`, `Footer`, `Header`, `HelpScreen`, `Horizontal`, `InboxScreen`, `Input`, `KeePassXCImportScreen`, `KeysApp`, `Label`, `MoveScreen`, `NameScreen`, `PasswordGeneratorScreen`, `Path`, `Path.cwd`, `Path.home`, `PreferencesScreen`, `Select`, `StandaloneExportScreen`, `Static`, `SystemExit`, `TextArea`, `Tree`, `TrustedSignersScreen`, `ValueError`, `Vault`, `VaultCreationApp`, `VaultInitRequest`, `VaultSessionManager`, `VaultStartApp`, `VaultSwitcherScreen`, `Vertical`, `VerticalScroll`, `_`, `__init__`, `_select_value_is_blank`, `add_trusted_signer`, `argparse.ArgumentParser`, `available_vault_keys`, `backend.diagnose`, `banner.add_class`, `banner.remove_class`, `banner.update`, `bool`, `build_entry_from_draft`, `build_otpauth_uri`, `ch.isalnum`, `choose_vault`, `configure_diagnostics`, `configure_language`, `copy_secret_cli`, `create_crypto_backend`, `create_vault`, `current_language`, `delete_inbox_item`, `eligible_signing_keys`, `enumerate`, `event.prevent_default`, `event.stop`, `event.value.strip`, `exists`, `expanded.add`, `expanduser`, `export_entry_xml`, `export_standalone_entry`, `export_vault_xml`, `files`, `float`, `focus`, `folder_nodes.get`, `folder_options`, `format`, `format_import_report`, `generate_password`, `generate_totp`, `get`, `get_logger`, `getattr`, `import_inbox_item`, `import_keepassxc`, `import_standalone_public_key`, `info`, `inspect_inbox`, `int`, `isinstance`, `join`, `joinpath`, `launch_action`, `len`, `line.strip`, `list`, `list_trusted_signers`, `load_text`, `next`, `options.append`, `parent.add`, `parent.add_leaf`, `parse_totp_qr_file`, `parser.add_argument`, `parser.parse_args`, `paths.get`, `pending_inbox_paths`, `print`, `recipient_select.set_options`, `remaining.remove`, `remove_trusted_signer`, `resolve`, `resource.is_file`, `resource.read_text`, `root.joinpath`, `run`, `select.set_options`, `self._activate_opened_vault`, `self._banner_timer.stop`, `self._capture_expanded_folders`, `self._collect`, `self._copy`, `self._copy_generated`, `self._display_active_vault`, `self._finish_edit_entry`, `self._finish_export_entry`, `self._finish_open_vault`, `self._generate`, `self._import_public_key`, `self._lines`, `self._load_qr`, `self._perform_export`, `self._refresh_after_mutation`, `self._refresh_keys`, `self._reset_selection`, `self._run`, `self._show_clipboard_banner`, `self._status`, `self._text`, `self._toggle_password_visibility`, `self._update_command_hints`, `self._verify_gnupg`, `self.action_cancel`, `self.action_close`, `self.action_reload_tree`, `self.action_save`, `self.app.copy_to_clipboard`, `self.app.push_screen`, `self.copy_to_clipboard`, `self.dismiss`, `self.exit`, `self.push_screen`, `self.query_one`, `self.rebuild_tree`, `self.refresh_inbox`, `self.refresh_signers`, `self.selected`, `self.set_timer`, `self.show_item`, `sessions.activate`, `sessions.add`, `sessions.close`, `sessions.contains`, `sessions.lock_all`, `sessions.opened`, `set`, `set_textual_terminal_title`, `settings.remember_vault`, `settings.save`, `signer_select.set_options`, `standalone_recipient_keys`, `standalone_signing_keys`, `status.update`, `str`, `strip`, `super`, `tree.clear`, `tree.root.add_leaf`, `tree.root.expand`, `tree.root.set_label`, `type`, `update`, `value.startswith`, `value.strip`, `vault.create_folder`, `vault.crypto.hard_lock`, `vault.delete_entry`, `vault.delete_folder`, `vault.folder_path`, `vault.folder_paths`, `vault.get_entry`, `vault.get_folder`, `vault.is_in_trash`, `vault.list_folders`, `vault.list_items`, `vault.lock`, `vault.move_entry`, `vault.move_folder`, `vault.rename_folder`, `vault.resolved_action`, `vault.resolved_password`, `vault.resolved_username`, `vault.save_entry`, `vault.search`, `vault.unlock`, `visit`, `widget.text.splitlines`, `write_export`.
 
 **Eccezioni sollevate esplicitamente:** `SystemExit`, `ValueError`.
 
 **Attributi oggetto modificati:** `banner.styles.background`, `banner.styles.color`, `disabled`, `password_input.password`, `recipient_select.value`, `select.value`, `self._banner_timer`, `self._expanded_folder_ids`, `self._inbox_notice_shown`, `self._last_tree_query`, `self.confirm_label`, `self.current_entry`, `self.current_folder_id`, `self.current_id`, `self.current_kind`, `self.destructive`, `self.dialog_title`, `self.draft`, `self.entry`, `self.exclude_id`, `self.items`, `self.message`, `self.options`, `self.recipient_keys`, `self.resource_name`, `self.selected`, `self.signing_keys`, `self.title`, `self.title_text`, `self.value`, `settings.auto_lock_timeout`, `settings.clipboard_password_timeout`, `settings.clipboard_totp_timeout`, `settings.crypto_backend`, `settings.gpg_executable`, `settings.gpgconf_executable`, `settings.language`, `settings.rdp_linux_client`, `settings.rdp_linux_options`, `settings.rdp_macos_client`, `settings.rdp_macos_options`, `settings.rdp_windows_client`, `settings.rdp_windows_options`, `settings.ssh_terminal`, `settings.ssh_terminal_options`, `settings.tree_startup_view`, `settings.tui_clipboard_notice_background`, `settings.tui_clipboard_notice_foreground`, `settings.tui_clipboard_notice_seconds`, `signer_select.disabled`, `signer_select.value`, `toggle.label`, `value`.
 
-**Forma del flusso di controllo:** 152 blocchi condizionali, 11 cicli, 43 blocchi try, 50 context manager, 76 return espliciti.
+**Forma del flusso di controllo:** 153 blocchi condizionali, 11 cicli, 43 blocchi try, 50 context manager, 76 return espliciti.
 
 **Categorie di effetti rilevanti per la sicurezza:** process, filesystem, cryptography/key-agent, clipboard, parser/serialization.
 
@@ -8079,7 +8255,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp`
 
 **Tipo:** classe  
-**Righe:** 1034-1671  
+**Righe:** 1034-1673  
 **Basi:** `App`  
 **Metodi:** `__init__`, `compose`, `on_mount`, `rebuild_tree`, `_capture_expanded_folders`, `on_key`, `_reset_selection`, `_refresh_after_mutation`, `on_input_changed`, `on_tree_node_selected`, `_status`, `_show_clipboard_banner`, `_hide_clipboard_banner`, `_update_command_hints`, `action_focus_search`, `action_reload_tree`, `action_import_keepassxc`, `action_export_vault`, `_finish_export_vault`, `_display_active_vault`, `_activate_opened_vault`, `action_open_vault`, `_finish_open_vault`, `action_recent_vault`, `_finish_recent_vault`, `action_switch_vault`, `_finish_switch_vault`, `action_close_vault`, `action_preferences`, `action_help`, `action_shortcut_help`, `_finish_help`, `action_inbox`, `action_trusted_signers`, `_copy`, `action_copy_url`, `action_copy_uuid`, `action_copy_username`, `action_copy_password`, `action_copy_notes`, `action_copy_totp`, `action_open_action`, `action_new_entry`, `_finish_new_entry`, `action_edit_selected`, `_finish_edit_entry`, `action_new_folder`, `_finish_new_folder`, `_finish_rename_folder`, `action_move_selected`, `_finish_move`, `action_delete_selected`, `_finish_delete`, `action_export_standalone`, `_finish_export_standalone`, `action_export_entry`, `_finish_export_entry`, `action_lock_vault`, `action_hard_lock_vault`, `action_unlock_vault`  
 **Responsabilità:** Applicazione Textual principale per un vault.
@@ -8840,13 +9016,13 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp.action_delete_selected`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1588-1592  
+**Righe:** 1588-1594  
 **Firma:** `def action_delete_selected(self) -> None`  
 **Scopo:** Implementa l'operazione `action_delete_selected` in questo modulo.
 
-**Chiamate dirette osservate nel corpo:** `ConfirmScreen`, `_`, `self.push_screen`.
+**Chiamate dirette osservate nel corpo:** `ConfirmScreen`, `_`, `self.push_screen`, `vault.get_entry`, `vault.is_in_trash`.
 
-**Forma del flusso di controllo:** 1 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
+**Forma del flusso di controllo:** 2 blocchi condizionali, 0 cicli, 0 blocchi try, 0 context manager, 1 return espliciti.
 
 **Nota per il revisore:** Rivedere le chiamate dirette elencate insieme alle validazioni che le precedono e alla pulizia/gestione errori che le segue; i numeri di riga sopra sono normativi.
 
@@ -8854,7 +9030,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp._finish_delete`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1594-1608  
+**Righe:** 1596-1610  
 **Firma:** `def _finish_delete(self, confirmed: bool) -> None`  
 **Scopo:** Helper interno che implementa `_finish_delete`.
 
@@ -8868,7 +9044,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp.action_export_standalone`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1610-1617  
+**Righe:** 1612-1619  
 **Firma:** `def action_export_standalone(self) -> None`  
 **Scopo:** Implementa l'operazione `action_export_standalone` in questo modulo.
 
@@ -8882,7 +9058,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp._finish_export_standalone`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1619-1621  
+**Righe:** 1621-1623  
 **Firma:** `def _finish_export_standalone(self, destination: str | None) -> None`  
 **Scopo:** Helper interno che implementa `_finish_export_standalone`.
 
@@ -8896,7 +9072,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp.action_export_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1623-1633  
+**Righe:** 1625-1635  
 **Firma:** `def action_export_entry(self) -> None`  
 **Scopo:** Implementa l'operazione `action_export_entry` in questo modulo.
 
@@ -8910,7 +9086,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp._finish_export_entry`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1635-1645  
+**Righe:** 1637-1647  
 **Firma:** `def _finish_export_entry(self, confirmed: bool, entry_id: str) -> None`  
 **Scopo:** Helper interno che implementa `_finish_export_entry`.
 
@@ -8924,7 +9100,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp.action_lock_vault`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1647-1653  
+**Righe:** 1649-1655  
 **Firma:** `def action_lock_vault(self) -> None`  
 **Scopo:** Implementa l'operazione `action_lock_vault` in questo modulo.
 
@@ -8938,7 +9114,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp.action_hard_lock_vault`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1655-1662  
+**Righe:** 1657-1664  
 **Firma:** `def action_hard_lock_vault(self) -> None`  
 **Scopo:** Implementa l'operazione `action_hard_lock_vault` in questo modulo.
 
@@ -8954,7 +9130,7 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 #### `main.KeysApp.action_unlock_vault`
 
 **Tipo:** funzione/metodo  
-**Righe:** 1664-1671  
+**Righe:** 1666-1673  
 **Firma:** `def action_unlock_vault(self) -> None`  
 **Scopo:** Implementa l'operazione `action_unlock_vault` in questo modulo.
 
@@ -8966,6 +9142,6 @@ Interfaccia terminale Textual e relative azioni/scorciatoie.
 
 ## Garanzia di copertura
 
-Questa edizione documenta **594** simboli classe/funzione rilevati tramite attraversamento AST. `tests/test_code_review_manual_coverage.py` attraversa indipendentemente il sorgente della release e richiede un marker per ogni simbolo in entrambe le edizioni linguistiche.
+Questa edizione documenta **606** simboli classe/funzione rilevati tramite attraversamento AST. `tests/test_code_review_manual_coverage.py` attraversa indipendentemente il sorgente della release e richiede un marker per ogni simbolo in entrambe le edizioni linguistiche.
 
 I campi generati, come chiamate dirette e conteggi del flusso di controllo, sono ausili descrittivi di analisi statica; non dimostrano la sicurezza. Il revisore deve ispezionare il sorgente referenziato e il threat model/security review separati.

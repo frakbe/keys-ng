@@ -42,7 +42,7 @@ def run():
         origin = Entry.create('Shared admin', usernames=['alice'], password='never-display-this')
         target = Entry.create('Accounting', usernames=[make_entry_reference('U', origin.id)],
                               password=make_entry_reference('P', origin.id), folder_id=folder.id,
-                              notes='<b>Literal notes</b>', actions=[Action(type='rdp', host='server.example')])
+                              tags=['work', 'vpn'], notes='<b>Literal notes</b>', actions=[Action(type='rdp', host='server.example')])
         vault.save_entry(origin)
         vault.save_entry(target)
         failures = []
@@ -53,6 +53,7 @@ def run():
             window = next(w for w in app.topLevelWidgets() if hasattr(w, 'active_pane'))
             pane = window.active_pane()
             assert pane.results.topLevelItemCount() == 2
+            assert pane.results.headerItem().text(1) == "Tags"
             # Folder scope excludes root entries, while vault scope finds them.
             folder_item = next(pane.entries.topLevelItem(i) for i in range(pane.entries.topLevelItemCount()) if pane.entries.topLevelItem(i).text(0) == 'Servers')
             pane.entries.setCurrentItem(folder_item)
@@ -121,12 +122,46 @@ def run():
             pane.reload()
             assert pane.vault.get_entry(target.id).folder_id is None
             def save_dialog(dialog):
+                dialog.tags_edit.refresh_menu()
+                assert {a.text() for a in dialog.tags_edit.menu.actions()} == {'work', 'vpn'}
+                dialog.tags_edit.toggle_tag('vpn', False)
+                dialog.tags_edit.toggle_tag('personal', True)
+                assert dialog.tags_edit.text() == 'work, personal'
                 dialog.notes_edit.setPlainText('Edited smoke note')
                 return QDialog.DialogCode.Accepted
             with patch.object(QDialog, 'exec', save_dialog):
                 pane.edit_entry()
             assert pane.current_id == target.id
             assert pane.vault.get_entry(target.id).notes == 'Edited smoke note'
+            assert pane.vault.get_entry(target.id).tags == ['work', 'personal']
+            assert pane.results.currentItem().text(1) == 'work, personal'
+            # Cancellation leaves records intact; normal deletion retains ciphertext.
+            with patch.object(QMessageBox, 'question', return_value=QMessageBox.StandardButton.No):
+                pane.delete_entry()
+            assert pane.vault.get_entry(target.id).folder_id is None
+            with patch.object(QMessageBox, 'question', return_value=QMessageBox.StandardButton.Yes):
+                pane.delete_entry()
+            assert pane.vault.get_entry(target.id).folder_id == pane.vault.trash_folder_id
+            assert pane.results.topLevelItemCount() == 1
+            pane.open_origin(target.id)
+            assert pane.current_id == target.id
+            assert pane.entries.currentItem().text(0) == 'Trash'
+            pane.tree_move('entry', target.id, None)
+            pane.open_origin(target.id)
+            disposable = pane.vault.save_entry(Entry.create('Disposable', folder_id=pane.vault.trash_folder_id))
+            pane.open_origin(disposable.id)
+            with patch.object(QMessageBox, 'question', return_value=QMessageBox.StandardButton.Yes):
+                pane.delete_entry()
+            assert disposable.id not in {i.id for i in pane.vault.list_items()}
+            pane.vault.save_entry(Entry.create('Empty trash smoke', folder_id=pane.vault.trash_folder_id))
+            with patch.object(QMessageBox, 'question', return_value=QMessageBox.StandardButton.No):
+                pane.empty_trash()
+            assert pane.vault.list_items(pane.vault.trash_folder_id)
+            with patch.object(QMessageBox, 'question', return_value=QMessageBox.StandardButton.Yes):
+                pane.empty_trash()
+            assert not pane.vault.list_items(pane.vault.trash_folder_id)
+            assert len(pane.vault.list_items()) == 2
+            pane.open_origin(target.id)
             # A username pointing at a password must not display that password.
             changed = pane.vault.get_entry(target.id)
             changed.usernames = [make_entry_reference('P', origin.id)]
@@ -167,7 +202,7 @@ def run():
                 main()
             except SystemExit as exc:
                 assert exc.code == 0
-        print('GUI smoke passed: selection, search, references, draft preview, clipboard, lock, move, layout, hard lock')
+        print('GUI smoke passed: selection, search, references, draft preview, clipboard, lock, move, layout, hard lock, multiple tags, trash, restore, permanent deletion, empty trash')
 
 
 if __name__ == '__main__':

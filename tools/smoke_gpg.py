@@ -40,6 +40,15 @@ def run():
             assert vault.resolved_username(consumer.id) == 'smoke-user'
             reopened = Vault(root / 'vault', backend)
             assert reopened.resolved_password(consumer.id) == 'synthetic-smoke-secret'
+            reopened.delete_entry(origin.id)
+            assert reopened.get_entry(origin.id).folder_id == reopened.trash_folder_id
+            assert reopened.resolved_password(consumer.id) == 'synthetic-smoke-secret'
+            reopened.move_entry(origin.id, folder.id)
+            reopened.delete_entry(origin.id)
+            reopened = Vault(root / 'vault', backend)
+            reopened.empty_trash()
+            assert [i.id for i in reopened.list_items()] == [consumer.id]
+            assert reopened.catalog_health() == (True, [])
             assert all(b'synthetic-smoke-secret' not in p.read_bytes() for p in (root / 'vault').rglob('*.gpg'))
         finally:
             subprocess.run(['gpgconf', '--homedir', str(home), '--kill', 'all'], check=False, capture_output=True)

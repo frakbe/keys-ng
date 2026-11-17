@@ -1589,6 +1589,8 @@ def main() -> None:
             if vault.locked or self.current_kind not in {"entry", "folder"} or not self.current_id:
                 return
             message = _("Delete the selected entry permanently?") if self.current_kind == "entry" else _("Delete the selected empty folder?")
+            if self.current_kind == "entry" and not vault.is_in_trash(vault.get_entry(self.current_id).folder_id):
+                message = _("Move the selected entry to Trash?")
             self.push_screen(ConfirmScreen(message, _("Delete"), destructive=True), self._finish_delete)
 
         def _finish_delete(self, confirmed: bool) -> None:

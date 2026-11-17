@@ -13,7 +13,7 @@ Keys NG is a next-generation rewrite of the original **Keys** Bash password mana
 
 ## Current milestone
 
-The repository is now in **0.2.01 GUI development**. It is not yet an independently audited production security release.
+The repository is now in **0.2.2 development**. It is not yet an independently audited production security release.
 
 Implemented so far:
 
@@ -394,8 +394,8 @@ Drag the two splitters to resize panels. Column widths/order/sort and the Compac
 rows setting are restored on the next launch; only layout state is persisted in
 Qt settings, not decrypted entry metadata. Native colors follow the system theme.
 
-Select a folder to list its immediate entries; All entries includes the entire
-vault. With a search query, In vault searches all folders; In folder restricts
+Select a folder to list its immediate entries; All entries includes active entries throughout the
+vault; Trash is displayed separately. With a search query, In vault searches all folders; In folder restricts
 the query to the selected folder. The list uses catalog metadata only, respecting
 the configured catalog privacy. Select an entry to decrypt its details. Down from
 the search field focuses the results. Ctrl+N creates, Ctrl+E or double-click edits;
@@ -420,3 +420,35 @@ clipboard clearing remains subject to the existing clipboard ownership checks.
 Lock vault applies to the active vault; Global hard lock (Vault menu,
 Ctrl+Shift+L) clears all open vaults and terminates the shared GnuPG agent.
 Open editors are cleared and dismissed when their vault locks.
+
+## Release 0.2.2 — Tags and Trash
+
+The GUI list displays Title, Tags, Type and Folder. Usernames remain available in
+the details and editor. Tags use encrypted catalog metadata: with `minimal`
+catalog privacy the Tags column is intentionally empty. The editor's “Select
+tags” menu offers checkable tags already used in this vault; multiple tags can
+be selected. Type comma-separated names to add new tags. Existing selections
+are preserved and duplicates removed. Under `minimal` privacy, opening the editor
+reads records to obtain tag suggestions without adding tags to the catalog.
+
+Every new vault includes a special root folder named **Trash**. Opening the
+folder tree or unlocking an older vault creates it if missing; an existing root
+folder with this name (case insensitive) is reused without losing its contents.
+The folder has a trash icon and cannot be renamed, moved or deleted.
+
+After confirmation, Delete moves a normal entry to Trash, retaining its UUID,
+credentials, tags and references. GUI All entries and ordinary searches exclude
+Trash; select Trash to inspect or search its contents. Use “Move to folder…” to
+restore a deleted entry to the folder of your choice, or drag it out of Trash.
+Delete inside Trash asks for confirmation and permanently removes that record.
+Right-click Trash and choose **Empty trash** to permanently remove all its
+entries, including entries in any subfolders, after a separate confirmation.
+Empty subfolders and the Trash folder itself remain. Cancellation changes nothing.
+
+The shared storage behavior also applies to CLI `delete` and TUI Delete: the
+first deletion moves an entry to Trash, deletion of an already trashed entry
+removes it permanently. CLI commands do not add an interactive confirmation;
+check the entry's folder before scripting repeated deletion. CLI/TUI listings
+retain visibility of trashed records in their folder. UUID references to a
+trashed entry continue to resolve until permanent deletion. Permanent deletion
+can break references and does not erase backups, snapshots or external copies.

@@ -3,6 +3,7 @@ MANIFEST.in
 README.it.md
 README.md
 RELEASE_NOTES_0.2.01.md
+RELEASE_NOTES_0.2.2.md
 ROADMAP.md
 SECURITY.it.md
 SECURITY.md
@@ -15,6 +16,7 @@ docs/en/EXTERNAL_SECURITY_REVIEW.md
 docs/en/EXTERNAL_SECURITY_REVIEW_CHECKLIST.md
 docs/en/FLATPAK.md
 docs/en/GUI_0.2.01_VALIDATION.md
+docs/en/GUI_0.2.2_VALIDATION.md
 docs/en/MACOS_BUILD.md
 docs/en/MEMORY_REVIEW.md
 docs/en/RELEASE_SECURITY_CHECKLIST.md
@@ -29,6 +31,7 @@ docs/it/EXTERNAL_SECURITY_REVIEW.md
 docs/it/EXTERNAL_SECURITY_REVIEW_CHECKLIST.md
 docs/it/FLATPAK.md
 docs/it/GUI_0.2.01_VALIDATION.md
+docs/it/GUI_0.2.2_VALIDATION.md
 docs/it/MACOS_BUILD.md
 docs/it/MEMORY_REVIEW.md
 docs/it/RELEASE_SECURITY_CHECKLIST.md
@@ -66,6 +69,7 @@ src/keys_ng/crypto/gpg_process.py
 src/keys_ng/crypto/gpgme_backend.py
 src/keys_ng/gui/main.py
 src/keys_ng/gui/reference_widget.py
+src/keys_ng/gui/tag_selector.py
 src/keys_ng/help/en/LICENSE.md
 src/keys_ng/help/en/README.md
 src/keys_ng/help/en/SECURITY.md
@@ -125,6 +129,7 @@ tests/test_gui_icons_source.py
 tests/test_gui_shortcuts_source.py
 tests/test_keepassxc_import.py
 tests/test_legacy_parser.py
+tests/test_m022_trash.py
 tests/test_m110_ssh_advanced.py
 tests/test_m111_multi_vault_gui.py
 tests/test_m112_entry_references.py

@@ -715,9 +715,9 @@ Nota importante: record e catalogo sono due file distinti; non esiste una transa
 
 ### `delete_entry(entry_id)`
 
-1. elimina il file `.gpg`;
-2. rimuove l'item dal catalogo;
-3. riscrive il catalogo cifrato.
+1. verifica il record e la sua posizione;
+2. se fuori da Trash, lo sposta nel cestino e incrementa la revisione;
+3. se già nel cestino, elimina il file `.gpg` e aggiorna il catalogo cifrato.
 
 Non usa `shred`: il file eliminato è ciphertext.
 
@@ -2951,7 +2951,7 @@ Questa sezione è volutamente compatta: serve come indice quando sai già cosa c
 - `_sync_catalog_folders()` — aggiorna snapshot folder.
 - `save_entry()` — salva record + catalogo.
 - `get_entry()` — decifra record.
-- `delete_entry()` — elimina record + indice.
+- `delete_entry()` — sposta in Trash; se già nel cestino elimina record + indice.
 - `list_items()` — listing/filter folder.
 - `_folder_paths_from()` — calcolo path gerarchici.
 - `folder_paths()` — map UUID→path.
@@ -3435,3 +3435,38 @@ resta soggetta ai controlli esistenti sulla proprietà degli appunti.
 Blocca vault agisce sul vault attivo. Blocco globale (menu Vault, Ctrl+Shift+L)
 cancella lo stato di tutti i vault e termina il gpg-agent condiviso. Gli editor
 aperti vengono svuotati e chiusi quando il rispettivo vault viene bloccato.
+
+## Release 0.2.2 — Tag e cestino
+
+La lista GUI mostra Titolo, Tag, Tipo e Cartella. Il nome utente resta disponibile
+nei dettagli e nell'editor. I tag provengono dal catalogo cifrato: con privacy
+`minimal` la colonna Tag resta intenzionalmente vuota. Il menu “Seleziona tag”
+nell'editor offre i tag già usati nel vault con caselle selezionabili; è possibile
+selezionarne più di uno. Per aggiungere tag nuovi, scrivere i nomi separati da
+virgole. Le selezioni esistenti vengono conservate e i duplicati rimossi. Con
+privacy `minimal`, l'apertura dell'editor legge i record per ottenere i suggerimenti
+senza aggiungere tag al catalogo.
+
+Ogni nuovo vault contiene la cartella speciale **Trash** nella radice. All'apertura
+dell'albero delle cartelle o allo sblocco di un vecchio vault viene creata se manca;
+un'eventuale cartella omonima nella radice, senza distinzione tra maiuscole e
+minuscole, viene riutilizzata senza perderne il contenuto. Ha l'icona di un cestino
+e non può essere rinominata, spostata o eliminata.
+
+Dopo conferma, Elimina sposta una voce normale in Trash, conservando UUID,
+credenziali, tag e riferimenti. “Tutte le voci” e le ricerche ordinarie della GUI
+escludono il cestino; selezionare Trash per consultarne o cercarne il contenuto.
+Per recuperare una voce usare “Sposta nella cartella…” scegliendo la destinazione,
+oppure trascinarla fuori da Trash. Elimina su una voce del cestino richiede conferma
+e rimuove definitivamente il record. Con il tasto destro su Trash, **Svuota cestino**
+elimina definitivamente tutte le voci, incluse quelle nelle eventuali sottocartelle,
+dopo una conferma separata. Trash e le sottocartelle vuote rimangono. Annullare non
+modifica il contenuto.
+
+Il comportamento condiviso si applica anche a `delete` nella CLI e a Elimina nella
+TUI: la prima eliminazione sposta nel cestino, quella di una voce già nel cestino
+è definitiva. La CLI non aggiunge una conferma interattiva: verificare la cartella
+prima di ripetere eliminazioni tramite script. Gli elenchi CLI/TUI mantengono
+visibili le voci nel cestino nella relativa cartella. I riferimenti UUID a una
+voce nel cestino continuano a funzionare fino all'eliminazione definitiva, che
+può interromperli e non cancella backup, snapshot o copie esterne.
