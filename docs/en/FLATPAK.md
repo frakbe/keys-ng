@@ -83,17 +83,17 @@ First generate a local OSTree repository:
 
 Then create the single `.flatpak` file:
 
-    flatpak build-bundle repo-flatpak Keys-NG-0.1.24.flatpak org.keysng.KeysNG --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
+    flatpak build-bundle repo-flatpak Keys-NG-0.2.2.flatpak org.keysng.KeysNG --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
 
 The file can be installed on another system with:
 
-    flatpak install --user Keys-NG-0.1.24.flatpak
+    flatpak install --user Keys-NG-0.2.2.flatpak
 
 The `--runtime-repo` option tells Flatpak where to obtain the KDE runtime and BaseApp, which are not fully embedded in the bundle.
 
 To publish a checksum as well:
 
-    sha256sum Keys-NG-0.1.24.flatpak > SHA256SUMS
+    sha256sum Keys-NG-0.2.2.flatpak > SHA256SUMS
 
 For Flathub or another public repository, publishing an updateable OSTree repository is preferable to distributing only a local bundle.
 
@@ -125,3 +125,16 @@ These permissions are intentional but broad. The package is not fully isolated f
 When Python dependencies change, update packaging/flatpak/requirements.txt and regenerate the JSON source module. Build and test again, then update the application version and org.keysng.KeysNG.metainfo.xml for a release.
 
 The Python wheel remains the recommended distribution format for CLI/TUI and for environments where host delegation is not wanted.
+
+## Version displayed by Flatpak
+
+`flatpak list` uses the AppStream release metadata installed by the manifest:
+`packaging/flatpak/org.keysng.KeysNG.metainfo.xml`. Its first `<release>` must
+match `keys_ng.__version__`; a regression test checks this consistency.
+If the app reports 0.2.2 but Flatpak reports 0.1.26, update sources from `main`,
+rebuild with `--force-clean`, recreate the bundle and reinstall it. The original
+`v0.2.2` tag predates this metadata correction.
+For a system installation use
+`flatpak install --system --reinstall ./Keys-NG-0.2.2.flatpak`.
+Use `--user` only when replacing a per-user installation.
+This correction does not change application code or the vault format.

@@ -83,17 +83,17 @@ Genera prima un repository OSTree locale:
 
 Crea quindi il file singolo `.flatpak`:
 
-    flatpak build-bundle repo-flatpak Keys-NG-0.1.24.flatpak org.keysng.KeysNG --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
+    flatpak build-bundle repo-flatpak Keys-NG-0.2.2.flatpak org.keysng.KeysNG --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
 
 Il file può essere installato su un altro sistema con:
 
-    flatpak install --user Keys-NG-0.1.24.flatpak
+    flatpak install --user Keys-NG-0.2.2.flatpak
 
 L'opzione `--runtime-repo` indica a Flatpak dove recuperare il runtime KDE e il BaseApp, che non vengono incorporati integralmente nel bundle.
 
 Per pubblicare anche un checksum:
 
-    sha256sum Keys-NG-0.1.24.flatpak > SHA256SUMS
+    sha256sum Keys-NG-0.2.2.flatpak > SHA256SUMS
 
 Per Flathub o un altro repository pubblico è preferibile pubblicare un repository OSTree aggiornabile invece di soltanto un bundle locale.
 
@@ -125,3 +125,16 @@ Questi permessi sono intenzionali ma ampi. Il pacchetto non è completamente iso
 Quando cambiano le dipendenze Python, aggiorna packaging/flatpak/requirements.txt e rigenera il modulo JSON dei sorgenti. Esegui nuovamente build e test, poi aggiorna la versione dell'applicazione e org.keysng.KeysNG.metainfo.xml per la release.
 
 La wheel resta il formato consigliato per CLI/TUI e per gli ambienti in cui non si desidera la delega degli strumenti all'host.
+
+## Versione mostrata da Flatpak
+
+La versione in `flatpak list` deriva dai metadati AppStream installati dal manifest:
+`packaging/flatpak/org.keysng.KeysNG.metainfo.xml`. La prima voce `<release>` deve
+corrispondere a `keys_ng.__version__`; un test di regressione verifica la coerenza.
+Se l'app mostra 0.2.2 ma Flatpak mostra 0.1.26, aggiornare i sorgenti da `main`,
+ricostruire con `--force-clean`, rigenerare il bundle e reinstallarlo. Il tag
+originale `v0.2.2` precede questa correzione dei metadati.
+Per sostituire un'installazione di sistema, usare
+`flatpak install --system --reinstall ./Keys-NG-0.2.2.flatpak`.
+Usare `--user` soltanto se anche l'installazione precedente è per utente.
+La correzione non cambia il codice applicativo o il formato del vault.

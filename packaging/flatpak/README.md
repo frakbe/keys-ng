@@ -41,13 +41,13 @@ To produce a redistributable single-file bundle:
 ```sh
 rm -rf repo-flatpak build-flatpak
 flatpak-builder --repo=repo-flatpak --force-clean build-flatpak packaging/flatpak/org.keysng.KeysNG.yml
-flatpak build-bundle repo-flatpak Keys-NG-0.1.24.flatpak org.keysng.KeysNG --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
+flatpak build-bundle repo-flatpak Keys-NG-0.2.2.flatpak org.keysng.KeysNG --runtime-repo=https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
 
 Install it with:
 
 ```sh
-flatpak install --user Keys-NG-0.1.24.flatpak
+flatpak install --user Keys-NG-0.2.2.flatpak
 ```
 
 The bundle refers to Flathub for the KDE runtime and BaseApp; it does not embed them completely.
@@ -62,3 +62,16 @@ The bundle refers to Flathub for the KDE runtime and BaseApp; it does not embed 
 The virtual environment is only a build tool and is not included in the resulting Flatpak. Release source archives should ideally include the generated `python3-flatpak-requirements.json`; if it is absent, regenerate it before building.
 
 The explicit `pybind11`, `scikit-build-core` and `nanobind` entries in `packaging/flatpak/requirements.txt` are intentional: Pillow and zxing-cpp are built from source and need these build dependencies.
+
+## Version displayed by Flatpak
+
+`flatpak list` uses the AppStream release metadata installed by the manifest:
+`packaging/flatpak/org.keysng.KeysNG.metainfo.xml`. Its first `<release>` must
+match `keys_ng.__version__`; a regression test checks this consistency.
+If the app reports 0.2.2 but Flatpak reports 0.1.26, update sources from `main`,
+rebuild with `--force-clean`, recreate the bundle and reinstall it. The original
+`v0.2.2` tag predates this metadata correction.
+For a system installation use
+`flatpak install --system --reinstall ./Keys-NG-0.2.2.flatpak`.
+Use `--user` only when replacing a per-user installation.
+This correction does not change application code or the vault format.

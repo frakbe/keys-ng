@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 import tomllib
+import xml.etree.ElementTree as ET
 
 from keys_ng import __version__
 
@@ -91,3 +92,10 @@ def test_launcher_settings_are_used_by_tui_and_gui():
     assert "settings=settings" in gui
     assert "pref-diagnostics" not in tui
     assert 'classes="prefs-options"' in tui
+
+
+def test_flatpak_latest_release_matches_application_version():
+    root = ET.parse("packaging/flatpak/org.keysng.KeysNG.metainfo.xml").getroot()
+    latest = root.find("releases/release")
+    assert latest is not None
+    assert latest.attrib["version"] == __version__
