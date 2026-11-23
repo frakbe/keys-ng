@@ -19,3 +19,17 @@ reopening, catalog integrity and all three catalog privacy levels.
 Manual checks still required: native clipboard/Pinentry on Linux desktops,
 Windows/macOS startup and packaging, HiDPI and theme changes, and an independent
 security review. Automated offscreen tests do not substitute these checks.
+
+## Post-release preferences fix (2026-11-23, main)
+
+Saving Preferences called a missing `VaultPane.reset_auto_lock_timer` method after
+writing settings. The shared reset method now applies timeout changes to every
+open vault, stops the old timer when timeout is zero, and keeps locked vaults
+stopped. Startup, activity, unlock, normal lock, hard lock and close use the same
+timer policy. Cancel leaves settings and timer intervals unchanged.
+
+The expanded GUI smoke reproduced the original AttributeError before the fix,
+then passed with two vaults, including disabled/enabled timers, a locked vault,
+cancel, real timer expiry, unlock and hard lock. All 188 regression tests and
+static security checks passed locally on Linux/Python 3.12. The original v0.2.2
+release artifacts do not include this post-release fix; rebuild from updated main.

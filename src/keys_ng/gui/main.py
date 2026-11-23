@@ -1059,8 +1059,7 @@ def main() -> None:
             self.auto_lock_timer = QTimer(self)
             self.auto_lock_timer.setSingleShot(True)
             self.auto_lock_timer.timeout.connect(lambda: self.lock(False))
-            if settings.auto_lock_timeout > 0:
-                self.auto_lock_timer.start(settings.auto_lock_timeout * 1000)
+            self.reset_auto_lock_timer()
             self.reload()
 
         @property
@@ -1205,6 +1204,11 @@ def main() -> None:
             for index in range(self.entries.topLevelItemCount()):
                 visit(self.entries.topLevelItem(index))
         def activity(self) -> None:
+            self.reset_auto_lock_timer()
+
+        def reset_auto_lock_timer(self) -> None:
+            """Apply the current timeout, stopping stale timers when disabled or locked."""
+            self.auto_lock_timer.stop()
             if settings.auto_lock_timeout > 0 and not self.vault.locked:
                 self.auto_lock_timer.start(settings.auto_lock_timeout * 1000)
 
@@ -1412,6 +1416,7 @@ def main() -> None:
             try:
                 self._capture_expanded_folders()
                 self.vault.lock(hard=hard)
+                self.reset_auto_lock_timer()
                 QApplication.clipboard().clear()
                 self.clear_details()
                 self.status_message(_("Vault locked."))
@@ -2175,6 +2180,7 @@ def main() -> None:
             if isinstance(pane, VaultPane):
                 try:
                     pane.vault.lock(hard=False)
+                    pane.reset_auto_lock_timer()
                 except Exception:
                     pass
                 pane.clear_details()
@@ -2192,6 +2198,7 @@ def main() -> None:
                 for pane in panes:
                     pane._capture_expanded_folders()
                     pane.vault.lock(hard=False)
+                    pane.reset_auto_lock_timer()
                     pane.clear_details()
                 panes[0].vault.crypto.hard_lock()
                 QApplication.clipboard().clear()

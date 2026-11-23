@@ -183,9 +183,43 @@ def run():
             assert other_pane is not pane
             other_pane.lock(False)
             assert not pane.vault.locked
+            # Saving preferences must reset all unlocked panes, including disabling
+            # an already running timer. Locked panes must remain stopped.
+            def set_timeout(seconds, accepted=True):
+                def preferences(dialog):
+                    dialog.auto_lock_spin.setValue(seconds)
+                    return QDialog.DialogCode.Accepted if accepted else QDialog.DialogCode.Rejected
+                with patch.object(QDialog, 'exec', preferences):
+                    window.show_preferences()
+            set_timeout(10)
+            assert pane.auto_lock_timer.isActive()
+            assert pane.auto_lock_timer.interval() == 10000
+            assert not other_pane.auto_lock_timer.isActive()
+            set_timeout(0)
+            assert not pane.auto_lock_timer.isActive()
+            pane.activity()
+            assert not pane.auto_lock_timer.isActive()
+            other_pane.unlock()
+            assert not other_pane.auto_lock_timer.isActive()
+            set_timeout(20)
+            for opened in (pane, other_pane):
+                assert opened.auto_lock_timer.isActive()
+                assert opened.auto_lock_timer.interval() == 20000
+            set_timeout(0, accepted=False)
+            for opened in (pane, other_pane):
+                assert opened.auto_lock_timer.isActive()
+                assert opened.auto_lock_timer.interval() == 20000
+            set_timeout(1)
+            QTest.qWait(1300)
+            assert pane.vault.locked and other_pane.vault.locked
+            assert not pane.auto_lock_timer.isActive()
+            assert not other_pane.auto_lock_timer.isActive()
+            pane.unlock()
             other_pane.unlock()
             window.hard_lock_all()
             assert other_pane.vault.locked
+            assert not pane.auto_lock_timer.isActive()
+            assert not other_pane.auto_lock_timer.isActive()
             assert pane.vault.locked and pane.current_entry is None
             assert not failures, failures
             window.close()
@@ -202,7 +236,7 @@ def run():
                 main()
             except SystemExit as exc:
                 assert exc.code == 0
-        print('GUI smoke passed: selection, search, references, draft preview, clipboard, lock, move, layout, hard lock, multiple tags, trash, restore, permanent deletion, empty trash')
+        print('GUI smoke passed: selection, search, references, draft preview, clipboard, lock, move, layout, hard lock, multiple tags, trash, restore, permanent deletion, empty trash, preferences save/cancel, auto-lock enable/disable/expiry')
 
 
 if __name__ == '__main__':

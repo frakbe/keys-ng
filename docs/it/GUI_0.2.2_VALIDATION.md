@@ -19,3 +19,18 @@ del catalogo e tutti e tre i livelli di privacy.
 Restano manuali le verifiche clipboard/Pinentry sui desktop Linux, avvio e
 pacchettizzazione Windows/macOS, HiDPI, temi e revisione indipendente della
 sicurezza. I test offscreen non sostituiscono queste verifiche.
+
+## Correzione Preferenze successiva alla release (2026-11-23, main)
+
+Il salvataggio delle Preferenze chiamava il metodo inesistente
+`VaultPane.reset_auto_lock_timer` dopo aver scritto le impostazioni. Il metodo
+condiviso ora applica il timeout a tutti i vault aperti, ferma il timer precedente
+quando il valore è zero e mantiene fermi i timer dei vault bloccati. Avvio,
+attività, sblocco, blocco normale, hard lock e chiusura seguono la stessa regola.
+Annulla non modifica impostazioni o intervalli dei timer.
+
+Lo smoke GUI esteso ha riprodotto l’AttributeError prima della correzione, poi ha
+superato le prove con due vault: timer disattivati/attivati, vault bloccato,
+annullamento, scadenza reale, sblocco e hard lock. Superati anche tutti i 188 test
+e il controllo statico di sicurezza su Linux/Python 3.12. I pacchetti originali
+v0.2.2 non includono questa correzione successiva: ricostruire da main aggiornato.
